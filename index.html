@@ -90,7 +90,7 @@ function renderMarket(){
       <b style="color:#00ffcc;font-size:22px;">KSh ${p.price.toLocaleString()}</b><br>
       <small>Seller gets 95%: KSh ${gets.toLocaleString()} | G-LUMO 5%: KSh ${fee.toLocaleString()}</small>
       <button onclick="buyProduct(${i})" style="background:#25D366;color:white;padding:12px;border-radius:20px;width:100%;border:none;font-weight:bold;margin-top:8px;">🛒 Buy Now Securely</button>
-      <button onclick="alert('Step 1: Pay KSh ${p.price} to G-LUMO Till: ${GLUMO_TILL}\\nStep 2: Click Buy Now to confirm\\nWe protect you and pay seller KSh ${gets} after delivery.')" style="width:100%;margin-top:6px;">How to Pay</button>
+      <button onclick="alert('Step 1: Pay KSh ${p.price} to G-LUMO pochi: ${GLUMO_pochi}\\nStep 2: Click Buy Now to confirm\\nWe protect you and pay seller KSh ${gets} after delivery.')" style="width:100%;margin-top:6px;">How to Pay</button>
     </div>`;
   });
   document.getElementById('marketList').innerHTML = html || '<p style="text-align:center;">No products found. Be the first seller!</p>';
