@@ -133,6 +133,7 @@ const videoPool = [
 {p:'youtube', id:'2g811Eo7K8U', t:'Relax - Chill Music'}
 ];
 const box = document.getElementById('videoScroll');
+  box.innerHTML = '<p style="color:#fff;padding:10px;">SCRIPT IS RUNNING</p>';
 function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
 function createCard(v){
   const d = document.createElement('div');
