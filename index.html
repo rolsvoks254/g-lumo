@@ -196,16 +196,18 @@ box.addEventListener('scroll', ()=>{
     });
   }, 150);
 },{passive:true});
-setInterval(()=>{
-  const cards=[...box.querySelectorAll(':scope > div')];
-  if(!cards.length) return;
-  let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1;
-  if(i>=cards.length) i=0;
-  stopAllExcept(cards[i]);
-  restoreCard(cards[i]);
-  cards[i].scrollIntoView({behavior:'smooth',inline:'center'});
-},7000);
+}, {passive:true});
+  let autoTimer;
+function resetAuto(){clearTimeout(autoTimer);autoTimer=setTimeout(autoNext,25000);}
+function autoNext(){const cards=[...box.querySelectorAll(':scope > div')];if(!cards.length)return;let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1;if(i>=cards.length)i=0;stopAllExcept(cards[i]);restoreCard(cards[i]);cards[i].scrollIntoView({behavior:'smooth',inline:'center'});resetAuto();}
+box.addEventListener('scroll',resetAuto,{passive:true});
+box.addEventListener('pointerdown',()=>clearTimeout(autoTimer));
+box.addEventListener('pointerup',resetAuto);
+resetAuto();
+
 </script>
+
+
 <!-- END RANDOM VIDEOS -->
 
 
