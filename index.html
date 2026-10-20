@@ -18,6 +18,41 @@ h1{color:#00ffcc}
 .card{background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;text-align:left}
 button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%}
 input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizing:border-box}
+  /* G-LUMO Compact Editor - Small Space Mode */
+.editor-compact, #photoEditor, #videoEditor, #clipEditor {
+  max-width: 100% !important;
+  padding: 10px !important;
+  margin: 10px auto !important;
+}
+
+.editor-compact button, 
+#photoEditor button, #videoEditor button, #clipEditor button {
+  display: inline-block !important;
+  width: 31% !important;
+  min-width: 90px !important;
+  padding: 8px 4px !important;
+  margin: 3px 1% !important;
+  font-size: 13px !important;
+  border-radius: 20px !important;
+}
+
+input[type="range"] {
+  height: 4px !important;
+  margin: 6px 0 12px 0 !important;
+}
+
+label, .slider-label {
+  font-size: 12px !important;
+  margin-top: 8px !important;
+  display: block !important;
+}
+
+canvas, video, #preview, #videoPreview {
+  max-height: 220px !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+}
 </style>
 </head>
 <body>
