@@ -330,6 +330,42 @@ d.innerHTML='<b>@rolsvoks254</b><br>'+t+'<br><small>Just now • Sosiot</small>'
 document.getElementById('feed').prepend(d);
 document.getElementById('postText').value='';
 }
+</script><script>
+// SECURITY SHIELD - G-LUMO
+(function(){
+  // Block XSS in inputs
+  window.secureText = function(str){
+    if(!str) return "";
+    return str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/\//g,"&#x2F;");
+  };
+
+  // Block dangerous pasting into inputs
+  document.addEventListener('paste', function(e){
+    let target = e.target;
+    if(target.tagName === 'INPUT' || target.tagName === 'TEXTAREA'){
+      setTimeout(()=>{
+        target.value = window.secureText(target.value);
+      }, 10);
+    }
+  });
+
+  // Stop right-click inspect on sensitive areas (basic deterrent)
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.tagName === 'IFRAME') e.preventDefault();
+  });
+
+  // Block iframe hijacking
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+
+  // Auto-block suspicious links
+  document.querySelectorAll('a').forEach(a=>{
+    if(a.href && !a.href.startsWith(location.origin) && !a.href.startsWith('https://')){
+      a.removeAttribute('href');
+    }
+  });
+})();
 </script>
 </body>
 </html>
