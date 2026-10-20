@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G-LUMO</title>
+<style>
+body{font-family:Arial;background:#0f0f1a;color:#fff;margin:0;padding:20px;text-align:center}
+h1{color:#00ffcc}
+.card{background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;text-align:left}
+button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%}
+input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizing:border-box}
+</style>
+</head>
+<body>
+<h1>G-LUMO</h1>
+<p>Connect. Share. Glow.</p>
+<input id="postText" placeholder="What's happening in Sosiot?">
+<button onclick="addPost()">Post</button>
+<div id="feed"></div>
+<script>
+function addPost(){
+let t=document.getElementById('postText').value;
+if(!t) return;
+let d=document.createElement('div');
+d.className='card';
+d.innerHTML='<b>@rolsvoks254</b><br>'+t+'<br><small>Just now • Sosiot</small>';
+document.getElementById('feed').prepend(d);
+document.getElementById('postText').value='';
+}
+</script>
+</body>
+</html>
