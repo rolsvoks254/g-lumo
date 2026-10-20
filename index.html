@@ -21,6 +21,23 @@ input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizin
 <p>Connect. Share. Glow.</p>
 <input id="postText" placeholder="What's happening in Sosiot?">
 <button onclick="addPost()">Post</button>
+  <button onclick="shareGLUMO()" style="width:100%; background:#ffffff; color:#000; padding:12px; margin-top:10px; border:none; border-radius:25px; font-weight:bold; cursor:pointer;">
+  Share G-LUMO
+</button>
+
+<script>
+function shareGLUMO() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'G-LUMO',
+      text: 'Connect. Share. Glow. Join G-LUMO!',
+      url: 'https://rolsvoks254.github.io/g-lumo/'
+    });
+  } else {
+    alert('Copy this link: https://rolsvoks254.github.io/g-lumo/');
+  }
+}
+</script>
 <div id="feed"></div>
 <script>
 function addPost(){
