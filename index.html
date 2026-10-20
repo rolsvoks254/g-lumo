@@ -39,6 +39,84 @@ function shareGLUMO() {
 }
 </script>
 <div id="feed"></div>
+  <div style="background:#111827;padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
+<h2 style="color:#00ffcc;text-align:center;">🌍 G-LUMO World Elite Marketplace</h2>
+<p style="text-align:center;"><small>Social Shopping • G-LUMO takes 5% • Seller gets 95%</small></p>
+
+<input id="mSearch" onkeyup="renderMarket()" placeholder="🔍 Search phones, food, fashion, services...">
+<div style="display:flex;gap:6px;overflow-x:auto;margin:8px 0;">
+<button onclick="filterCat('All')">All</button>
+<button onclick="filterCat('Food')">🍔 Food</button>
+<button onclick="filterCat('Fashion')">👗 Fashion</button>
+<button onclick="filterCat('Electronics')">📱 Electronics</button>
+<button onclick="filterCat('Transport')">🛵 Transport</button>
+<button onclick="filterCat('Beauty')">💄 Beauty</button>
+</div>
+<div id="marketList"></div>
+
+<h3 style="color:#00ffcc;">💰 Sell on G-LUMO (Agree 5% Fee)</h3>
+<input id="pName" placeholder="Product / Service name">
+<input id="pCat" placeholder="Category: Food, Fashion, Electronics">
+<input id="pPrice" type="number" placeholder="Price KSh e.g. 2500">
+<input id="pSeller" placeholder="Your Business Name">
+<input id="pPhone" placeholder="Seller WhatsApp 2547...">
+<input id="pTill" placeholder="Seller M-Pesa to receive 95%">
+<input id="pLoc" placeholder="Location e.g. Sosiot, Nairobi, Mombasa">
+<button onclick="addProduct()" style="background:#00ffcc;color:#000;">+ List Product & Start Selling</button>
+</div>
+
+<script>
+const ADMIN_WA = '254142550440'; // YOUR WhatsApp - all orders come here
+const GLUMO_TILL = 'YOUR_TILL_HERE'; // YOUR Till - buyers pay G-LUMO first
+let currentCat = 'All';
+let market = JSON.parse(localStorage.getItem('glumoMarket5') || '[]');
+if(market.length === 0){
+  market = [
+    {name:"iPhone 13 Pro - Clean UK Used", cat:"Electronics", price:65000, seller:"Sosiot Phones Hub", phone:"254700000000", till:"0700000000", loc:"Sosiot", rating:5, verified:true, sales:142},
+    {name:"Fresh Tilapia + Ugali Full Meal", cat:"Food", price:350, seller:"Mama Oliech Kitchen", phone:"254711111111", till:"0711111111", loc:"Sosiot Market", rating:5, verified:true, sales:89},
+    {name:"Nike Air Force 1 - All Sizes", cat:"Fashion", price:3800, seller:"Glow Fashion254", phone:"254722222222", till:"0722222222", loc:"Online Delivery", rating:4, verified:false, sales:56}
+  ];
+}
+function filterCat(c){ currentCat = c; renderMarket(); }
+function renderMarket(){
+  const q = document.getElementById('mSearch').value.toLowerCase();
+  let html = '';
+  market.filter(p => (currentCat==='All' || p.cat===currentCat) && p.name.toLowerCase().includes(q)).forEach((p,i)=>{
+    const fee = Math.round(p.price * 0.05);
+    const gets = p.price - fee;
+    html += `<div class="card">
+      <b>${p.name} ${p.verified ? '✅ Verified' : ''}</b> <span style="float:right;color:#00ffcc;">⭐ ${p.rating}.0</span><br>
+      <small>${p.seller} • ${p.cat} • 📍 ${p.loc} • ${p.sales} sold</small><br>
+      <b style="color:#00ffcc;font-size:22px;">KSh ${p.price.toLocaleString()}</b><br>
+      <small>Seller gets 95%: KSh ${gets.toLocaleString()} | G-LUMO 5%: KSh ${fee.toLocaleString()}</small>
+      <button onclick="buyProduct(${i})" style="background:#25D366;color:white;padding:12px;border-radius:20px;width:100%;border:none;font-weight:bold;margin-top:8px;">🛒 Buy Now Securely</button>
+      <button onclick="alert('Step 1: Pay KSh ${p.price} to G-LUMO Till: ${GLUMO_TILL}\\nStep 2: Click Buy Now to confirm\\nWe protect you and pay seller KSh ${gets} after delivery.')" style="width:100%;margin-top:6px;">How to Pay</button>
+    </div>`;
+  });
+  document.getElementById('marketList').innerHTML = html || '<p style="text-align:center;">No products found. Be the first seller!</p>';
+}
+function buyProduct(i){
+  const p = market[i];
+  const fee = Math.round(p.price * 0.05);
+  const gets = p.price - fee;
+  p.sales++;
+  localStorage.setItem('glumoMarket5', JSON.stringify(market));
+  renderMarket();
+  const msg = `NEW G-LUMO ORDER%0AProduct: ${encodeURIComponent(p.name)}%0APrice: KSh ${p.price}%0AG-LUMO 5%25 Fee: KSh ${fee}%0ASeller Gets 95%25: KSh ${gets}%0ASeller: ${encodeURIComponent(p.seller)}%0ASeller WhatsApp: ${p.phone}%0ASeller M-Pesa: ${p.till}%0ALocation: ${encodeURIComponent(p.loc)}%0A%0AI paid to G-LUMO Till: ${GLUMO_TILL}`;
+  window.open(`https://wa.me/${ADMIN_WA}?text=${msg}`);
+}
+function addProduct(){
+  const name = document.getElementById('pName').value;
+  const price = parseInt(document.getElementById('pPrice').value);
+  const phone = document.getElementById('pPhone').value;
+  if(!name || !price || !phone) return alert('Add product name, price, and WhatsApp');
+  market.unshift({name:name, cat:document.getElementById('pCat').value||'Shop', price:price, seller:document.getElementById('pSeller').value||'G-LUMO Seller', phone:phone, till:document.getElementById('pTill').value||phone, loc:document.getElementById('pLoc').value||'Kenya', rating:5, verified:false, sales:0});
+  localStorage.setItem('glumoMarket5', JSON.stringify(market));
+  renderMarket();
+  alert('Live on G-LUMO Marketplace! 5% fee will apply to every sale.');
+}
+renderMarket();
+</script>
 <script>
 function addPost(){
 let t=document.getElementById('postText').value;
