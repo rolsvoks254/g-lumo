@@ -57,70 +57,86 @@ function shareGLUMO() {
 <h3 style="color:white;margin:0;font-size:18px;">🔥 Trending Videos</h3>
 <p style="color:#aaa;font-size:12px;margin:5px 0 12px 0;">Swipe left / right • YouTube • TikTok Style • Reels • Shorts</p>
 
-<div id="videoScroll" style="display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;">
-<!-- CARD 1 -->
-<div style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;border:2px solid #ff2d78">
-<div style="background:linear-gradient(90deg,#ff2d78,#00f2ea);color:white;padding:6px 10px;font-size:11px;font-weight:bold">♪ TikTok • Shorts</div>
-<iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
+
+  <div style="display:flex;gap:8px;margin:10px 0;">
+  <button onclick="filterVideos('all',this)" class="filterBtn" style="flex:1;background:#00ff88;color:#000;padding:12px;border:none;border-radius:20px;font-weight:bold;">All</button>
+  <button onclick="filterVideos('youtube',this)" class="filterBtn" style="flex:1;background:#222;color:#fff;padding:12px;border:none;border-radius:20px;font-weight:bold;">▶ YouTube</button>
+  <button onclick="filterVideos('tiktok',this)" class="filterBtn" style="flex:1;background:#222;color:#fff;padding:12px;border:none;border-radius:20px;font-weight:bold;">♪ TikTok</button>
 </div>
 
-<!-- CARD 2 -->
-<div style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;border:2px solid #ff0000">
-<div style="background:#ff0000;color:white;padding:6px 10px;font-size:11px;font-weight:bold">▶ YouTube • Music</div>
-<iframe src="https://www.youtube-nocookie.com/embed/kJQP7kiw5Fk" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
-<p style="color:white;padding:10px;font-size:13px;margin:0">Top Hits Video</p>
-</div>
+<div id="videoScroll" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;">
 
-<!-- CARD 3 -->
-<div style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;border:2px solid #e1306c">
-<div style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white;padding:6px 10px;font-size:11px;font-weight:bold">● Instagram • Reels</div>
-<iframe src="https://www.youtube-nocookie.com/embed/60ItHLz5WEA" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
-</div>
+  <!-- YOUTUBE 1 -->
+  <div data-platform="youtube" style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;position:relative;transition:0.35s;">
+    <div style="background:#ff0000;color:white;padding:6px 10px;font-size:11px;font-weight:bold;">▶ YouTube • Trending</div>
+    <iframe src="https://www.youtube-nocookie.com/embed/kJQP7kiw5Fk" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
+    <p style="color:white;padding:10px;font-size:13px;margin:0;">Top Hits Video</p>
+  </div>
 
-<!-- CARD 4 -->
-<div style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;border:2px solid #1877f2">
-<div style="background:#1877f2;color:white;padding:6px 10px;font-size:11px;font-weight:bold">f Facebook • Watch</div>
-<iframe src="https://www.youtube-nocookie.com/embed/09R8_2nJtjg" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
-<p style="color:white;padding:10px;font-size:13px;margin:0">Viral Watch Video</p>
+  <!-- TIKTOK 1 -->
+  <div data-platform="tiktok" style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;position:relative;transition:0.35s;">
+    <div style="background:#000;color:white;padding:6px 10px;font-size:11px;font-weight:bold;border-bottom:1px solid #333;">♪ TikTok • Trending</div>
+    <iframe src="https://www.tiktok.com/embed/v2/7348822112931040517" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
+    <p style="color:white;padding:10px;font-size:13px;margin:0;">Viral TikTok</p>
+  </div>
+
+  <!-- YOUTUBE 2 -->
+  <div data-platform="youtube" style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;position:relative;transition:0.35s;">
+    <div style="background:#ff0000;color:white;padding:6px 10px;font-size:11px;font-weight:bold;">▶ YouTube • Music</div>
+    <iframe src="https://www.youtube-nocookie.com/embed/60ItHLz5WEA" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
+    <p style="color:white;padding:10px;font-size:13px;margin:0;">Music Video</p>
+  </div>
+
+  <!-- TIKTOK 2 -->
+  <div data-platform="tiktok" style="min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;position:relative;transition:0.35s;">
+    <div style="background:#000;color:white;padding:6px 10px;font-size:11px;font-weight:bold;border-bottom:1px solid #333;">♪ TikTok • Viral</div>
+    <iframe src="https://www.tiktok.com/embed/v2/7299192114383420715" width="100%" height="500" style="display:block" frameborder="0" allowfullscreen></iframe>
+    <p style="color:white;padding:10px;font-size:13px;margin:0;">Trending TikTok</p>
+  </div>
+
 </div>
-</div>
-<p style="color:#00ff88;font-size:11px;text-align:center;margin:8px 0 0 0;">← Swipe to explore more →</p>
-</div> 
-    <script>
+<p style="color:#00ff88;font-size:11px;text-align:center;">👉 Tap video to enlarge • Swipe to explore more 👈</p>
+
+<script>
 const scroller = document.getElementById('videoScroll');
 const originalCards = scroller.innerHTML;
 for(let i=0; i<5; i++){ scroller.innerHTML += originalCards; }
+
+let currentFilter = 'all';
+
+function filterVideos(type, btn){
+  currentFilter = type;
+  document.querySelectorAll('.filterBtn').forEach(b => b.style.background = '#222');
+  document.querySelectorAll('.filterBtn').forEach(b => b.style.color = '#fff');
+  btn.style.background = type=='youtube' ? '#ff0000' : type=='tiktok' ? '#000' : '#00ff88';
+  btn.style.color = type=='all' ? '#000' : '#fff';
+  if(type=='tiktok') btn.style.border = '1px solid #00ff88'; else btn.style.border = 'none';
+
+  document.querySelectorAll('#videoScroll > div').forEach(card => {
+    card.style.display = (type=='all' || card.dataset.platform==type) ? 'block' : 'none';
+  });
+  scroller.scrollTo({left:0});
+}
 
 function addTap(){
   document.querySelectorAll('#videoScroll > div').forEach(card => {
     if(card.dataset.ready) return;
     card.dataset.ready = 1;
-    card.style.position = 'relative';
-    card.style.transition = 'all 0.35s ease';
-
-    // Tap layer over video
     let tapLayer = document.createElement('div');
-    tapLayer.style.cssText = 'position:absolute;top:35px;left:0;width:100%;height:500px;z-index:10;background:transparent;';
+    tapLayer.style.cssText = 'position:absolute;top:35px;left:0;width:100%;height:500px;z-index:10;';
     card.appendChild(tapLayer);
 
     tapLayer.onclick = function(){
-      // 1. ENLARGE 3 TIMES - fullscreen zoom
       document.querySelectorAll('#videoScroll > div').forEach(c => {
-        c.style.transform = 'scale(1)';
-        c.style.minWidth = '86vw';
+        c.style.minWidth = '86vw'; c.style.transform = 'scale(1)';
         c.querySelector('iframe').style.height = '500px';
       });
-
-      card.style.transform = 'scale(1.08)';
       card.style.minWidth = '98vw';
-      card.style.zIndex = '20';
+      card.style.transform = 'scale(1.05)';
       card.querySelector('iframe').style.height = '800px';
-      tapLayer.style.display = 'none'; // now you can press Play
-
-      // 2. AUTO SCROLL TO NEXT after 4 seconds
+      tapLayer.style.display = 'none';
       setTimeout(() => {
-        card.style.transform = 'scale(1)';
-        scroller.scrollBy({left: card.offsetWidth + 12, behavior: 'smooth'});
+        scroller.scrollBy({left: card.offsetWidth + 12, behavior:'smooth'});
       }, 4000);
     }
   });
@@ -130,10 +146,11 @@ scroller.addEventListener('scroll', () => {
   if(scroller.scrollLeft + scroller.clientWidth > scroller.scrollWidth - 600){
     scroller.innerHTML += originalCards;
     addTap();
+    if(currentFilter != 'all') filterVideos(currentFilter, document.querySelector('.filterBtn'));
   }
 });
 addTap();
-    </script>
+</script>
        
 
 </script>  
