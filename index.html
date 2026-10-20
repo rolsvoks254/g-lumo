@@ -111,7 +111,7 @@ function shareGLUMO() {
 <div style="display:flex;gap:8px;padding:10px;">
   <button class="filter-btn" onclick="filterVideos('all',this)" style="flex:1;background:#00e6b8;color:#000;border:0;padding:10px;border-radius:20px;font-weight:bold;">All</button>
   <button class="filter-btn" onclick="filterVideos('youtube',this)" style="flex:1;background:#222;color:#fff;border:0;padding:10px;border-radius:20px;font-weight:bold;">▶ YouTube</button>
-  <button class="filter-btn" onclick="filterVideos('tiktok',this)" style="flex:1;background:#222;color:#fff;border:0;padding:10px;border-radius:20px;font-weight:bold;">♪ TikTok</button>
+  
 </div>
 
 <div id="videoScroll" style="display:flex;gap:12px;overflow-x:auto;padding:0 12px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;"></div>
@@ -130,10 +130,7 @@ const videoPool = [
   {p:'youtube', id:'LXb3EKWsInQ', t:'Lifestyles - Nature Relax'},
   {p:'youtube', id:'eKFTSSKCzWA', t:'Lifestyles - Daily Life'},
   {p:'youtube', id:'2g811Eo7K8U', t:'Relax - Chill Music'},
-  {p:'tiktok', id:'7348822112931040517', t:'TikTok - Tech & Lifestyle'},
-  {p:'tiktok', id:'7299192114383420715', t:'TikTok - Healthy Tips'},
-  {p:'tiktok', id:'7339305514444442667', t:'TikTok - Funny'},
-  {p:'tiktok', id:'7351234567890123456', t:'TikTok - Trending'}
+
 ];const box = document.getElementById('videoScroll');
 
 function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
