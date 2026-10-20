@@ -183,10 +183,28 @@ function filterVideos(type, btn){
 function stopCard(c){const f=c.querySelector('iframe'); if(f && f.src){f.dataset.src=f.src; f.removeAttribute('src');}}
 function restoreCard(c){const f=c.querySelector('iframe'); if(f && !f.src && f.dataset.src){f.src=f.dataset.src;}}
 function stopAllExcept(active){document.querySelectorAll('#videoScroll > div').forEach(c=>{if(c!==active) stopCard(c);});}
-const obs2 = new IntersectionObserver(es=>{es.forEach(e=>{if(e.intersectionRatio<0.6) stopCard(e.target);});},{root:box,threshold:[0,0.6,1]});
-document.querySelectorAll('#videoScroll > div').forEach(c=>obs2.observe(c));
-box.addEventListener('click', e=>{const card=e.target.closest('#videoScroll > div'); if(card) stopAllExcept(card);}, true);
-setInterval(()=>{const cards=[...box.querySelectorAll(':scope > div')]; if(!cards.length)return; let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1; if(i>=cards.length)i=0; stopAllExcept(cards[i]); restoreCard(cards[i]); cards[i].scrollIntoView({behavior:'smooth',inline:'center'}); cards.forEach(c=>obs2.observe(c));},7000);
+let scrollTimer;
+box.addEventListener('scroll', ()=>{
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(()=>{
+    const cards=[...box.querySelectorAll(':scope > div')];
+    if(!cards.length) return;
+    let i=Math.round(box.scrollLeft/cards[0].offsetWidth);
+    cards.forEach((c,idx)=>{
+      if(idx===i) restoreCard(c);
+      else stopCard(c);
+    });
+  }, 150);
+},{passive:true});
+setInterval(()=>{
+  const cards=[...box.querySelectorAll(':scope > div')];
+  if(!cards.length) return;
+  let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1;
+  if(i>=cards.length) i=0;
+  stopAllExcept(cards[i]);
+  restoreCard(cards[i]);
+  cards[i].scrollIntoView({behavior:'smooth',inline:'center'});
+},7000);
 </script>
 <!-- END RANDOM VIDEOS -->
 
