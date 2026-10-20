@@ -178,14 +178,15 @@ function filterVideos(type, btn){
   });
   box.scrollLeft = 0;
 }
-  // AUTO SCROLL + AUTO PAUSE
-function pauseCard(c){const f=c.querySelector('iframe'); if(f) f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');}
-function pauseAll(){document.querySelectorAll('#videoScroll > div').forEach(pauseCard);}
-const obs = new IntersectionObserver(es=>{es.forEach(e=>{if(e.intersectionRatio<0.55) pauseCard(e.target);});},{root:box,threshold:[0,0.55,1]});
-function watch(){document.querySelectorAll('#videoScroll > div').forEach(c=>obs.observe(c));}
-watch();
-let timer=setInterval(()=>{const cards=box.querySelectorAll(':scope > div'); if(!cards.length)return; let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1; if(i>=cards.length)i=0; pauseAll(); cards[i].scrollIntoView({behavior:'smooth',inline:'center'}); watch();},7000);
-box.addEventListener('touchstart',()=>clearInterval(timer),{passive:true});
+  
+ // AUTO SCROLL + STOP PREVIOUS (UNLOAD METHOD)
+function stopCard(c){const f=c.querySelector('iframe'); if(f && f.src){f.dataset.src=f.src; f.removeAttribute('src');}}
+function restoreCard(c){const f=c.querySelector('iframe'); if(f && !f.src && f.dataset.src){f.src=f.dataset.src;}}
+function stopAllExcept(active){document.querySelectorAll('#videoScroll > div').forEach(c=>{if(c!==active) stopCard(c);});}
+const obs2 = new IntersectionObserver(es=>{es.forEach(e=>{if(e.intersectionRatio<0.6) stopCard(e.target);});},{root:box,threshold:[0,0.6,1]});
+document.querySelectorAll('#videoScroll > div').forEach(c=>obs2.observe(c));
+box.addEventListener('click', e=>{const card=e.target.closest('#videoScroll > div'); if(card) stopAllExcept(card);}, true);
+setInterval(()=>{const cards=[...box.querySelectorAll(':scope > div')]; if(!cards.length)return; let i=Math.round(box.scrollLeft/cards[0].offsetWidth)+1; if(i>=cards.length)i=0; stopAllExcept(cards[i]); restoreCard(cards[i]); cards[i].scrollIntoView({behavior:'smooth',inline:'center'}); cards.forEach(c=>obs2.observe(c));},7000);
 </script>
 <!-- END RANDOM VIDEOS -->
 
