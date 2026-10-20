@@ -456,5 +456,66 @@ window.addEventListener('scroll', ()=>{
 });
 topBtn.onclick = ()=> window.scrollTo({top:0, behavior:'smooth'});
 </script>
+    <script>
+// G-LUMO TikTok Remover - Removes ALL TikTok videos
+(function() {
+  // 1. Clean videoPool if it exists
+  if (typeof videoPool !== 'undefined' && Array.isArray(videoPool)) {
+    for (let i = videoPool.length - 1; i >= 0; i--) {
+      if (videoPool[i].toLowerCase().includes('tiktok')) {
+        videoPool.splice(i, 1);
+      }
+    }
+  }
+
+  // 2. Remove all TikTok elements already on page
+  function removeTikTokElements() {
+    const selectors = [
+      'iframe[src*="tiktok.com"]',
+      'blockquote.tiktok-embed',
+      'div[data-tiktok]',
+      'a[href*="tiktok.com"]',
+      '.tiktok-embed',
+      '#tiktok-section',
+      '[id*="tiktok"]',
+      '[class*="tiktok"]'
+    ];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => el.remove());
+    });
+
+    // Remove any parent box that says Video currently unavailable
+    document.querySelectorAll('div, section, article').forEach(el => {
+      if (el.textContent && el.textContent.includes('Video currently unavailable') && el.textContent.includes('TikTok')) {
+        el.remove();
+      }
+    });
+  }
+
+  // 3. Run on load and keep watching for new TikTok loads
+  document.addEventListener('DOMContentLoaded', removeTikTokElements);
+  window.addEventListener('load', removeTikTokElements);
+  setInterval(removeTikTokElements, 1000);
+
+  const observer = new MutationObserver(removeTikTokElements);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 4. Block TikTok script from loading
+  const originalCreateElement = document.createElement.bind(document);
+  document.createElement = function(tag) {
+    const el = originalCreateElement(tag);
+    if (tag.toLowerCase() === 'script') {
+      Object.defineProperty(el, 'src', {
+        set: function(value) {
+          if (value && value.toLowerCase().includes('tiktok')) return;
+          el.setAttribute('src', value);
+        },
+        get: function() { return el.getAttribute('src'); }
+      });
+    }
+    return el;
+  };
+})();
+    </script>
 </body>
 </html>
