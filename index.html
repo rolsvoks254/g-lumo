@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+u<!DOCTYPE html>
 <html>
 <head>
   
@@ -180,9 +180,9 @@ function filterVideos(type, btn){
 }
   
  // AUTO SCROLL + STOP PREVIOUS (UNLOAD METHOD)
-function stopCard(c){const f=c.querySelector('iframe'); if(f && f.src){f.dataset.src=f.src; f.removeAttribute('src');}}
-function restoreCard(c){const f=c.querySelector('iframe'); if(f && !f.src && f.dataset.src){f.src=f.dataset.src;}}
 function stopAllExcept(active){document.querySelectorAll('#videoScroll > div').forEach(c=>{if(c!==active) stopCard(c);});}
+  function stopCard(c){const f=c.querySelector('iframe'); if(f){c.dataset.src=f.src; f.remove();}}
+function restoreCard(c){if(!c.querySelector('iframe') && c.dataset.src){const f=document.createElement('iframe'); f.src=c.dataset.src; f.width='100%'; f.height='200'; f.allow='autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen=true; f.style.border='0'; f.style.borderRadius='10px'; c.prepend(f);}}
 let scrollTimer;
 box.addEventListener('scroll', ()=>{
   clearTimeout(scrollTimer);
