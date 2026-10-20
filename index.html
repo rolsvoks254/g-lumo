@@ -39,6 +39,98 @@ function shareGLUMO() {
 }
 </script>
 <div id="feed"></div>
+  <div style="background:linear-gradient(135deg,#111827,#1e1b4b);padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
+  <h2 style="color:#00ffcc;text-align:center;margin:5px;">🎬 G-LUMO Elite Studio</h2>
+  <p style="text-align:center;margin:5px;"><small>Photo • Video • Clip Editor - Free for G-LUMO Users</small></p>
+
+  <div style="display:flex;gap:6px;overflow-x:auto;margin:10px 0;">
+    <button onclick="showEditor('photo')">📸 Photo</button>
+    <button onclick="showEditor('video')">🎥 Video</button>
+    <button onclick="showEditor('clip')">✂️ Clip</button>
+  </div>
+
+  <!-- PHOTO EDITOR -->
+  <div id="editor-photo">
+    <input type="file" id="photoInput" accept="image/*">
+    <canvas id="photoCanvas" style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></canvas>
+    <input type="range" id="bright" min="50" max="150" value="100" oninput="applyPhotoFilter()"> Brightness
+    <input type="range" id="contrast" min="50" max="150" value="100" oninput="applyPhotoFilter()"> Contrast
+    <input type="range" id="saturate" min="0" max="200" value="100" oninput="applyPhotoFilter()"> Color
+    <div style="display:flex;gap:6px;overflow-x:auto;margin:8px 0;">
+      <button onclick="setPreset('none')">Normal</button>
+      <button onclick="setPreset('grayscale(100%)')">B&W</button>
+      <button onclick="setPreset('sepia(80%)')">Vintage</button>
+      <button onclick="setPreset('invert(100%)')">Negative</button>
+      <button onclick="setPreset('hue-rotate(90deg)')">Glow</button>
+    </div>
+    <button onclick="downloadPhoto()" style="background:#00ffcc;color:#000;">⬇️ Download Photo</button>
+  </div>
+
+  <!-- VIDEO EDITOR -->
+  <div id="editor-video" style="display:none;">
+    <input type="file" id="videoInput" accept="video/*">
+    <video id="videoPlayer" controls style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></video>
+    <input type="range" id="vBright" min="50" max="150" value="100" oninput="applyVideoFilter()"> Brightness
+    <input type="range" id="vSaturate" min="0" max="200" value="100" oninput="applyVideoFilter()"> Color
+    <button onclick="downloadVideoLink()" style="background:#00ffcc;color:#000;">⬇️ Download Video</button>
+  </div>
+
+  <!-- CLIP EDITOR -->
+  <div id="editor-clip" style="display:none;">
+    <input type="file" id="clipInput" accept="video/*">
+    <video id="clipPlayer" controls style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></video>
+    <p style="font-size:12px;">Use your phone gallery to trim, then upload here to add G-LUMO filter & share to feed.</p>
+    <button onclick="shareClip()" style="background:#fff;color:#000;">🚀 Share Clip to G-LUMO</button>
+  </div>
+</div>
+
+<script>
+let photoImg = new Image(), extraFilter = '';
+function showEditor(t){
+  document.getElementById('editor-photo').style.display = t=='photo'?'block':'none';
+  document.getElementById('editor-video').style.display = t=='video'?'block':'none';
+  document.getElementById('editor-clip').style.display = t=='clip'?'block':'none';
+}
+document.getElementById('photoInput').onchange = e => {
+  photoImg.onload = () => {
+    let c = document.getElementById('photoCanvas');
+    c.width = photoImg.width; c.height = photoImg.height;
+    applyPhotoFilter();
+  };
+  photoImg.src = URL.createObjectURL(e.target.files[0]);
+};
+function setPreset(f){ extraFilter = f; applyPhotoFilter(); }
+function applyPhotoFilter(){
+  let c = document.getElementById('photoCanvas'), ctx = c.getContext('2d');
+  if(!photoImg.src) return;
+  ctx.filter = `brightness(${bright.value}%) contrast(${contrast.value}%) saturate(${saturate.value}%) ${extraFilter}`;
+  ctx.drawImage(photoImg,0,0);
+}
+function downloadPhoto(){
+  let a = document.createElement('a');
+  a.download = 'glumo-photo.png';
+  a.href = document.getElementById('photoCanvas').toDataURL();
+  a.click();
+}
+document.getElementById('videoInput').onchange = e => {
+  document.getElementById('videoPlayer').src = URL.createObjectURL(e.target.files[0]);
+};
+function applyVideoFilter(){
+  document.getElementById('videoPlayer').style.filter = `brightness(${vBright.value}%) saturate(${vSaturate.value}%)`;
+}
+function downloadVideoLink(){
+  let v = document.getElementById('videoPlayer').src;
+  if(v){ let a=document.createElement('a'); a.href=v; a.download='glumo-video.mp4'; a.click(); }
+}
+document.getElementById('clipInput').onchange = e => {
+  document.getElementById('clipPlayer').src = URL.createObjectURL(e.target.files[0]);
+  document.getElementById('clipPlayer').style.filter = 'saturate(140%) contrast(110%)';
+};
+function shareClip(){
+  if(navigator.share){ navigator.share({title:'G-LUMO Clip', text:'Check my clip on G-LUMO!', url:'https://rolsvoks254.github.io/g-lumo/'}); }
+  else { alert('Copy link: https://rolsvoks254.github.io/g-lumo/'); }
+}
+</script>
   <div style="background:#111827;padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
 <h2 style="color:#00ffcc;text-align:center;">🌍 G-LUMO World Elite Marketplace</h2>
 <p style="text-align:center;"><small>Social Shopping • G-LUMO takes 5% • Seller gets 95%</small></p>
