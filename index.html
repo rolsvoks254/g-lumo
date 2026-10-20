@@ -137,23 +137,16 @@ const box = document.getElementById('videoScroll');
 
 function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
 
-function createCard(v){
+      function createCard(v){
   const d = document.createElement('div');
   d.dataset.platform = v.p;
-  d.style.cssText = 'min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;flex-shrink:0;transition:0.3s;cursor:pointer;';
-  const isYT = v.p === 'youtube';
-  const src = `https://www.youtube-nocookie.com/embed/${v.id}?rel=0&playsinline=1&enablejsapi=1`;
-  d.innerHTML = `
-    <div style="background:${isYT?'#ff0000':'#111'};color:#fff;padding:7px 10px;font-size:11px;font-weight:bold;">${isYT?'▶ YouTube':'♪ TikTok'} • ${v.t}</div>
-    <iframe src="${src}" width="100%" height="500" style="display:block;border:0" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; web-share"></iframe>
-    <p style="color:#fff;padding:10px;font-size:13px;margin:0;">${v.t}</p>`;
-  d.addEventListener('click', () => {
-    document.querySelectorAll('#videoScroll > div').forEach(c => c.style.minWidth='86vw');
-    d.style.minWidth='96vw';
-    d.scrollIntoView({behavior:'smooth', inline:'center'});
-  });
+  d.style.cssText = 'min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;';
+  const src = 'https://www.youtube-nocookie.com/embed/' + v.id + '?rel=0&playsinline=1';
+  d.innerHTML = '<div style="background:#ff0000;color:#fff;padding:7px 10px;font-size:11px;font-weight:bold;">YOUTUBE</div>' +
+    '<iframe src="' + src + '" width="100%" height="500" style="display:block;border:0" allowfullscreen></iframe>' +
+    '<p style="color:#fff;padding:10px;font-size:13px;margin:0;">' + v.t + '</p>';
   return d;
-}
+      }
 
 function loadRandom(){
   shuffle([...videoPool]).forEach(v => box.appendChild(createCard(v)));
