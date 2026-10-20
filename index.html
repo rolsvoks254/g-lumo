@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+u<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,21 +50,82 @@ function shareGLUMO() {
   </div>
 
   <!-- PHOTO EDITOR -->
-  <div id="editor-photo">
-    <input type="file" id="photoInput" accept="image/*">
-    <canvas id="photoCanvas" style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></canvas>
-    <input type="range" id="bright" min="50" max="150" value="100" oninput="applyPhotoFilter()"> Brightness
-    <input type="range" id="contrast" min="50" max="150" value="100" oninput="applyPhotoFilter()"> Contrast
-    <input type="range" id="saturate" min="0" max="200" value="100" oninput="applyPhotoFilter()"> Color
-    <div style="display:flex;gap:6px;overflow-x:auto;margin:8px 0;">
-      <button onclick="setPreset('none')">Normal</button>
-      <button onclick="setPreset('grayscale(100%)')">B&W</button>
-      <button onclick="setPreset('sepia(80%)')">Vintage</button>
-      <button onclick="setPreset('invert(100%)')">Negative</button>
-      <button onclick="setPreset('hue-rotate(90deg)')">Glow</button>
-    </div>
-    <button onclick="downloadPhoto()" style="background:#00ffcc;color:#000;">⬇️ Download Photo</button>
+ <!-- FULL PHOTO EDITOR -->
+<div style="background:#1a1a1a;padding:15px;border-radius:15px;margin-top:15px;">
+  <h3 style="color:#00ff88;margin:0 0 10px 0;">🖼️ Photo Editor Pro</h3>
+  <input type="file" id="photoInput" accept="image/*" style="width:100%;margin-bottom:10px;">
+  <canvas id="photoCanvas" style="width:100%;border-radius:10px;background:#000;"></canvas>
+  
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0;">
+    <button onclick="cropPhoto('1:1')">Square</button>
+    <button onclick="cropPhoto('4:5')">Portrait</button>
+    <button onclick="cropPhoto('9:16')">Story</button>
+    <button onclick="rotatePhoto()">Rotate</button>
+    <button onclick="flipPhoto()">Flip</button>
   </div>
+
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0;">
+    <button onclick="setFilter('none')">Normal</button>
+    <button onclick="setFilter('grayscale(100%)')">B&W</button>
+    <button onclick="setFilter('sepia(80%)')">Vintage</button>
+    <button onclick="setFilter('hue-rotate(90deg)')">Cool</button>
+    <button onclick="setFilter('saturate(2)')">Vivid</button>
+    <button onclick="setFilter('contrast(1.5) brightness(0.9)')">Drama</button>
+  </div>
+
+  <label style="color:white;font-size:12px;">Brightness</label>
+  <input type="range" id="bright" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
+  <label style="color:white;font-size:12px;">Contrast</label>
+  <input type="range" id="contrast" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
+  <label style="color:white;font-size:12px;">Saturation</label>
+  <input type="range" id="sat" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
+
+  <input type="text" id="photoText" placeholder="Add text on photo..." style="width:100%;padding:8px;margin:10px 0;border-radius:8px;border:none;">
+  <button onclick="addText()" style="width:100%;background:#00ff88;color:black;padding:10px;border:none;border-radius:8px;font-weight:bold;">Add Text</button>
+
+  <div style="margin:10px 0;font-size:24px;">
+    <span onclick="addSticker('🔥')">🔥</span> <span onclick="addSticker('❤️')">❤️</span> <span onclick="addSticker('😂')">😂</span> <span onclick="addSticker('⭐')">⭐</span> <span onclick="addSticker('👑')">👑</span>
+  </div>
+
+  <button onclick="downloadPhoto()" style="width:100%;background:#ff0066;color:white;padding:12px;border:none;border-radius:8px;font-weight:bold;">Download Photo</button>
+</div>
+
+<script>
+let img = new Image(), angle = 0, flip = 1, filter = 'none', stickers = [], texts = [];
+const canvas = document.getElementById('photoCanvas'), ctx = canvas.getContext('2d');
+
+document.getElementById('photoInput').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(file){ img.src = URL.createObjectURL(file); img.onload = () => { canvas.width = img.width; canvas.height = img.height; applyEdits(); } }
+});
+
+function applyEdits(){
+  const b = document.getElementById('bright').value, c = document.getElementById('contrast').value, s = document.getElementById('sat').value;
+  ctx.save();
+  ctx.filter = `${filter} brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.translate(canvas.width/2, canvas.height/2);
+  ctx.rotate(angle * Math.PI/180);
+  ctx.scale(flip, 1);
+  ctx.drawImage(img, -img.width/2, -img.height/2);
+  ctx.restore();
+  ctx.filter = 'none';
+  texts.forEach(t => { ctx.font = 'bold 60px Arial'; ctx.fillStyle = 'white'; ctx.strokeStyle = 'black'; ctx.lineWidth = 4; ctx.strokeText(t, 50, canvas.height - 80); ctx.fillText(t, 50, canvas.height - 80); });
+  stickers.forEach((st,i) => { ctx.font = '80px Arial'; ctx.fillText(st, 50 + (i*90), 100); });
+}
+function setFilter(f){ filter = f; applyEdits(); }
+function rotatePhoto(){ angle = (angle + 90) % 360; applyEdits(); }
+function flipPhoto(){ flip = flip * -1; applyEdits(); }
+function cropPhoto(ratio){ 
+  if(ratio=='1:1'){ canvas.height = canvas.width; }
+  if(ratio=='4:5'){ canvas.height = canvas.width * 1.25; }
+  if(ratio=='9:16'){ canvas.height = canvas.width * 1.77; }
+  applyEdits();
+}
+function addText(){ const t = document.getElementById('photoText').value; if(t){ texts.push(t); applyEdits(); } }
+function addSticker(s){ stickers.push(s); applyEdits(); }
+function downloadPhoto(){ const a = document.createElement('a'); a.download = 'g-lumo-photo.png'; a.href = canvas.toDataURL(); a.click(); }
+</script> 
 
   <!-- VIDEO EDITOR -->
   <div id="editor-video" style="display:none;">
