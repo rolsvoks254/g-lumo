@@ -119,9 +119,8 @@ function shareGLUMO() {
 </div>
 
 
-    <script>
+<script>
 const videoPool = [
-
 {p:'youtube', id:'60ItHLz5WEA', t:'Music - Faded'},
 {p:'youtube', id:'kJQP7kiw5Fk', t:'Music - Despacito'},
 {p:'youtube', id:'RgKAFK5djSk', t:'Music - See You Again'},
@@ -131,13 +130,11 @@ const videoPool = [
 {p:'youtube', id:'09R8_2nJtjg', t:'Funny - Try Not To Laugh'},
 {p:'youtube', id:'LXb3EKWsInQ', t:'Lifestyles - Nature Relax'},
 {p:'youtube', id:'eKFTSSKCzWA', t:'Lifestyles - Daily Life'},
-{p:'youtube', id:'2g811Eo7K8U', t:'Relax - Chill Music'},
+{p:'youtube', id:'2g811Eo7K8U', t:'Relax - Chill Music'}
 ];
 const box = document.getElementById('videoScroll');
-
 function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
-
-      function createCard(v){
+function createCard(v){
   const d = document.createElement('div');
   d.dataset.platform = v.p;
   d.style.cssText = 'min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;';
@@ -146,55 +143,28 @@ function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
     '<iframe src="' + src + '" width="100%" height="500" style="display:block;border:0" allowfullscreen></iframe>' +
     '<p style="color:#fff;padding:10px;font-size:13px;margin:0;">' + v.t + '</p>';
   return d;
-      }
-
+}
 function loadRandom(){
   shuffle([...videoPool]).forEach(v => box.appendChild(createCard(v)));
 }
-
 loadRandom();
-
-// Endless random scroll
 let loading = false;
 box.addEventListener('scroll', () => {
   if(!loading && box.scrollLeft + box.clientWidth >= box.scrollWidth - 80){
     loading = true;
     loadRandom();
-    setTimeout(()=> loading=false, 800);
+    setTimeout(() => loading = false, 800);
   }
 });
-
-// Filter
 function filterVideos(type, btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>{ b.style.background='#222'; b.style.color='#fff'; });
-  btn.style.background='#00e6b8'; btn.style.color='#000';
-  document.querySelectorAll('#videoScroll > div').forEach(c=>{
-    c.style.display = (type==='all' || c.dataset.platform===type) ? 'block' : 'none';
+  document.querySelectorAll('.filter-btn').forEach(b => { b.style.background = '#222'; b.style.color = '#fff'; });
+  if(btn){ btn.style.background = '#00e6b8'; btn.style.color = '#000'; }
+  document.querySelectorAll('#videoScroll > div').forEach(c => {
+    c.style.display = (type === 'all' || c.dataset.platform === type) ? 'block' : 'none';
   });
   box.scrollLeft = 0;
 }
-  
- // AUTO SCROLL + STOP PREVIOUS (UNLOAD METHOD)
-function stopAllExcept(active){document.querySelectorAll('#videoScroll > div').forEach(c=>{if(c!==active) stopCard(c);});}
-  function stopCard(c){const f=c.querySelector('iframe'); if(f){c.dataset.src=f.src; f.remove();}}
-function restoreCard(c){if(!c.querySelector('iframe') && c.dataset.src){const f=document.createElement('iframe'); f.src=c.dataset.src; f.width='100%'; f.height='200'; f.allow='autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen=true; f.style.border='0'; f.style.borderRadius='10px'; c.prepend(f);}}
-let scrollTimer;
-box.addEventListener('scroll', ()=>{
-  clearTimeout(scrollTimer);
-  scrollTimer = setTimeout(()=>{
-    const cards=[...box.querySelectorAll(':scope > div')];
-    if(!cards.length) return;
-    let i=Math.round(box.scrollLeft/cards[0].offsetWidth);
-    cards.forEach((c,idx)=>{
-      if(idx===i) restoreCard(c);
-      else stopCard(c);
-    });
-  }, 150);
-},{passive:true});
-}, {passive:true});
-
-
-</script>
+</script>    
 
 
 <!-- END RANDOM VIDEOS -->
