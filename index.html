@@ -632,5 +632,44 @@ window.auth = auth;
 window.db = db;
 console.log("G-LUMO Firebase connected");
 </script>
+ <script type="module">
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+
+const box = document.createElement("div");
+box.className = "card";
+box.innerHTML = `
+  <h3 style="color:#00ffcc">G-LUMO Account</h3>
+  <p id="userStatus">Not logged in</p>
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+`;
+document.body.insertBefore(box, document.body.children[1]);
+
+window.signup = async () => {
+  try {
+    await createUserWithEmailAndPassword(window.auth, email.value, password.value);
+    alert("Account created!");
+  } catch(e) { alert(e.message); }
+};
+
+window.login = async () => {
+  try {
+    await signInWithEmailAndPassword(window.auth, email.value, password.value);
+    alert("Logged in!");
+  } catch(e) { alert(e.message); }
+};
+
+window.logout = async () => {
+  await signOut(window.auth);
+  alert("Logged out");
+};
+
+onAuthStateChanged(window.auth, (user) => {
+  document.getElementById("userStatus").innerText = user ? "Logged in as: " + user.email : "Not logged in";
+});
+ </script> 
 </body>
 </html>
