@@ -642,6 +642,7 @@ box.innerHTML = `
   <p id="userStatus">Not logged in</p>
   <input id="email" type="email" placeholder="Email">
   <input id="password" type="password" placeholder="Password">
+<label style="color:#fff;font-size:14px"><input type="checkbox" onclick="togglePass()"> Show Password</label>
   <button onclick="signup()">Sign Up</button>
   <button onclick="login()">Login</button>
   <button onclick="logout()">Logout</button>
@@ -666,7 +667,11 @@ window.logout = async () => {
   await signOut(window.auth);
   alert("Logged out");
 };
-
+window.togglePass = () => {
+  const p = document.getElementById("password");
+  p.type = p.type === "password" ? "text" : "password";
+};
+   
 onAuthStateChanged(window.auth, (user) => {
   document.getElementById("userStatus").innerText = user ? "Logged in as: " + user.email : "Not logged in";
 });
