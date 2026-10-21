@@ -564,5 +564,57 @@ topBtn.onclick = ()=> window.scrollTo({top:0, behavior:'smooth'});
   };
 })();
     </script>
+  <button onclick="openFYP()" style="position:fixed;bottom:80px;right:16px;background:#00ffcc;color:#000;border:none;padding:14px 18px;border-radius:50px;font-weight:bold;z-index:99;">▶ FYP Feed</button>
+
+<div id="fypFeed" style="display:none;position:fixed;inset:0;background:#000;z-index:9999;overflow-y:scroll;scroll-snap-type:y mandatory;">
+  <button onclick="closeFYP()" style="position:fixed;top:16px;right:16px;z-index:10000;background:#00ffcc;border:none;padding:10px 14px;border-radius:20px;font-weight:bold;">Close X</button>
+  <div id="feedItems"></div>
+</div>
+
+<div style="background:#111;padding:16px;border-radius:16px;margin:16px;">
+  <h3 style="color:#00ffcc;">Post Photo / Video to FYP</h3>
+  <input id="postText" placeholder="Write something..." style="width:100%;padding:12px;margin:8px 0;">
+  <input id="postMedia" type="file" accept="image/*,video/*" style="margin:8px 0;color:#fff;">
+  <button onclick="addToFeed()" style="background:#00ffcc;color:#000;padding:12px;width:100%;border:none;border-radius:20px;font-weight:bold;">Post Now</button>
+</div>
+
+<script>
+let feedPosts = JSON.parse(localStorage.getItem('glumoFeed') || '[]');
+function addToFeed(){
+  let text = document.getElementById('postText').value;
+  let file = document.getElementById('postMedia').files[0];
+  if(!text && !file) return alert('Add text or a photo/video');
+  const savePost = (media, type) => {
+    feedPosts.unshift({text:text, media:media, mediaType:type, likes:0, user:'@rolsvoks254', time:'Just now • Sosiot'});
+    localStorage.setItem('glumoFeed', JSON.stringify(feedPosts));
+    document.getElementById('postText').value=''; document.getElementById('postMedia').value='';
+    renderFeed(); alert('Live on FYP!'); openFYP();
+  };
+  if(file){
+    let reader = new FileReader();
+    reader.onload = e => savePost(e.target.result, file.type.startsWith('video') ? 'video' : 'image');
+    reader.readAsDataURL(file);
+  } else { savePost('', 'text'); }
+}
+function renderFeed(){
+  let html = '';
+  feedPosts.forEach((p,i)=>{
+    html += `<div style="height:100vh;scroll-snap-align:start;position:relative;background:#000;display:flex;align-items:center;justify-content:center;">
+      ${p.mediaType==='video' ? `<video src="${p.media}" autoplay muted loop playsinline controls style="width:100%;height:100%;object-fit:cover;"></video>` : ''}
+      ${p.mediaType==='image' ? `<img src="${p.media}" style="width:100%;height:100%;object-fit:cover;">` : ''}
+      ${p.mediaType==='text' ? `<div style="color:#fff;font-size:28px;padding:30px;text-align:center;">${p.text}</div>` : ''}
+      <div style="position:absolute;left:16px;bottom:90px;color:#fff;max-width:70%;"><b>${p.user}</b><br><small>${p.time}</small><br><br>${p.text}</div>
+      <div style="position:absolute;right:12px;bottom:120px;color:#fff;text-align:center;">
+        <button onclick="likePost(${i})" style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:55px;height:55px;border-radius:50%;font-size:22px;">❤️</button><br><small>${p.likes}</small>
+      </div>
+    </div>`;
+  });
+  document.getElementById('feedItems').innerHTML = html || '<p style="color:#fff;text-align:center;padding-top:50vh;">No posts yet</p>';
+}
+function likePost(i){ feedPosts[i].likes++; localStorage.setItem('glumoFeed', JSON.stringify(feedPosts)); renderFeed(); }
+function openFYP(){ document.getElementById('fypFeed').style.display='block'; renderFeed(); }
+function closeFYP(){ document.getElementById('fypFeed').style.display='none'; }
+renderFeed();
+</script>
 </body>
 </html>
