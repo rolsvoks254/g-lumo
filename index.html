@@ -332,9 +332,10 @@ function shareClip(){
 <input id="pName" placeholder="Product / Service name">
 <input id="pCat" placeholder="Category: Food, Fashion, Electronics">
 <input id="pPrice" type="number" placeholder="Price KSh e.g. 2500">
+   <input id="pMedia" type="file" accept="image/*,video/*" style="margin:8px 0;"> 
 <input id="pSeller" placeholder="Your Business Name">
 <input id="pPhone" placeholder="Seller WhatsApp 2547...">
-<input id="pTill" placeholder="Seller M-Pesa to receive 95%">
+<input id="ppochi" placeholder="Seller M-Pesa to receive 95%">
 <input id="pLoc" placeholder="Location e.g. Sosiot, Nairobi, Mombasa">
 <button onclick="addProduct()" style="background:#00ffcc;color:#000;">+ List Product & Start Selling</button>
 </div>
@@ -357,7 +358,9 @@ function renderMarket(){
   const q = document.getElementById('mSearch').value.toLowerCase();
   let html = '';
   market.filter(p => (currentCat==='All' || p.cat===currentCat) && p.name.toLowerCase().includes(q)).forEach((p,i)=>{
+    
     html += `<div class="card">
+    ${p.media ? (p.mediaType==='video' ? `<video src="${p.media}" controls style="width:100%;border-radius:12px;"></video>` : `<img src="${p.media}" style="width:100%;border-radius:12px;">`) : ''}
       <b>${p.name} ${p.verified ? '✅ Verified' : ''}</b> <span style="float:right;color:#00ffcc;">⭐ ${p.rating}.0</span><br>
       <small>${p.seller} • ${p.cat} • 📍 ${p.loc} • ${p.sales} sold</small><br>
       <b style="color:#00ffcc;font-size:22px;">KSh ${p.price.toLocaleString()}</b><br>
@@ -380,11 +383,23 @@ function addProduct(){
   const name = document.getElementById('pName').value;
   const price = parseInt(document.getElementById('pPrice').value);
   const phone = document.getElementById('pPhone').value;
+  const file = document.getElementById('pMedia').files[0];
   if(!name || !price || !phone) return alert('Add product name, price, and WhatsApp');
-  market.unshift({name:name, cat:document.getElementById('pCat').value||'Shop', price:price, seller:document.getElementById('pSeller').value||'G-LUMO Seller', phone:phone, till:document.getElementById('pTill').value||phone, loc:document.getElementById('pLoc').value||'Kenya', rating:5, verified:false, sales:0});
-  localStorage.setItem('glumoMarket5', JSON.stringify(market));
-  renderMarket();
-  alert('Live on G-LUMO Marketplace! 5% fee will apply to every sale.');
+
+  const save = (media, mediaType) => {
+    market.unshift({name:name, cat:document.getElementById('pCat').value||'Shop', price:price, seller:'Seller', phone:phone, media:media, mediaType:mediaType, verified:false, rating:5, loc:'Kenya', sales:0});
+    localStorage.setItem('glumoMarket5', JSON.stringify(market));
+    renderMarket();
+    alert('Live on G-LUMO Marketplace!');
+  };
+
+  if(file){
+    const reader = new FileReader();
+    reader.onload = e => save(e.target.result, file.type.startsWith('video') ? 'video' : 'image');
+    reader.readAsDataURL(file);
+  } else {
+    save('', '');
+  }
 }
 renderMarket();
 </script>
