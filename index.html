@@ -616,5 +616,21 @@ function openFYP(){ document.getElementById('fypFeed').style.display='block'; re
 function closeFYP(){ document.getElementById('fypFeed').style.display='none'; }
 renderFeed();
 </script>
+  <script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js",
+    "firebase/analytics": "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js"
+  }
+}
+</script>
+<script type="module">
+import { auth, db } from "./firebase.js";
+window.auth = auth;
+window.db = db;
+console.log("G-LUMO Firebase connected");
+</script>
 </body>
 </html>
