@@ -665,14 +665,24 @@ window.signup = async () => {
   try {
     await createUserWithEmailAndPassword(window.auth, email.value, password.value);
     alert("Account created!");
-  } catch(e) { alert(e.message); }
+    } catch(e) {
+    if (e.code === 'auth/email-already-in-use') alert('This email is already registered. Please Login instead.');
+    else if (e.code === 'auth/weak-password') alert('Password is too weak. Please use at least 6 characters.');
+    else if (e.code === 'auth/invalid-email') alert('Please enter a valid email address.');
+    else alert('Sign Up failed. Please try again.');
+  }
 };
 
 window.login = async () => {
   try {
     await signInWithEmailAndPassword(window.auth, email.value, password.value);
     alert("Logged in!");
-  } catch(e) { alert(e.message); }
+    } catch(e) {
+    if (e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') alert('Wrong email or password.\n\nPlease check your details, or Sign Up first if you don\'t have an account.');
+    else if (e.code === 'auth/invalid-email') alert('Please enter a valid email address.');
+    else if (e.code === 'auth/too-many-requests') alert('Too many failed attempts. Please wait a few minutes and try again.');
+    else alert('Login failed. Please try again.');
+  }
 };
 
 window.logout = async () => {
