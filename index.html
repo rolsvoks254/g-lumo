@@ -353,22 +353,19 @@ if(market.length === 0){
 }
 function filterCat(c){ currentCat = c; renderMarket(); }
 function renderMarket(){
+  function renderMarket(){
   const q = document.getElementById('mSearch').value.toLowerCase();
   let html = '';
   market.filter(p => (currentCat==='All' || p.cat===currentCat) && p.name.toLowerCase().includes(q)).forEach((p,i)=>{
-    const fee = Math.round(p.price * 0.05);
-    const gets = p.price - fee;
     html += `<div class="card">
       <b>${p.name} ${p.verified ? '✅ Verified' : ''}</b> <span style="float:right;color:#00ffcc;">⭐ ${p.rating}.0</span><br>
       <small>${p.seller} • ${p.cat} • 📍 ${p.loc} • ${p.sales} sold</small><br>
       <b style="color:#00ffcc;font-size:22px;">KSh ${p.price.toLocaleString()}</b><br>
-      <small>Seller gets 95%: KSh ${gets.toLocaleString()} | G-LUMO 5%: KSh ${fee.toLocaleString()}</small>
-      <button onclick="buyProduct(${i})" style="background:#25D366;color:white;padding:12px;border-radius:20px;width:100%;border:none;font-weight:bold;margin-top:8px;">🛒 Buy Now Securely</button>
-      <button onclick="alert('Step 1: Pay KSh ${p.price} to G-LUMO pochi: ${GLUMO_pochi}\\nStep 2: Click Buy Now to confirm\\nWe protect you and pay seller KSh ${gets} after delivery.')" style="width:100%;margin-top:6px;">How to Pay</button>
+      <button onclick="buyProduct(${i})" style="background:#25D366;color:white;padding:12px;border-radius:20px;width:100%;border:none;margin-top:8px;">Buy Now on WhatsApp</button>
     </div>`;
   });
-  document.getElementById('marketList').innerHTML = html || '<p style="text-align:center;">No products found. Be the first seller!</p>';
-}
+  document.getElementById('marketList').innerHTML = html || '<p style="text-align:center;">No products found. Be the first to sell!</p>';
+  }
 function buyProduct(i){
   const p = market[i];
   const fee = Math.round(p.price * 0.05);
