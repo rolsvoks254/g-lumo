@@ -433,9 +433,118 @@ document.getElementById('promaxReelUpload').addEventListener('change', function(
 renderPromaxReels();
 </script>
 <!-- END PROMAX REELS -->    
-... code ...
-    <!-- END PROMAX REELS -->
-322 <!-- FULL PHOTO EDITOR -->
+<!-- G-LUMO PROMAX FIND FRIENDS -->
+<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
+  <h3 style="color:#00ffcc;margin:0;">👥 Find Friends</h3>
+  <p style="color:#aaa;font-size:12px;margin:5px 0 12px;">Find people and friends near you</p>
+  
+  <input type="text" id="friendSearch" placeholder="Search name or @username..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:white;box-sizing:border-box;" onkeyup="searchFriends()">
+  
+  <div id="suggestedFriends" style="margin-top:15px;"></div>
+  <div id="searchResults" style="margin-top:10px;"></div>
+</div>
+
+<style>
+.friend-card{display:flex;align-items:center;background:#000;padding:10px;border-radius:10px;margin-bottom:10px;border:1px solid #222;}
+.friend-avatar{width:45px;height:45px;border-radius:50%;background:#00ffcc;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px;margin-right:12px;}
+.friend-info{flex:1;}
+.friend-name{color:white;font-weight:bold;font-size:14px;}
+.friend-user{color:#aaa;font-size:12px;}
+.add-btn{background:#00ffcc;color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;}
+.add-btn.added{background:#222;color:#00ffcc;border:1px solid #00ffcc;}
+</style>
+
+<script>
+let allUsers = JSON.parse(localStorage.getItem('glumo_users') || '[]');
+let myFriends = JSON.parse(localStorage.getItem('glumo_friends') || '[]');
+
+if(allUsers.length === 0){
+  allUsers = [
+    {name:'Mary Chebet', username:'mary_salon', location:'Sosiot', avatar:'M'},
+    {name:'Brian Kiprop', username:'brian_boda', location:'Kericho', avatar:'B'},
+    {name:'Faith Nyambura', username:'faith_254', location:'Sosiot', avatar:'F'},
+    {name:'Kevin Mutai', username:'kevin_tech', location:'Kericho', avatar:'K'},
+    {name:'Sharon Achieng', username:'sharon_beauty', location:'Sosiot', avatar:'S'},
+    {name:'Dennis Kiplangat', username:'dennis_fx', location:'Bomet', avatar:'D'},
+    {name:'Mercy Wanjiku', username:'mercy_shop', location:'Sosiot', avatar:'M'},
+    {name:'Peter Njoroge', username:'peter_driver', location:'Kericho', avatar:'P'}
+  ];
+  localStorage.setItem('glumo_users', JSON.stringify(allUsers));
+}
+
+function renderSuggested(){
+  const box = document.getElementById('suggestedFriends');
+  box.innerHTML = '<p style="color:#00ffcc;font-size:13px;margin:0 0 10px;">✨ Suggested for you</p>';
+  allUsers.forEach(u => {
+    const isFriend = myFriends.includes(u.username);
+    const card = document.createElement('div');
+    card.className = 'friend-card';
+    card.innerHTML = `
+      <div class="friend-avatar">${u.avatar}</div>
+      <div class="friend-info">
+        <div class="friend-name">${u.name}</div>
+        <div class="friend-user">@${u.username} • ${u.location}</div>
+      </div>
+      <button class="add-btn ${isFriend?'added':''}" onclick="toggleFriend('${u.username}', this)">${isFriend?'Friends':'Add Friend'}</button>
+    `;
+    box.appendChild(card);
+  });
+}
+
+function searchFriends(){
+  const q = document.getElementById('friendSearch').value.toLowerCase().trim();
+  const resultsBox = document.getElementById('searchResults');
+  const suggestedBox = document.getElementById('suggestedFriends');
+  
+  if(q === ''){
+    resultsBox.innerHTML = '';
+    suggestedBox.style.display = 'block';
+    return;
+  }
+  suggestedBox.style.display = 'none';
+  const filtered = allUsers.filter(u => u.name.toLowerCase().includes(q) || u.username.toLowerCase().includes(q));
+  
+  if(filtered.length === 0){
+    resultsBox.innerHTML = '<p style="color:#aaa;text-align:center;padding:10px;">No people found</p>';
+    return;
+  }
+  resultsBox.innerHTML = '<p style="color:#00ffcc;font-size:13px;">Search Results</p>';
+  filtered.forEach(u => {
+    const isFriend = myFriends.includes(u.username);
+    const card = document.createElement('div');
+    card.className = 'friend-card';
+    card.innerHTML = `
+      <div class="friend-avatar">${u.avatar}</div>
+      <div class="friend-info">
+        <div class="friend-name">${u.name}</div>
+        <div class="friend-user">@${u.username} • ${u.location}</div>
+      </div>
+      <button class="add-btn ${isFriend?'added':''}" onclick="toggleFriend('${u.username}', this)">${isFriend?'Friends':'Add Friend'}</button>
+    `;
+    resultsBox.appendChild(card);
+  });
+}
+
+function toggleFriend(username, btn){
+  if(myFriends.includes(username)){
+    myFriends = myFriends.filter(f => f !== username);
+    btn.innerText = 'Add Friend';
+    btn.classList.remove('added');
+    alert('@' + username + ' removed');
+  } else {
+    myFriends.push(username);
+    btn.innerText = 'Friends';
+    btn.classList.add('added');
+    alert('You are now friends with @' + username + ' 🎉');
+  }
+  localStorage.setItem('glumo_friends', JSON.stringify(myFriends));
+}
+
+renderSuggested();
+</script>
+<!-- END PROMAX FIND FRIENDS -->
+    
+
 
  <!-- FULL PHOTO EDITOR -->
 <div style="background:#1a1a1a;padding:15px;border-radius:15px;margin-top:15px;">
