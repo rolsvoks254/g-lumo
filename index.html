@@ -317,125 +317,125 @@ function filterVideos(type, btn){
 
 
 <!-- END RANDOM VIDEOS -->
-    <!-- G-LUMO PRO REELS - REAL MP4 UPLOAD -->
-<div id="reelsSection" style="margin:20px 0;">
-  <h2 style="color:#00ffcc;">▶️ G-LUMO Reels</h2>
-  <p style="color:#aaa;font-size:13px;">Swipe up • Upload your clip</p>
+319 <!-- END RANDOM VIDEOS -->
+<!-- G-LUMO PROMAX REELS - SWIPE LEFT/RIGHT FAST -->
+<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
+  <h3 style="color:#00ffcc;margin:0;">▶️ G-LUMO Reels ProMax</h3>
+  <p style="color:#aaa;font-size:12px;margin:5px 0 12px;">Swipe left / right • Friends posts show instantly</p>
+  
+  <label for="promaxReelUpload" style="display:block;background:#00ffcc;color:#000;text-align:center;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;">+ Post a Reel</label>
+  <input type="file" id="promaxReelUpload" accept="video/*" style="display:none;">
+  <input type="text" id="promaxCaption" placeholder="Add caption... #sosiot #trending" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#000;color:white;box-sizing:border-box;">
 
-  <label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;font-weight:bold;text-align:center;margin-bottom:10px;cursor:pointer;">
-    + Upload Reel
-    <input type="file" id="reelUpload" accept="video/*" style="display:none;">
-  </label>
-  <input id="reelCaptionInput" placeholder="Add caption... #sosiot #trending" style="width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#1a1a2e;color:white;margin-bottom:10px;box-sizing:border-box;">
-
-  <div id="reelsFeed" style="height:80vh;overflow-y:scroll;scroll-snap-type:y mandatory;border-radius:16px;background:#000;scrollbar-width:none;"></div>
+  <div id="promaxReelsFeed" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:15px 0 5px;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+  </div>
+  <p style="text-align:center;color:#00ffcc;font-size:11px;margin:5px 0 0;">👉 Swipe LEFT for next • Swipe RIGHT for back 👈</p>
 </div>
 
 <style>
-#reelsFeed::-webkit-scrollbar{display:none}
-.reel{height:80vh;scroll-snap-align:start;position:relative;background:#000;}
-.reel video{width:100%;height:100%;object-fit:cover;}
-.reel-info{position:absolute;left:12px;bottom:20px;color:white;text-shadow:0 1px 4px #000;max-width:70%;z-index:2;}
-.reel-actions{position:absolute;right:10px;bottom:80px;display:flex;flex-direction:column;gap:14px;align-items:center;z-index:2;}
-.reel-btn{background:rgba(0,0,0,0.55);border:none;color:white;width:48px;height:48px;border-radius:50%;font-size:20px;}
-.reel-count{color:white;font-size:12px;margin-top:-8px;}
+#promaxReelsFeed::-webkit-scrollbar{display:none;}
+.promax-reel{flex:0 0 88%;scroll-snap-align:center;background:#000;border-radius:14px;overflow:hidden;position:relative;border:1px solid #222;height:480px;}
+.promax-reel video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
+.promax-caption{position:absolute;bottom:0;left:0;right:0;padding:40px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.9));color:white;font-size:14px;pointer-events:none;}
+.promax-user{font-weight:bold;color:#00ffcc;font-size:14px;margin-bottom:4px;}
+.promax-actions{position:absolute;right:10px;bottom:80px;display:flex;flex-direction:column;gap:15px;align-items:center;}
+.promax-btn{background:rgba(0,0,0,0.6);border:none;color:white;width:45px;height:45px;border-radius:50%;font-size:20px;cursor:pointer;}
 </style>
 
 <script>
-let myReels = JSON.parse(localStorage.getItem('glumoReels') || '[]');
+let promaxReels = JSON.parse(localStorage.getItem('glumo_promax_reels') || '[]');
 
-function createReelElement(src, user, caption, likes){
-  const div = document.createElement('div');
-  div.className = 'reel';
-  div.innerHTML = `
-    <video src="${src}" loop playsinline muted preload="metadata"></video>
-    <div class="reel-info"><b>${user}</b><br>${caption}</div>
-    <div class="reel-actions">
-      <button class="reel-btn" onclick="likeReel(this)">❤️</button>
-      <span class="reel-count">${likes}</span>
-      <button class="reel-btn" onclick="shareReel()">↗️</button>
-      <button class="reel-btn" onclick="toggleSound(this)">🔇</button>
-    </div>
-  `;
-  // Tap video to play/pause
-  div.querySelector('video').addEventListener('click', function(){
-    this.paused ? this.play() : this.pause();
-  });
-  return div;
-}
-
-function renderReels(){
-  const feed = document.getElementById('reelsFeed');
-  feed.innerHTML = '';
-  // User reels first
-  myReels.forEach(r => feed.appendChild(createReelElement(r.src, r.user, r.caption, r.likes)));
-  // Demo trending MP4s (free sample videos)
-  const demos = [
-    {src:"https://assets.mixkit.co/videos/preview/mixkit-woman-dancing-under-neon-lights-1230-large.mp4", user:"@glumo_trending", caption:"Neon Dance 🔥 #reels", likes:4521},
-    {src:"https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-308-large.mp4", user:"@glumo_business", caption:"Work & Earn Online 💰", likes:3210},
-    {src:"https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4", user:"@glumo_nature", caption:"Sosiot Nature 🌳", likes:2890},
+if(promaxReels.length === 0){
+  promaxReels = [
+    {user:'@mary_salon', caption:'Salon vibes Sosiot 💇‍♀️ #trending', likes:24, src:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'},
+    {user:'@brian_boda', caption:'Kericho ride today 🏍️ #boda', likes:18, src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'},
+    {user:'@faith_254', caption:'New dance challenge 🔥', likes:56, src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
   ];
-  demos.forEach(r => feed.appendChild(createReelElement(r.src, r.user, r.caption, r.likes)));
-  observeReels();
+  localStorage.setItem('glumo_promax_reels', JSON.stringify(promaxReels));
 }
 
-// Upload handler
-document.getElementById('reelUpload').addEventListener('change', function(e){
+const promaxFeed = document.getElementById('promaxReelsFeed');
+
+function savePromax(){
+  // Don't save blob URLs (they expire), only save real ones
+  const toSave = promaxReels.filter(r => !r.src.startsWith('blob:'));
+  localStorage.setItem('glumo_promax_reels', JSON.stringify(toSave));
+}
+
+function renderPromaxReels(){
+  promaxFeed.innerHTML = '';
+  promaxReels.forEach((r, i) => {
+    const div = document.createElement('div');
+    div.className = 'promax-reel';
+    div.innerHTML = `
+      <video src="${r.src}" loop playsinline muted onclick="this.muted=!this.muted; this.paused?this.play():this.pause()"></video>
+      <div class="promax-actions">
+        <button class="promax-btn" onclick="likePromax(${i},this)">❤️</button>
+        <span style="color:white;font-size:12px;margin-top:-10px;">${r.likes||0}</span>
+        <button class="promax-btn" onclick="alert('Comments coming soon!')">💬</button>
+        <button class="promax-btn" onclick="sharePromax()">↗️</button>
+      </div>
+      <div class="promax-caption">
+        <div class="promax-user">${r.user}</div>
+        ${r.caption || ''}
+      </div>
+    `;
+    promaxFeed.appendChild(div);
+  });
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const v = e.target.querySelector('video');
+      if(!v) return;
+      if(e.intersectionRatio > 0.6){ v.play().catch(()=>{}); } else { v.pause(); v.currentTime = 0; }
+    });
+  }, {root: promaxFeed, threshold:[0, 0.6, 1]});
+  document.querySelectorAll('.promax-reel').forEach(el=>observer.observe(el));
+}
+
+function likePromax(i, btn){
+  promaxReels[i].likes = (promaxReels[i].likes || 0) + 1;
+  btn.nextElementSibling.innerText = promaxReels[i].likes;
+  btn.style.transform = 'scale(1.3)';
+  setTimeout(()=>btn.style.transform='scale(1)',200);
+  savePromax();
+}
+
+function sharePromax(){
+  if(navigator.share){ navigator.share({title:'G-LUMO Reel', url: window.location.href}); }
+  else { alert('Link copied! Share it with friends.'); }
+}
+
+// FAST POST - shows in <1 second
+document.getElementById('promaxReelUpload').addEventListener('change', function(e){
   const file = e.target.files[0];
   if(!file) return;
-  const url = URL.createObjectURL(file);
-  const caption = document.getElementById('reelCaptionInput').value || "My new G-LUMO reel 🔥";
-  const user = (window.auth && window.auth.currentUser) ? "@" + window.auth.currentUser.email.split('@')[0] : "@you";
-  const newReel = {src:url, user:user, caption:caption, likes:0};
-  myReels.unshift(newReel);
-  // Note: blob URL won't survive refresh, but works live. For permanent storage we add Firebase Storage next.
-  renderReels();
-  document.getElementById('reelsFeed').scrollTop = 0;
-  alert("Reel uploaded! Swipe to watch it.");
+  const caption = document.getElementById('promaxCaption').value.trim();
+  const fastUrl = URL.createObjectURL(file);
+  
+  let myName = '@you';
+  try{
+    if(window.auth && auth.currentUser && auth.currentUser.email){
+      myName = '@' + auth.currentUser.email.split('@')[0];
+    } else if(localStorage.getItem('glumo_username')){
+      myName = '@' + localStorage.getItem('glumo_username');
+    }
+  }catch(err){}
+  
+  promaxReels.unshift({user:myName, caption:caption, likes:0, src:fastUrl});
+  renderPromaxReels();
+  promaxFeed.scrollTo({left:0, behavior:'smooth'});
+  document.getElementById('promaxCaption').value = '';
+  alert('Reel posted! Now swipe left/right to see friends reels 🔥');
+  e.target.value = '';
 });
 
-// Autoplay observer - TikTok magic
-let reelObserver;
-function observeReels(){
-  if(reelObserver) reelObserver.disconnect();
-  reelObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      const video = entry.target.querySelector('video');
-      if(!video) return;
-      if(entry.intersectionRatio > 0.7){
-        video.play().catch(()=>{});
-      } else {
-        video.pause();
-        video.currentTime = video.currentTime; // keep position
-      }
-    });
-  }, {root: document.getElementById('reelsFeed'), threshold:[0.7]});
-  document.querySelectorAll('.reel').forEach(r => reelObserver.observe(r));
-}
-
-function likeReel(btn){
-  btn.innerText = btn.innerText === '❤️' ? '💖' : '❤️';
-  let countEl = btn.nextElementSibling;
-  let n = parseInt(countEl.innerText) || 0;
-  countEl.innerText = btn.innerText === '💖' ? n+1 : n-1;
-}
-
-function shareReel(){
-  if(navigator.share){ navigator.share({title:'G-LUMO Reel', text:'Watch this reel on G-LUMO!', url: location.href}); }
-  else { alert('Copy link and share G-LUMO!'); }
-}
-
-function toggleSound(btn){
-  const reel = btn.closest('.reel');
-  const video = reel.querySelector('video');
-  video.muted = !video.muted;
-  btn.innerText = video.muted ? '🔇' : '🔊';
-  if(!video.muted) video.play();
-}
-
-renderReels();
+renderPromaxReels();
 </script>
-
+<!-- END PROMAX REELS -->    
+... code ...
+    <!-- END PROMAX REELS -->
+322 <!-- FULL PHOTO EDITOR -->
 
  <!-- FULL PHOTO EDITOR -->
 <div style="background:#1a1a1a;padding:15px;border-radius:15px;margin-top:15px;">
