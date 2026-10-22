@@ -106,6 +106,140 @@ function shareGLUMO() {
 }
 </script>
 <div id="feed"></div>
+
+  <!-- G-LUMO PROMAX SOCIAL ENGINE -->
+<div style="background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;">
+  <h3 style="color:#00ffcc;margin:0 0 10px;">✨ Suggested for you</h3>
+  <div id="followSuggestions" style="display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;"></div>
+</div>
+
+<div id="promaxFeed"></div>
+
+<style>
+.pm-post{background:#111827;border:1px solid #222;border-radius:14px;padding:14px;margin:14px 0;color:white;}
+.pm-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.pm-avatar{width:42px;height:42px;border-radius:50%;background:#00ffcc;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold;}
+.pm-follow{margin-left:auto;background:#00ffcc;color:#000;border:none;padding:7px 14px;border-radius:20px;font-weight:bold;cursor:pointer;}
+.pm-follow.following{background:#333;color:white;}
+.pm-actions{display:flex;justify-content:space-between;margin-top:12px;border-top:1px solid #222;padding-top:10px;}
+.pm-btn{background:none;border:none;color:#aaa;font-size:14px;cursor:pointer;}
+.pm-btn.liked{color:#ff2e63;}
+.pm-comments{margin-top:10px;display:none;}
+.pm-comment{background:#1a1a2e;padding:8px;border-radius:8px;margin:6px 0;font-size:13px;}
+.pm-suggest{min-width:130px;background:#111827;border:1px solid #222;border-radius:12px;padding:12px;text-align:center;color:white;}
+</style>
+
+<script>
+// Demo users & posts - this will later connect to your real posts
+let pmUsers = [
+  {id:'kelvin', name:'Kelvin Kip', handle:'@kelvin', following:false},
+  {id:'mary', name:'Mary Chebet', handle:'@mary_salon', following:false},
+  {id:'brian', name:'Brian Boda', handle:'@brian_boda', following:true},
+  {id:'faith', name:'Faith Shop', handle:'@faith_store', following:false},
+  {id:'peter', name:'Peter Fundi', handle:'@peter_fundi', following:false},
+];
+
+let pmPosts = [
+  {id:1, userId:'mary', text:'New salon offers in Sosiot today! Book now 💇‍♀️', likes:24, liked:false, reposts:3, comments:[{user:'Kelvin', text:'Nice! 🔥'}]},
+  {id:2, userId:'brian', text:'Boda available Kericho - Sosiot, call me for fast ride 🏍️', likes:41, liked:false, reposts:7, comments:[]},
+  {id:3, userId:'faith', text:'Fresh stock arrived! Sugar, unga, oil at best price.', likes:18, liked:false, reposts:2, comments:[]},
+];
+
+function renderSuggestions(){
+  const box = document.getElementById('followSuggestions');
+  box.innerHTML = '';
+  pmUsers.filter(u => !u.following).forEach(u=>{
+    const d = document.createElement('div');
+    d.className = 'pm-suggest';
+    d.innerHTML = `<div class="pm-avatar" style="margin:0 auto 8px;">${u.name[0]}</div><b>${u.name}</b><br><span style="color:#aaa;font-size:12px;">${u.handle}</span><br><button class="pm-follow" style="margin:10px 0 0;width:100%;" onclick="toggleFollow('${u.id}')">Follow</button>`;
+    box.appendChild(d);
+  });
+  if(box.innerHTML==='') box.innerHTML = '<p style="color:#aaa;">You follow everyone 🎉</p>';
+}
+
+function renderFeed(){
+  const feed = document.getElementById('promaxFeed');
+  feed.innerHTML = '';
+  pmPosts.forEach(p=>{
+    const u = pmUsers.find(x=>x.id===p.userId);
+    const post = document.createElement('div');
+    post.className = 'pm-post';
+    post.innerHTML = `
+      <div class="pm-head">
+        <div class="pm-avatar">${u.name[0]}</div>
+        <div><b>${u.name}</b><br><span style="color:#aaa;font-size:12px;">${u.handle}</span></div>
+        <button class="pm-follow ${u.following?'following':''}" onclick="toggleFollow('${u.id}')">${u.following ? (u.id==='brian' ? 'Follow Back ✓' : 'Following') : 'Follow'}</button>
+      </div>
+      <p>${p.text}</p>
+      <div class="pm-actions">
+        <button class="pm-btn ${p.liked?'liked':''}" onclick="likePost(${p.id})">❤️ ${p.likes} Like</button>
+        <button class="pm-btn" onclick="toggleComments(${p.id})">💬 ${p.comments.length} Comment</button>
+        <button class="pm-btn" onclick="repostPost(${p.id})">🔁 ${p.reposts} Repost</button>
+        <button class="pm-btn" onclick="sharePost('${p.text.replace(/'/g,"")}')">↗️ Share</button>
+      </div>
+      <div class="pm-comments" id="comments-${p.id}">
+        ${p.comments.map(c=>`<div class="pm-comment"><b>${c.user}:</b> ${c.text}</div>`).join('')}
+        <div style="display:flex;gap:6px;margin-top:8px;">
+          <input id="input-${p.id}" placeholder="Add comment..." style="flex:1;padding:8px;border-radius:8px;border:1px solid #333;background:#000;color:white;">
+          <button onclick="addComment(${p.id})" style="background:#00ffcc;border:none;padding:8px 12px;border-radius:8px;font-weight:bold;">Post</button>
+        </div>
+      </div>
+    `;
+    feed.appendChild(post);
+  });
+  renderSuggestions();
+}
+
+function toggleFollow(id){
+  const u = pmUsers.find(x=>x.id===id);
+  u.following = !u.following;
+  if(u.following) alert(`You followed ${u.name}. They will get a Follow Back request!`);
+  renderFeed();
+}
+
+function likePost(id){
+  const p = pmPosts.find(x=>x.id===id);
+  p.liked = !p.liked;
+  p.likes += p.liked ? 1 : -1;
+  renderFeed();
+}
+
+function toggleComments(id){
+  const el = document.getElementById('comments-'+id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+function addComment(id){
+  const input = document.getElementById('input-'+id);
+  if(!input.value.trim()) return;
+  const p = pmPosts.find(x=>x.id===id);
+  const myName = (window.auth && auth.currentUser) ? auth.currentUser.email.split('@')[0] : 'You';
+  p.comments.push({user:myName, text:input.value});
+  renderFeed();
+  setTimeout(()=>toggleComments(id), 50);
+}
+
+function repostPost(id){
+  const p = pmPosts.find(x=>x.id===id);
+  p.reposts++;
+  pmPosts.unshift({...p, id:Date.now(), text:`🔁 Reposted: ${p.text}`});
+  alert('Reposted to your profile!');
+  renderFeed();
+  window.scrollTo({top: document.getElementById('promaxFeed').offsetTop, behavior:'smooth'});
+}
+
+function sharePost(text){
+  if(navigator.share){
+    navigator.share({title:'G-LUMO Post', text:text, url:location.href});
+  } else {
+    navigator.clipboard.writeText(text + ' - via G-LUMO ' + location.href);
+    alert('Post copied! Paste to WhatsApp, Facebook, TikTok...');
+  }
+}
+
+renderFeed();
+</script>
+<!-- END PROMAX SOCIAL -->
   <div style="background:linear-gradient(135deg,#111827,#1e1b4b);padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
   <h2 style="color:#00ffcc;text-align:center;margin:5px;">🎬 G-LUMO Elite Studio</h2>
   <p style="text-align:center;margin:5px;"><small>Photo • Video • Clip Editor - Free for G-LUMO Users</small></p>
