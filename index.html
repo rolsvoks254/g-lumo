@@ -698,6 +698,20 @@ window.togglePass = () => {
    
 onAuthStateChanged(window.auth, (user) => {
   document.getElementById("userStatus").innerText = user ? "Logged in as: " + user.email : "Not logged in";
+  document.body.style.overflow = user ? "auto" : "hidden";
+  const box = document.querySelector(".card");
+  if (!user) {
+    box.style.position = "fixed";
+    box.style.inset = "0";
+    box.style.zIndex = "99999";
+    box.style.background = "#111827";
+    box.style.margin = "0";
+    box.style.borderRadius = "0";
+    box.style.paddingTop = "60px";
+  } else {
+    box.style.position = "static";
+    box.style.background = "";
+  }
 });
  </script> 
   <button id="installBtn" style="display:none;background:#00ffcc;color:#000;width:100%;padding:14px;border:none;border-radius:20px;font-weight:bold;margin:15px 0;">📲 Install G-LUMO App</button>
