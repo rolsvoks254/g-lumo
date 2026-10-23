@@ -440,18 +440,18 @@ renderPromaxReels();
   
   <input type="text" id="friendSearch" placeholder="Search name or @username..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:white;box-sizing:border-box;" onkeyup="searchFriends()">
   
-  <div id="suggestedFriends" style="margin-top:15px;"></div>
+  <div id="suggestedFriends" style="margin-top:15px; display:flex; flex-direction:row; gap:12px; overflow-x:auto; padding-bottom:10px; scroll-snap-type:x mandatory;"></div>
   <div id="searchResults" style="margin-top:10px;"></div>
 </div>
 
 <style>
-.friend-card{display:flex;align-items:center;background:#000;padding:10px;border-radius:10px;margin-bottom:10px;border:1px solid #222;}
-.friend-avatar{width:45px;height:45px;border-radius:50%;background:#00ffcc;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px;margin-right:12px;}
-.friend-info{flex:1;}
-.friend-name{color:white;font-weight:bold;font-size:14px;}
-.friend-user{color:#aaa;font-size:12px;}
-.add-btn{background:#00ffcc;color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;}
-.add-btn.added{background:#222;color:#00ffcc;border:1px solid #00ffcc;}
+.friend-card{display:flex; flex-direction:column; align-items:center; background:#1e293b; padding:12px; border-radius:16px; min-width:110px; max-width:110px; flex:0 0 auto; scroll-snap-align:start; border:1px solid #1e293b; text-align:center;}
+.friend-avatar{width:55px; height:55px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; margin-bottom:8px;}
+.friend-info{width:100%;}
+.friend-name{color:white; font-weight:bold; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.friend-user{color:#aaa; font-size:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.add-btn{background:#00ffcc; color:#000; border:none; padding:6px 12px; border-radius:20px; font-weight:bold; cursor:pointer; font-size:11px; margin-top:8px; width:100%;}
+.add-btn.added{background:#222; color:#00ffcc; border:1px solid #00ffcc;}
 </style>
 
 <script>
