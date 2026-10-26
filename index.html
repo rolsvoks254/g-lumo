@@ -1046,22 +1046,7 @@ function enableNotifs(){
 }
     </script>
  <script>
-function forceSmall(){
-  const ed=document.getElementById('photoEditor');
-  if(!ed) return;
-  let st=document.getElementById('forceSmallStyle');
-  if(!st){ st=document.createElement('style'); st.id='forceSmallStyle'; document.head.appendChild(st); }
-  st.textContent="#photoEditor{overflow-x:auto!important; padding-bottom:12px!important;} #photoEditor button{min-width:70px!important; max-width:85px!important; width:auto!important; height:32px!important; font-size:11px!important; flex:0 0 auto!important; display:inline-block!important; margin:0 5px 0 0!important;} #editorScrollRow{display:flex!important; gap:8px!important; overflow-x:auto!important; flex-wrap:nowrap!important; width:100%!important;}";
-  let wrap=document.getElementById('editorScrollRow');
-  if(!wrap){
-    wrap=document.createElement('div'); wrap.id='editorScrollRow';
-    const btns=Array.from(ed.querySelectorAll('button')).filter(b=> b.textContent.trim().length>1 && b.textContent.trim().length<12);
-    if(btns.length>=3){ btns.forEach(b=>wrap.appendChild(b)); ed.appendChild(wrap); }
-  }
-}
-setInterval(forceSmall,1000);
-forceSmall();
- </script>
+
   <style>
 html, body { overflow-y:auto!important; height:auto!important; min-height:100vh!important; }
 #promaxReelsFeed { display:flex!important; min-height:200px!important; }
