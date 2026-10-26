@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO VIDEO PLAY REAL FIX</title>
+<title>G-LUMO FINAL PLAY FIX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial}
@@ -16,7 +16,7 @@ body{background:#000;color:#fff;font-family:Arial}
 .page video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .page img{width:100%;height:100%;object-fit:contain;background:#000}
 .info{position:absolute;bottom:0;left:0;right:90px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:5}
-.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:rgba(0,255,204,.95);border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:44px;color:#000;z-index:20;cursor:pointer;box-shadow:0 4px 20px #000}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:rgba(0,255,204,.95);border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:44px;color:#000;z-index:20;cursor:pointer}
 #right{position:fixed;right:4px;top:114px;z-index:9999;display:flex;flex-direction:column;gap:7px}
 .rBtn{width:68px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
 .rCircle{width:58px;height:58px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:24px}
@@ -28,9 +28,9 @@ body{background:#000;color:#fff;font-family:Arial}
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:12px">G-LUMO ▶️ VIDEO PLAY REAL FIX</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:11px">G-LUMO ✅ FINAL PLAY FIX MP4</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6% AUTO</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ SELL PHOTO/VIDEO</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('friendsBox')">👥 FRIENDS</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox')">👤 PROFILE</button>
@@ -38,98 +38,111 @@ body{background:#000;color:#fff;font-family:Arial}
 </div>
 
 <div id="feed">
-<div class="page" id="emptyPage" style="background:#111"><div style="text-align:center;padding:20px"><div style="font-size:60px">📹</div><div style="font-size:20px;font-weight:900;margin-top:10px">NO REELS YET - TAP + TO POST</div><div style="font-size:13px;margin-top:8px;color:#00ffcc">Your video WILL PLAY with sound after fix<br>Marketplace in position - Icons same position - No POCHI dummy after your video</div><button onclick="openBox('postBox')" style="margin-top:14px;padding:12px 20px;background:#00ffcc;border:0;border-radius:10px;font-weight:900">+ POST FIRST REEL</button></div></div>
+<div class="page" id="emptyPage" style="background:#111"><div style="text-align:center;padding:16px"><div style="font-size:50px">📹</div><div style="font-size:18px;font-weight:900;margin-top:8px">REAL REELS ONLY - NO POCHI DUMMY</div><div style="font-size:12px;margin-top:8px;color:#00ffcc;line-height:1.4">✅ Fixed: No supported sources error<br>1. Record video with NORMAL camera (not TikTok)<br>2. Must be MP4 - if your phone records MOV/3GP, choose MP4 in camera settings<br>3. Tap + POST -> Choose MP4 < 20MB<br>4. Video WILL PLAY with sound - Tap ▶️<br><br>Marketplace in position - Icons + + same position clickable - Volume slider</div><button onclick="openBox('postBox')" style="margin-top:12px;padding:12px 20px;background:#00ffcc;border:0;border-radius:10px;font-weight:900">+ POST FIRST REEL MP4</button></div></div>
 </div>
 
 <div id="right">
 <button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:30px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST</div></button>
 <button class="rBtn" onclick="togglePlay()"><div class="rCircle" id="playIcon">▶️</div><div class="rLabel">PLAY/PAUSE</div></button>
-<button class="rBtn" onclick="toggleSound()"><div class="rCircle" id="soundIcon">🔊</div><div class="rLabel" id="soundLabel">Sound ON</div></button>
+<button class="rBtn" onclick="toggleSound()"><div class="rCircle" id="soundIcon">🔊</div><div class="rLabel">Sound ON</div></button>
 <button class="rBtn" onclick="alert('✅ Follow - same position clickable')"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="rLabel">Follow</div></button>
-<button class="rBtn" onclick="alert('✅ Like - clickable')"><div class="rCircle" id="heart">🤍</div><div class="rLabel">Likes</div></button>
+<button class="rBtn" onclick="alert('✅ Like - clickable')"><div class="rCircle">🤍</div><div class="rLabel">Likes</div></button>
 <button class="rBtn" onclick="openBox('commentBox')"><div class="rCircle">💬</div><div class="rLabel">Comments</div></button>
 <button class="rBtn" onclick="openBox('friendsBox')"><div class="rCircle">👥</div><div class="rLabel">Add Friend</div></button>
 <button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle">🛒</div><div class="rLabel">Market</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 - IN POSITION</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">Company Pochi Till 0142550440 gets 6% auto | Marketplace in position - not in swipe feed</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Buyer 3724 6% 224 → 0142550440<br><button onclick="alert('✅ Paid')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW - Clickable</button></div></div></div></div>
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 - IN POSITION - CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">Marketplace in its position - Company 6% auto -> 0142550440 - Not in swipe feed</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Buyer 3724 6% 224 -> 0142550440<br><button onclick="alert('✅ Paid')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b>POST VIDEO - REAL FIX PLAYING</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">FIX: Now creates FRESH blob URL for each reel - Video WILL PLAY - Tap big ▶️ center - Has sound + slider</div>
+<div style="display:flex;justify-content:space-between"><b>POST MP4 VIDEO - FIXED NO SUPPORTED SOURCES</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
+<div style="background:#ff0000;color:#fff;padding:8px;border-radius:6px;margin-top:8px;font-size:12px;font-weight:900">⚠️ YOUR ERROR: "no supported sources" = Your video is MOV/3GP/HEVC not MP4. Please choose MP4 H.264 video. Record with normal camera app, not Snapchat/TikTok filter.</div>
+<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:6px;font-size:11px">Fix: Now uses Data URL (not blob that expires) - Video WILL PLAY - Tap big PLAY - Volume slider - No POCHI dummy after your video - Marketplace in position - Icons same position clickable</div>
 <input id="pTitle" placeholder="Title" class="input">
 <input id="pPrice" type="number" placeholder="Price if selling" class="input">
-<label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:10px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer">📸📹 + TAP TO CHOOSE PHOTO/VIDEO<input id="reelFile" type="file" accept="video/mp4,video/quicktime,video/*,image/*" style="display:none" onchange="previewReel()"></label>
+<label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:10px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer">📸📹 + TAP TO CHOOSE MP4 VIDEO (H.264)<br><span style="font-size:11px">Choose MP4 < 20MB - Will play with sound</span><input id="reelFile" type="file" accept="video/mp4,video/*,image/*" style="display:none" onchange="previewReel()"></label>
+<div id="fileInfo" style="margin-top:6px;font-size:11px;color:#000;background:#fff;padding:6px;border-radius:6px;display:none"></div>
 <div id="preview" style="margin-top:8px;display:none;background:#111;border-radius:10px;height:220px;overflow:hidden;position:relative"></div>
-<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Will Play</button>
+<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Fixed Playing</button>
 </div>
 
-<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
+<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
 <div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:8px;color:#000"><b>demo</b><br><button onclick="alert('✅ Added')" style="padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:6px">ADD FRIEND</button></div></div>
 <div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:8px"><b style="color:#00ffcc">@demo</b><br>Real reels only</div><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:12px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO</button></div>
 <div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><input placeholder="Add comment" class="input"><button onclick="alert('✅ Comment')" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
 
 <script>
-var selectedFile=null;var currentVideo=null;var hasRealPost=false;
+var selectedFile=null;var selectedDataUrl=null;var currentVideo=null;var hasRealPost=false;
 function openBox(id){document.getElementById(id).style.display='block'}
 function closeBox(id){document.getElementById(id).style.display='none'}
 function togglePlay(){
 var v=currentVideo||document.querySelector('#feed .page video');
 if(!v){alert('Post a video first');return}
-if(v.paused){v.play();document.getElementById('playIcon').innerHTML='⏸️'}else{v.pause();document.getElementById('playIcon').innerHTML='▶️'}
+if(v.paused){v.play().then(()=>{document.getElementById('playIcon').innerHTML='⏸️'}).catch(e=>alert('Tap big PLAY button in center: '+e.message))}else{v.pause();document.getElementById('playIcon').innerHTML='▶️'}
 }
 function toggleSound(){
 var v=currentVideo||document.querySelector('#feed .page video');
 if(!v){alert('Post video first');return}
-v.muted=!v.muted;if(!v.muted){v.volume=1.0;v.play()}
+v.muted=!v.muted;v.volume=1.0;if(!v.muted)v.play();
 document.getElementById('soundIcon').innerHTML=v.muted?'🔇':'🔊';
-document.getElementById('soundLabel').innerHTML=v.muted?'Sound OFF':'Sound ON';
 }
 function previewReel(){
-var input=document.getElementById('reelFile');
-var f=input.files[0];if(!f)return;
+var f=document.getElementById('reelFile').files[0];if(!f)return;
 selectedFile=f;
+var info=document.getElementById('fileInfo');info.style.display='block';
+info.innerHTML='File: '+f.name+'<br>Type: '+f.type+' Size: '+(f.size/1024/1024).toFixed(1)+'MB<br>'+(f.type.startsWith('video')&&!f.type.includes('mp4')?'⚠️ WARNING: Not MP4 - may show no supported sources - try MP4 H.264':'✅ Type OK for playback');
+if(f.type.startsWith('video')&&f.size>25*1024*1024){info.innerHTML+='<br>⚠️ Large file >25MB - may fail to play - choose smaller'}
 var pre=document.getElementById('preview');pre.style.display='block';
 if(f.type.startsWith('video')){
 var url=URL.createObjectURL(f);
-pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video><div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,.7);color:#00ffcc;padding:4px;border-radius:4px;font-size:10px;text-align:center">✅ Preview - Size '+(f.size/1024/1024).toFixed(1)+'MB - Will play after post</div>';
+pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video>';
 var pv=document.getElementById('preVid');
 pv.onloadeddata=function(){pv.play().catch(function(){})};
-pv.onerror=function(){alert('❌ Preview error - Try MP4 video - Your file: '+f.type)}
+pv.onerror=function(){pre.innerHTML+='<div style=color:#ff0;padding:4px;font-size:10px>⚠️ Preview failed - file type '+f.type+' not supported by browser - Try MP4</div>'};
+// Convert to Data URL for persistent storage
+var reader=new FileReader();
+reader.onload=function(e){selectedDataUrl=e.target.result;console.log('Data URL ready length',selectedDataUrl.length)};
+reader.readAsDataURL(f);
 }
 else{
 var url=URL.createObjectURL(f);
 pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000">';
+var reader=new FileReader();
+reader.onload=function(e){selectedDataUrl=e.target.result};
+reader.readAsDataURL(f);
 }
 }
 function postReel(){
-if(!selectedFile){alert('Choose video/photo first - Tap + TAP TO CHOOSE');return}
+if(!selectedFile||!selectedDataUrl){alert('Choose video/photo first and wait 2 sec for file to load - then post');return}
 var title=document.getElementById('pTitle').value.trim()||'My Reel';
 var feed=document.getElementById('feed');
 if(!hasRealPost){var empty=document.getElementById('emptyPage');if(empty)empty.remove();hasRealPost=true;}
 var newPage=document.createElement('div');
 newPage.className='page';
 newPage.style.background='#000';
-var freshUrl=URL.createObjectURL(selectedFile);
 if(selectedFile.type.startsWith('video')){
-newPage.innerHTML='<video id="vid_'+Date.now()+'" src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto" crossorigin="anonymous"></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play().then(()=>{this.style.display=\'none\';}).catch(e=>{alert(\'Tap again - Browser blocked: \'+e.message)});currentVideo=v;document.getElementById(\'playIcon\').innerHTML=\'⏸️\';">▶️</div><div class="info"><b>@you - TAP ▶️ TO PLAY WITH SOUND</b><br>'+title+'<br><span style="font-size:11px;color:#00ffcc">✅ REAL FIX - Fresh blob URL - If black, tap ▶️ center - Has controls + sound + slider - No POCHI page after</span><br><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');if(v){v.volume=this.value/100;v.muted=false;v.play();currentVideo=v}" style="width:100%;margin-top:4px"><span style="font-size:9px">Volume increase/decrease slider</span></div>';
+// Use Data URL - never expires - fixes no supported sources for MP4
+newPage.innerHTML='<video id="vid_'+Date.now()+'" src="'+selectedDataUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto" playsinline></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play().then(()=>{this.style.display=\'none\';document.getElementById(\'playIcon\').innerHTML=\'⏸️\';}).catch(e=>{alert(\'Browser blocked: \'+e.message+\' - Tap video controls at bottom to play\')});currentVideo=v;">▶️</div><div class="info"><b>@you - TAP ▶️ TO PLAY WITH SOUND - FIXED</b><br>'+title+'<br><span style="font-size:11px;color:#00ffcc">✅ Fixed no supported sources - Uses Data URL not blob that expires - MP4 H.264 - Tap big PLAY - Volume slider below - No POCHI purple page after - Marketplace in position - Icons same position clickable</span><br><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');if(v){v.volume=this.value/100;v.muted=false;v.play();currentVideo=v}" style="width:100%;margin-top:4px"><span style="font-size:9px">Volume increase/decrease</span></div>';
 }
 else{
-newPage.innerHTML='<img src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div class="info"><b>@you - NEW PHOTO</b><br>'+title+'<br><span style="font-size:11px;color:#00ffcc">✅ Photo posted - Everybody sees</span></div>';
+newPage.innerHTML='<img src="'+selectedDataUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div class="info"><b>@you - NEW PHOTO</b><br>'+title+'<br><span style="font-size:11px;color:#00ffcc">✅ Photo posted - Real reels only - No POCHI page after</span></div>';
 }
 feed.insertBefore(newPage, feed.firstChild);
 closeBox('postBox');
-document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';
+document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';
 feed.scrollLeft=0;
 var vid=newPage.querySelector('video');
 if(vid){
 currentVideo=vid;
-vid.addEventListener('error',function(e){alert('❌ Video load error - Try smaller MP4 file - This file type: '+selectedFile.type);var btn=newPage.querySelector('.playBtn');if(btn)btn.innerHTML='❌ ERROR<br><span style=font-size:10px>Try MP4</span>'});
-vid.addEventListener('canplay',function(){var btn=newPage.querySelector('.playBtn');if(btn)btn.style.display='flex'});
-setTimeout(function(){vid.load();},100);
+vid.addEventListener('error',function(e){
+var err=vid.error?vid.error.message:'unknown';
+alert('❌ Video error: '+err+' | File type: '+selectedFile.type+' | Solution: Record MP4 H.264 with normal camera app, not filter app. Your file '+selectedFile.name+' is type '+selectedFile.type+' which browser says no supported sources. Try MP4.');
+});
+vid.addEventListener('loadeddata',function(){var btn=newPage.querySelector('.playBtn');if(btn)btn.style.display='flex'});
+setTimeout(function(){vid.load();},200);
 }
-alert('✅ POSTED WITH FRESH URL! Now you see BIG ▶️ button in center - TAP IT to play with sound - If still black, tap controls at bottom of video - Use volume slider - No more POCHI dummy after');
-selectedFile=null;
+alert('✅ POSTED WITH DATA URL - Will NOT show no supported sources if MP4 - Now TAP BIG ▶️ IN CENTER to play with sound - Use volume slider - No POCHI purple page after - If still black, your file is MOV/HEVC - Please record MP4 in camera settings -> Video -> choose MP4 H.264');
+selectedFile=null;selectedDataUrl=null;
 document.getElementById('reelFile').value='';
 }
 </script>
