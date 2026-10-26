@@ -258,74 +258,7 @@ renderFeed();
     <button onclick="showEditor('photo')">📸 Photo</button>
     <button onclick="showEditor('video')">🎥 Video</button>
     <button onclick="showEditor('clip')">✂️ Clip</button>
-  </div>
-<!-- FASHION VIDEO HUB - TikTok/YouTube/IG/FB Style -->
-<div style="background:linear-gradient(135deg,#111827,#1e1b4b);padding:15px;border-radius:20px;margin-top:15px;position:sticky;top:10px;z-index:999;">
-<h3 style="color:white;margin:0;font-size:18px;">🔥 Trending Videos</h3>
-<p style="color:#aaa;font-size:12px;margin:5px 0 12px 0;">Swipe left / right • YouTube • TikTok Style • Reels • Shorts</p>
-
-
-<!-- G-LUMO RANDOM VIDEOS - FINAL VERSION -->
-<div style="display:flex;gap:8px;padding:10px;">
-  <button class="filter-btn" onclick="filterVideos('all',this)" style="flex:1;background:#00e6b8;color:#000;border:0;padding:10px;border-radius:20px;font-weight:bold;">All</button>
-  <button class="filter-btn" onclick="filterVideos('youtube',this)" style="flex:1;background:#222;color:#fff;border:0;padding:10px;border-radius:20px;font-weight:bold;">▶ YouTube</button>
   
-</div>
-
-<div id="videoScroll" style="display:flex;gap:12px;overflow-x:auto;padding:0 12px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;"></div>
-<p style="text-align:center;color:#00ffcc;font-size:11px;margin:4px;">👉 Tap video to enlarge • Swipe to explore more 👈</p>
-</div>
-
-
-<script>
-const videoPool = [
-{p:'youtube', id:'60ItHLz5WEA', t:'Music - Faded'},
-{p:'youtube', id:'kJQP7kiw5Fk', t:'Music - Despacito'},
-{p:'youtube', id:'RgKAFK5djSk', t:'Music - See You Again'},
-{p:'youtube', id:'JGwWNGJdvx8', t:'Music - Shape of You'},
-{p:'youtube', id:'fJ9rUzIMcZQ', t:'Music - Bohemian Rhapsody'},
-{p:'youtube', id:'hTWKbfoikeg', t:'Music - Smells Like Teen Spirit'},
-{p:'youtube', id:'09R8_2nJtjg', t:'Funny - Try Not To Laugh'},
-{p:'youtube', id:'LXb3EKWsInQ', t:'Lifestyles - Nature Relax'},
-{p:'youtube', id:'eKFTSSKCzWA', t:'Lifestyles - Daily Life'},
-{p:'youtube', id:'2g811Eo7K8U', t:'Relax - Chill Music'}
-];
-const box = document.getElementById('videoScroll');
-  box.innerHTML = '<p style="color:#fff;padding:10px;">SCRIPT IS RUNNING</p>';
-function shuffle(a){ return a.sort(() => Math.random() - 0.5); }
-function createCard(v){
-  const d = document.createElement('div');
-  d.dataset.platform = v.p;
-  d.style.cssText = 'min-width:86vw;max-width:380px;background:#000;border-radius:16px;overflow:hidden;scroll-snap-align:start;';
-  const src = 'https://www.youtube-nocookie.com/embed/' + v.id + '?rel=0&playsinline=1';
-  d.innerHTML = '<div style="background:#ff0000;color:#fff;padding:7px 10px;font-size:11px;font-weight:bold;">YOUTUBE</div>' +
-    '<iframe src="' + src + '" width="100%" height="500" style="display:block;border:0" allowfullscreen></iframe>' +
-    '<p style="color:#fff;padding:10px;font-size:13px;margin:0;">' + v.t + '</p>';
-  return d;
-}
-function loadRandom(){
-  shuffle([...videoPool]).forEach(v => box.appendChild(createCard(v)));
-}
-loadRandom();
-let loading = false;
-box.addEventListener('scroll', () => {
-  if(!loading && box.scrollLeft + box.clientWidth >= box.scrollWidth - 80){
-    loading = true;
-    loadRandom();
-    setTimeout(() => loading = false, 800);
-  }
-});
-function filterVideos(type, btn){
-  document.querySelectorAll('.filter-btn').forEach(b => { b.style.background = '#222'; b.style.color = '#fff'; });
-  if(btn){ btn.style.background = '#00e6b8'; btn.style.color = '#000'; }
-  document.querySelectorAll('#videoScroll > div').forEach(c => {
-    c.style.display = (type === 'all' || c.dataset.platform === type) ? 'block' : 'none';
-  });
-  box.scrollLeft = 0;
-}
-</script>    
-
-
 <!-- END RANDOM VIDEOS -->
 319 <!-- END RANDOM VIDEOS -->
 <!-- G-LUMO PROMAX REELS - SWIPE LEFT/RIGHT FAST -->
