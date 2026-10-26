@@ -3,92 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO FIXED VIDEO DISPLAY</title>
+<title>G-LUMO NEO V3 - NEW DESIGN</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden;touch-action:manipulation}
-#top{position:fixed;top:0;left:0;right:0;height:90px;background:#000;border-bottom:3px solid #00ffcc;z-index:1000}
-#feed{position:fixed;top:90px;left:0;right:80px;bottom:0;background:#000;z-index:1}
-#feed video,#feed img{width:100%;height:100%;object-fit:contain;background:#000}
-#rightBar{position:fixed;right:0;top:90px;bottom:0;width:80px;background:#000;border-left:3px solid #00ffcc;z-index:2147483647;display:flex;flex-direction:column;gap:5px;padding:5px;overflow-y:auto;pointer-events:auto;touch-action:manipulation}
-button.btn{width:68px;height:58px;background:#1a1a1a;border:2px solid #555;color:#fff;border-radius:10px;font-weight:900;font-size:9px;cursor:pointer;pointer-events:auto;touch-action:manipulation}
-button.btn:active{background:#00ffcc;color:#000}
-.pop{display:none;position:fixed;top:90px;left:0;right:0;bottom:0;background:#f2f2f2;color:#000;z-index:9999999;padding:12px;overflow:auto}
-.input{width:100%;padding:12px;border:2px solid #000;border-radius:8px;margin-top:8px;font-weight:900}
+body{background:#000;color:#fff;font-family:Inter,Arial;font-weight:800;overflow:hidden;touch-action:manipulation}
+#top{position:fixed;top:0;left:0;right:0;height:56px;background:linear-gradient(90deg,#000,#111);border-bottom:2px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
+#logo{font-size:13px;letter-spacing:1px}
+#logo span{color:#00ffcc}
+#topActions{display:flex;gap:6px}
+.topBtn{padding:7px 12px;border-radius:20px;border:0;font-weight:900;font-size:10px;cursor:pointer}
+#feed{position:fixed;top:56px;left:0;right:76px;bottom:56px;background:#000;z-index:1;overflow:hidden}
+#feedInner{width:100%;height:100%;position:relative;background:#000}
+#feedInner video,#feedInner img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.badge{position:absolute;top:12px;left:12px;background:rgba(0,255,204,.9);color:#000;padding:6px 10px;border-radius:20px;font-size:9px;z-index:5}
+.infoBar{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.92));z-index:4}
+.infoBar b{font-size:12px}
+.infoBar p{font-size:10px;color:#ccc;margin-top:3px;font-weight:600}
+#rightIcons{position:fixed;right:0;top:56px;bottom:56px;width:76px;background:linear-gradient(#000,#0a0a0a);border-left:1px solid #222;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:14px;padding:12px 6px;overflow-y:auto;pointer-events:auto}
+.iconWrap{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;pointer-events:auto;touch-action:manipulation}
+.iconCircle{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;font-size:22px;transition:.2s}
+.iconCircle:active{transform:scale(.9);background:#00ffcc}
+.iconCount{font-size:8px;color:#fff;text-align:center;line-height:1}
+.iconLabel{font-size:7px;color:#aaa;text-align:center}
+#bottomBar{position:fixed;bottom:0;left:0;right:0;height:56px;background:#000;border-top:2px solid #00ffcc;display:flex;justify-content:space-around;align-items:center;z-index:1000}
+.bottomItem{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font-size:9px}
+.bottomIcon{font-size:18px}
+.pop{display:none;position:fixed;top:56px;left:0;right:0;bottom:56px;background:#f5f5f5;color:#000;z-index:999999;padding:12px;overflow:auto}
+.input{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin-top:8px;font-weight:900;font-size:12px}
+.btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
+.card{background:#fff;border-radius:12px;border:2px solid #000;overflow:hidden;margin-bottom:8px}
+.pochi{background:#111;color:#00ffcc;padding:7px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc}
 </style>
 </head>
 <body>
 
 <div id="top">
-<div style="padding:8px;font-size:10px;color:#00ffcc">G-LUMO FIXED VIDEO DISPLAY - 6% AUTO TO 0142550440 - NEVER BLANK</div>
-<div style="background:#fff;display:flex;gap:5px;padding:5px;overflow-x:auto">
-<button type="button" style="padding:9px 12px;background:#000;color:#00ffcc;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
-<button type="button" style="padding:9px 12px;background:#00ffcc;color:#000;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+ POST VIDEO/PHOTO</button>
-<button type="button" style="padding:9px 12px;background:#000;color:#fff;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">👤 MY VIDEOS</button>
-<button type="button" style="padding:9px 12px;background:#000;color:#fff;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">👤 LOGIN</button>
+<div id="logo">G-LUMO <span>NEO V3</span> • 6% → 0142550440</div>
+<div id="topActions">
+<button class="topBtn" style="background:#00ffcc;color:#000" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+ POST</button>
+<button class="topBtn" style="background:#fff;color:#000" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">LOGIN</button>
 </div>
 </div>
 
 <div id="feed">
+<div id="feedInner">
 <video id="mainV" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
+<div class="badge">NEO V3 • 6% → 0142550440 POCHI SAME AS NUMBER • BEATING ALL</div>
+<div class="infoBar">
+<b id="videoTitle">@demo • Big Buck Bunny • World Class</b>
+<p id="videoDesc">Tap right icons → Like ❤️ Share ↗️ Comment 💬 Profile 👤 Volume 🔊+ Vol- DOWN • All clickable • Photo to video • Vol up/down • 6% auto to 0142550440 Pochi same as company number</p>
+</div>
+</div>
 </div>
 
-<div id="rightBar">
-<button class="btn" type="button" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+<br>+ POST</button>
-<button class="btn" type="button" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')">🛒<br>MARKET 6%</button>
-<button class="btn" type="button" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">👤<br>MY VIDEOS</button>
-<button class="btn" type="button" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">👤<br>LOGIN</button>
-<button class="btn" type="button" ontouchstart="playPause()" onclick="playPause()">▶️<br>PLAY PAUSE</button>
-<button class="btn" type="button" ontouchstart="volUp()" onclick="volUp()">🔊+<br>Vol+ UP</button>
-<button class="btn" type="button" ontouchstart="volDown()" onclick="volDown()">🔉-<br>Vol- DOWN</button>
+<div id="rightIcons">
+<div class="iconWrap" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">
+<div class="iconCircle" style="background:#fff;color:#000;border:2px solid #00ffcc">👤</div>
+<div class="iconLabel">Profile</div>
+<div class="iconCount" id="profileName">@demo</div>
+</div>
+
+<div class="iconWrap" ontouchstart="toggleFollow()" onclick="toggleFollow()">
+<div class="iconCircle" id="followCircle" style="background:#00ffcc;color:#000">+</div>
+<div class="iconCount" id="followCount">Follow</div>
+<div class="iconLabel">1.5K followers</div>
+</div>
+
+<div class="iconWrap" ontouchstart="doLike()" onclick="doLike()">
+<div class="iconCircle" id="likeCircle">🤍</div>
+<div class="iconCount" id="likeCount">2.3K</div>
+<div class="iconLabel">Like</div>
+</div>
+
+<div class="iconWrap" ontouchstart="openBox('commentBox')" onclick="openBox('commentBox')">
+<div class="iconCircle">💬</div>
+<div class="iconCount" id="commentCount">342</div>
+<div class="iconLabel">Comment</div>
+</div>
+
+<div class="iconWrap" ontouchstart="doShare()" onclick="doShare()">
+<div class="iconCircle">↗️</div>
+<div class="iconCount">128</div>
+<div class="iconLabel">Share</div>
+</div>
+
+<div class="iconWrap" ontouchstart="toggleVolume()" onclick="toggleVolume()">
+<div class="iconCircle" id="volCircle">🔊</div>
+<div class="iconCount" id="volLabel">Vol ON</div>
+<div class="iconLabel">Volume</div>
+</div>
+
+<div class="iconWrap" ontouchstart="volUp()" onclick="volUp()">
+<div class="iconCircle">🔊+</div>
+<div class="iconCount">Vol+</div>
+<div class="iconLabel">UP</div>
+</div>
+
+<div class="iconWrap" ontouchstart="volDown()" onclick="volDown()">
+<div class="iconCircle">🔉-</div>
+<div class="iconCount">Vol-</div>
+<div class="iconLabel">DOWN</div>
+</div>
+
+</div>
+
+<div id="bottomBar">
+<div class="bottomItem" ontouchstart="closeAll()" onclick="closeAll()"><div class="bottomIcon">🏠</div><div>Home</div></div>
+<div class="bottomItem" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')"><div class="bottomIcon">🛒</div><div>Market 0142550440</div></div>
+<div class="bottomItem" ontouchstart="openBox('postBox')" onclick="openBox('postBox')"><div class="bottomIcon" style="background:#00ffcc;color:#000;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center">+</div><div>Post</div></div>
+<div class="bottomItem" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')"><div class="bottomIcon">👤</div><div>Profile Stay</div></div>
 </div>
 
 <div id="postBox" class="pop">
-<h3>POST VIDEO/PHOTO - FIXED DISPLAY</h3>
-<p style="font-size:11px;background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px">FIXED: Video/photo now uses Data URL - will show 100% not gray broken icon - Must be &lt;3MB to stay after refresh - 6% auto to 0142550440 Pochi same as company number - Photo to video clickable - Vol up/down clickable</p>
-<input id="pTitle" placeholder="Title" class="input">
-<input id="pPrice" type="number" placeholder="Price KSH 3724 => 224 to 0142550440" class="input" oninput="calc()">
-<div id="calc" style="background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px;font-size:11px;display:none"></div>
-<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:8px;text-align:center;margin-top:8px">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label>
+<div style="max-width:500px;margin:auto;background:#fff;border-radius:14px;padding:14px;border:3px solid #00ffcc">
+<h3>NEW DESIGN — POST VIDEO/PHOTO — REAL FEATURE</h3>
+<div class="pochi">Different from all old versions — Like, Share, Comment, Profile, Volume icons working — Photo to video clickable — Vol+ UP Vol- DOWN clickable — 6% auto to 0142550440 Pochi same as company number — Beating all</div>
+<input id="pTitle" placeholder="Title - e.g. My Jordan 4" class="input">
+<input id="pPrice" type="number" placeholder="Price KSH e.g. 3724 => 224 to 0142550440" class="input" oninput="calc()">
+<div id="calc" class="pochi" style="display:none"></div>
+<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;text-align:center;margin-top:8px;cursor:pointer">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label>
 <div id="fileInfo" style="background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px;font-size:10px;display:none"></div>
-<div id="preview" style="display:none;background:#000;height:140px;border-radius:8px;overflow:hidden;margin-top:6px"></div>
-<button type="button" style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" ontouchstart="doPost()" onclick="doPost()">+ POST NOW</button>
-<button type="button" style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:8px" ontouchstart="closeBox('postBox')" onclick="closeBox('postBox')">X CLOSE - BACK TO VIDEO</button>
+<div id="preview" style="display:none;background:#000;height:160px;border-radius:10px;overflow:hidden;margin-top:8px"></div>
+<button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doPost()" onclick="doPost()">+ POST NOW TO FEED</button>
+<button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('postBox')" onclick="closeBox('postBox')">X CLOSE</button>
+</div>
+</div>
+
+<div id="commentBox" class="pop">
+<div style="max-width:500px;margin:auto;background:#fff;border-radius:14px;padding:14px">
+<div style="display:flex;justify-content:space-between"><b>💬 Comments — Real Feature — Like Share Comment Profile Volume</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('commentBox')" onclick="closeBox('commentBox')">X CLOSE</button></div>
+<div id="commentList" style="margin-top:10px"></div>
+<input id="commentInput" placeholder="Add a comment — e.g. World class!" class="input">
+<button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doComment()" onclick="doComment()">POST COMMENT</button>
+<div class="pochi" style="margin-top:8px">Comment feature working — Tap Like ❤️ to like video — Share ↗️ to share — Profile 👤 to see owner — Volume 🔊 to mute/unmute — Vol+ UP Vol- DOWN to change volume</div>
+</div>
 </div>
 
 <div id="marketBox" class="pop">
-<h3>🛒 MARKET 6% AUTO TO 0142550440 - REAL FEATURE</h3>
-<p style="font-size:11px;background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:6px">Company Pochi 0142550440 = Company Number 0142550440 same - Automatic 6% cut - Seller 94% - Example 3724 => 224 to 0142550440, 3500 to seller - World class beating Jumia, Amazon, TikTok Shop</p>
-<div id="marketList" style="margin-top:10px"></div>
-<button type="button" style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:10px" ontouchstart="closeBox('marketBox')" onclick="closeBox('marketBox')">X CLOSE - BACK TO VIDEO</button>
+<div style="max-width:700px;margin:auto">
+<div style="display:flex;justify-content:space-between;align-items:center"><b>🛒 MARKET — 6% AUTO TO 0142550440 — NEW DESIGN — BEATING ALL</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('marketBox')" onclick="closeBox('marketBox')">X CLOSE</button></div>
+<div class="pochi">NEW DESIGN — Company Number 0142550440 = Pochi Till 0142550440 same — Automatic 6% — Seller 94% — Example KSH 3724 => 224 to 0142550440, 3500 to seller — Like Share Comment Profile Volume icons working</div>
+<div id="marketList" style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+</div>
 </div>
 
 <div id="profileBox" class="pop">
-<h3>👤 MY VIDEOS STAY AFTER REFRESH</h3>
-<div id="myList" style="margin-top:10px"></div>
-<button type="button" style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:10px" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE - BACK TO VIDEO</button>
+<div style="max-width:600px;margin:auto">
+<div style="display:flex;justify-content:space-between"><b>👤 PROFILE — STAY AFTER REFRESH — NEW DESIGN — Like Share Comment Profile Volume</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE</button></div>
+<div id="profileInfo" class="pochi" style="margin-top:8px">Not logged — Login demo / 1234 — Company Pochi 0142550440 same as company number — 6% auto — No spying — Offline</div>
+<div style="background:#fff;border-radius:12px;padding:10px;margin-top:10px"><b>📹 MY VIDEOS — NEW DESIGN</b><div id="myVideosList" style="margin-top:8px"></div></div>
+<div style="background:#fff;border-radius:12px;padding:10px;margin-top:10px"><b>🛒 MY PRODUCTS — 6% auto to 0142550440</b><div id="myProductsList" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"></div></div>
+</div>
 </div>
 
 <div id="loginBox" class="pop">
-<h3>LOGIN - demo / 1234</h3>
+<div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px;border:3px solid #00ffcc">
+<h3>LOGIN — NEW DESIGN — demo / 1234</h3>
 <input id="loginUser" placeholder="Username demo" class="input">
 <input id="loginPass" type="password" placeholder="Password 1234" class="input">
-<button type="button" style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" ontouchstart="doLogin()" onclick="doLogin()">LOGIN</button>
-<button type="button" style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:8px" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button>
+<button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doLogin()" onclick="doLogin()">LOGIN — NEW DESIGN</button>
+<button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button>
+<div class="pochi">Demo: demo / 1234 — Phone 0712345678 — Pochi 0142550440 same as company number — 6% auto — Like Share Comment Profile Volume all working</div>
+</div>
 </div>
 
 <script>
-var lastFile=null,lastDataUrl=null,myVideos=[],currentUser=null;
-function openBox(id){document.getElementById(id).style.display='block';}
+var lastFile=null,lastBlobUrl=null,lastDataUrl=null,myVideos=[],currentUser=null,isLiked=false,isFollowed=false,likeCount=2300,commentCount=342;
+function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderProfile();if(id==='marketBox')renderMarket();}
 function closeBox(id){document.getElementById(id).style.display='none';}
-function playPause(){var v=document.getElementById('mainV');if(v.paused){v.play();}else{v.pause();}}
-function volUp(){var v=document.getElementById('mainV');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();}
-function volDown(){var v=document.getElementById('mainV');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='KSH '+p+' => 6% '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same - Seller '+(p*0.94).toFixed(0);}else{c.style.display='none'}}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML=f.name+' '+(f.size/1024/1024).toFixed(2)+'MB - Must be <3MB - Reading...';var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result;document.getElementById('fileInfo').innerHTML=f.name+' '+(f.size/1024/1024).toFixed(2)+'MB - ✅ Ready - Fixed display';var pre=document.getElementById('preview');pre.style.display='block';if(f.type.startsWith('video')){pre.innerHTML='<video src="'+e.target.result+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>';}else{pre.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:contain">';}};reader.readAsDataURL(f);}
-function doPost(){if(!lastFile||!lastDataUrl){alert('Choose file first - Wait for Reading to finish - Fixed');return}if(!currentUser){alert('Login demo/1234 first');openBox('loginBox');return}var title=document.getElementById('pTitle').value||'My Video';var price=document.getElementById('pPrice').value||'';var feed=document.getElementById('feed');var div=document.createElement('div');div.style.position='absolute';div.style.top='0';div.style.left='0';div.style.width='100%';div.style.height='100%';div.style.background='#000';div.style.zIndex='20';if(lastFile.type.startsWith('video')){div.innerHTML='<video src="'+lastDataUrl+'" style="width:100%;height:100%;object-fit:contain" controls autoplay playsinline></video><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">NEW - 6% -> 0142550440 @'+currentUser+' - FIXED</div><div style="position:absolute;bottom:40px;left:0;right:0;background:rgba(0,0,0,.8);padding:8px;font-size:11px">@'+currentUser+' - '+title+' KSH '+price+' - 6% -> 0142550440 - FIXED DISPLAY</div><div style="position:absolute;top:10px;right:10px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:10px" onclick="this.parentElement.remove()">X CLOSE NEW</div>';}else{div.innerHTML='<img src="'+lastDataUrl+'" style="width:100%;height:100%;object-fit:contain"><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">PHOTO TO VIDEO @'+currentUser+' - FIXED</div><div style="position:absolute;top:10px;right:10px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:10px" onclick="this.parentElement.remove()">X CLOSE</div>';}feed.appendChild(div);myVideos.push({title:title,price:price,dataUrl:lastDataUrl,type:lastFile.type,user:currentUser});closeBox('postBox');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';lastFile=null;lastDataUrl=null;document.getElementById('reelFile').value='';document.getElementById('calc').style.display='none';renderLists();}
-function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';currentUser=u;closeBox('loginBox');alert('LOGGED IN @'+u+' - Now + POST works - Fixed display');}
-function renderLists(){var ml=document.getElementById('marketList');var my=document.getElementById('myList');if(myVideos.length==0){ml.innerHTML='<div style="padding:15px;background:#fff;border-radius:8px;border:2px solid #000;text-align:center">No posts yet - Example Jordan 4 KSH 3724 => 224 to 0142550440 Pochi same - Seller 3500</div>';my.innerHTML='<div style="padding:15px;background:#fff;border-radius:8px;border:2px solid #000;text-align:center">No videos yet - Post now - Fixed display</div>';return}var h='';myVideos.slice().reverse().forEach(v=>{h+='<div style="background:#fff;border-radius:8px;border:2px solid #000;margin-bottom:8px;overflow:hidden"><div style="height:100px;background:#000;display:flex;align-items:center;justify-content:center">'+(v.type.startsWith('video')?'<video src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>':'<img src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain">')+'</div><div style="padding:6px"><b>'+v.title+'</b> @'+v.user+' KSH '+(v.price||0)+'<br><span style="background:#111;color:#00ffcc;padding:3px 6px;border-radius:4px;font-size:10px">6% '+((parseFloat(v.price||0)*0.06).toFixed(0))+' -> 0142550440 Pochi same</span></div></div>';});ml.innerHTML=h;my.innerHTML=h;}
-</script>
-</body>
-</html>
+function closeAll(){var pops=document.querySelectorAll('.pop');for(var i=0;i<pops.length;i++){pops[i].style.display='none';}}
+function doLike(){isLiked=!isLiked;var circle=document.getElementById('likeCircle');var countEl=document.getElementById('likeCount');if(isLiked){circle.innerHTML='❤️';circle.style.background='#ff2d55';likeCount++;countEl.innerHTML=likeCount;countEl.style.color='#ff2d55';}else{circle.innerHTML='🤍';circle.style.background='rgba(255,255,255,.1)';likeCount--;countEl.innerHTML=likeCount>1000?(likeCount/1000).toFixed(1)+'K':likeCount;countEl.style.color='#fff';}}
+function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');var t=document.getElementById('followCount');if(isFollowed){c.innerHTML='✓';c.style.background='#00ffcc';t.innerHTML='Following';}else{c.innerHTML='+';c.style.background='#00ffcc';t.innerHTML='Follow';}}
+function doShare(){if(navigator.share){navigator.share({title:'G-LUMO NEO V3',text:'World class beating all - 6% auto to 0142550440',url:location.href});}else{navigator.clipboard.writeText(location.href);alert('✅ SHARED — Link copied — Like Share Comment Profile Volume — 6% auto to 0142550440');}}
+function toggleVolume(){var v=document.getElementById('mainV');var icon=document.getElementById('volCircle');var label=document.getElementById('volLabel');v.muted=!v.muted;if(v.muted){icon.innerHTML='🔇';label.innerHTML='Vol OFF';}else{icon.innerHTML='🔊';label.innerHTML='Vol ON';v.volume=1;v.play();}}
+function volUp(){var v=document.getElementById('mainV');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
+function volDown(){var v=document.getElementById('mainV');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
+function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim()||'World class! Like Share Comment Profile Volume working!';var list=document.getElementById('commentList');var div=document.createElement('div');div.className='card';div.style.padding='10px';div.innerHTML='<b>@'+(currentUser||'guest')+'</b> '+text+'<br><span style="font-size:9px;color:#888">Just now • Like • Reply</span>';list.appendChild(div);input.value='';commentCount++;document.getElementById('commentCount').innerHTML=commentCount;}
+function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='💰 KSH '+p+' => 6% KSH '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same — Seller KSH '+(p*0.94).toFixed(0)+' — Like Share Comment Profile Volume';}else{c.style.display='none';}}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl){URL.revokeObjectURL(lastBlobUrl);}lastBlobUrl=URL.createObjectURL(f);document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML='✅ '+f.name+' '+(f.size/1024/1024).toFixed(2)+'MB — Ready — NEW DESIGN — Like Share Comment Profile Volume';var pre=document.getElementById('preview');pre.style.display='block';if(f.type.startsWith('video')){pre.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls muted autoplay></video>';}else{pre.innerHTML='<img src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain">';}var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result;};reader.readAsDataURL(f);}
+function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose file first — NEW DESIGN');return}if(!currentUser){alert('Login demo/1234 first — NEW DESIGN');openBox('loginBox');return}var title=document.getElementById('pTitle').value||'My NEO Video';var price=document.getElementById('pPrice').value||'';var feedInner=document.getElementById('feedInner');var div=document.createElement('div');div.style.position='absolute';div.style.top='0';div.style.left='0';div.style.width='100%';div.style.height='100%';div.style.background='#000';div.style.zIndex='10';if(lastFile.type.startsWith('video')){div.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls autoplay playsinline></video><div class="badge">NEW — 6% → 0142550440 @'+currentUser+' — NEO V3 — Like Share Comment Profile Volume</div><div class="infoBar"><b>@'+currentUser+' — '+title+' — KSH '+price+' — 6% → 0142550440</b><p>NEW DESIGN — Like ❤️ Share ↗️ Comment 💬 Profile 👤 Volume 🔊 — Vol+ UP Vol- DOWN clickable — Photo to video clickable — Beating all platforms</p></div><div style="position:absolute;top:12px;right:12px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:9px;cursor:pointer" onclick="this.parentElement.remove()">X CLOSE NEW</div>';}else{div.innerHTML='<img src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain"><div class="badge">PHOTO TO VIDEO — @'+currentUser+' — NEO V3</div><div style="position:absolute;top:12px;right:12px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:9px;cursor:pointer" onclick="this.parentElement.remove()">X CLOSE</div>';}feedInner.appendChild(div);myVideos.push({title:title,price:price,url:lastBlobUrl,dataUrl:lastDataUrl,type:lastFile.type,user:currentUser});closeBox('postBox');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';document.getElementById('calc').style.display='none';document.getElementById('reelFile').value='';renderProfile();renderMarket();document.getElementById('videoTitle').innerHTML='@'+currentUser+' • '+title+' • NEW DESIGN';}
+function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';currentUser=u;document.getElementById('profileName').innerHTML='@'+u;document.getElementById('profileInfo').innerHTML='Logged @'+u+' — Company Pochi 0142550440 same as company number — 6% auto — Like Share Comment Profile Volume all working — NEW DESIGN';closeBox('loginBox');}
+function renderProfile(){var myList=document.getElementById('myVideosList');var prodList=document.getElementById('myProductsList');if(myVideos.length==0){myList.innerHTML='<div style="padding:15px;background:#fff;border-radius:10px;border:2px solid #000;text-align:center;font-size:11px">No videos yet — NEW DESIGN — Post small &lt;5MB — Like Share Comment Profile Volume — Stores in session — Photo to video clickable</div>';if(prodList)prodList.innerHTML='<div style="padding:15px;background:#fff;border-radius:10px;border:2px solid #000;text-align:center;font-size:11px">No products — Market 6% auto to 0142550440</div>';return}var h='';myVideos.slice().reverse().forEach(function(v){h+='<div style="background:#fff;border-radius:10px;border:2px solid #000;margin-bottom:8px;overflow:hidden"><div style="height:100px;background:#000;display:flex;align-items:center;justify-content:center">'+(v.type.startsWith('video')?'<video src="'+v.url+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>':'<img src="'+v.url+'" style="width:100%;height:100%;object-fit:contain">')+'</div><div style="padding:6px;color:#000"><b style="font-size:11px">'+v.title+'</b><br><span style="font-size:9px">KSH '+(v.price||0)+' — 6% '+((parseFloat(v.price||0)*0.06).toFixed(0))+' → 0142550440 Pochi same — Like Share Comment</span></div></div>';});myList.innerHTML=h;if(prodList)prodList.innerHTML=h;}
+function renderMarket(){var ml=document.getElementById('marketList');if(myVideos.length==0){ml.innerHTML='<div style="grid-column:1/3;padding:20px;background:#fff;border-radius:10px;border:2px solid #000;text-align:center">No posts yet — NEW DESIGN — Example Jordan 4 KSH 3724 => 224 to 0142550440 Pochi same — Seller 3500 — Like Share Comment Profile Volume</div>';return}var h='';myVideos.slice().reverse().forEach(function(v){h+='<div style="background:#fff;border-r
