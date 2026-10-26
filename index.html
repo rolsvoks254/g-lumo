@@ -3,71 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO WORLD</title>
+<title>G-LUMO WORLD - 6% Commission</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;height:38px;display:flex;align-items:center;padding:0 10px;border-bottom:1px solid #222}
-header h1{color:#00ffcc;font-size:24px;font-weight:900}
-#marketTopBar{position:fixed;top:38px;left:0;right:0;z-index:99;height:72px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;overflow-x:auto;border-bottom:3px solid #00ffcc}
-.marketBtn{flex-shrink:0;padding:10px 16px;border-radius:22px;border:0;font-size:18px;font-weight:900}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;height:38px;display:flex;align-items:center;padding:0 10px}
+header h1{color:#00ffcc;font-size:22px;font-weight:900}
+#marketTopBar{position:fixed;top:38px;left:0;right:0;z-index:99;height:70px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;overflow-x:auto;border-bottom:3px solid #00ffcc}
+.marketBtn{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-size:18px;font-weight:900}
 .btnMarket{background:#000;color:#00ffcc}
 .btnSell{background:#00ffcc;color:#000}
-#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:110px}
-.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 110px);scroll-snap-align:center;flex-shrink:0;background:#111}
+#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:108px}
+.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 108px);scroll-snap-align:center;background:#111;flex-shrink:0}
 .reel img,.reel video{width:100%;height:100%;object-fit:cover}
-.info{position:absolute;bottom:0;left:0;right:95px;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
-.userRow{display:flex;gap:8px;align-items:center;font-size:28px;font-weight:900}
-.userRow img{width:52px;height:52px;border-radius:50%;border:3px solid #00ffcc}
-.cap{font-size:24px;font-weight:700;margin-top:6px}
-.actions{position:absolute;right:8px;bottom:90px;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:10}
-.actBtn{border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center}
-.actIcon{width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:32px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px)}
-.followBtn{width:68px;height:68px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden}
-.followPlus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:26px;height:26px;border-radius:50%;color:#fff;font-size:18px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-weight:900}
-.whatsappBtn{width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid #fff;color:#fff;font-weight:900}
-#marketPopup{position:fixed;top:110px;left:0;right:0;z-index:98;background:#fff;color:#000;display:none;max-height:70vh;overflow:auto;padding:10px}
-#marketPopup.show{display:block}
-/* COMMENT MODAL */
-#commentModal{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#111;border-top:3px solid #00ffcc;display:none;flex-direction:column;max-height:75vh}
-#commentModal.show{display:flex}
-#commentList{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
-.commentItem{background:#222;padding:8px 12px;border-radius:12px;font-size:16px}
-#commentInputArea{display:flex;gap:8px;padding:10px;border-top:1px solid #333;background:#000}
-#commentInput{flex:1;padding:12px;border-radius:20px;border:1px solid #444;background:#222;color:#fff;font-size:16px}
-#sendBtn{padding:12px 18px;border-radius:20px;border:0;background:#00ffcc;font-weight:900;color:#000}
+.info{position:absolute;bottom:0;left:0;right:95px;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.userRow{display:flex;gap:8px;align-items:center;font-size:26px;font-weight:900}
+.userRow img{width:50px;height:50px;border-radius:50%;border:3px solid #00ffcc}
+.cap{font-size:22px;font-weight:700;margin-top:4px}
+.actions{position:absolute;right:6px;bottom:80px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.actBtn{border:0;background:transparent;cursor:pointer}
+.actIcon{width:60px;height:60px;border-radius:50%;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-size:30px;border:1px solid rgba(255,255,255,.2)}
+.followBtn{width:64px;height:64px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden}
+.followPlus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:24px;height:24px;border-radius:50%;color:#fff;font-size:16px;border:2px solid #fff;display:flex;align-items:center;justify-content:center}
+.whatsappBtn{width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid #fff;color:#fff;font-weight:900}
+.popup{position:fixed;left:0;right:0;z-index:150;background:#fff;color:#000;display:none;flex-direction:column}
+#marketPopup{top:108px;max-height:72vh;overflow:auto;padding:10px}
+#marketPopup.show,#buyModal.show,#sellModal.show,#commentModal.show{display:flex}
+#buyModal{bottom:0;max-height:85vh;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0;padding:16px}
+#sellModal{top:108px;max-height:80vh;padding:16px;overflow:auto;border-bottom:4px solid #00ffcc}
+#commentModal{bottom:0;max-height:70vh;background:#111;color:#fff;border-top:3px solid #00ffcc}
+#commentList{flex:1;overflow:auto;padding:10px}
+#commentInputArea{display:flex;gap:8px;padding:10px;background:#000}
+.productCard{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff}
+.productCard img{width:100%;height:110px;object-fit:cover}
 </style>
 </head>
 <body>
-<header><h1>G-LUMO WORLD 🌍 0142550440</h1></header>
+<header><h1>G-LUMO WORLD 🌍 Pochi:0142550440 - 6%</h1></header>
 <div id="marketTopBar">
 <button class="marketBtn btnMarket" onclick="toggleMarket()">🛒 MARKET</button>
-<button class="marketBtn btnSell" onclick="toggleMarket()">+ Sell</button>
-<button class="marketBtn btnMarket">Pochi 0142550440</button>
+<button class="marketBtn btnSell" onclick="openSell()">+ SELL</button>
+<button class="marketBtn btnMarket">Fee 6% → 0142550440</button>
 </div>
-<div id="marketPopup"><div style="display:flex;justify-content:space-between"><b>🛒 Market - Pochi 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"></div></div>
+
+<div id="marketPopup" class="popup">
+<div style="display:flex;justify-content:space-between"><b>🛒 MARKET - 6% Auto to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<div style="background:#e6fffb;border:2px solid #00ffcc;border-radius:10px;padding:8px;margin-top:8px;font-size:12px;color:#000;font-weight:800">HOW IT WORKS (Like Amazon) - 6%:<br>Buyer pays 106% → Seller gets 94% → 6% AUTOMATIC to Pochi 0142550440</div>
+<div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div>
+</div>
+
+<div id="sellModal" class="popup">
+<div style="display:flex;justify-content:space-between"><b>📦 Sell - Auto 6% Cut</b><button onclick="closeSell()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<input id="pName" placeholder="Product name e.g. Jordan 1" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin-top:10px">
+<input id="pPrice" type="number" placeholder="Your price KSH (you will receive)" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin-top:8px">
+<input id="pImg" placeholder="Image link (optional)" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin-top:8px">
+<div id="feePreview" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px;font-weight:800"></div>
+<button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px;font-size:16px">Post to Market</button>
+</div>
+
+<div id="buyModal" class="popup">
+<div id="buyDetails"></div>
+</div>
+
 <div id="feed"></div>
 
-<!-- COMMENT BOX - TYPE SOMETHING -->
-<div id="commentModal">
-<div style="padding:10px;display:flex;justify-content:space-between;border-bottom:1px solid #333"><b id="commentTitle">Comments</b><button onclick="closeComment()" style="background:#333;color:#fff;border:0;padding:6px 12px;border-radius:8px">X Close</button></div>
+<div id="commentModal" class="popup">
+<div style="padding:10px;display:flex;justify-content:space-between;border-bottom:1px solid #333"><b id="commentTitle">Comments</b><button onclick="closeComment()" style="background:#333;color:#fff;border:0;padding:6px 12px;border-radius:8px">X</button></div>
 <div id="commentList"></div>
-<div id="commentInputArea">
-<input id="commentInput" placeholder="Type a comment... add text here">
-<button id="sendBtn" onclick="sendComment()">Send</button>
-</div>
+<div id="commentInputArea"><input id="commentInput" placeholder="Type comment..." style="flex:1;padding:12px;border-radius:20px;border:1px solid #444;background:#222;color:#fff"><button onclick="sendComment()" style="padding:12px 18px;border-radius:20px;border:0;background:#00ffcc;font-weight:900">Send</button></div>
 </div>
 
 <script>
-let openM=false;function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM)}
+let openM=false;function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM);closeSell()}
+function openSell(){document.getElementById('sellModal').classList.add('show');document.getElementById('marketPopup').classList.remove('show')}
+function closeSell(){document.getElementById('sellModal').classList.remove('show')}
+function calcFee(){
+ let p=parseFloat(document.getElementById('pPrice').value)||0;
+ if(!p){document.getElementById('feePreview').innerHTML='Enter your price to see 6% auto cut';return}
+ // 6% commission: seller wants p, buyer pays p / 0.94
+ let buyerPays=Math.round(p/0.94);
+ let commission=buyerPays-p;
+ let sellerGets=p;
+ document.getElementById('feePreview').innerHTML=`
+ 💰 BUYER WILL PAY: KSH ${buyerPays}<br>
+ 📤 YOU (SELLER) GET: KSH ${sellerGets} (94%)<br>
+ 🏦 AUTOMATIC 6% to Pochi 0142550440: KSH ${commission}<br>
+ <span style="color:#fff;font-size:11px">Auto to 0142550440 - like Amazon 6%</span>
+ `;
+ document.getElementById('feePreview').dataset.buyer=buyerPays;
+ document.getElementById('feePreview').dataset.comm=commission;
+ document.getElementById('feePreview').dataset.seller=sellerGets;
+}
+
 const data=[
-{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO',cap:'CINEMA • Tap icons to interact'},
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi',name:'Pochi 0142550440',cap:'Comment, Share, Download works'},
-{type:'image',src:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800',user:'@market',name:'Market',cap:'Save works • Share to WhatsApp'},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@seller',name:'Seller',cap:'Download any video'},
+{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO',cap:'Market with 6% auto fee'},
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi',name:'Pochi 0142550440',cap:'6% auto to 0142550440'},
 ];
 let following={},liked={},saved={},comments={},currentPost=0;
-comments[0]=[{u:'@fan',t:'Nice 🔥'}];comments[1]=[];comments[2]=[];comments[3]=[];
+comments[0]=[];comments[1]=[];
 
 function render(){
 let f=document.getElementById('feed');f.innerHTML='';
@@ -76,10 +109,10 @@ let m=d.type==='video'?`<video src="${d.src}" loop muted playsinline autoplay></
 f.innerHTML+=`<div class="reel">${m}
 <div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div></div>
 <div class="actions">
-<button class="actBtn" onclick="doFollow(${i})"><div class="followBtn"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
-<button class="actBtn" onclick="doLike(${i})"><div class="actIcon">${liked[i]?'❤️':'❤️'}</div></button>
+<button class="actBtn" onclick="following[${i}]=!following[${i}];render()"><div class="followBtn"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
+<button class="actBtn" onclick="liked[${i}]=!liked[${i}];render()"><div class="actIcon">${liked[i]?'❤️':'🤍'}</div></button>
 <button class="actBtn" onclick="openComment(${i})"><div class="actIcon">💬</div></button>
-<button class="actBtn" onclick="doSave(${i})"><div class="actIcon" style="background:${saved[i]?'#00ffcc':'rgba(0,0,0,.4)'}">🏷️</div></button>
+<button class="actBtn" onclick="saved[${i}]=!saved[${i}];render()"><div class="actIcon">🏷️</div></button>
 <button class="actBtn" onclick="doShare(${i})"><div class="actIcon">↗️</div></button>
 <button class="actBtn" onclick="doWhatsApp(${i})"><div class="whatsappBtn">W</div></button>
 <button class="actBtn" onclick="doDownload(${i})"><div class="actIcon">⬇️</div></button>
@@ -87,63 +120,78 @@ f.innerHTML+=`<div class="reel">${m}
 });
 }
 
-// ALL CLICKABLE FUNCTIONS
-function doFollow(i){following[i]=!following[i];render(); if(following[i]) alert('Following '+data[i].name+' ✓')}
-function doLike(i){liked[i]=!liked[i];render(); }
-function doSave(i){saved[i]=!saved[i];render(); alert(saved[i]?'Saved to bookmark ✅':'Removed from saved')}
-function openComment(i){
- currentPost=i;
- document.getElementById('commentModal').classList.add('show');
- document.getElementById('commentTitle').innerText='Comments • '+data[i].name;
- renderComments();
-}
-function closeComment(){document.getElementById('commentModal').classList.remove('show')}
-function renderComments(){
- let list=document.getElementById('commentList');list.innerHTML='';
- (comments[currentPost]||[]).forEach(c=>{
-   list.innerHTML+=`<div class="commentItem"><b>${c.u}</b> ${c.t}</div>`;
- });
- if(list.innerHTML==='') list.innerHTML='<div style="color:#888;text-align:center;padding:20px">No comments yet. Type below 👇</div>';
-}
-function sendComment(){
- let inp=document.getElementById('commentInput');
- let txt=inp.value.trim(); if(!txt) return;
- if(!comments[currentPost]) comments[currentPost]=[];
- comments[currentPost].push({u:'@you',t:txt});
- inp.value=''; renderComments();
-}
-function doShare(i){
- let d=data[i];
- if(navigator.share){
-   navigator.share({title:'G-LUMO WORLD',text:d.cap,url:d.src});
- } else {
-   navigator.clipboard.writeText(d.src);
-   alert('Link copied ✅ Share anywhere:\n'+d.src);
- }
-}
-function doWhatsApp(i){
- let d=data[i];
- let url=`https://wa.me/?text=${encodeURIComponent('G-LUMO WORLD 🌍 - '+d.cap+'\n'+d.src)}`;
- window.open(url,'_blank');
-}
-function doDownload(i){
- let d=data[i];
- let a=document.createElement('a');
- a.href=d.src;
- a.download='g-lumo-'+i+'.'+(d.type==='video'?'mp4':'jpg');
- a.target='_blank';
- document.body.appendChild(a);
- a.click();
- a.remove();
- alert('Downloading... Check your gallery ✅\n'+d.src);
-}
-function calcFee(){}
-function addProduct(){}
+// MARKET WITH 6% COMMISSION
+let products=[
+{name:'Jordan 4',price:3500,buyerPrice:3724,comm:224,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300',seller:'@seller1'},
+{name:'iPhone 14',price:85000,buyerPrice:90426,comm:5426,img:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300',seller:'@seller2'}
+];
 
-let products=[{name:'Jordan',price:3500,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300'}];
-function renderMarket(){let g=document.getElementById('grid');g.innerHTML='';products.forEach(p=>{g.innerHTML+=`<div style="border:1px solid #ddd;border-radius:10px;overflow:hidden"><img src="${p.img}" style="width:100%;height:90px;object-fit:cover"><div style="padding:6px"><b>${p.name}</b><div style="color:#00a896">KSH ${p.price}</div></div></div>`})}
+function renderMarket(){
+ let g=document.getElementById('grid');g.innerHTML='';
+ products.forEach((p,idx)=>{
+  g.innerHTML+=`<div class="productCard">
+  <img src="${p.img}">
+  <div style="padding:8px">
+  <div style="font-weight:900;font-size:13px">${p.name}</div>
+  <div style="font-size:11px;color:#666">${p.seller}</div>
+  <div style="margin-top:4px;background:#f5f5f5;padding:6px;border-radius:6px;font-size:11px">
+  Buyer: <b>KSH ${p.buyerPrice}</b><br>
+  Seller gets: KSH ${p.price} (94%)<br>
+  Fee 6% to 0142550440: <span style="color:#00a896;font-weight:900">KSH ${p.comm}</span>
+  </div>
+  <button onclick="openBuy(${idx})" style="width:100%;margin-top:6px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:12px">BUY - 6% Auto</button>
+  </div></div>`;
+ });
+}
+
+function addProduct(){
+ let n=document.getElementById('pName').value.trim();
+ let pr=parseFloat(document.getElementById('pPrice').value);
+ let img=document.getElementById('pImg').value.trim()||'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300';
+ if(!n||!pr) return alert('Enter name and price');
+ let buyerPrice=Math.round(pr/0.94);
+ let comm=buyerPrice-pr;
+ products.unshift({name:n,price:pr,buyerPrice:buyerPrice,comm:comm,img:img,seller:'@you'});
+ renderMarket();
+ document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pImg').value='';
+ closeSell();toggleMarket();
+ alert('Posted! Buyer KSH '+buyerPrice+' - You get KSH '+pr+' - 6% KSH '+comm+' auto to 0142550440');
+}
+
+function openBuy(idx){
+ let p=products[idx];
+ document.getElementById('buyDetails').innerHTML=`
+ <div style="display:flex;justify-content:space-between"><b>Checkout - 6% Commission</b><button onclick="closeBuy()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+ <img src="${p.img}" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-top:10px">
+ <div style="margin-top:10px"><b>${p.name}</b><br>Seller: ${p.seller}</div>
+ <div style="background:#111;color:#fff;border-radius:12px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6">
+  <div style="display:flex;justify-content:space-between"><span>Seller gets (94%):</span><b>KSH ${p.price}</b></div>
+  <div style="display:flex;justify-content:space-between;color:#00ffcc"><span>Commission 6% to 0142550440:</span><b>KSH ${p.comm}</b></div>
+  <div style="border-top:1px solid #333;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-size:16px"><span>Buyer pays total:</span><b>KSH ${p.buyerPrice}</b></div>
+  <div style="font-size:11px;color:#aaa;margin-top:6px">AUTOMATIC: KSH ${p.comm} goes to 0142550440 instantly - 6% like Amazon</div>
+ </div>
+ <button onclick="payNow(${idx})" style="width:100%;padding:16px;background:#25D366;color:#fff;border:0;border-radius:12px;font-weight:900;font-size:16px;margin-top:12px">Pay KSH ${p.buyerPrice} via M-PESA to 0142550440</button>
+ <button onclick="payNow(${idx})" style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-top:8px">Confirm Split Payment 6%</button>
+ <div style="font-size:11px;color:#666;text-align:center;margin-top:8px">Company Pochi: 0142550440 - 6% auto cut</div>
+ `;
+ document.getElementById('buyModal').classList.add('show');
+}
+function closeBuy(){document.getElementById('buyModal').classList.remove('show')}
+function payNow(idx){
+ let p=products[idx];
+ alert(`✅ 6% PAYMENT SPLIT AUTOMATIC:\n\nBuyer paid: KSH ${p.buyerPrice}\n→ KSH ${p.price} to Seller (94%)\n→ KSH ${p.comm} AUTOMATIC to Pochi 0142550440 (6% Commission)\n\nM-PESA to 0142550440 confirmed`);
+ closeBuy();
+}
+
+function openComment(i){currentPost=i;document.getElementById('commentModal').classList.add('show');renderComments()}
+function closeComment(){document.getElementById('commentModal').classList.remove('show')}
+function renderComments(){let l=document.getElementById('commentList');l.innerHTML='';(comments[currentPost]||[]).forEach(c=>{l.innerHTML+=`<div style="background:#222;padding:8px 12px;border-radius:10px;margin-bottom:6px"><b>${c.u}</b> ${c.t}</div>`}); if(!l.innerHTML) l.innerHTML='<div style="color:#888;text-align:center;padding:20px">No comments yet</div>'}
+function sendComment(){let inp=document.getElementById('commentInput');let t=inp.value.trim();if(!t)return;if(!comments[currentPost])comments[currentPost]=[];comments[currentPost].push({u:'@you',t:t});inp.value='';renderComments()}
+function doShare(i){let d=data[i];if(navigator.share){navigator.share({title:'G-LUMO',url:d.src})}else{navigator.clipboard.writeText(d.src);alert('Link copied')}} 
+function doWhatsApp(i){let d=data[i];window.open(`https://wa.me/?text=${encodeURIComponent('G-LUMO '+d.src)}`,'_blank')}
+function doDownload(i){let d=data[i];let a=document.createElement('a');a.href=d.src;a.download='g-lumo-'+i;a.target='_blank';a.click();alert('Downloading...')}
+
 render();renderMarket();
-document.getElementById('commentInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendComment()});
 </script>
 </body>
 </html>
