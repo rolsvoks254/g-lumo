@@ -1115,6 +1115,33 @@ function enableNotifs(){
   });
 }
     </script>
+ <script>
+// FORCE SMALL LEFT-TO-RIGHT - FINAL
+setTimeout(()=>{
+ const ed=document.getElementById('photoEditor');
+ if(!ed) return;
+ const all=Array.from(ed.querySelectorAll('button'));
+ const btns=all.filter(b=>!b.textContent.includes('Choose File') && b.textContent.trim().length<12);
+ if(!btns.length) return;
+ let wrap=document.getElementById('editorScrollRow');
+ if(wrap) return;
+ wrap=document.createElement('div');
+ wrap.id='editorScrollRow';
+ wrap.style.cssText='display:flex!important;gap:8px!important;overflow-x:auto!important;flex-wrap:nowrap!important;padding:10px 0!important;white-space:nowrap!important;';
+ btns.forEach(b=>{
+   b.style.setProperty('min-width','70px','important');
+   b.style.setProperty('max-width','85px','important');
+   b.style.setProperty('width','auto','important');
+   b.style.setProperty('height','32px','important');
+   b.style.setProperty('font-size','11px','important');
+   b.style.setProperty('padding','6px 10px','important');
+   b.style.setProperty('flex','0 0 auto','important');
+   b.style.setProperty('display','inline-block','important');
+   wrap.appendChild(b);
+ });
+ ed.appendChild(wrap);
+},500);
+   </script> 
 </body>
   <img src="IMG-20261021-WA9270.jpg" alt="G-LUMO logo" style="width:120px; height:auto; display:block; margin:10px auto;">
 </html>
