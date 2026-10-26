@@ -1071,20 +1071,23 @@ window.togglePass = () => {
   }
 }; 
 onAuthStateChanged(window.auth, (user) => {
-  document.getElementById("userStatus").innerText = user ? "Logged in as: " + user.email : "Not logged in";
-  document.body.style.overflow = user ? "auto" : "hidden";
-  const box = document.querySelector(".card");
-  if (!user) {
-    box.style.position = "fixed";
-    box.style.inset = "0";
-    box.style.zIndex = "99999";
-    box.style.background = "#111827";
-    box.style.margin = "0";
-    box.style.borderRadius = "0";
-    box.style.paddingTop = "60px";
+  const status = document.getElementById("userStatus");
+  const eInput = document.getElementById("email");
+  const pInput = document.getElementById("password");
+  const forgot = document.getElementById("forgotLink");
+
+  if (user) {
+    document.getElementById("userStatus").innerHTML = "Logged in as: " + user.email;
+    if(eInput) eInput.style.display = "none";
+    if(pInput) pInput.style.display = "none";
+    if(forgot) forgot.style.display = "none";
+    document.body.style.overflow = "hidden";
   } else {
-    box.style.position = "static";
-    box.style.background = "";
+    document.getElementById("userStatus").innerText = "Not logged in";
+    if(eInput) eInput.style.display = "block";
+    if(pInput) pInput.style.display = "block";
+    if(forgot) forgot.style.display = "block";
+    document.body.style.overflow = "auto";
   }
 });
  </script> 
