@@ -2,38 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>G-LUMO 100% CLICKABLE ICONS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G-LUMO CLICKABLE + LOGIN RESTORED</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:#000;color:#fff;font-family:Arial;font-size:18px;font-weight:900;overflow:hidden}
-#top{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;border-bottom:4px solid #00ffcc}
-#h{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
-#menu{height:62px;background:#fff;display:flex;gap:8px;padding:8px;overflow-x:auto}
-.mbtn{flex-shrink:0;padding:11px 14px;border-radius:20px;border:0;font-weight:900;font-size:12px;cursor:pointer}
-#feed{position:fixed;top:118px;left:0;right:0;bottom:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;z-index:1}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,255,204,.3)}
+body{background:#000;color:#fff;font-family:Arial;font-size:16px;font-weight:900;overflow:hidden}
+#top{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;border-bottom:4px solid #00ffcc;height:108px}
+#h{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
+#menu{height:56px;background:#fff;display:flex;gap:6px;padding:6px;overflow-x:auto}
+.mbtn{flex-shrink:0;padding:10px 12px;border-radius:20px;border:0;font-weight:900;font-size:11px;cursor:pointer}
+#feed{position:fixed;top:108px;left:0;right:0;bottom:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;z-index:1}
 .page{min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .page video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .page img{width:100%;height:100%;object-fit:contain;background:#000}
-.info{position:absolute;bottom:0;left:0;right:90px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:2;font-size:14px;font-weight:900;pointer-events:none}
+.info{position:absolute;bottom:0;left:0;right:78px;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:2;font-size:12px;font-weight:900;pointer-events:none}
 .info *{pointer-events:auto}
-.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:#00ffcc;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:36px;color:#000;z-index:3;cursor:pointer}
-#rightBar{position:fixed;right:4px;bottom:6px;top:auto;width:70px;z-index:999999;display:flex;flex-direction:column;gap:5px;pointer-events:auto;background:transparent}
-.iconBtn{width:70px;height:62px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;touch-action:manipulation}
-.iconCircle{width:48px;height:48px;border-radius:50%;background:#222;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:900;pointer-events:auto}
-.iconLabel{font-size:7.5px;font-weight:900;color:#fff;margin-top:2px;text-align:center;line-height:1.0;pointer-events:auto}
-.pop{display:none;position:fixed;top:118px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:9999999;overflow:auto;padding:14px}
-.input{width:100%;padding:12px;border:2px solid #ccc;border-radius:10px;margin-top:8px;font-size:15px;font-weight:900}
-.btnFull{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:15px;margin-top:8px;cursor:pointer}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;background:#00ffcc;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:32px;color:#000;z-index:3;cursor:pointer}
+#rightBar{position:fixed;right:2px;bottom:2px;width:68px;z-index:2147483647;display:flex;flex-direction:column;gap:4px;pointer-events:auto;background:rgba(0,0,0,.75);border-radius:14px;padding:4px 2px;border:1px solid rgba(255,255,255,.2)}
+.iconBtn{width:64px;min-height:52px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;touch-action:manipulation;padding:2px}
+.iconCircle{width:44px;height:44px;border-radius:50%;background:#222;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;font-weight:900;pointer-events:auto}
+.iconLabel{font-size:6.8px;font-weight:900;color:#fff;margin-top:2px;text-align:center;line-height:1.0;pointer-events:auto}
+.pop{display:none;position:fixed;top:108px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:2147483646;overflow:auto;padding:12px}
+.input{width:100%;padding:12px;border:2px solid #ccc;border-radius:10px;margin-top:8px;font-size:14px;font-weight:900}
+.btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;font-size:14px;margin-top:8px;cursor:pointer;pointer-events:auto}
+.tab{flex:1;padding:10px;border:0;border-radius:8px;font-weight:900;font-size:12px;cursor:pointer}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:15px">G-LUMO ✅ 100% CLICKABLE ICONS BOTTOM SMALLER VISIBLE</b><div><button id="topProfileBtn" style="padding:7px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 PROFILE</button><button id="topPostBtn" style="padding:7px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:5px;font-size:11px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:12px">G-LUMO ✅ CLICKABLE + LOGIN RESTORED</b><div style="display:flex;gap:4px"><span id="userStatus" style="font-size:10px;color:#00ffcc;max-width:80px;overflow:hidden">Not logged</span><button id="topLoginBtn" style="padding:6px 8px;background:#fff;color:#000;border:0;border-radius:8px;font-weight:900;font-size:10px">👤 LOGIN</button><button id="topPostBtn" style="padding:6px 8px;background:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:10px">+ POST</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" id="marketTopBtn">🛒 MARKET 0142550440</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" id="marketTopBtn">🛒 MARKET 0142550440 6%</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" id="postTopBtn">+ POST ANY VIDEO</button>
-<button class="mbtn" style="background:#000;color:#fff" id="myVideosTopBtn">👤 MY VIDEOS STAY</button>
+<button class="mbtn" style="background:#000;color:#fff" id="myVideosTopBtn">👤 MY VIDEOS</button>
+<button class="mbtn" style="background:#000;color:#fff" id="friendsTopBtn">👥 FRIENDS</button>
 </div>
 </div>
 
@@ -41,106 +43,141 @@ body{background:#000;color:#fff;font-family:Arial;font-size:18px;font-weight:900
 <div class="page" style="background:#000">
 <video id="demoVid" src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%;height:100%" controls playsinline muted loop></video>
 <div class="playBtn" id="demoPlayBtn">▶️</div>
-<div class="info"><b>100% CLICKABLE - TEST TAP ANY ICON RIGHT BOTTOM</b><br>Icons 48px smaller visible bottom - All clickable - Tap Post, Like, Share etc<br><input type="range" min="0" max="100" value="100" id="demoVol" style="width:100%;height:20px;pointer-events:auto"></div>
+<div class="info"><b>100% CLICKABLE + LOGIN RESTORED - TAP ICONS RIGHT BOTTOM</b><br>Icons 44px small visible bottom - All clickable - Login saved<br><input type="range" min="0" max="100" value="100" id="demoVol" style="width:100%;height:16px;pointer-events:auto"></div>
 </div>
 </div>
 
 <div id="rightBar">
-<button class="iconBtn" id="btnPost"><div class="iconCircle" style="background:#00ffcc;color:#000;font-size:24px;font-weight:900">+</div><div class="iconLabel" style="color:#00ffcc">+ POST</div></button>
-
-<button class="iconBtn" id="btnFollow"><div class="iconCircle" style="background:#fff;color:#000;font-size:18px">👤</div><div class="iconLabel" id="lblFollow">Follow<br>1.5K</div></button>
-
-<button class="iconBtn" id="btnLike"><div class="iconCircle" id="circleLike" style="font-size:18px">🤍</div><div class="iconLabel" id="lblLike">Like<br>2.3K</div></button>
-
-<button class="iconBtn" id="btnComment"><div class="iconCircle" style="font-size:18px">💬</div><div class="iconLabel">Message<br>Comment<br>342</div></button>
-
-<button class="iconBtn" id="btnFriends"><div class="iconCircle" style="font-size:18px">👥</div><div class="iconLabel">Add Friend<br>Friends</div></button>
-
-<button class="iconBtn" id="btnShare"><div class="iconCircle" style="font-size:16px">↗️</div><div class="iconLabel">Share<br>128</div></button>
-
-<button class="iconBtn" id="btnPlay"><div class="iconCircle" id="circlePlay" style="font-size:18px">▶️</div><div class="iconLabel" id="lblPlay">PLAY<br>PAUSE</div></button>
-
-<button class="iconBtn" id="btnVoice"><div class="iconCircle" id="circleVoice" style="font-size:18px">🔊</div><div class="iconLabel" id="lblVoice">Voice<br>ON/OFF</div></button>
-
-<button class="iconBtn" id="btnVolUp"><div class="iconCircle" style="font-size:16px">🔊+</div><div class="iconLabel">Vol +</div></button>
-
-<button class="iconBtn" id="btnVolDown"><div class="iconCircle" style="font-size:16px">🔉-</div><div class="iconLabel">Vol -</div></button>
-
-<button class="iconBtn" id="btnProfile"><div class="iconCircle" style="background:#fff;color:#000;font-size:16px">👤</div><div class="iconLabel">PROFILE<br>MY VIDEOS</div></button>
-
-<button class="iconBtn" id="btnMarket"><div class="iconCircle" style="font-size:16px">🛒</div><div class="iconLabel">Market<br>0142550440</div></button>
+<button class="iconBtn" id="btnPost"><div class="iconCircle" style="background:#00ffcc;color:#000;font-size:22px">+</div><div class="iconLabel" style="color:#00ffcc">+ POST</div></button>
+<button class="iconBtn" id="btnFollow"><div class="iconCircle" style="background:#fff;color:#000;font-size:16px">👤</div><div class="iconLabel" id="lblFollow">Follow<br>1.5K</div></button>
+<button class="iconBtn" id="btnLike"><div class="iconCircle" id="circleLike">🤍</div><div class="iconLabel" id="lblLike">Like<br>2.3K</div></button>
+<button class="iconBtn" id="btnComment"><div class="iconCircle">💬</div><div class="iconLabel">Message<br>342</div></button>
+<button class="iconBtn" id="btnFriends"><div class="iconCircle">👥</div><div class="iconLabel">Add Friend</div></button>
+<button class="iconBtn" id="btnShare"><div class="iconCircle">↗️</div><div class="iconLabel">Share<br>128</div></button>
+<button class="iconBtn" id="btnPlay"><div class="iconCircle" id="circlePlay">▶️</div><div class="iconLabel">PLAY</div></button>
+<button class="iconBtn" id="btnVoice"><div class="iconCircle" id="circleVoice">🔊</div><div class="iconLabel" id="lblVoice">Voice</div></button>
+<button class="iconBtn" id="btnVolUp"><div class="iconCircle">🔊+</div><div class="iconLabel">Vol +</div></button>
+<button class="iconBtn" id="btnVolDown"><div class="iconCircle">🔉-</div><div class="iconLabel">Vol -</div></button>
+<button class="iconBtn" id="btnProfile"><div class="iconCircle" style="background:#fff;color:#000">👤</div><div class="iconLabel">PROFILE<br>MY VIDS</div></button>
+<button class="iconBtn" id="btnMarket"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:16px">🛒 MARKET 0142550440 - CLICKABLE</b><button id="closeMarket" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px;font-size:14px">Market clickable - 6% auto -> 0142550440</div><div style="margin-top:10px"><div style="background:#fff;border-radius:12px;overflow:hidden"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:10px;color:#000;font-size:14px;font-weight:900"><b>Jordan 4</b><br><button id="buyNowBtn" style="width:100%;margin-top:6px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">BUY NOW - Clickable</button></div></div></div></div>
+<div id="loginBox" class="pop">
+<div style="max-width:420px;margin:auto;background:#fff;border-radius:14px;padding:14px">
+<h3 style="text-align:center;font-size:18px">G-LUMO LOGIN / SIGN IN / RESET - RESTORED</h3>
+<div style="display:flex;gap:6px;margin-top:10px">
+<button class="tab" id="tabLogin" style="background:#000;color:#00ffcc">LOGIN</button>
+<button class="tab" id="tabSignup" style="background:#ddd;color:#000">SIGN UP</button>
+<button class="tab" id="tabReset" style="background:#ddd;color:#000">RESET PWD</button>
+</div>
+
+<div id="loginForm">
+<input id="loginUser" placeholder="Username (e.g. demo)" class="input">
+<input id="loginPass" type="password" placeholder="Password (e.g. 1234)" class="input">
+<button id="doLoginBtn" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable - Saved</button>
+<div style="margin-top:8px;font-size:12px;background:#111;color:#00ffcc;padding:8px;border-radius:8px">Demo account: demo / 1234 - Clickable login - Stays logged in</div>
+</div>
+
+<div id="signupForm" style="display:none">
+<input id="signupUser" placeholder="New Username" class="input">
+<input id="signupPhone" placeholder="Phone 07..." class="input">
+<input id="signupPass" type="password" placeholder="New Password" class="input">
+<input id="signupPass2" type="password" placeholder="Confirm Password" class="input">
+<button id="doSignupBtn" class="btnFull" style="background:#00ffcc;color:#000">SIGN UP - Create Account - Clickable</button>
+</div>
+
+<div id="resetForm" style="display:none">
+<input id="resetUser" placeholder="Your Username" class="input">
+<input id="resetPhone" placeholder="Your Phone for verification" class="input">
+<input id="resetPass" type="password" placeholder="New Password" class="input">
+<button id="doResetBtn" class="btnFull" style="background:#ff2d55;color:#fff">RESET PASSWORD - Clickable - Saved</button>
+<div style="margin-top:8px;font-size:11px;color:#666">Enter username + phone you used at signup, set new password - Saved in phone storage</div>
+</div>
+
+<button id="closeLogin" class="btnFull" style="background:#000;color:#fff">X CLOSE - Clickable</button>
+<div id="loginInfo" style="margin-top:10px;font-size:12px;background:#fff;border:2px solid #00ffcc;padding:8px;border-radius:8px;display:none"></div>
+</div>
+</div>
+
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440</b><button id="closeMarket" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#fff;border-radius:12px;overflow:hidden;margin-top:10px"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4 - KSH 3724</div><div style="padding:10px;color:#000;font-size:13px;font-weight:900"><b>Jordan 4</b><br>6% 224 -> 0142550440<br><button id="buyNowBtn" style="width:100%;margin-top:6px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">BUY NOW - Clickable</button></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b style="font-size:16px">POST ANY VIDEO - CLICKABLE</b><button id="closePost" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px;font-weight:900">✅ All icons 48px smaller visible bottom right - 100% clickable - Follow Like Message Share Add Friend Market Voice Vol Play + POST - Auto pause previous on scroll - Any video allowed - Stay in profile</div>
+<div style="display:flex;justify-content:space-between"><b>POST ANY VIDEO - CLICKABLE</b><button id="closePost" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
 <input id="pTitle" placeholder="Title" class="input">
 <input id="pPrice" type="number" placeholder="Price" class="input">
-<label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:12px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer;font-size:14px">📸📹 TAP TO CHOOSE ANY VIDEO OR PHOTO<input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none"></label>
-<div id="fileInfo" style="margin-top:8px;font-size:12px;color:#000;background:#fff;padding:8px;border-radius:8px;display:none;font-weight:900"></div>
-<div id="preview" style="margin-top:10px;display:none;background:#111;border-radius:12px;height:200px;overflow:hidden;position:relative"></div>
-<button id="doPostReel" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Clickable</button>
+<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;font-weight:900;text-align:center;margin-top:8px;cursor:pointer;font-size:13px">📸📹 TAP TO CHOOSE ANY VIDEO OR PHOTO<input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none"></label>
+<div id="fileInfo" style="margin-top:6px;font-size:11px;color:#000;background:#fff;padding:6px;border-radius:6px;display:none"></div>
+<div id="preview" style="margin-top:8px;display:none;background:#111;border-radius:10px;height:180px;overflow:hidden;position:relative"></div>
+<button id="doPostReel" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Clickable 100%</button>
 </div>
 
 <div id="profileBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b style="font-size:16px">👤 PROFILE - MY VIDEOS STAY - CLICKABLE</b><button id="closeProfile" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div>
-<div style="background:#111;color:#fff;padding:12px;border-radius:10px;margin-top:10px;font-size:14px"><b style="color:#00ffcc">My videos stay here even after refresh - All icons clickable</b></div>
-<div style="margin-top:10px;background:#00ffcc;padding:12px;border-radius:12px"><button id="uploadFromProfile" style="width:100%;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">+ UPLOAD ANY VIDEO/PHOTO - Clickable</button></div>
-<div id="myVideosList" style="margin-top:14px"></div>
-<div style="margin-top:12px"><button id="saveProfile" class="btnFull" style="background:#00ffcc">SAVE PROFILE - Clickable</button><button id="clearVideos" class="btnFull" style="background:#ff2d55;color:#fff">🗑️ Clear My Videos - Clickable</button></div>
+<div style="display:flex;justify-content:space-between"><b>👤 PROFILE - MY VIDEOS STAY - CLICKABLE</b><button id="closeProfile" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
+<div style="background:#111;color:#fff;padding:10px;border-radius:10px;margin-top:10px;font-size:13px"><div id="profileUserInfo" style="color:#00ffcc;font-size:14px">Not logged - Tap LOGIN top</div></div>
+<div style="margin-top:10px;background:#00ffcc;padding:10px;border-radius:10px"><button id="uploadFromProfile" style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD ANY VIDEO/PHOTO - Clickable</button></div>
+<div id="myVideosList" style="margin-top:10px"></div>
+<div style="margin-top:10px"><button id="logoutBtn" class="btnFull" style="background:#000;color:#00ffcc">LOGOUT - Clickable</button><button id="saveProfile" class="btnFull" style="background:#000;color:#fff">SAVE PROFILE - Clickable</button><button id="clearVideos" class="btnFull" style="background:#ff2d55;color:#fff">🗑️ Clear My Videos - Clickable</button></div>
 </div>
 
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:16px">👥 FRIENDS - Clickable</b><button id="closeFriends" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div><div style="margin-top:12px;background:#fff;padding:12px;border-radius:10px;color:#000;font-size:14px"><b>demo</b><br><button id="addFriendBtn" style="margin-top:8px;padding:12px 16px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">ADD FRIEND - Clickable</button></div></div>
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:16px">💬 Message / Comments - Clickable</b><button id="closeComment" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div><div id="commentList" style="margin-top:12px"><div style="background:#fff;color:#000;padding:10px;border-radius:8px;margin-bottom:8px;font-size:14px">Nice video! - Clickable</div></div><input id="commentInput" placeholder="Add comment/message" class="input"><button id="postCommentBtn" class="btnFull" style="background:#00ffcc">POST COMMENT - Clickable</button></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS - Clickable</b><button id="closeFriends" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:10px;color:#000;font-size:13px"><b>demo</b><br><button id="addFriendBtn" style="margin-top:8px;padding:10px 14px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">ADD FRIEND - Clickable 100%</button></div></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Message / Comments - Clickable</b><button id="closeComment" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div id="commentList" style="margin-top:10px"><div style="background:#fff;color:#000;padding:8px;border-radius:8px;margin-bottom:6px;font-size:13px">Nice video! - Clickable</div></div><input id="commentInput" placeholder="Add comment/message" class="input"><button id="postCommentBtn" class="btnFull" style="background:#00ffcc">POST COMMENT - Clickable 100%</button></div>
 
 <script>
 var lastFile=null;var lastDataUrl=null;var currentVideo=null;var myVideos=[];
 var isFollowing=false;var isLiked=false;var likeCount=2300;
 try{myVideos=JSON.parse(localStorage.getItem('g_lumo_my_videos')||'[]')}catch(e){myVideos=[]}
+var users={};
+try{users=JSON.parse(localStorage.getItem('g_lumo_users')||'{"demo":{"pass":"1234","phone":"0712345678"}}')}catch(e){users={"demo":{"pass":"1234","phone":"0712345678"}}}
+var currentUser=null;
+try{currentUser=localStorage.getItem('g_lumo_current_user')}catch(e){}
 var feedEl=document.getElementById('feed');
 var scrollTimeout=null;
-
 function qs(id){return document.getElementById(id)}
-function openBox(id){qs(id).style.display='block';if(id==='profileBox')renderProfile()}
+function openBox(id){qs(id).style.display='block';if(id==='profileBox')renderProfile();if(id==='loginBox')updateLoginInfo()}
 function closeBox(id){qs(id).style.display='none'}
-function pauseAllExcept(keep){
-var all=feedEl.querySelectorAll('video');
-for(var i=0;i<all.length;i++){if(all[i]!==keep){all[i].pause();}}
-}
-function getCurrentPageVideo(){
-var idx=Math.round(feedEl.scrollLeft/window.innerWidth);
-var pages=feedEl.querySelectorAll('.page');
-var page=pages[idx];
-if(page){var v=page.querySelector('video');return v;}
-return null;
-}
-feedEl.addEventListener('scroll',function(){
-if(scrollTimeout)clearTimeout(scrollTimeout);
-scrollTimeout=setTimeout(function(){
-var v=getCurrentPageVideo();
-if(v){pauseAllExcept(v);currentVideo=v;if(v.paused){v.muted=false;v.volume=1.0;v.play().catch(function(){v.muted=true;v.play()})}}
-},150);
-},{passive:true});
-
+function pauseAllExcept(keep){var all=feedEl.querySelectorAll('video');for(var i=0;i<all.length;i++){if(all[i]!==keep){all[i].pause()}}}
+function getCurrentPageVideo(){var idx=Math.round(feedEl.scrollLeft/window.innerWidth);var pages=feedEl.querySelectorAll('.page');var page=pages[idx];if(page){var v=page.querySelector('video');return v}return null}
+feedEl.addEventListener('scroll',function(){if(scrollTimeout)clearTimeout(scrollTimeout);scrollTimeout=setTimeout(function(){var v=getCurrentPageVideo();if(v){pauseAllExcept(v);currentVideo=v;if(v.paused){v.muted=false;v.volume=1.0;v.play().catch(function(){v.muted=true;v.play()})}}},150)},{passive:true});
+function updateUserStatus(){var el=qs('userStatus');var pInfo=qs('profileUserInfo');if(currentUser){el.innerHTML='@'+currentUser+' ✅';el.style.color='#00ffcc';if(pInfo)pInfo.innerHTML='Logged in as @'+currentUser+'<br>Phone: '+(users[currentUser]?users[currentUser].phone:'')+'<br>✅ Login info saved - stays logged';}else{el.innerHTML='Not logged';el.style.color='#ff2d55';if(pInfo)pInfo.innerHTML='Not logged - Tap LOGIN top - Demo: demo / 1234'}} 
+function updateLoginInfo(){var info=qs('loginInfo');info.style.display='block';var count=Object.keys(users).length;info.innerHTML='<b>Saved accounts ('+count+') - Clickable login system:</b><br>'+Object.keys(users).map(function(u){return '@'+u+' - Phone: '+(users[u].phone||'')}).join('<br>')+'<br><br><b>Current:</b> '+(currentUser? '@'+currentUser+' logged in':'Not logged')+'<br>✅ Login / Sign in / Reset password all work - saved in localStorage - stays after refresh';}
 function attachClicks(){
-qs('topProfileBtn').addEventListener('click',function(){openBox('profileBox')});
-qs('topPostBtn').addEventListener('click',function(){openBox('postBox')});
+// Top
+qs('topLoginBtn').addEventListener('click',function(){openBox('loginBox')});
+qs('topPostBtn').addEventListener('click',function(){if(!currentUser){alert('⚠️ Please LOGIN first - Tap LOGIN top - Demo: demo / 1234 - Login info restored - Clickable');openBox('loginBox');return}openBox('postBox')});
 qs('marketTopBtn').addEventListener('click',function(){openBox('marketBox')});
-qs('postTopBtn').addEventListener('click',function(){openBox('postBox')});
+qs('postTopBtn').addEventListener('click',function(){if(!currentUser){alert('⚠️ Please LOGIN first - Demo: demo / 1234');openBox('loginBox');return}openBox('postBox')});
 qs('myVideosTopBtn').addEventListener('click',function(){openBox('profileBox')});
+qs('friendsTopBtn').addEventListener('click',function(){openBox('friendsBox')});
 qs('closeMarket').addEventListener('click',function(){closeBox('marketBox')});
 qs('closePost').addEventListener('click',function(){closeBox('postBox')});
 qs('closeProfile').addEventListener('click',function(){closeBox('profileBox')});
 qs('closeFriends').addEventListener('click',function(){closeBox('friendsBox')});
 qs('closeComment').addEventListener('click',function(){closeBox('commentBox')});
-qs('buyNowBtn').addEventListener('click',function(){alert('✅ BUY NOW - Paid - Button clickable - Market icon clickable - Smaller visible bottom right')});
+qs('closeLogin').addEventListener('click',function(){closeBox('loginBox')});
+qs('buyNowBtn').addEventListener('click',function(){alert('✅ BUY NOW - Paid to 0142550440 - Button 100% clickable - Market icon clickable')});
 qs('doPostReel').addEventListener('click',function(){postReel()});
-qs('uploadFromProfile').addEventListener('click',function(){openBox('postBox')});
-qs('saveProfile').addEventListener('click',function(){alert('✅ Profile saved - Clickable');renderProfile()});
+qs('uploadFromProfile').addEventListener('click',function(){if(!currentUser){alert('⚠️ Login first - Demo: demo / 1234');openBox('loginBox');return}openBox('postBox')});
+qs('saveProfile').addEventListener('click',function(){alert('✅ Profile saved - Clickable 100%');renderProfile()});
 qs('clearVideos').addEventListener('click',function(){clearMyVideos()});
-qs('addFriendBtn').addEventListener('click',function(){alert('✅ ADDED FRIEND! - Add Friends button clickable - Smaller visible bottom right - 100% clickable');closeBox('friendsBox')});
+qs('logoutBtn').addEventListener('click',function(){currentUser=null;localStorage.removeItem('g_lumo_current_user');updateUserStatus();updateLoginInfo();alert('✅ LOGGED OUT - Login info still saved - You can login again - Clickable')});
+qs('addFriendBtn').addEventListener('click',function(){alert('✅ ADDED FRIEND! - Add Friends button 100% clickable - Smaller visible bottom right');closeBox('friendsBox')});
 qs('postCommentBtn').addEventListener('click',function(){doComment()});
 qs('demoPlayBtn').addEventListener('click',function(){var v=qs('demoVid');v.muted=false;v.volume=1.0;v.play();this.style.display='none';currentVideo=v;pauseAllExcept(v)});
 qs('demoVol').addEventListener('input',function(){var v=qs('demoVid');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v;pauseAllExcept(v)});
+// Login tabs
+qs('tabLogin').addEventListener('click',function(){qs('loginForm').style.display='block';qs('signupForm').style.display='none';qs('resetForm').style.display='none';qs('tabLogin').style.background='#000';qs('tabLogin').style.color='#00ffcc';qs('tabSignup').style.background='#ddd';qs('tabSignup').style.color='#000';qs('tabReset').style.background='#ddd';qs('tabReset').style.color='#000'});
+qs('tabSignup').addEventListener('click',function(){qs('loginForm').style.display='none';qs('signupForm').style.display='block';qs('resetForm').style.display='none';qs('tabSignup').style.background='#000';qs('tabSignup').style.color='#00ffcc';qs('tabLogin').style.background='#ddd';qs('tabLogin').style.color='#000';qs('tabReset').style.background='#ddd';qs('tabReset').style.color='#000'});
+qs('tabReset').addEventListener('click',function(){qs('loginForm').style.display='none';qs('signupForm').style.display='none';qs('resetForm').style.display='block';qs('tabReset').style.background='#000';qs('tabReset').style.color='#00ffcc';qs('tabLogin').style.background='#ddd';qs('tabLogin').style.color='#000';qs('tabSignup').style.background='#ddd';qs('tabSignup').style.color='#000'});
+// Do login/signup/reset
+qs('doLoginBtn').addEventListener('click',function(){
+var u=qs('loginUser').value.trim();var p=qs('loginPass').value.trim();
+if(!u||!p){alert('Enter username and password - Clickable');return}
+if(users[u]&&users[u].pass===p){currentUser=u;localStorage.setItem('g_lumo_current_user',u);updateUserStatus();updateLoginInfo();alert('✅ LOGGED IN as @'+u+' - Login info saved - Stays logged after refresh - 100% clickable');closeBox('loginBox')}
+else{alert('❌ Wrong username or password - Try demo / 1234 - Or SIGN UP new account - Login system restored clickable')}
+});
+qs('doSignupBtn').addEventListener('click',function(){
+var u=qs('signupUser').value.trim();var ph=qs('signupPhone').value.trim();var p=qs('signupPass').value.trim();var p2=qs('signupPass2').value.trim();
+if(!u||!ph||!p){alert('Fill all - Clickable');return}
+if(p!==p2){alert('Passwords not match - Clickable');return}
+if(users[u]){alert('Username exists - Try login or reset password - Clickable');return}
+users
