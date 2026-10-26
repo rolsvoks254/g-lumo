@@ -1116,32 +1116,30 @@ function enableNotifs(){
 }
     </script>
  <script>
-// FORCE SMALL LEFT-TO-RIGHT - FINAL
-setTimeout(()=>{
- const ed=document.getElementById('photoEditor');
- if(!ed) return;
- const all=Array.from(ed.querySelectorAll('button'));
- const btns=all.filter(b=>!b.textContent.includes('Choose File') && b.textContent.trim().length<12);
- if(!btns.length) return;
- let wrap=document.getElementById('editorScrollRow');
- if(wrap) return;
- wrap=document.createElement('div');
- wrap.id='editorScrollRow';
- wrap.style.cssText='display:flex!important;gap:8px!important;overflow-x:auto!important;flex-wrap:nowrap!important;padding:10px 0!important;white-space:nowrap!important;';
- btns.forEach(b=>{
-   b.style.setProperty('min-width','70px','important');
-   b.style.setProperty('max-width','85px','important');
-   b.style.setProperty('width','auto','important');
-   b.style.setProperty('height','32px','important');
-   b.style.setProperty('font-size','11px','important');
-   b.style.setProperty('padding','6px 10px','important');
-   b.style.setProperty('flex','0 0 auto','important');
-   b.style.setProperty('display','inline-block','important');
-   wrap.appendChild(b);
- });
- ed.appendChild(wrap);
-},500);
-   </script> 
+function forceSmall(){
+  const ed=document.getElementById('photoEditor');
+  if(!ed) return;
+  let st=document.getElementById('forceSmallStyle');
+  if(!st){ st=document.createElement('style'); st.id='forceSmallStyle'; document.head.appendChild(st); }
+  st.textContent=`
+    #photoEditor{white-space:nowrap!important; overflow-x:auto!important; padding-bottom:12px!important;}
+    #photoEditor button{
+      min-width:70px!important; max-width:85px!important; width:auto!important;
+      height:32px!important; font-size:11px!important; padding:6px 10px!important;
+      flex:0 0 auto!important; display:inline-block!important; margin:0 5px 0 0!important;
+    }
+    #editorScrollRow{display:flex!important; gap:8px!important; overflow-x:auto!important; flex-wrap:nowrap!important; width:100%!important; padding:10px 0!important;}
+  `;
+  let wrap=document.getElementById('editorScrollRow');
+  if(!wrap){
+    wrap=document.createElement('div'); wrap.id='editorScrollRow';
+    const btns=Array.from(ed.querySelectorAll('button')).filter(b=> b.textContent.trim().length>1 && b.textContent.trim().length<15 && !b.textContent.toLowerCase().includes('choose') && !b.textContent.toLowerCase().includes('download') && !b.textContent.toLowerCase().includes('save'));
+    if(btns.length>=3){ btns.forEach(b=>wrap.appendChild(b)); ed.appendChild(wrap); }
+  }
+}
+setInterval(forceSmall,1000);
+forceSmall();
+ </script>
 </body>
   <img src="IMG-20261021-WA9270.jpg" alt="G-LUMO logo" style="width:120px; height:auto; display:block; margin:10px auto;">
 </html>
