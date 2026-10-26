@@ -28,16 +28,26 @@ input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizin
 }
 
 .editor-compact button, 
+#photoEditor, #videoEditor, #clipEditor {
+  white-space: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory !important;
+  padding-bottom: 8px !important;
+}
 #photoEditor button, #videoEditor button, #clipEditor button {
   display: inline-block !important;
-  width: 31% !important;
-  min-width: 90px !important;
-  padding: 8px 4px !important;
-  margin: 3px 1% !important;
-  font-size: 13px !important;
-  border-radius: 20px !important;
+  width: auto !important;
+  min-width: 68px !important;
+  max-width: 80px !important;
+  padding: 7px 8px !important;
+  margin: 3px 4px !important;
+  font-size: 11px !important;
+  height: 32px !important;
+  scroll-snap-align: start !important;
+  flex: 0 0 auto !important;
 }
-
 input[type="range"] {
   height: 4px !important;
   margin: 6px 0 12px 0 !important;
