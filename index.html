@@ -1,64 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>G-LUMO WORLD - PROMAX</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G-LUMO PROMAX - No Blank</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-header{position:fixed;top:0;left:0;right:0;height:42px;background:#000;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #222}
-#topBar{position:fixed;top:42px;left:0;right:0;height:50px;background:#fff;z-index:99;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto}
-#topBar::-webkit-scrollbar{display:none}
-.btn{flex-shrink:0;padding:8px 14px;border-radius:20px;border:0;font-weight:900;font-size:12px}
+body{background:#000;color:#fff;font-family:Arial}
+.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:10}
+.h{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-bottom:1px solid #222}
+.b{height:46px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 6px;overflow-x:auto}
+.btn{flex-shrink:0;padding:7px 12px;border-radius:18px;border:0;font-weight:900;font-size:11px}
 .btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:92px;background:#000;scroll-behavior:smooth}
+#feed{width:100vw;height:100vh;padding-top:86px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
 #feed::-webkit-scrollbar{display:none}
-.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 92px);scroll-snap-align:center;flex-shrink:0;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.reel video{width:100%;height:100%;object-fit:cover}
-.colorBox{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900}
-.progress{position:absolute;top:0;left:0;height:3px;background:#00ffcc;z-index:20;transition:width .2s}
-.info{position:absolute;bottom:0;left:0;right:85px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:10}
-.info b{font-size:15px}.info .cap{font-size:13px;margin-top:3px;opacity:.9}
-.actions{position:absolute;right:6px;bottom:15px;display:flex;flex-direction:column;gap:12px;z-index:15;align-items:center}
-.aBtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
-.aCircle{width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:22px;backdrop-filter:blur(10px)}
-.aText{font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 3px #000}
-.follow{width:60px;height:60px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden;background:#222}
-.plus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff;color:#fff}
-.hint{position:absolute;top:50%;left:12px;transform:translateY(-50%);background:rgba(0,0,0,.5);padding:6px 12px;border-radius:20px;font-size:11px;z-index:10}
-.popup{position:fixed;left:0;right:0;top:92px;bottom:0;background:#fff;color:#000;z-index:200;display:none;padding:12px;overflow:auto}
-.popup.show{display:flex;flex-direction:column}
-#buyPop{top:auto;bottom:0;max-height:88vh;border-top:5px solid #00ffcc;border-radius:20px 20px 0 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.card{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff}
-.order{background:#f5f5f5;border:1px solid #ddd;border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px}
+.page{min-width:100vw;width:100vw;height:calc(100vh - 86px);scroll-snap-align:center;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
+.info{position:absolute;bottom:0;left:0;right:80px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.actions{position:absolute;right:5px;bottom:10px;display:flex;flex-direction:column;gap:10px}
+.ab{width:50px;height:50px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #ffffff44;display:flex;align-items:center;justify-content:center;font-size:20px}
+.popup{position:fixed;top:86px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:20;display:none;padding:12px;overflow:auto}
+.popup.show{display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.card{border:1px solid #ddd;border-radius:10px;overflow:hidden;background:#fff;padding:0}
 </style>
 </head>
 <body>
-<header><h1 style="color:#00ffcc;font-size:14px">G-LUMO 🌍 PROMAX</h1><button onclick="openSell()" style="padding:6px 14px;background:#00ffcc;border:0;border-radius:18px;font-weight:900;font-size:12px">+ SELL ANYTHING</button></header>
-<div id="topBar">
+<div class="top">
+<div class="h"><b style="color:#00ffcc">G-LUMO 🌍 PROMAX</b><button onclick="openSell()" style="padding:5px 10px;background:#00ffcc;border:0;border-radius:12px;font-weight:900">+ SELL ANYTHING</button></div>
+<div class="b">
 <button class="btn btnB" onclick="toggleMarket()">🛒 MARKET</button>
 <button class="btn btnG" onclick="openSell()">+ SELL PHOTO/VIDEO</button>
 <button class="btn btnB">6% → 0142550440</button>
 <button class="btn btnB">WORLD CLASS</button>
 </div>
+</div>
 
 <div id="marketPop" class="popup">
-<div style="display:flex;justify-content:space-between;align-items:center"><b>🛒 MARKETPLACE - 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<div style="display:flex;justify-content:space-between"><b>🛒 MARKET - 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 10px;background:#000;color:#fff;border-radius:6px;border:0">X</button></div>
 <div id="grid" class="grid"></div>
-<b style="margin-top:14px;display:block">📦 MY ORDERS</b>
-<div id="orderList" style="margin-top:8px"></div>
-<div style="margin-top:12px;background:#111;color:#00ffcc;padding:10px;border-radius:8px;font-size:11px">Buyer pays 6% extra. 6% auto goes to Pochi Till 0142550440. Seller gets 94%. Same as before but PROMAX.</div>
+<div id="orders" style="margin-top:12px"></div>
 </div>
 
 <div id="sellPop" class="popup">
-<div style="display:flex;justify-content:space-between"><b>SELL PHOTO/VIDEO - PROMAX</b><button onclick="closeSell()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
-<input id="pName" placeholder="Title e.g. Jordan 4 Retro" style="width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-top:12px;font-size:14px">
-<input id="pPrice" type="number" placeholder="Your price you get (94%)" oninput="calcFee()" style="width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-top:8px;font-size:14px">
-<input id="pImg" placeholder="Image/Video link (or leave empty)" style="width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-top:8px;font-size:14px">
-<div id="fee" style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px;font-size:13px;font-weight:700">Enter price to see 6% split</div>
-<button onclick="addProduct()" style="width:100%;padding:16px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-top:12px;font-size:14px">POST NOW - 6% auto to 0142550440</button>
+<div style="display:flex;justify-content:space-between"><b>SELL</b><button onclick="closeSell()" style="padding:6px 10px;background:#000;color:#fff;border-radius:6px;border:0">X</button></div>
+<input id="pName" placeholder="Title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px">
+<input id="pPrice" type="number" placeholder="Your price 94%" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px">
+<div id="fee" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px;font-size:12px">Enter price</div>
+<button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST NOW</button>
 </div>
 
 <div id="buyPop" class="popup"><div id="buyDet"></div></div>
@@ -69,86 +57,20 @@ header{position:fixed;top:0;left:0;right:0;height:42px;background:#000;z-index:1
 function toggleMarket(){document.getElementById('marketPop').classList.toggle('show')}
 function openSell(){document.getElementById('sellPop').classList.add('show')}
 function closeSell(){document.getElementById('sellPop').classList.remove('show')}
-function calcFee(){let p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}let b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer pays KSH '+b+' | You get KSH '+p+' | 6% KSH '+(b-p)+' → 0142550440'}
+function calcFee(){var p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}var b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer KSH '+b+' | You KSH '+p+' | 6% KSH '+(b-p)+' → 0142550440'}
 
-const posts=[
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@g_lumo',name:'G-LUMO WORLD',cap:'PROMAX TikTok swipe L/R 👉 No editor - Just videos + Market',likes:1240,comments:89},
-{type:'color',bg:'linear-gradient(135deg,#ff2d55,#ff7b00)',text:'🔥 VIRAL',user:'@pochi_0142550440',name:'Pochi Official',cap:'Marketplace owner - 6% goes to 0142550440',likes:892,comments:45},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@kenya_market',name:'Kenya Market',cap:'Swipe L/R for next video - All icons clickable',likes:2100,comments:120},
-{type:'color',bg:'linear-gradient(135deg,#7000ff,#00ffcc)',text:'💎 PROMAX',user:'@world_class',name:'WORLD CLASS',cap:'Best world TikTok clone - L/R only',likes:3400,comments:210},
-{type:'color',bg:'linear-gradient(135deg,#000,#333)',text:'🛒 MARKET',user:'@seller_ke',name:'Top Seller',cap:'Tap MARKET to see orders - 6% auto',likes:560,comments:23},
+var posts=[
+{name:'G-LUMO 1',user:'@g_lumo',cap:'Swipe L/R 👉 TikTok PROMAX',bg:'#ff2d55',likes:1200},
+{name:'Pochi',user:'@pochi_0142550440',cap:'Market 6% to 0142550440',bg:'#7000ff',likes:892},
+{name:'Viral',user:'@kenya',cap:'All icons clickable',bg:'#00a896',likes:2100},
+{name:'PROMAX',user:'@world',cap:'Best world L/R swipe',bg:'#ff7b00',likes:3400},
+{name:'MARKET',user:'@seller',cap:'Tap MARKET for orders',bg:'#111',likes:560},
 ];
-let liked=[false,false,false,false,false];
-let following=[false,false,false,false,false];
-let orders=[];
+var liked=[false,false,false,false,false];
 
 function render(){
-let f=document.getElementById('feed');
-let html='';
-for(let i=0;i<posts.length;i++){
-let p=posts[i];
-let media=p.type==='video'?`<video id="vid${i}" src="${p.src}" loop muted playsinline autoplay></video>`:`<div class="colorBox" style="background:${p.bg}">${p.text}</div>`;
-html+=`
-<div class="reel" id="reel${i}">
-<div class="progress" id="prog${i}" style="width:0%"></div>
-${media}
-<div class="info"><b>${p.name}</b> • ${p.user}<br><div class="cap">${p.cap}</div><div style="font-size:11px;margin-top:6px;opacity:.7">${i+1}/${posts.length} • Swipe L/R for videos • Tap MARKET for orders</div></div>
-<div class="hint">👈 Swipe L/R 👉</div>
-<div class="actions">
-<button class="aBtn" onclick="toggleFollow(${i})"><div class="follow"><img src="https://i.pravatar.cc/100?img=${i+11}" style="width:100%;height:100%;object-fit:cover"><div class="plus">${following[i]?'✓':'+'}</div></div><div class="aText">Follow</div></button>
-<button class="aBtn" onclick="doLike(${i})"><div class="aCircle">${liked[i]?'❤️':'🤍'}</div><div class="aText">${p.likes + (liked[i]?1:0)} likes</div></button>
-<button class="aBtn" onclick="doComment(${i})"><div class="aCircle">💬</div><div class="aText">${p.comments} comment</div></button>
-<button class="aBtn" onclick="doMessage('${p.user}')"><div class="aCircle">✉️</div><div class="aText">Message</div></button>
-<button class="aBtn" onclick="doShare(${i})"><div class="aCircle">↗️</div><div class="aText">Share</div></button>
-<button class="aBtn" onclick="doDownload(${i})"><div class="aCircle">⬇️</div><div class="aText">Save</div></button>
-<button class="aBtn" onclick="toggleMarket()"><div class="aCircle">🛒</div><div class="aText">Market</div></button>
-</div>
-</div>
-`;
-}
-f.innerHTML=html;
-startProgress();
-}
-
-function startProgress(){
-posts.forEach((p,i)=>{
-let v=document.getElementById('vid'+i);
-let pr=document.getElementById('prog'+i);
-if(v && pr){v.addEventListener('timeupdate',()=>{let pct=(v.currentTime/v.duration)*100; if(!isNaN(pct)) pr.style.width=pct+'%'})}
-});
-}
-
-function toggleFollow(i){following[i]=!following[i];render();document.getElementById('feed').scrollLeft=i*window.innerWidth}
-function doLike(i){liked[i]=!liked[i];posts[i].likes+=liked[i]?1:-1;render();document.getElementById('feed').scrollLeft=i*window.innerWidth}
-function doComment(i){let c=prompt('Comment on '+posts[i].name+':'); if(c){posts[i].comments++; alert('✅ Comment posted: '+c); render()}}
-function doMessage(user){let m=prompt('Message to '+user+':'); if(m) alert('✅ Message sent to '+user+': '+m)}
-function doShare(i){let p=posts[i];if(navigator.share){navigator.share({title:p.name,text:p.cap})}else{alert('✅ Link copied for share! '+p.user)}}
-function doDownload(i){alert('✅ Video/Photo saved to gallery!')}
-
-// MARKETPLACE PROMAX - SAME AS BEFORE
-let products=[
-{name:'Jordan 4 Retro',price:3500,buyerPrice:3724,comm:224,bg:'#111'},
-{name:'AirPods Pro Max',price:12000,buyerPrice:12766,comm:766,bg:'#222'},
-{name:'iPhone 15',price:95000,buyerPrice:101065,comm:6065,bg:'#333'},
-];
-function renderMarket(){
-let g=document.getElementById('grid');let h='';
-for(let idx=0;idx<products.length;idx++){
-let p=products[idx];
-h+=`<div class="card"><div style="height:90px;background:${p.bg};color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px">${p.name}</div><div style="padding:8px"><b style="font-size:13px">${p.name}</b><div style="font-size:11px;margin-top:3px">Seller KSH ${p.price}<br>Buyer KSH ${p.buyerPrice}<br>6% KSH ${p.comm} → 0142550440</div><button onclick="openBuy(${idx})" style="width:100%;margin-top:6px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:12px">BUY NOW</button></div></div>`;
-}
-g.innerHTML=h;
-let ol=document.getElementById('orderList');
-if(orders.length===0) ol.innerHTML='<div style="font-size:12px;color:#666">No orders yet. Buy something to see 6% auto to 0142550440.</div>';
-else{let oh='';orders.forEach(o=>{oh+=`<div class="order"><b>${o.name}</b> - Buyer KSH ${o.buyerPrice}<br>Seller KSH ${o.price} - 6% KSH ${o.comm} sent to 0142550440 Till ✅ - Paid</div>`}); ol.innerHTML=oh}
-}
-function addProduct(){let n=document.getElementById('pName').value.trim();let pr=document.getElementById('pPrice').value*1;if(!n||!pr)return alert('Enter title and price');let b=Math.round(pr/0.94);let c=b-pr;products.unshift({name:n,price:pr,buyerPrice:b,comm:c,bg:'#222'});renderMarket();closeSell();toggleMarket();alert('✅ Posted! Buyer will pay KSH '+b+' - 6% KSH '+c+' auto to 0142550440')}
-function openBuy(idx){let p=products[idx];document.getElementById('buyDet').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><b>${p.name}</b><button onclick="closeBuy()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div style="margin-top:12px;background:#111;color:#fff;padding:14px;border-radius:12px;font-size:13px">Seller gets: <b>KSH ${p.price}</b><br>Buyer pays: <b>KSH ${p.buyerPrice}</b><br>6% Commission: <b>KSH ${p.comm} auto to Pochi Till 0142550440</b><br><br>PROMAX marketplace same as before.</div><button onclick="confirmBuy(${idx})" style="width:100%;padding:16px;background:#25D366;color:#fff;border:0;border-radius:12px;margin-top:12px;font-weight:900;font-size:14px">✅ Confirm Pay KSH ${p.buyerPrice} via M-PESA 0142550440</button>`;document.getElementById('buyPop').classList.add('show')}
-function confirmBuy(idx){let p=products[idx];orders.unshift(p);alert('✅ Paid KSH '+p.buyerPrice+' - KSH '+p.comm+' auto sent to 0142550440 - Order saved in MY ORDERS!');renderMarket();closeBuy()}
-function closeBuy(){document.getElementById('buyPop').classList.remove('show')}
-
-render();
-renderMarket();
-</script>
-</body>
-</html>
+var f=document.getElementById('feed');
+var html='';
+for(var i=0;i<posts.length;i++){
+var p=posts[i];
+html+='<div class="page" style="background:'+p.bg+'"><div style="font-size:50px;font-weight:900;text-align:center">'+p.name+'<br><span style="font-size:20px">VIDEO '+(i+1)+'</span></div><div class="info"><b>'+p.name+'</b> '+p.user+'<br>'+p.cap+'<br><span style="font-size:11px">'+(i+1)+'/'+posts.length+' Swipe L/R only</span></div><div class="actions"><button class="ab" onclick="alert(\'Followed '+p.user+'\')">+</button><button class="ab" onclick="doLike('+i+')">'+(liked[i]?'❤️':'🤍')+'</button><button class="ab" onclick="alert(\'Comment
