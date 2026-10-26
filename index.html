@@ -1008,7 +1008,7 @@ window.db = db;
 console.log("G-LUMO Firebase connected");
 </script>
  <script type="module">
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 
 const box = document.createElement("div");
 box.className = "card";
@@ -1017,7 +1017,8 @@ box.innerHTML = `
   <p id="userStatus">Not logged in</p>
   <input id="email" type="email" placeholder="Email">
   <input id="password" type="password" placeholder="Password">
-<label style="color:#fff;font-size:14px"><input type="checkbox" onclick="togglePass()"> Show Password</label>
+  <label style="color:#fff;font-size:14px"><input type="checkbox" onclick="togglePass()"> Show Password</label>
+  <p style="text-align:right;margin:6px 0;"><span onclick="resetPassword()" style="color:#00ffcc;font-size:12px;cursor:pointer;text-decoration:underline;">Forgot password? Reset</span></p>
   <button onclick="signup()">Sign Up</button>
   <button onclick="login()">Login</button>
   <button onclick="logout()">Logout</button>
@@ -1056,7 +1057,19 @@ window.togglePass = () => {
   const p = document.getElementById("password");
   p.type = p.type === "password" ? "text" : "password";
 };
-   
+  window.resetPassword = async () => {
+  let email = document.getElementById("email")?.value;
+  if(!email || !email.includes("@")){
+    email = prompt("Enter your Gmail to reset password:");
+  }
+  if(!email) return;
+  try{
+    await sendPasswordResetEmail(window.auth, email);
+    alert("✅ Reset link sent to " + email + "\nCheck Gmail + Spam folder.");
+  }catch(e){
+    alert("❌ " + e.message);
+  }
+}; 
 onAuthStateChanged(window.auth, (user) => {
   document.getElementById("userStatus").innerText = user ? "Logged in as: " + user.email : "Not logged in";
   document.body.style.overflow = user ? "auto" : "hidden";
