@@ -2,188 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>G-LUMO WORLD PROMAX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden}
-header{position:fixed;top:0;left:0;right:0;z-index:99;background:#000;display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #222}
-header h1{color:#00ffcc;font-size:16px;letter-spacing:1px}
-header span{font-size:10px;color:#aaa}
-#tabs{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(0,0,0,.95);border-top:1px solid #222;display:flex;justify-content:space-around;padding:8px 0}
-#tabs button{background:transparent;border:0;color:#777;font-size:12px;padding:6px 14px;border-radius:20px}
-#tabs button.active{background:#00ffcc;color:#000;font-weight:900}
-.screen{display:none;height:100vh;width:100vw}
-.screen.active{display:block}
-/* FEED - LEFT RIGHT SCROLL - TIKTOK LOOK NO WORD */
-#feed{ display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; width:100vw; height:100vh; padding-top:46px; padding-bottom:58px; scroll-behavior:smooth }
+body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;display:flex;justify-content:space-between;align-items:center;padding:8px 10px;height:36px;border-bottom:1px solid #222}
+header h1{color:#00ffcc;font-size:13px}
+/* MARKET TOP BAR - EXACTLY YOUR WHITE RECTANGLE - ONLY FIT HERE */
+#marketTopBar{position:fixed;top:36px;left:0;right:0;z-index:99;height:44px;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid #222;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto;white-space:nowrap}
+#marketTopBar::-webkit-scrollbar{display:none}
+.marketBtn{flex-shrink:0;padding:6px 10px;border-radius:20px;border:1px solid #00ffcc;background:rgba(0,255,204,.12);color:#00ffcc;font-size:10px;font-weight:800;cursor:pointer}
+.marketBtn.buy{background:#00ffcc;color:#000}
+.marketBtn.active{background:#fff;color:#000;border-color:#fff}
+.marketInfo{flex-shrink:0;font-size:10px;color:#aaa}
+.marketInfo b{color:#00ffcc}
+#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:80px;padding-bottom:10px}
 #feed::-webkit-scrollbar{display:none}
-.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 104px);scroll-snap-align:center;flex-shrink:0;background:#0a0a0a;overflow:hidden}
-.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block}
-.info{position:absolute;bottom:0;left:0;right:70px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.92))}
-.userRow{display:flex;gap:8px;align-items:center;font-weight:800;font-size:14px}
-.userRow img{width:34px;height:34px;border-radius:50%;border:2px solid #00ffcc}
-.cap{font-size:13px;margin-top:5px;line-height:1.3}
-.actions{position:absolute;right:6px;bottom:90px;display:flex;flex-direction:column;gap:13px}
-.act{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid #444;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
-.act span{font-size:20px}
-.act label{font-size:8px;color:#fff}
+.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 80px);scroll-snap-align:center;flex-shrink:0;background:#0a0a0a}
+.reel img,.reel video{width:100%;height:100%;object-fit:cover}
+.info{position:absolute;bottom:0;left:0;right:70px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.userRow{display:flex;gap:6px;align-items:center;font-weight:800;font-size:13px}
+.userRow img{width:30px;height:30px;border-radius:50%;border:2px solid #00ffcc}
+.cap{font-size:12px;margin-top:4px}
+.actions{position:absolute;right:4px;bottom:80px;display:flex;flex-direction:column;gap:12px}
+.act{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid #444;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.act span{font-size:18px}
+.act label{font-size:7px;color:#fff}
 .act.follow{background:#00ffcc;color:#000;font-weight:900}
 .act.follow.following{background:#fff}
-.hint{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;z-index:98}
-/* MARKET - WORLD BEST */
-#market{overflow-y:auto;padding:60px 10px 70px}
-.marketHead{background:linear-gradient(135deg,#00ffcc,#0080ff);color:#000;padding:14px;border-radius:14px;margin-bottom:10px}
-.marketHead h2{font-size:18px}
-.marketHead p{font-size:11px;margin-top:4px}
-.feeBox{background:#111;border:1px solid #00ffcc;border-radius:12px;padding:10px;margin:10px 0}
-.feeBox b{color:#00ffcc}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.card{background:#111;border:1px solid #222;border-radius:12px;overflow:hidden}
-.card img{width:100%;height:130px;object-fit:cover}
-.cardBody{padding:8px}
-.cardBody h4{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.price{font-size:13px;font-weight:900;color:#00ffcc;margin-top:4px}
-.small{font-size:10px;color:#aaa}
-.buyBtn{width:100%;margin-top:6px;padding:7px;background:#00ffcc;color:#000;border:0;border-radius:8px;font-weight:900;font-size:11px}
-.input{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#000;color:#fff;margin:5px 0;font-size:12px}
-#msgBox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:16px}
-#msgBox.show{display:flex}
+.hint{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:5px 12px;border-radius:20px;font-size:10px;font-weight:900;z-index:99}
+/* MARKET POPUP - ALSO ONLY IN SAME TOP STRIP AREA WHEN EXPANDED */
+#marketPopup{position:fixed;top:36px;left:0;right:0;z-index:98;background:#111;border-bottom:2px solid #00ffcc;display:none;max-height:320px;overflow:auto;padding:8px}
+#marketPopup.show{display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.card{background:#000;border:1px solid #222;border-radius:10px;overflow:hidden}
+.card img{width:100%;height:90px;object-fit:cover}
+.cardBody{padding:6px}
+.cardBody h4{font-size:11px}
+.price{font-size:11px;color:#00ffcc;font-weight:900}
+.small{font-size:9px;color:#aaa}
+.input{width:100%;padding:8px;border-radius:6px;border:1px solid #333;background:#000;color:#fff;margin:4px 0;font-size:11px}
 </style>
 </head>
 <body>
 
 <header>
 <h1>G-LUMO WORLD 🌍</h1>
-<span>0142550440 • Pochi</span>
+<span style="font-size:9px;color:#aaa">← Scroll →</span>
 </header>
 
-<!-- SCREEN 1: FEED LEFT RIGHT -->
-<div id="screenFeed" class="screen active">
-<div id="feed"></div>
-<div class="hint">👉 Swipe LEFT / RIGHT</div>
+<!-- THIS IS YOUR WHITE RECTANGLE - MARKET OPTIONS ONLY FIT HERE -->
+<div id="marketTopBar">
+<button class="marketBtn buy" onclick="toggleMarket()">🛒 MARKET BEST</button>
+<button class="marketBtn" onclick="toggleSell()">+ Sell</button>
+<div class="marketInfo">Pochi <b>0142550440</b></div>
+<div class="marketInfo">Buyer <b>+5%</b> • Seller <b>-5%</b> • Fee to <b>0142550440</b></div>
+<button class="marketBtn" onclick="buyNow()">Buy via 0142550440</button>
+<div class="marketInfo" style="color:#00ffcc">Beats all platforms</div>
 </div>
 
-<!-- SCREEN 2: WORLD BEST MARKET -->
-<div id="screenMarket" class="screen">
-<div id="market">
-<div class="marketHead">
-<h2>🛒 WORLD BEST MARKET - Beats All Platforms</h2>
-<p>World's lowest fee, instant M-Pesa, buyer protection, seller payout same day. Your Pochi: <b>0142550440</b> is official collection.</p>
+<!-- POPUP ALSO SLIDES FROM SAME TOP AREA - NOT FULL SCREEN - ONLY FITS WHITE RECTANGLE + SLIGHT EXPAND -->
+<div id="marketPopup">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<b style="font-size:12px;color:#00ffcc">🛒 World Best Market - 0142550440 Pochi</b>
+<button onclick="toggleMarket()" style="background:#222;color:#fff;border:0;padding:4px 8px;border-radius:6px;font-size:10px">X Close</button>
 </div>
-
-<div class="feeBox">
-<div style="font-size:12px">💰 <b>Automatic 5% Commission System</b> - Controlled by <b>0142550440</b></div>
-<div style="font-size:11px;color:#aaa;margin-top:6px">
-• Seller sets price: <b>KSH 1000</b><br>
-• Buyer sees: <b>1000 + 5% = KSH 1050 Total</b><br>
-• Seller gets: <b>1000 - 5% = KSH 950 Payout</b><br>
-• <b>KSH 100</b> commission auto to <b>0142550440 Pochi La Biashara</b>
+<div style="background:#000;border:1px solid #222;border-radius:8px;padding:6px;margin-top:6px">
+<input id="pName" class="input" placeholder="Product name">
+<input id="pPrice" class="input" type="number" placeholder="Price KSH" oninput="calcFee()">
+<div id="feePreview" style="font-size:10px;color:#00ffcc"></div>
+<button onclick="addProduct()" style="width:100%;padding:8px;background:#00ffcc;color:#000;border:0;border-radius:6px;font-weight:900;font-size:11px;margin-top:4px">Post Product</button>
 </div>
-</div>
-
-<div style="background:#111;border:1px solid #222;border-radius:12px;padding:10px">
-<h4 style="font-size:13px;color:#00ffcc">+ Add Product to Market (Sell)</h4>
-<input id="pName" class="input" placeholder="Product name (e.g. Shoes)">
-<input id="pPrice" class="input" type="number" placeholder="Your Price KSH (e.g. 2000)" oninput="calcFee()">
-<input id="pImg" class="input" placeholder="Image link (or leave empty)">
-<div id="feePreview" style="font-size:11px;color:#00ffcc;margin:6px 0"></div>
-<button onclick="addProduct()" style="width:100%;padding:10px;background:#00ffcc;color:#000;border:0;border-radius:8px;font-weight:900">Post to Market 🛒</button>
-</div>
-
 <div id="productGrid" class="grid"></div>
-
-<div style="margin-top:14px;background:#0f172a;border:1px solid #222;border-radius:12px;padding:10px">
-<h4 style="font-size:12px;color:#fff">📲 How Pochi Works</h4>
-<p style="font-size:11px;color:#aaa;margin-top:4px">1. Buyer clicks Buy → Pays to <b>0142550440</b> (Pochi) Total amount<br>2. You confirm delivery<br>3. System releases <b>Price -5%</b> to your M-Pesa<br>4. <b>5%+5% = 10% total commission</b> stays to 0142550440 as profit<br>This beats Jumia, Kilimall, Amazon fees.</p>
 </div>
 
-</div>
-</div>
-
-<!-- BOTTOM TABS -->
-<div id="tabs">
-<button id="btnFeed" class="active" onclick="showScreen('feed')">🎬 Feed</button>
-<button id="btnMarket" onclick="showScreen('market')">🛒 Market BEST</button>
-</div>
-
-<!-- MESSAGE MODAL -->
-<div id="msgBox" onclick="this.classList.remove('show')">
-<div style="width:100%;max-width:360px;background:#111;border:1px solid #333;border-radius:16px;padding:14px" onclick="event.stopPropagation()">
-<h3 style="color:#00ffcc;font-size:14px">💬 Message <span id="msgTo"></span></h3>
-<input id="msgText" placeholder="Write message..." style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #333;background:#000;color:#fff">
-<button onclick="sendMsg()" style="width:100%;padding:10px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">Send</button>
-<div id="msgList" style="margin-top:8px;font-size:12px;color:#aaa"></div>
-<button onclick="document.getElementById('msgBox').classList.remove('show')" style="margin-top:8px;width:100%;background:transparent;color:#777;border:0;font-size:11px">Close</button>
-</div>
-</div>
+<div id="feed"></div>
+<div class="hint">Swipe LEFT / RIGHT</div>
 
 <script>
-function showScreen(s){
-document.getElementById('screenFeed').classList.toggle('active',s==='feed');
-document.getElementById('screenMarket').classList.toggle('active',s==='market');
-document.getElementById('btnFeed').classList.toggle('active',s==='feed');
-document.getElementById('btnMarket').classList.toggle('active',s==='market');
-}
+let marketOpen=false;
+function toggleMarket(){marketOpen=!marketOpen;document.getElementById('marketPopup').classList.toggle('show',marketOpen)}
+function toggleSell(){marketOpen=true;document.getElementById('marketPopup').classList.add('show');document.getElementById('pName').focus()}
+function buyNow(){alert('Buyer: Send Total (Price+5%) to Pochi La Biashara 0142550440\nSeller gets Price-5%\nCommission to 0142550440')}
 
-// FEED DATA - LEFT RIGHT - NO TIKTOK WORD
 const data=[
-{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO World',cap:'🌍 WORLD PROMAX LIVE! Swipe left right • Full screen • No watermark',music:'♫ Original Sound'},
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi254',name:'Pochi 0142550440',cap:'Your official Pochi La Biashara: 0142550440 • Same number for all payments',music:'♫ Trending Sound'},
-{type:'image',src:'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800',user:'@kenya_style',name:'Kenya Style',cap:'Like • Share • Message • Download • Follow • All features without watermark',music:'♫ Photo Vibes'},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@market',name:'World Best Market',cap:'Beats Jumia, Amazon, Kilimall • Lower fee • Instant payout to seller',music:'♫ Business Sound'},
-{type:'image',src:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800',user:'@travel',name:'Travel KE',cap:'Swipe LEFT ↔ RIGHT for next',music:'♫ Night Sound'}
+{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO World',cap:'Swipe left right • No watermark'},
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi254',name:'Pochi 0142550440',cap:'M-Pesa 0142550440 Buyer +5% Seller -5% • Fee to 0142550440'},
+{type:'image',src:'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800',user:'@kenya',name:'Kenya',cap:'Like Share Message Download Follow'},
+{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@market',name:'Market BEST',cap:'World Best Market beats all'},
+{type:'image',src:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800',user:'@travel',name:'Travel',cap:'Market options only in top strip'}
 ];
-let following={}, liked={};
+let following={},liked={};
 function render(){
 let f=document.getElementById('feed');f.innerHTML='';
 data.forEach((d,i)=>{
 let m=d.type==='video'?`<video src="${d.src}" loop muted playsinline autoplay></video>`:`<img src="${d.src}">`;
 let ft=following[i]?'Following':'Follow';let fc=following[i]?'act follow following':'act follow';let lk=liked[i]?'❤️':'🤍';
-f.innerHTML+=`<div class="reel">${m}<div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+12}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div><div class="music">${d.music}</div></div><div class="actions"><button class="${fc}" onclick="follow(${i})"><span>👤</span><label>${ft}</label></button><button class="act" onclick="like(${i})"><span>${lk}</span><label>Like</label></button><button class="act" onclick="openMsg('${d.user}')"><span>💬</span><label>Message</label></button><button class="act" onclick="shareLink('${d.src}')"><span>🔗</span><label>Share</label></button><button class="act" onclick="downloadMedia('${d.src}')"><span>⬇️</span><label>Download</label></button></div></div>`;
+f.innerHTML+=`<div class="reel">${m}<div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div></div><div class="actions"><button class="${fc}" onclick="follow(${i})"><span>👤</span><label>${ft}</label></button><button class="act" onclick="like(${i})"><span>${lk}</span><label>Like</label></button><button class="act"><span>💬</span><label>Message</label></button><button class="act" onclick="navigator.clipboard.writeText('${d.src}');alert('Copied 🔗')"><span>🔗</span><label>Share</label></button><button class="act" onclick="let a=document.createElement('a');a.href='${d.src}';a.download='g-lumo';a.click()"><span>⬇️</span><label>Download</label></button></div></div>`;
 });
-setTimeout(()=>{document.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}))},500);
 }
 function follow(i){following[i]=!following[i];render()}
 function like(i){liked[i]=!liked[i];render()}
-function downloadMedia(s){let a=document.createElement('a');a.href=s;a.download='g-lumo-'+Date.now();document.body.appendChild(a);a.click();a.remove()}
-function shareLink(s){navigator.clipboard.writeText(s);alert('Link copied 🔗 No watermark')}
-function openMsg(u){document.getElementById('msgTo').innerText=u;document.getElementById('msgBox').classList.add('show')}
-function sendMsg(){let t=document.getElementById('msgText').value.trim();if(!t)return;document.getElementById('msgList').innerHTML+=`<div>You: ${t}</div>`;document.getElementById('msgText').value=''}
 
-// MARKET WORLD BEST - 5% COMMISSION TO 0142550440
 let products=[
-{name:'Air Jordan 1',price:3500,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',seller:'@kenya_style'},
-{name:'iPhone 14',price:85000,img:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400',seller:'@market_ke'},
-{name:'Maasai Beads',price:1200,img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400',seller:'@travel'},
-{name:'Nairobi Hoodie',price:2500,img:'https://images.unsplash.com/photo-1556821840-3a3526d6d3dc?w=400',seller:'@g_lumo'}
+{name:'Jordan',price:3500,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400'},
+{name:'iPhone',price:85000,img:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400'}
 ];
-function calcFee(){
-let p=parseFloat(document.getElementById('pPrice').value)||0;
-if(p<=0){document.getElementById('feePreview').innerHTML='';return}
-let buyerTotal=p*1.05;let sellerPayout=p*0.95;let commission=p*0.10;
-document.getElementById('feePreview').innerHTML=`Buyer pays: <b>KSH ${buyerTotal.toFixed(0)}</b> | You get: <b>KSH ${sellerPayout.toFixed(0)}</b> | Commission to 0142550440: <b>KSH ${commission.toFixed(0)}</b>`;
-}
-function renderMarket(){
-let g=document.getElementById('productGrid');g.innerHTML='';
-products.forEach((p,i)=>{
-let buyer=p.price*1.05;let payout=p.price*0.95;
-g.innerHTML+=`<div class="card"><img src="${p.img}"><div class="cardBody"><h4>${p.name}</h4><div class="small">Seller: ${p.seller}</div><div class="price">KSH ${p.price}</div><div class="small">Buyer Total: KSH ${buyer.toFixed(0)} (+5%)</div><div class="small">You get KSH ${payout.toFixed(0)} (-5%) after sale to 0142550440</div><button class="buyBtn" onclick="buy(${i})">Buy via 0142550440</button></div></div>`;
-});
-}
-function addProduct(){
-let name=document.getElementById('pName').value.trim();
-let price=parseFloat(document.getElementById('pPrice').value);
-let img=document.getElementById('pImg').value.trim()||'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400';
-if(!name||!price){alert('Enter name and price');return}
-products.unshift({name,price,img,seller:'@you'});
-document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('pImg').value='';document.getElementById('feePreview').innerHTML='';
-renderMarket();alert('Product posted to World Best Market! Fee auto to 0142550440');showScreen('market');
-}
-function buy(i){
-let p=products[i];let total=(p.price*1.05).toFixed(0);
-alert(`🛒 BUY ${p.name}\n\nBuyer: Send KSH ${total} to Pochi La Biashara 0142550440\n\nAfter delivery, seller gets KSH ${(p.price*0.95).toFixed(0)}\nCommission KSH ${(p.price*0.10).toFixed(0)} to 0142550440\n\nM-Pesa: 0142550440\nName: Pochi La Biashara`);
-}
+function calcFee(){let p=parseFloat(document.getElementById('pPrice').value)||0;if(!p){document.getElementById('feePreview').innerHTML='';return}let buyer=p*1.05,seller=p*0.95;document.getElementById('feePreview').innerHTML=`Buyer KSH ${buyer.toFixed(0)} | You get KSH ${seller.toFixed(0)} | Fee to 0142550440`}
+function renderMarket(){let g=document.getElementById('productGrid');g.innerHTML='';products.forEach((p,i)=>{g.innerHTML+=`<div class="card"><img src="${p.img}"><div class="cardBody"><h4>${p.name}</h4><div class="price">KSH ${p.price}</div><div class="small">Buyer +5% Seller -5% to 0142550440</div></div></div>`})}
+function addProduct(){let n=document.getElementById('pName').value.trim();let pr=parseFloat(document.getElementById('pPrice').value);if(!n||!pr){alert('Enter name price');return}products.unshift({name:n,price:pr,img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400'});renderMarket();document.getElementById('pName').value='';document.getElementById('pPrice').value='';document.getElementById('feePreview').innerHTML=''}
 render();renderMarket();
 </script>
 </body>
