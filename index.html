@@ -6,12 +6,14 @@
 <style>
 body{background:#0f0f1a;color:#fff;margin:0;padding:15px;font-family:Arial;text-align:center;overflow-y:auto !important;height:auto !important;min-height:100vh}
 html{overflow-y:auto !important}
-button{background:#00ffcc;border:0;padding:12px;border-radius:20px;font-weight:bold;width:100%;margin:5px 0}
+button{background:#00ffcc;border:0;padding:12px;border-radius:20px;font-weight:bold;width:100%;margin:5px 0;cursor:pointer}
 input{width:100%;padding:12px;border-radius:8px;border:0;margin:8px 0;box-sizing:border-box}
 #reels{display:flex;gap:12px;overflow-x:auto;padding:15px 0}
-.reel{min-width:85%;background:#000;border:1px solid #333;border-radius:14px;padding:0;overflow:hidden;height:400px;position:relative}
+.reel{min-width:85%;background:#000;border:1px solid #333;border-radius:14px;padding:0;overflow:hidden;height:400px;position:relative;flex-shrink:0}
 .reel video{width:100%;height:100%;object-fit:cover}
 .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,black);padding:12px;text-align:left}
+.mp-card{background:#111827;border:1px solid #333;border-radius:12px;overflow:hidden;margin:12px 0;text-align:left}
+.mp-media{width:100%;height:220px;object-fit:cover;background:#000}
 </style>
 </head>
 <body>
@@ -20,7 +22,6 @@ input{width:100%;padding:12px;border-radius:8px;border:0;margin:8px 0;box-sizing
 <input id="postText" placeholder="What's happening in Sosiot?">
 <button onclick="addPost()">Post</button>
 <button onclick="share()" style="background:#fff;color:#000">Share G-LUMO</button>
-
 <div id="feed"></div>
 
 <div style="background:#1a1a2e;padding:12px;border-radius:12px;margin-top:15px;text-align:left">
@@ -29,47 +30,57 @@ input{width:100%;padding:12px;border-radius:8px;border:0;margin:8px 0;box-sizing
 <div id="reels"></div>
 </div>
 
-<script>
-function share(){ 
-  if(navigator.share){navigator.share({title:'G-LUMO',url:location.href})} else {alert(location.href)} 
-}
+<div style="background:#0f172a;padding:14px;border-radius:15px;margin:20px 0;border:1.5px solid #00ffcc;text-align:left">
+<h2 style="color:#00ffcc;margin:0;text-align:center">🛒 Elite Marketplace</h2>
+<p style="text-align:center;color:#aaa;font-size:11px">Photos • Videos • Comments • Transparent 5%</p>
+<button onclick="document.getElementById('prodUpload').click()" style="background:#00ffcc;color:#000;">+ Sell Product</button>
+<input type="file" id="prodUpload" accept="image/*,video/*" style="display:none">
+<input id="prodName" placeholder="Product name - e.g. Avocados">
+<input type="number" id="prodPrice" placeholder="Price KSh - e.g. 1000">
+<input id="prodDesc" placeholder="Description + location">
+<button onclick="postProduct()" style="background:#fff;color:#000;">Publish Product</button>
+<div id="marketFeed"></div>
+<div style="background:#111827;padding:10px;border-radius:8px;margin-top:10px">
+<p style="font-size:12px;margin:4px 0">1. Pochi La Biashara: <b style="color:#00ffcc">0142550440</b></p>
+<p style="font-size:12px;margin:4px 0">2. Second Pochi: <b style="color:#00ffcc">0142550440</b></p>
+<p style="font-size:10px;color:#aaa">✅ Fee 5% visible: Buyer Total = Price + 5% | Seller Gets = Price - 5% | No hidden</p>
+</div>
+</div>
 
-var reels = [
-  {user:'@mary_salon', text:'Salon vibes Sosiot', likes:24},
-  {user:'@brian_boda', text:'Kericho ride today', likes:18},
-  {user:'@faith_254', text:'New dance challenge', likes:56}
-];
+<script>
+function share(){ if(navigator.share){navigator.share({title:'G-LUMO',url:location.href})} else {alert(location.href)} }
+
+var reels = [{user:'@mary_salon',text:'Salon vibes Sosiot',likes:24},{user:'@brian_boda',text:'Kericho ride today',likes:18},{user:'@faith_254',text:'New dance challenge',likes:56}];
+var products = JSON.parse(localStorage.getItem('glumo_market')||'[]');
+if(products.length==0){products=[{id:1,name:'Sosiot Avocados',price:400,desc:'Farm fresh 1kg',user:'@mary_salon',img:'https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa',comments:[]}];}
 
 function render(){
-  var box = document.getElementById('reels');
-  box.innerHTML = '';
-  for(var i=0;i<reels.length;i++){
-    var r = reels[i];
-    var d = document.createElement('div');
-    d.className = 'reel';
-    d.innerHTML = '<div style="height:100%;background:#111;display:flex;align-items:center;justify-content:center;font-size:50px">🎬</div><div class="cap"><b style="color:#00ffcc">'+r.user+'</b><br>'+r.text+'<br>❤️ '+r.likes+'</div>';
-    box.appendChild(d);
-  }
-  var f = document.getElementById('feed');
-  f.innerHTML = '';
-  for(var j=0;j<reels.length;j++){
-    var p = document.createElement('div');
-    p.style.cssText='background:#111827;border:1px solid #333;border-radius:12px;padding:12px;margin:10px 0;text-align:left';
-    p.innerHTML = '<b>'+reels[j].user+'</b><br>'+reels[j].text;
-    f.appendChild(p);
-  }
+ var box=document.getElementById('reels'); box.innerHTML='';
+ for(var i=0;i<reels.length;i++){var r=reels[i]; var d=document.createElement('div'); d.className='reel'; d.innerHTML='<div style="height:100%;background:#111;display:flex;align-items:center;justify-content:center;font-size:50px">🎬</div><div class="cap"><b style="color:#00ffcc">'+r.user+'</b><br>'+r.text+'<br>❤️ '+r.likes+'</div>'; box.appendChild(d);}
+ var f=document.getElementById('feed'); f.innerHTML=''; for(var j=0;j<reels.length;j++){var p=document.createElement('div'); p.style.cssText='background:#111827;border:1px solid #333;border-radius:12px;padding:12px;margin:10px 0;text-align:left'; p.innerHTML='<b>'+reels[j].user+'</b><br>'+reels[j].text; f.appendChild(p);}
+ renderMarket();
 }
+function addPost(){var inp=document.getElementById('postText'); if(!inp.value) return; reels.unshift({user:'@you',text:inp.value,likes:0}); inp.value=''; render();}
 
-function addPost(){
-  var inp = document.getElementById('postText');
-  if(!inp.value) return;
-  reels.unshift({user:'@you', text:inp.value, likes:0});
-  inp.value='';
-  render();
+function renderMarket(){
+ var feed=document.getElementById('marketFeed'); feed.innerHTML='';
+ for(var i=0;i<products.length;i++){var p=products[i]; var fee=Math.round(p.price*0.05); var tot=p.price+fee; var net=p.price-fee;
+ var div=document.createElement('div'); div.className='mp-card';
+ div.innerHTML='<img src="'+p.img+'" class="mp-media"><div style="padding:12px"><b>'+p.name+'</b><span style="float:right;color:#00ffcc;font-size:11px">'+p.user+'</span><br><span style="color:#aaa;font-size:12px">'+p.desc+'</span><br><span style="color:#00ffcc;font-weight:bold">KSh '+p.price+'</span><div style="background:#000;padding:6px;border-radius:6px;font-size:11px;color:#aaa;margin:6px 0">Transparent: Fee 5% = KSh '+fee+' | Buyer pays KSh '+tot+' | Seller gets KSh '+net+' | Pay 0142550440</div><button onclick="buyProduct('+i+')" style="background:#00ffcc;color:#000;padding:10px;border-radius:20px;width:48%;font-weight:bold;border:0">Buy 0142550440</button> <button onclick="var x=document.getElementById(\'com-'+p.id+'\');x.style.display=x.style.display==\'none\'?\'block\':\'none\'" style="background:#222;color:#fff;padding:10px;border-radius:20px;width:48%;border:1px solid #333">💬 '+p.comments.length+'</button><div id="com-'+p.id+'" style="display:none;margin-top:8px">'+p.comments.map(function(c){return '<div style="background:#000;padding:6px;border-radius:6px;margin:3px 0;font-size:12px"><b>'+c.u+':</b> '+c.t+'</div>'}).join('')+'<div style="display:flex;gap:6px"><input id="in-'+p.id+'" placeholder="Comment" style="flex:1"><button onclick="addCom('+p.id+')" style="width:auto;background:#00ffcc;color:#000;padding:8px 12px">Post</button></div></div></div>';
+ feed.appendChild(div);
+ }
+ localStorage.setItem('glumo_market',JSON.stringify(products));
 }
-
+function postProduct(){
+ var n=document.getElementById('prodName').value, pr=parseInt(document.getElementById('prodPrice').value), d=document.getElementById('prodDesc').value, f=document.getElementById('prodUpload').files[0];
+ if(!n||!pr){alert('Add name & price');return}
+ var img=f?URL.createObjectURL(f):'https://via.placeholder.com/400x260/111/0ff?text='+encodeURIComponent(n);
+ products.unshift({id:Date.now(),name:n,price:pr,desc:d||'Sosiot',user:'@you',img:img,comments:[]});
+ document.getElementById('prodName').value='';document.getElementById('prodPrice').value='';document.getElementById('prodDesc').value='';document.getElementById('prodUpload').value=''; renderMarket();
+}
+function buyProduct(i){var p=products[i], fee=Math.round(p.price*0.05), tot=p.price+fee, net=p.price-fee; if(confirm('TRANSPARENT CHECKOUT\n'+p.name+'\nPrice KSh '+p.price+'\nFee 5% KSh '+fee+'\nTOTAL KSh '+tot+'\nPay Pochi 0142550440\nSeller gets KSh '+net)){navigator.clipboard.writeText('Pay KSh '+tot+' to Pochi 0142550440 for '+p.name); alert('Copied! Lipa 0142550440 KSh '+tot);}}
+function addCom(id){var inp=document.getElementById('in-'+id); if(!inp.value) return; var p=products.find(function(x){return x.id==id}); p.comments.push({u:'@you',t:inp.value}); inp.value=''; renderMarket();}
 render();
-document.body.style.overflow='auto';
 </script>
 </body>
 </html>
