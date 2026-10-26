@@ -13,20 +13,21 @@ header{position:fixed;top:0;left:0;right:0;height:44px;background:#000;z-index:1
 .btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
 #feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:calc(100vh - 94px);margin-top:94px;background:#000}
 #feed::-webkit-scrollbar{display:none}
-.reel{position:relative;min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;background:#111;overflow-y:auto;scroll-snap-type:y mandatory}
+.reel{position:relative;min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;background:#000;overflow-y:auto;overflow-x:hidden}
 .reel::-webkit-scrollbar{display:none}
-.reelMedia{position:relative;width:100%;height:100%;flex-shrink:0;scroll-snap-align:start;background:#000;display:flex;align-items:center;justify-content:center}
+.reelMedia{position:relative;width:100%;height:100%;flex-shrink:0;background:#000;display:flex;align-items:center;justify-content:center}
 .reelMedia video,.reelMedia .colorBox{width:100%;height:100%;object-fit:cover}
 .colorBox{display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
-.info{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:5}
-.downBtn{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:10px 18px;border-radius:25px;font-weight:900;border:0;z-index:10}
-.sideHint{position:absolute;top:50%;right:10px;transform:translateY(-50%);background:rgba(0,0,0,.6);padding:8px 10px;border-radius:20px;font-size:11px;z-index:10}
-.editor{width:100%;min-height:100%;background:#fff;color:#000;padding:14px;scroll-snap-align:start;border-top:6px solid #00ffcc}
-.tools{display:flex;overflow-x:auto;gap:8px;padding:10px 0;scroll-snap-type:x mandatory}
+.info{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:5}
+.downBtn{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:10px 18px;border-radius:25px;font-weight:900;border:0;z-index:10;animation:float 1.5s infinite}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+.sideHint{position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(0,0,0,.6);padding:8px 10px;border-radius:20px;font-size:11px;z-index:10}
+.editor{width:100%;background:#fff;color:#000;padding:14px;border-top:6px solid #00ffcc}
+.tools{display:flex;overflow-x:auto;gap:8px;padding:10px 0}
 .tools::-webkit-scrollbar{display:none}
-.t{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-weight:900;background:#000;color:#00ffcc;font-size:12px;scroll-snap-align:start}
+.t{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-weight:900;background:#000;color:#00ffcc;font-size:12px}
 .t2{flex-shrink:0;padding:10px 16px;border-radius:20px;border:1px solid #ddd;background:#eee;color:#000;font-weight:900;font-size:12px}
-.box{width:100%;height:300px;background:#111;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #00ffcc;overflow:hidden}
+.box{width:100%;height:320px;background:#111;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #00ffcc;overflow:hidden}
 .popup{position:fixed;top:94px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:200;display:none;padding:12px;overflow:auto}
 .popup.show{display:flex;flex-direction:column}
 #buyPop{top:auto;bottom:0;max-height:85vh;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0}
@@ -54,10 +55,10 @@ function closeSell(){document.getElementById('sellPop').classList.remove('show')
 function calcFee(){let p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}let b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer pays KSH '+b+' | You get KSH '+p+' | 6% KSH '+(b-p)+' auto to 0142550440'}
 
 const posts=[
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',bg:'#000',name:'Video 1 - Swipe L/R',cap:'SCROLL DOWN FOR EDITOR - Swipe left/right for next video'},
-{type:'color',bg:'#ff2d55',text:'PHOTO 1',name:'Photo 1 - Swipe L/R',cap:'LEFT/RIGHT to see videos - DOWN for editor'},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',bg:'#000',name:'Video 2',cap:'Second video - Scroll down for editor'},
-{type:'color',bg:'#7000ff',text:'PHOTO 2',name:'Photo 2',cap:'Swipe left/right - Scroll down for world class editor'},
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',bg:'#000',name:'Video 1',cap:'SWIPE L/R for next video - SCROLL DOWN for editor'},
+{type:'color',bg:'#ff2d55',text:'PHOTO 1',name:'Photo 1',cap:'Swipe left/right for videos - Scroll down for editor'},
+{type:'video',src:'https://www.w3schools.com/html/movie.mp4',bg:'#000',name:'Video 2',cap:'Second video - Scroll down to edit'},
+{type:'color',bg:'#7000ff',text:'PHOTO 2',name:'Photo 2',cap:'Swipe L/R = videos only - Down = editor'},
 ];
 
 function render(){
@@ -70,14 +71,14 @@ html+=`
 <div class="reel" id="reel${i}">
 <div class="reelMedia">
 ${media}
-<div class="info"><b>${p.name}</b><br>${p.cap}<br><span style="font-size:11px">Post ${i+1}/${posts.length} - Swipe left/right 👉 - Scroll down 👇 for editor</span></div>
-<div class="sideHint">👈 Swipe 👉</div>
+<div class="info"><b>${p.name}</b><br>${p.cap}<br><span style="font-size:11px">Post ${i+1}/${posts.length} • Swipe L/R 👉 for videos • Scroll down 👇 for editor</span></div>
+<div class="sideHint">👈 Swipe L/R 👉</div>
 <button class="downBtn" onclick="document.getElementById('ed${i}').scrollIntoView({behavior:'smooth'})">👇 EDITOR BELOW 👇</button>
 </div>
 <div class="editor" id="ed${i}">
-<b style="color:#00a896">🎨 WORLD CLASS EDITOR - Below Video ${i+1} - Beats CapCut</b>
-<div style="background:#000;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:11px">This white editor only shows when you scroll DOWN past video. Tools scroll LEFT/RIGHT</div>
-<div class="box" id="box${i}"><div id="img${i}" style="width:100%;height:100%;background:${p.bg};display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;font-weight:900;filter:none">${p.type==='video'?'VIDEO':p.text}</div><div id="txt${i}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#fff;text-shadow:0 2px 8px #000;text-align:center"></div></div>
+<b style="color:#00a896">🎨 WORLD CLASS EDITOR - Below Video ${i+1} - Invisible unless scroll down</b>
+<div style="background:#000;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:11px">EDITOR IS BELOW VIDEO - Scroll LEFT/RIGHT for filters</div>
+<div class="box" id="box${i}"><div id="img${i}" style="width:100%;height:100%;background:${p.bg};display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;font-weight:900;filter:none">${p.type==='video'?'VIDEO PREVIEW':p.text}</div><div id="txt${i}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#fff;text-shadow:0 2px 8px #000;text-align:center"></div></div>
 
 <div style="margin-top:10px;font-weight:900;font-size:13px">FILTERS - SCROLL LEFT/RIGHT →</div>
 <div class="tools">
@@ -113,11 +114,10 @@ ${media}
 </div>
 
 <div style="display:flex;gap:8px;margin-top:10px">
-<button onclick="alert('Edited image saved!')" style="flex:1;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">⬇️ SAVE EDITED</button>
-<button onclick="alert('Posted to feed!')" style="flex:1;padding:12px;background:#00ffcc;color:#000;border:0;border-radius:10px;font-weight:900">📤 POST</button>
+<button onclick="alert('Edited saved!')" style="flex:1;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">⬇️ SAVE EDITED</button>
+<button onclick="alert('Posted!')" style="flex:1;padding:12px;background:#00ffcc;color:#000;border:0;border-radius:10px;font-weight:900">📤 POST</button>
 </div>
-
-<button onclick="document.getElementById('reel${i}').querySelector('.reelMedia').scrollIntoView({behavior:'smooth'})" style="width:100%;margin-top:10px;padding:10px;background:#eee;border:0;border-radius:10px;font-weight:900">⬆️ BACK TO VIDEO</button>
+<button onclick="document.getElementById('reel${i}').scrollTo({top:0,behavior:'smooth'})" style="width:100%;margin-top:10px;padding:10px;background:#eee;border:0;border-radius:10px;font-weight:900">⬆️ BACK TO VIDEO</button>
 </div>
 </div>
 `;
@@ -135,7 +135,7 @@ function addTxt(i,t){let el=document.getElementById('txt'+i);el.innerText=(el.in
 function clearTxt(i){document.getElementById('txt'+i).innerText=''}
 
 let products=[{name:'Jordan 4',price:3500,buyerPrice:3724,comm:224,bg:'#111'}];
-function renderMarket(){let g=document.getElementById('grid');let h='';for(let p of products){h+=`<div style="border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff"><div style="height:100px;background:${p.bg};color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">${p.name}</div><div style="padding:6px"><b style="font-size:12px">${p.name}</b><div style="font-size:11px">Buyer KSH ${p.buyerPrice} | 6% KSH ${p.comm} → 0142550440</div><button onclick="openBuy('${p.name}',${p.buyerPrice},${p.comm})" style="width:100%;margin-top:4px;padding:6px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY - 6% Auto</button></div></div>`}g.innerHTML=h}
+function renderMarket(){let g=document.getElementById('grid');let h='';for(let p of products){h+=`<div style="border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff"><div style="height:100px;background:${p.bg};color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">${p.name}</div><div style="padding:6px"><b style="font-size:12px">${p.name}</b><div style="font-size:11px">Buyer KSH ${p.buyerPrice} | 6% KSH ${p.comm} → 0142550440</div><button onclick="openBuy('${p.name}',${p.buyerPrice},${p.comm})" style="width:100%;margin-top:4px;padding:6px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY</button></div></div>`}g.innerHTML=h}
 function addProduct(){let n=document.getElementById('pName').value.trim();let pr=document.getElementById('pPrice').value*1;if(!n||!pr)return alert('Enter title and price');let b=Math.round(pr/0.94);let c=b-pr;products.unshift({name:n,price:pr,buyerPrice:b,comm:c,bg:'#222'});renderMarket();closeSell();toggleMarket()}
 function openBuy(name,b,c){document.getElementById('buyDet').innerHTML=`<div style="display:flex;justify-content:space-between"><b>${name}</b><button onclick="closeBuy()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div style="margin-top:10px;background:#111;color:#fff;padding:10px;border-radius:10px">Buyer pays KSH ${b}<br>Seller gets KSH ${b-c}<br>6% KSH ${c} auto to Pochi 0142550440</div><button onclick="alert('Paid KSH ${b} - KSH ${c} auto to 0142550440');closeBuy()" style="width:100%;padding:14px;background:#25D366;color:#fff;border:0;border-radius:10px;margin-top:10px;font-weight:900">Pay via M-PESA to 0142550440</button>`;document.getElementById('buyPop').classList.add('show')}
 function closeBuy(){document.getElementById('buyPop').classList.remove('show')}
