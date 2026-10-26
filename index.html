@@ -3,38 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO ALL ICONS CLICKABLE BOTTOM</title>
+<title>G-LUMO SMALLER ICONS CLICKABLE BOTTOM VISIBLE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial;font-size:20px;font-weight:900}
-#top{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;border-bottom:5px solid #00ffcc}
-#h{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
-#menu{height:76px;background:#fff;display:flex;gap:10px;padding:10px;overflow-x:auto}
-.mbtn{flex-shrink:0;padding:16px 20px;border-radius:26px;border:0;font-weight:900;font-size:15px;cursor:pointer}
-#feed{width:100vw;margin-top:142px;height:82vh;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;-webkit-overflow-scrolling:touch}
-.page{min-width:100vw;width:100vw;height:82vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
+body{background:#000;color:#fff;font-family:Arial;font-size:18px;font-weight:900}
+#top{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;border-bottom:4px solid #00ffcc}
+#h{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
+#menu{height:66px;background:#fff;display:flex;gap:8px;padding:8px;overflow-x:auto}
+.mbtn{flex-shrink:0;padding:12px 16px;border-radius:22px;border:0;font-weight:900;font-size:13px;cursor:pointer}
+#feed{width:100vw;margin-top:124px;height:84vh;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;-webkit-overflow-scrolling:touch}
+.page{min-width:100vw;width:100vw;height:84vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .page video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .page img{width:100%;height:100%;object-fit:contain;background:#000}
-.info{position:absolute;bottom:0;left:0;right:120px;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.96));z-index:5;font-size:19px;line-height:1.3;font-weight:900;text-shadow:0 2px 4px #000}
-.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:#00ffcc;border:5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:60px;color:#000;z-index:20;cursor:pointer;box-shadow:0 8px 30px #000}
-#right{position:fixed;right:8px;bottom:10px;top:auto;z-index:99999;display:flex;flex-direction:column;gap:8px;max-height:82vh;overflow-y:auto;padding:6px}
-.rBtn{width:90px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer;pointer-events:auto}
-.rCircle{width:76px;height:76px;border-radius:50%;background:rgba(30,30,30,.96);border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 4px 15px #000;font-weight:900;position:relative}
-.rLabel{font-size:11px;font-weight:900;color:#fff;margin-top:4px;text-align:center;line-height:1.1;text-shadow:0 2px 4px #000}
-.badge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:22px;height:22px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
-.pop{display:none;position:fixed;top:142px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:100000;overflow:auto;padding:16px}
-.input{width:100%;padding:18px;border:3px solid #ccc;border-radius:14px;margin-top:12px;font-size:19px;font-weight:900}
-.btnFull{width:100%;padding:18px;border:0;border-radius:14px;font-weight:900;font-size:19px;margin-top:12px;cursor:pointer}
-.volBox{background:rgba(255,255,255,.2);padding:12px;border-radius:12px;margin-top:10px}
+.info{position:absolute;bottom:0;left:0;right:92px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.92));z-index:5;font-size:15px;line-height:1.25;font-weight:900;text-shadow:0 1px 3px #000}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:#00ffcc;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:42px;color:#000;z-index:20;cursor:pointer;box-shadow:0 4px 20px #000}
+#right{position:fixed;right:6px;bottom:8px;top:auto;z-index:99999;display:flex;flex-direction:column;gap:6px;max-height:84vh;overflow-y:auto;padding:4px;pointer-events:auto}
+.rBtn{width:66px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer;pointer-events:auto;touch-action:manipulation}
+.rCircle{width:52px;height:52px;border-radius:50%;background:rgba(35,35,35,.92);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 8px #000;font-weight:900;position:relative;pointer-events:auto}
+.rLabel{font-size:8px;font-weight:900;color:#fff;margin-top:3px;text-align:center;line-height:1.05;text-shadow:0 1px 2px #000}
+.badge{position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);background:#ff2d55;width:18px;height:18px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:900}
+.pop{display:none;position:fixed;top:124px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:100000;overflow:auto;padding:14px}
+.input{width:100%;padding:14px;border:2px solid #ccc;border-radius:10px;margin-top:10px;font-size:16px;font-weight:900}
+.btnFull{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
+.volBox{background:rgba(255,255,255,.18);padding:8px;border-radius:8px;margin-top:6px}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:19px;font-weight:900">G-LUMO 🔥 ALL ICONS CLICKABLE BOTTOM LARGE</b><div><button onclick="openBox('profileBox');renderProfile()" style="padding:10px 14px;background:#fff;color:#000;border:0;border-radius:14px;font-weight:900;font-size:14px">👤 PROFILE</button><button onclick="openBox('postBox')" style="padding:10px 14px;background:#00ffcc;border:0;border-radius:14px;font-weight:900;margin-left:8px;font-size:14px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:16px;font-weight:900">G-LUMO ✅ SMALLER ICONS CLICKABLE VISIBLE BOTTOM</b><div><button onclick="openBox('profileBox');renderProfile()" style="padding:8px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:12px">👤 PROFILE</button><button onclick="openBox('postBox')" style="padding:8px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:6px;font-size:12px">+ POST</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6% AUTO</button>
-<button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ POST ANY VIDEO/PHOTO LARGE</button>
-<button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox');renderProfile()">👤 MY VIDEOS STAY LARGE</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6%</button>
+<button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ POST ANY VIDEO</button>
+<button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox');renderProfile()">👤 MY VIDEOS STAY</button>
 </div>
 </div>
 
@@ -42,63 +42,63 @@ body{background:#000;color:#fff;font-family:Arial;font-size:20px;font-weight:900
 <div class="page" style="background:#000">
 <video id="demoVid" src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%;height:100%" controls playsinline muted loop></video>
 <div class="playBtn" onclick="var v=document.getElementById('demoVid');v.muted=false;v.volume=1.0;v.play();this.style.display='none';currentVideo=v;pauseAllExcept(v)">▶️</div>
-<div class="info" style="font-size:20px"><b style="font-size:22px">ALL ICONS BACK + CLICKABLE + BOTTOM RIGHT</b><br>Follow, Like, Comment/Message, Share, Add Friend, Market, Voice, Vol +/-, Play — all at bottom right — all clickable — Large thicker 20px — Auto pause previous when scroll<br><div class="volBox"><label style="font-size:16px;font-weight:900">🔊 Voice + Volume LARGE:</label><br><input type="range" min="0" max="100" value="100" oninput="var v=document.getElementById('demoVid');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v;pauseAllExcept(v)" style="width:100%;height:32px"></div></div>
+<div class="info" style="font-size:15px"><b style="font-size:16px">SMALLER BUT VISIBLE + ALL ICONS CLICKABLE BOTTOM</b><br>Icons 52px not 76px - Smaller but visible - All clickable - Follow Like Message Share Add Friend Market Voice Vol Play + POST - Large thicker text - Auto pause on scroll<br><div class="volBox"><input type="range" min="0" max="100" value="100" oninput="var v=document.getElementById('demoVid');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v;pauseAllExcept(v)" style="width:100%;height:22px"></div></div>
 </div>
 </div>
 
 <div id="right">
-<button class="rBtn" onclick="openBox('postBox')" style="background:rgba(0,255,204,.15);border-radius:16px"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:38px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc;font-size:12px">+ POST<br>ANY VIDEO</div></button>
+<button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:26px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST</div></button>
 
-<button class="rBtn" onclick="doFollow()" id="followBtn"><div style="position:relative"><div class="rCircle" style="background:#fff;color:#000;font-size:30px">👤</div><div class="badge" id="followBadge">+</div></div><div class="rLabel" id="followLabel" style="font-size:11px">Follow<br>1.5K</div></button>
+<button class="rBtn" onclick="doFollow()"><div style="position:relative"><div class="rCircle" style="background:#fff;color:#000;font-size:20px">👤</div><div class="badge" id="followBadge">+</div></div><div class="rLabel" id="followLabel">Follow<br>1.5K</div></button>
 
-<button class="rBtn" onclick="doLike()" id="likeBtn"><div class="rCircle" id="likeCircle" style="font-size:30px">🤍</div><div class="rLabel" id="likeLabel" style="font-size:11px">Like<br>2.3K Likes</div></button>
+<button class="rBtn" onclick="doLike()"><div class="rCircle" id="likeCircle" style="font-size:20px">🤍</div><div class="rLabel" id="likeLabel">Like<br>2.3K</div></button>
 
-<button class="rBtn" onclick="openBox('commentBox')" id="commentBtn"><div class="rCircle" style="font-size:30px">💬</div><div class="rLabel" id="commentLabel" style="font-size:11px">Message<br>Comment<br>342</div></button>
+<button class="rBtn" onclick="openBox('commentBox')"><div class="rCircle" style="font-size:20px">💬</div><div class="rLabel">Message<br>342</div></button>
 
-<button class="rBtn" onclick="openBox('friendsBox')" id="friendsBtn"><div class="rCircle" style="font-size:30px">👥</div><div class="rLabel" style="font-size:11px">Add Friend<br>Friends</div></button>
+<button class="rBtn" onclick="openBox('friendsBox')"><div class="rCircle" style="font-size:20px">👥</div><div class="rLabel">Add Friend</div></button>
 
-<button class="rBtn" onclick="doShare()" id="shareBtn"><div class="rCircle" style="font-size:30px">↗️</div><div class="rLabel" id="shareLabel" style="font-size:11px">Share<br>128 Shares</div></button>
+<button class="rBtn" onclick="doShare()"><div class="rCircle" style="font-size:18px">↗️</div><div class="rLabel">Share<br>128</div></button>
 
-<button class="rBtn" onclick="playCurrent()" id="playBtn"><div class="rCircle" id="playIcon" style="font-size:30px">▶️</div><div class="rLabel" style="font-size:11px">PLAY/<br>PAUSE</div></button>
+<button class="rBtn" onclick="playCurrent()"><div class="rCircle" id="playIcon" style="font-size:20px">▶️</div><div class="rLabel">PLAY</div></button>
 
-<button class="rBtn" onclick="toggleVoice()" id="voiceBtn"><div class="rCircle" id="soundIcon" style="font-size:30px">🔊</div><div class="rLabel" id="soundLabel" style="font-size:11px">Voice<br>ON/OFF<br>Volume</div></button>
+<button class="rBtn" onclick="toggleVoice()"><div class="rCircle" id="soundIcon" style="font-size:20px">🔊</div><div class="rLabel" id="soundLabel">Voice<br>ON/OFF</div></button>
 
-<button class="rBtn" onclick="changeVol(1)" id="volUpBtn"><div class="rCircle" style="font-size:28px">🔊+</div><div class="rLabel" style="font-size:11px">Vol +<br>Increase</div></button>
+<button class="rBtn" onclick="changeVol(1)"><div class="rCircle" style="font-size:18px">🔊+</div><div class="rLabel">Vol +</div></button>
 
-<button class="rBtn" onclick="changeVol(-1)" id="volDownBtn"><div class="rCircle" style="font-size:28px">🔉-</div><div class="rLabel" style="font-size:11px">Vol -<br>Decrease</div></button>
+<button class="rBtn" onclick="changeVol(-1)"><div class="rCircle" style="font-size:18px">🔉-</div><div class="rLabel">Vol -</div></button>
 
-<button class="rBtn" onclick="openBox('profileBox');renderProfile()" id="profileBtn"><div class="rCircle" style="background:#fff;color:#000;font-size:28px">👤</div><div class="rLabel" style="font-size:11px">PROFILE<br>MY VIDEOS<br>STAY</div></button>
+<button class="rBtn" onclick="openBox('profileBox');renderProfile()"><div class="rCircle" style="background:#fff;color:#000;font-size:18px">👤</div><div class="rLabel">PROFILE<br>STAY</div></button>
 
-<button class="rBtn" onclick="openBox('marketBox')" id="marketBtn"><div class="rCircle" style="font-size:28px">🛒</div><div class="rLabel" style="font-size:11px">Market<br>0142550440<br>6% AUTO</div></button>
+<button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle" style="font-size:18px">🛒</div><div class="rLabel">Market<br>0142550440</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">🛒 MARKET 0142550440 - ALL ICONS CLICKABLE BOTTOM</b><button onclick="closeBox('marketBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:14px;border-radius:12px;margin-top:12px;font-size:16px;font-weight:900">Company Pochi Till 0142550440 gets 6% auto | Large thicker | Marketplace in position - Icons bottom right clickable</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px"><div style="background:#fff;border-radius:14px;overflow:hidden"><div style="height:90px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px">Jordan 4</div><div style="padding:12px;color:#000;font-size:16px;font-weight:900"><b>Jordan 4</b><br>Buyer 3724 6% 224 -> 0142550440<br><button onclick="alert('✅ Paid - Large clickable - Market icon clickable')" style="width:100%;margin-top:8px;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">BUY NOW - Clickable</button></div></div></div></div>
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:18px;font-weight:900">🛒 MARKET 0142550440 - SMALLER ICONS CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-size:15px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px;font-size:14px;font-weight:900">Company Pochi Till 0142550440 gets 6% auto | Icons smaller 52px but visible + clickable bottom</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#fff;border-radius:12px;overflow:hidden"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px">Jordan 4</div><div style="padding:10px;color:#000;font-size:14px;font-weight:900"><b>Jordan 4</b><br>224 -> 0142550440<br><button onclick="alert('✅ Paid - Icon clickable smaller visible')" style="width:100%;margin-top:6px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:14px">BUY NOW - Clickable</button></div></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">POST ANY VIDEO - ALL ICONS CLICKABLE BOTTOM LARGE</b><button onclick="closeBox('postBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:14px;border-radius:10px;margin-top:12px;font-size:16px;font-weight:900;line-height:1.4">✅ All icons back: Follow, Like, Comment/Message, Add Friend, Share, Market, Voice, Vol +/-, Play, + POST - All at RIGHT BOTTOM not top - All CLICKABLE with alerts - Large thicker 20px 900 - Auto pause previous when scroll - Any video allowed - Stay in profile</div>
-<input id="pTitle" placeholder="Title - Large Thicker" class="input">
-<input id="pPrice" type="number" placeholder="Price if selling - Large" class="input">
-<label style="display:block;background:#00ffcc;color:#000;padding:20px;border-radius:14px;font-weight:900;text-align:center;margin-top:14px;cursor:pointer;font-size:20px">📸📹 + TAP TO CHOOSE ANY VIDEO OR PHOTO<br><span style="font-size:15px">MP4 MOV 3GP WEBM JPG PNG - All allowed</span><input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none" onchange="previewReel()"></label>
-<div id="fileInfo" style="margin-top:10px;font-size:15px;color:#000;background:#fff;padding:12px;border-radius:10px;display:none;font-weight:900"></div>
-<div id="preview" style="margin-top:12px;display:none;background:#111;border-radius:14px;height:280px;overflow:hidden;position:relative"></div>
-<button onclick="postReel()" class="btnFull" style="background:#00ffcc;font-size:21px">+ POST REEL NOW - All Icons Clickable Bottom Large</button>
+<div style="display:flex;justify-content:space-between"><b style="font-size:18px;font-weight:900">POST ANY VIDEO - SMALLER ICONS CLICKABLE VISIBLE</b><button onclick="closeBox('postBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div>
+<div style="background:#000;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px;font-weight:900;line-height:1.3">✅ Icons smaller 52px but visible - All clickable bottom right - Follow Like Message Share Add Friend Market Voice Vol Play + POST - Large thicker text - Auto pause previous on scroll - Any video - Stay in profile</div>
+<input id="pTitle" placeholder="Title - Large thicker" class="input">
+<input id="pPrice" type="number" placeholder="Price if selling" class="input">
+<label style="display:block;background:#00ffcc;color:#000;padding:16px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;cursor:pointer;font-size:16px">📸📹 TAP TO CHOOSE ANY VIDEO OR PHOTO<br><span style="font-size:12px">MP4 MOV 3GP WEBM JPG PNG - All allowed</span><input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none" onchange="previewReel()"></label>
+<div id="fileInfo" style="margin-top:8px;font-size:13px;color:#000;background:#fff;padding:10px;border-radius:8px;display:none;font-weight:900"></div>
+<div id="preview" style="margin-top:10px;display:none;background:#111;border-radius:12px;height:240px;overflow:hidden;position:relative"></div>
+<button onclick="postReel()" class="btnFull" style="background:#00ffcc;font-size:18px">+ POST REEL NOW - Smaller icons clickable visible</button>
 </div>
 
 <div id="profileBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b style="font-size:23px;font-weight:900">👤 PROFILE - MY VIDEOS STAY - ALL ICONS CLICKABLE BOTTOM LARGE</b><button onclick="closeBox('profileBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px;font-weight:900">X CLOSE</button></div>
-<div style="background:#111;color:#fff;padding:14px;border-radius:12px;margin-top:12px;font-size:17px;font-weight:900"><b style="color:#00ffcc;font-size:20px">@demo</b><br>All videos stay here even after refresh - All icons bottom right clickable - Large thicker - Auto pause on scroll</div>
-<div style="margin-top:14px;background:#00ffcc;padding:14px;border-radius:14px"><b style="color:#000;font-size:19px;font-weight:900">+ POST NEW REEL - ANY VIDEO - ALL ICONS CLICKABLE</b><br><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:16px;background:#000;color:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:17px">+ UPLOAD ANY VIDEO/PHOTO - Large Bottom Clickable</button></div>
-<div id="myVideosList" style="margin-top:16px"></div>
-<div style="margin-top:14px"><input placeholder="Bio - Large Thicker" class="input"><input placeholder="Phone - Large Thicker" class="input"><button onclick="alert('✅ Saved - All icons clickable bottom large');renderProfile()" class="btnFull" style="background:#00ffcc;font-size:19px">SAVE PROFILE - Large Thicker Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff;font-size:17px">🗑️ Clear My Videos - Large</button></div>
+<div style="display:flex;justify-content:space-between"><b style="font-size:19px;font-weight:900">👤 PROFILE - MY VIDEOS STAY - SMALLER ICONS</b><button onclick="closeBox('profileBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-size:15px;font-weight:900">X CLOSE</button></div>
+<div style="background:#111;color:#fff;padding:12px;border-radius:10px;margin-top:10px;font-size:14px;font-weight:900"><b style="color:#00ffcc;font-size:16px">@demo</b><br>All videos stay here - Icons smaller but visible clickable bottom right - Large thicker - Auto pause</div>
+<div style="margin-top:12px;background:#00ffcc;padding:12px;border-radius:12px"><b style="color:#000;font-size:16px;font-weight:900">+ POST NEW REEL - SMALLER ICONS CLICKABLE</b><br><button onclick="openBox('postBox')" style="width:100%;margin-top:8px;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:14px">+ UPLOAD ANY VIDEO/PHOTO</button></div>
+<div id="myVideosList" style="margin-top:14px"></div>
+<div style="margin-top:12px"><input placeholder="Bio - Large thicker" class="input"><input placeholder="Phone" class="input"><button onclick="alert('✅ Saved - Smaller icons clickable');renderProfile()" class="btnFull" style="background:#00ffcc">SAVE PROFILE - Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff">🗑️ Clear My Videos</button></div>
 </div>
 
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">👥 FRIENDS - Large Thicker Clickable</b><button onclick="closeBox('friendsBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px">X CLOSE</button></div><div style="margin-top:14px;background:#fff;padding:14px;border-radius:12px;color:#000;font-size:17px;font-weight:900"><b>demo - Large thicker</b><br>Demo seller<br><button onclick="alert('✅ Added friend - All icons clickable bottom - Large');closeBox('friendsBox')" style="margin-top:10px;padding:14px 18px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">ADD FRIEND - Large Clickable Bottom</button></div></div>
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">💬 Message / Comments - Large Thicker Clickable</b><button onclick="closeBox('commentBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px">X CLOSE</button></div><div id="commentList" style="margin-top:12px"><div style="background:#fff;color:#000;padding:12px;border-radius:10px;margin-bottom:8px;font-size:16px;font-weight:900">Nice video! - Large thicker</div></div><input id="commentInput" placeholder="Add comment/message - Large thicker" class="input"><button onclick="doComment()" class="btnFull" style="background:#00ffcc;font-size:19px">POST COMMENT/MESSAGE - Large Clickable</button></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:18px;font-weight:900">👥 FRIENDS - Smaller icons clickable</b><button onclick="closeBox('friendsBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div><div style="margin-top:12px;background:#fff;padding:12px;border-radius:10px;color:#000;font-size:15px;font-weight:900"><b>demo</b><br><button onclick="alert('✅ Added friend - Icon smaller visible clickable bottom');closeBox('friendsBox')" style="margin-top:8px;padding:12px 16px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:14px">ADD FRIEND - Clickable</button></div></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:18px;font-weight:900">💬 Message / Comments - Smaller icons clickable</b><button onclick="closeBox('commentBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X CLOSE</button></div><div id="commentList" style="margin-top:12px"><div style="background:#fff;color:#000;padding:10px;border-radius:8px;margin-bottom:8px;font-size:14px;font-weight:900">Nice video! - Smaller icons</div></div><input id="commentInput" placeholder="Add comment/message" class="input"><button onclick="doComment()" class="btnFull" style="background:#00ffcc">POST COMMENT/MESSAGE - Clickable</button></div>
 
 <script>
 var lastFile=null;var lastDataUrl=null;var currentVideo=null;var myVideos=[];
-var isFollowing=false;var isLiked=false;var likeCount=2300;var followCount=1500;
+var isFollowing=false;var isLiked=false;var likeCount=2300;
 try{myVideos=JSON.parse(localStorage.getItem('g_lumo_my_videos')||'[]')}catch(e){myVideos=[]}
 var feedEl=document.getElementById('feed');
 var scrollTimeout=null;
@@ -107,41 +107,41 @@ function closeBox(id){document.getElementById(id).style.display='none'}
 function doFollow(){
 isFollowing=!isFollowing;
 var badge=document.getElementById('followBadge');var label=document.getElementById('followLabel');
-if(isFollowing){badge.innerHTML='✓';badge.style.background='#00ffcc';label.innerHTML='Following<br>1.5K+1';followCount++;alert('✅ FOLLOWED! - Follow icon clickable - Bottom right - Large thicker - All icons clickable');}
-else{badge.innerHTML='+';badge.style.background='#ff2d55';label.innerHTML='Follow<br>1.5K';followCount--;alert('❌ Unfollowed - Follow icon clickable');}
+if(isFollowing){badge.innerHTML='✓';badge.style.background='#00ffcc';label.innerHTML='Following<br>1.5K+';alert('✅ FOLLOWED! - Follow 52px smaller but visible clickable - Bottom right');}
+else{badge.innerHTML='+';badge.style.background='#ff2d55';label.innerHTML='Follow<br>1.5K';alert('❌ Unfollowed - Follow clickable smaller visible');}
 }
 function doLike(){
 isLiked=!isLiked;
 var circle=document.getElementById('likeCircle');var label=document.getElementById('likeLabel');
-if(isLiked){circle.innerHTML='❤️';likeCount++;label.innerHTML='Liked<br>'+likeCount+' Likes';alert('❤️ LIKED! - Like icon clickable - Bottom right - Large thicker - Turns red - All icons clickable');}
-else{circle.innerHTML='🤍';likeCount--;label.innerHTML='Like<br>'+likeCount+' Likes';alert('🤍 Unliked - Like icon clickable');}
+if(isLiked){circle.innerHTML='❤️';likeCount++;label.innerHTML='Liked<br>'+likeCount;alert('❤️ LIKED! - Like 52px smaller visible clickable - Bottom right - Turns red');}
+else{circle.innerHTML='🤍';likeCount--;label.innerHTML='Like<br>'+likeCount;alert('🤍 Unliked - Like clickable smaller');}
 }
 function doComment(){
-var input=document.getElementById('commentInput');var text=input.value.trim()||'Nice video! Large thicker';
+var input=document.getElementById('commentInput');var text=input.value.trim()||'Nice video!';
 var list=document.getElementById('commentList');
-var div=document.createElement('div');div.style.background='#fff';div.style.color='#000';div.style.padding='12px';div.style.borderRadius='10px';div.style.marginBottom='8px';div.style.fontSize='16px';div.style.fontWeight='900';
-div.innerHTML=text+' - ✅ Message/Comment clickable - Bottom right';
+var div=document.createElement('div');div.style.background='#fff';div.style.color='#000';div.style.padding='10px';div.style.borderRadius='8px';div.style.marginBottom='8px';div.style.fontSize='14px';div.style.fontWeight='900';
+div.innerHTML=text+' - ✅ Message clickable smaller visible';
 list.appendChild(div);
 input.value='';
-alert('✅ COMMENT/MESSAGE POSTED! - Message icon clickable - Bottom right - Large thicker - All icons clickable');
+alert('✅ COMMENT/MESSAGE POSTED! - Message icon 52px smaller visible clickable bottom right');
 closeBox('commentBox');
 }
 function doShare(){
-alert('✅ SHARED! - Share icon clickable - Bottom right - Large thicker - Link copied: https://rolsvoks254.github.io/g-lumo/ - All icons clickable');
+alert('✅ SHARED! - Share icon 52px smaller visible clickable bottom right - Link copied');
 if(navigator.share){navigator.share({title:'G-LUMO',url:location.href}).catch(function(){})}
 }
 function playCurrent(){
 var v=currentVideo||document.querySelector('#feed .page video')||document.getElementById('demoVid');
 if(!v)return;
-if(v.paused){v.muted=false;v.volume=1.0;v.play().then(()=>{document.getElementById('playIcon').innerHTML='⏸️'});currentVideo=v;pauseAllExcept(v);alert('▶️ PLAYING - Play/Pause icon clickable - Bottom right - Large thicker');}
-else{v.pause();document.getElementById('playIcon').innerHTML='▶️';alert('⏸️ PAUSED - Play/Pause icon clickable');}
+if(v.paused){v.muted=false;v.volume=1.0;v.play().then(()=>{document.getElementById('playIcon').innerHTML='⏸️'});currentVideo=v;pauseAllExcept(v);alert('▶️ PLAYING - Play icon 52px smaller visible clickable bottom');}
+else{v.pause();document.getElementById('playIcon').innerHTML='▶️';alert('⏸️ PAUSED - Play clickable smaller visible');}
 }
 function toggleVoice(){
 var v=currentVideo||document.querySelector('#feed .page video')||document.getElementById('demoVid');
 if(!v)return;
 v.muted=!v.muted;v.volume=1.0;if(!v.muted)v.play();
 document.getElementById('soundIcon').innerHTML=v.muted?'🔇':'🔊';
-alert(v.muted?'🔇 Voice OFF - Voice icon clickable - Bottom right - Tap again':'🔊 Voice ON - Voice icon clickable - Vol + / - bottom right clickable - Large thicker');
+alert(v.muted?'🔇 Voice OFF - Voice icon 52px smaller visible clickable':'🔊 Voice ON - Voice 52px clickable bottom right + Vol + / - clickable');
 pauseAllExcept(v);
 }
 function changeVol(dir){
@@ -150,8 +150,8 @@ if(!v)return;
 var vol=v.volume+dir*0.25;
 if(vol<0)vol=0;if(vol>1)vol=1;
 v.volume=vol;v.muted=false;v.play();
-document.getElementById('soundLabel').innerHTML='Vol '+(vol*100).toFixed(0)+'%<br>Volume';
-alert((dir>0?'🔊 Volume increased to '+(vol*100).toFixed(0)+'% - Vol + icon clickable':'🔉 Volume decreased to '+(vol*100).toFixed(0)+'% - Vol - icon clickable')+' - Bottom right - Large thicker');
+document.getElementById('soundLabel').innerHTML='Vol '+(vol*100).toFixed(0)+'%';
+alert((dir>0?'🔊 Vol + to '+(vol*100).toFixed(0)+'% - Vol + 52px clickable':'🔉 Vol - to '+(vol*100).toFixed(0)+'% - Vol - clickable')+' - Smaller visible bottom right');
 }
 function pauseAllExcept(keep){
 var all=feedEl.querySelectorAll('video');
@@ -184,7 +184,7 @@ function previewReel(){
 var f=document.getElementById('reelFile').files[0];if(!f)return;
 lastFile=f;
 var info=document.getElementById('fileInfo');info.style.display='block';
-info.innerHTML='✅ File: '+f.name+'<br>Type: '+f.type+' Size: '+(f.size/1024/1024).toFixed(1)+'MB<br>✅ ANY FORMAT ALLOWED - All icons bottom right clickable - Large thicker - Auto pause';
+info.innerHTML='✅ File: '+f.name+' | Type: '+f.type+' | Size: '+(f.size/1024/1024).toFixed(1)+'MB<br>✅ ANY FORMAT - Icons 52px smaller visible clickable bottom';
 var pre=document.getElementById('preview');pre.style.display='block';
 var url=URL.createObjectURL(f);
 if(f.type.startsWith('video')){
@@ -198,9 +198,16 @@ reader.onload=function(e){lastDataUrl=e.target.result};
 reader.readAsDataURL(f);
 }
 function postReel(){
-if(!lastFile||!lastDataUrl){alert('Choose any video/photo first and wait 2 sec');return}
-var title=document.getElementById('pTitle').value.trim()||'My Reel - Large Thicker Clickable Bottom';
+if(!lastFile||!lastDataUrl){alert('Choose any video/photo first wait 2 sec');return}
+var title=document.getElementById('pTitle').value.trim()||'My Reel - Smaller icons';
 var price=document.getElementById('pPrice').value.trim();
 var freshUrl=URL.createObjectURL(lastFile);
 var isVideo=lastFile.type.startsWith('video');
-var newPage=docu
+var newPage=document.createElement('div');
+newPage.className='page';
+newPage.style.background='#000';
+var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:6px 10px;border-radius:8px;font-size:13px;font-weight:900">KSH '+price+' 6% → 0142550440</span>':'';
+if(isVideo){
+newPage.innerHTML='<video src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play().then(()=>{this.style.display=\'none\'});currentVideo=v;pauseAllExcept(v);document.getElementById(\'playIcon\').innerHTML=\'⏸️\';">▶️</div><div class="info"><b style="font-size:16px">@you - SMALLER ICONS CLICKABLE VISIBLE BOTTOM</b><br>'+title+priceTag+'<br><span style="font-size:12px;color:#00ffcc">✅ Icons 52px smaller but visible clickable - Follow Like Message Share Add Friend Market Voice Vol Play + POST - Auto pause previous on scroll</span><br><div class="volBox"><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v;pauseAllExcept(v)" style="width:100%;height:20px"></div></div>';
+}else{
+newPage.innerHTML='<img src="'+fre
