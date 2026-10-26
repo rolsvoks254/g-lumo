@@ -2,131 +2,113 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO NEO V3 - ICONS FIXED CLICKABLE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>G-LUMO FULL ONE MASTERCLASS - FINAL</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden;touch-action:manipulation}
-#top{position:fixed;top:0;left:0;right:0;height:56px;background:#000;border-bottom:2px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
-#feed{position:fixed;top:56px;left:0;right:76px;bottom:56px;background:#000;z-index:1;overflow:hidden}
-#feedInner{width:100%;height:100%;position:relative;background:#000}
-#feedInner video,#feedInner img{width:100%;height:100%;object-fit:contain;background:#000}
-.badge{position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:5px 10px;border-radius:20px;font-size:9px;z-index:5}
-.infoBar{position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:4;font-size:11px}
-#rightIcons{position:fixed;right:0;top:56px;bottom:56px;width:76px;background:#000;border-left:2px solid #222;z-index:2147483647;display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;overflow-y:auto;pointer-events:auto !important;touch-action:manipulation}
-button.iconBtn{width:64px;background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;padding:4px 0}
-button.iconBtn .circle{width:48px;height:48px;border-radius:50%;background:#1a1a1a;border:2px solid #444;display:flex;align-items:center;justify-content:center;font-size:22px;pointer-events:none}
-button.iconBtn:active .circle{background:#00ffcc;color:#000;transform:scale(.9)}
-.count{font-size:8px;pointer-events:none}
-.label{font-size:7px;color:#aaa;pointer-events:none}
-#bottomBar{position:fixed;bottom:0;left:0;right:0;height:56px;background:#000;border-top:2px solid #00ffcc;display:flex;justify-content:space-around;align-items:center;z-index:1000}
-.pop{display:none;position:fixed;top:56px;left:0;right:0;bottom:56px;background:#f2f2f2;color:#000;z-index:9999999;padding:12px;overflow:auto}
+#top{position:fixed;top:0;left:0;right:0;height:58px;background:#000;border-bottom:3px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
+#feedWrap{position:fixed;top:58px;left:0;right:84px;bottom:56px;background:#000;z-index:1;overflow:hidden}
+#feedScroll{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-y;display:flex;flex-direction:column}
+.videoPage{width:100%;height:100%;flex-shrink:0;scroll-snap-align:start;position:relative;background:#000;border-bottom:2px solid #111;overflow:hidden}
+.videoPage video,.videoPage img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.badge{position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 12px;border-radius:20px;font-size:9px;z-index:5}
+.infoBar{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:4}
+#rightIcons{position:fixed;right:0;top:58px;bottom:56px;width:84px;background:#000;border-left:2px solid #333;z-index:2147483647;display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 3px;overflow-y:auto;pointer-events:auto !important}
+button.iconBtn{width:76px;background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;padding:4px 0;border-radius:12px}
+button.iconBtn .circle{width:46px;height:46px;border-radius:50%;background:#1e1e1e;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:20px;pointer-events:none}
+button.iconBtn:active .circle{background:#00ffcc;color:#000;border-color:#00ffcc;transform:scale(.88)}
+.count{font-size:8px;font-weight:900;pointer-events:none}
+.label{font-size:7px;color:#aaa;font-weight:800;pointer-events:none}
+#bottomBar{position:fixed;bottom:0;left:0;right:0;height:56px;background:#000;border-top:3px solid #00ffcc;display:flex;justify-content:space-around;align-items:center;z-index:1000}
+.pop{display:none;position:fixed;top:58px;left:0;right:0;bottom:56px;background:#f2f2f2;color:#000;z-index:9999999;padding:10px;overflow:auto}
 .input{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin-top:8px;font-weight:900}
 .btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
-.pochi{background:#111;color:#00ffcc;padding:6px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc}
+.pochi{background:#111;color:#00ffcc;padding:8px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc;line-height:1.4}
+.cardMaster{background:#fff;border-radius:14px;border:2px solid #000;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
 
 <div id="top">
-<div style="font-size:12px">G-LUMO <span style="color:#00ffcc">NEO V3 ICONS FIXED</span> • 6%→0142550440</div>
+<div style="font-size:10px;line-height:1.1">G-LUMO <span style="color:#00ffcc">FULL ONE MASTERCLASS</span><br>6%→0142550440 • SCROLL L/R U/D • ICONS CLICKABLE</div>
 <div style="display:flex;gap:5px">
-<button style="padding:7px 10px;background:#00ffcc;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+ POST</button>
-<button style="padding:7px 10px;background:#fff;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">LOGIN</button>
+<button style="padding:7px 12px;background:#00ffcc;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+ POST</button>
+<button style="padding:7px 12px;background:#fff;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">LOGIN</button>
 </div>
 </div>
 
-<div id="feed">
-<div id="feedInner">
-<video id="mainV" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
-<div class="badge">NEO V3 ICONS FIXED • LIKE SHARE COMMENT PROFILE VOLUME • CLICKABLE</div>
-<div class="infoBar" id="videoInfo">@demo • Big Buck Bunny • Like Share Comment Profile Volume • Vol+ UP Vol- DOWN • 6% auto to 0142550440</div>
+<div id="feedWrap">
+<div id="feedScroll">
+<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
+<div class="badge">1/4 FULL ONE • Swipe U/D L/R • 6%→0142550440</div>
+<div class="infoBar"><b>@demo • Big Buck Bunny • FULL ONE MASTERCLASS</b><br><span style="font-size:8px;color:#ddd">Swipe UP/DOWN • Swipe LEFT/RIGHT • Right icons: Profile Follow Like Message Share Download Volume Vol+ Vol- • All BUTTONS clickable • Market Master Class beating all</span><br><span style="font-size:8px;background:#00ffcc;color:#000;padding:3px 8px;border-radius:10px;display:inline-block;margin-top:4px">KSH 3724 => 224 to 0142550440 • Seller 3500</span></div>
+</div>
+<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">
+<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" controls playsinline muted loop></video>
+<div class="badge">2/4 ElephantsDream • Scrollable</div>
+<div class="infoBar"><b>@seller1 • Master Class</b></div>
+</div>
+<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">
+<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" controls playsinline muted loop></video>
+<div class="badge">3/4 ForBiggerBlazes • Market Master Class</div>
+<div class="infoBar"><b>@seller2 • Market Place</b></div>
+</div>
+<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4">
+<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" controls playsinline muted loop></video>
+<div class="badge">4/4 Master Class Beating All • 6%→0142550440</div>
+<div class="infoBar"><b>@masterclass • Full One</b></div>
+</div>
 </div>
 </div>
 
 <div id="rightIcons">
-<button class="iconBtn" type="button" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">
-<div class="circle" style="background:#fff;color:#000;border-color:#00ffcc">👤</div>
-<div class="label">Profile</div>
-<div class="count" id="profileName">@demo</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="toggleFollow()" onclick="toggleFollow()">
-<div class="circle" id="followCircle" style="background:#00ffcc;color:#000">+</div>
-<div class="count" id="followCount">Follow</div>
-<div class="label">1.5K</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="doLike()" onclick="doLike()">
-<div class="circle" id="likeCircle">🤍</div>
-<div class="count" id="likeCount">2.3K</div>
-<div class="label">Like</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="openBox('commentBox')" onclick="openBox('commentBox')">
-<div class="circle">💬</div>
-<div class="count" id="commentCount">342</div>
-<div class="label">Comment</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="doShare()" onclick="doShare()">
-<div class="circle">↗️</div>
-<div class="count">128</div>
-<div class="label">Share</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="toggleVolume()" onclick="toggleVolume()">
-<div class="circle" id="volCircle">🔊</div>
-<div class="count" id="volLabel">Vol ON</div>
-<div class="label">Volume</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="volUp()" onclick="volUp()">
-<div class="circle">🔊+</div>
-<div class="count">Vol+</div>
-<div class="label">UP</div>
-</button>
-
-<button class="iconBtn" type="button" ontouchstart="volDown()" onclick="volDown()">
-<div class="circle">🔉-</div>
-<div class="count">Vol-</div>
-<div class="label">DOWN</div>
-</button>
+<button class="iconBtn" type="button" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')"><div class="circle" style="background:#fff;color:#000;border-color:#00ffcc">👤</div><div class="label">Profile</div><div class="count" id="profileName">@demo</div></button>
+<button class="iconBtn" type="button" ontouchstart="toggleFollow()" onclick="toggleFollow()"><div class="circle" id="followCircle" style="background:#00ffcc;color:#000">+</div><div class="label">Follow</div><div class="count" id="followCount">Follow 1.5K</div></button>
+<button class="iconBtn" type="button" ontouchstart="doLike()" onclick="doLike()"><div class="circle" id="likeCircle">🤍</div><div class="label">Like</div><div class="count" id="likeCount">2.3K</div></button>
+<button class="iconBtn" type="button" ontouchstart="openBox('commentBox')" onclick="openBox('commentBox')"><div class="circle">💬</div><div class="label">Message</div><div class="count" id="commentCount">342</div></button>
+<button class="iconBtn" type="button" ontouchstart="doShare()" onclick="doShare()"><div class="circle">↗️</div><div class="label">Share</div><div class="count">128</div></button>
+<button class="iconBtn" type="button" ontouchstart="doDownload()" onclick="doDownload()"><div class="circle" style="background:#fff;color:#000;border-color:#00ffcc">⬇️</div><div class="label">Download</div><div class="count">Save</div></button>
+<button class="iconBtn" type="button" ontouchstart="toggleVolume()" onclick="toggleVolume()"><div class="circle" id="volCircle">🔊</div><div class="label">Volume</div><div class="count" id="volLabel">Vol ON</div></button>
+<button class="iconBtn" type="button" ontouchstart="volUp()" onclick="volUp()"><div class="circle">🔊+</div><div class="label">Vol+</div><div class="count">UP</div></button>
+<button class="iconBtn" type="button" ontouchstart="volDown()" onclick="volDown()"><div class="circle">🔉-</div><div class="label">Vol-</div><div class="count">DOWN</div></button>
+<button class="iconBtn" type="button" ontouchstart="scrollPrev()" onclick="scrollPrev()"><div class="circle">⬆️</div><div class="label">Prev</div><div class="count">U/D</div></button>
+<button class="iconBtn" type="button" ontouchstart="scrollNext()" onclick="scrollNext()"><div class="circle">⬇️</div><div class="label">Next</div><div class="count">L/R</div></button>
 </div>
 
 <div id="bottomBar">
-<button style="background:transparent;border:0;color:#fff;font-size:10px;font-weight:900" ontouchstart="closeAll()" onclick="closeAll()">🏠<br>Home</button>
-<button style="background:transparent;border:0;color:#fff;font-size:10px;font-weight:900" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')">🛒<br>Market 0142550440</button>
-<button style="background:#00ffcc;color:#000;border:0;border-radius:50%;width:36px;height:36px;font-weight:900" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+</button>
-<button style="background:transparent;border:0;color:#fff;font-size:10px;font-weight:900" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">👤<br>Profile</button>
+<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'})" onclick="document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'})">🏠<br>Home</button>
+<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')">🛒<br>Market Master Class</button>
+<button style="background:#00ffcc;color:#000;border:0;border-radius:50%;width:40px;height:40px;font-weight:900;font-size:20px" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+</button>
+<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">👤<br>Profile Stay</button>
 </div>
 
-<div id="postBox" class="pop">
-<h3>NEW DESIGN POST — ICONS FIXED CLICKABLE</h3>
-<div class="pochi">Fixed: Icons now BUTTON not DIV — Like Share Comment Profile Volume Vol+ Vol- all clickable — Photo to video — 6% auto to 0142550440 Pochi same as company number</div>
-<input id="pTitle" placeholder="Title" class="input">
-<input id="pPrice" type="number" placeholder="Price KSH 3724 => 224 to 0142550440" class="input" oninput="calc()"><div id="calc" class="pochi" style="display:none"></div>
-<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;text-align:center;margin-top:8px">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label>
-<div id="fileInfo" style="display:none" class="pochi"></div><div id="preview" style="display:none;background:#000;height:140px;border-radius:10px;margin-top:8px;overflow:hidden"></div>
-<button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doPost()" onclick="doPost()">+ POST NOW</button>
-<button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('postBox')" onclick="closeBox('postBox')">X CLOSE</button>
-</div>
+<div id="postBox" class="pop"><div style="max-width:540px;margin:auto;background:#fff;border-radius:14px;padding:12px;border:3px solid #00ffcc"><h3>POST — FULL ONE MASTERCLASS</h3><div class="pochi">FULL ONE FINAL — All icons BUTTONS clickable — Like Share Message Follow Download Profile Volume Vol+ Vol- — Scroll L/R U/D — Market Master Class beating Jumia Amazon TikTok Shop — 6% auto to 0142550440 Pochi same as company number — Photo to video clickable — World class</div><input id="pTitle" placeholder="Title e.g. Jordan 4 Master Class Full One" class="input"><input id="pPrice" type="number" placeholder="Price KSH 3724 => 224 to 0142550440" class="input" oninput="calc()"><div id="calc" class="pochi" style="display:none"></div><label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;text-align:center;margin-top:8px">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label><div id="fileInfo" style="display:none" class="pochi"></div><div id="preview" style="display:none;background:#000;height:150px;border-radius:10px;margin-top:8px;overflow:hidden"></div><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doPost()" onclick="doPost()">+ POST NOW — FULL ONE</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('postBox')" onclick="closeBox('postBox')">X CLOSE</button></div></div>
 
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments — Icons Fixed</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('commentBox')" onclick="closeBox('commentBox')">X CLOSE</button></div><div id="commentList" style="margin-top:10px"></div><input id="commentInput" placeholder="Add comment" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doComment()" onclick="doComment()">POST COMMENT</button></div>
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 6%→0142550440</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('marketBox')" onclick="closeBox('marketBox')">X CLOSE</button></div><div id="marketList" style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px"></div></div>
-<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE — Icons Fixed</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE</button></div><div id="profileInfo" class="pochi">Not logged — demo / 1234</div><div id="myVideosList" style="margin-top:10px"></div></div>
-<div id="loginBox" class="pop"><h3>LOGIN demo / 1234</h3><input id="loginUser" placeholder="demo" class="input"><input id="loginPass" type="password" placeholder="1234" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doLogin()" onclick="doLogin()">LOGIN</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button></div>
+<div id="commentBox" class="pop"><div style="max-width:540px;margin:auto;background:#fff;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between"><b>💬 Message / Comments — Full One — Like Share Follow Download</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('commentBox')" onclick="closeBox('commentBox')">X CLOSE</button></div><div id="commentList" style="margin-top:10px"></div><input id="commentInput" placeholder="Message — e.g. Master class full one!" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doComment()" onclick="doComment()">POST MESSAGE</button><div class="pochi">Message = Comment — Download ⬇️ saves video — Follow + → ✓ Following — Like turns red — Share copies link — All BUTTONS clickable</div></div></div>
+
+<div id="marketBox" class="pop"><div style="max-width:960px;margin:auto"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div><b style="font-size:14px">🛒 MARKET MASTER CLASS — FULL ONE — 6% AUTO TO 0142550440 — WORLD CLASS BEATING ALL — SCROLLABLE L/R U/D</b><div class="pochi">Company Pochi 0142550440 = Company Number 0142550440 same — Automatic 6% cut — Seller 94% — Example KSH 3724 => 224 to 0142550440 Pochi same, 3500 to seller — Master Class marketplace — Like Share Message Follow Download Profile Volume Vol+ Vol- all clickable BUTTONS — Photo/video listing — Scroll left/right to see products — Market beating Jumia Amazon TikTok Shop — World class design</div></div><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('marketBox')" onclick="closeBox('marketBox')">X CLOSE</button></div><div style="overflow-x:auto;touch-action:pan-x;padding:12px 0"><div id="marketList" style="display:flex;gap:12px"></div></div></div></div>
+
+<div id="profileBox" class="pop"><div style="max-width:760px;margin:auto"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE FULL ONE — Follow Download Like Share Message clickable</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE</button></div><div id="profileInfo" class="pochi">Not logged — Login demo / 1234 — Pochi 0142550440 same as company number — Master Class — 6% auto — All icons clickable BUTTONS — Scroll L/R U/D</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="cardMaster" style="padding:10px"><b>📹 MY VIDEOS — Scrollable</b><div id="myVideosList" style="margin-top:8px"></div></div><div class="cardMaster" style="padding:10px"><b>🛒 MY PRODUCTS MASTER CLASS FULL ONE</b><div id="myProductsList" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div></div></div></div></div>
+
+<div id="loginBox" class="pop"><div style="max-width:420px;margin:auto;background:#fff;border-radius:14px;padding:14px;border:3px solid #00ffcc"><h3>LOGIN — FULL ONE — demo / 1234</h3><input id="loginUser" placeholder="Username demo" class="input"><input id="loginPass" type="password" placeholder="Password 1234" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doLogin()" onclick="doLogin()">LOGIN FULL ONE</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button><div class="pochi">Demo: demo / 1234 — Pochi 0142550440 same — Full One Master Class — Like Share Message Follow Download Volume Vol+ Vol- all BUTTONS clickable — Scroll L/R U/D</div></div></div>
 
 <script>
-var lastFile=null,lastBlobUrl=null,myVideos=[],currentUser=null,isLiked=false,likeCount=2300,commentCount=342,isFollowed=false;
+var lastFile=null,lastBlobUrl=null,myVideos=[],currentUser=null,isLiked=false,isFollowed=false,likeCount=2300,commentCount=342,currentPage=0;
 function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderProfile();if(id==='marketBox')renderMarket();}
 function closeBox(id){document.getElementById(id).style.display='none';}
-function closeAll(){document.querySelectorAll('.pop').forEach(p=>p.style.display='none');}
-function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');var e=document.getElementById('likeCount');if(isLiked){c.innerHTML='❤️';c.style.background='#ff2d55';likeCount++;e.innerHTML=likeCount;e.style.color='#ff2d55';}else{c.innerHTML='🤍';c.style.background='#1a1a1a';likeCount--;e.innerHTML='2.3K';e.style.color='#fff';}}
-function toggleFollow(){isFollowed=!isFollowed;document.getElementById('followCircle').innerHTML=isFollowed?'✓':'+';document.getElementById('followCount').innerHTML=isFollowed?'Following':'Follow';}
-function doShare(){if(navigator.share){navigator.share({title:'G-LUMO',text:'6% auto to 0142550440',url:location.href});}else{navigator.clipboard.writeText(location.href);alert('✅ Link copied — Like Share Comment Profile Volume clickable');}}
-function toggleVolume(){var v=document.getElementById('mainV');v.muted=!v.muted;document.getElementById('volCircle').innerHTML=v.muted?'🔇':'🔊';document.getElementById('volLabel').innerHTML=v.muted?'Vol OFF':'Vol ON';if(!v.muted){v.volume=1;v.play();}}
-function volUp(){var v=document.getElementById('mainV');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
-function volDown(){var v=document.getElementById('mainV');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
-function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim()||'World class!';var list=document.getElementById('commentList');var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='10px';div.style.padding='10px';div.style.marginTop='6px';div.innerHTML='<b>@'+(currentUser||'guest')+'</b> '+text;list.appendChild(div);input.value='';commentCount++;document.getElementById('commentCount').innerHTML=commentCount;}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='KSH '+p+' => 6% '
+function scrollNext(){var f=document.getElementById('feedScroll');f.scrollBy({top:f.clientHeight,behavior:'smooth'});}
+function scrollPrev(){var f=document.getElementById('feedScroll');f.scrollBy({top:-f.clientHeight,behavior:'smooth'});}
+function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');var e=document.getElementById('likeCount');if(isLiked){c.innerHTML='❤️';c.style.background='#ff2d55';c.style.borderColor='#ff2d55';likeCount++;e.innerHTML=likeCount;e.style.color='#ff2d55';}else{c.innerHTML='🤍';c.style.background='#1e1e1e';c.style.borderColor='#555';likeCount--;e.innerHTML='2.3K';e.style.color='#fff';}}
+function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');var t=document.getElementById('followCount');if(isFollowed){c.innerHTML='✓';t.innerHTML='Following 1.5K';}else{c.innerHTML='+';t.innerHTML='Follow 1.5K';}}
+function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',text:'Master Class — 6% auto to 0142550440',url:url});}else{navigator.clipboard.writeText(url);alert('✅ Share — Link copied — Full One — Like Share Message Follow Download');}}
+function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];var vUrl=page? page.getAttribute('data-url') : '';var blob=page? page.querySelector('video')?.src : '';var finalUrl=vUrl||blob||document.querySelector('video').src;var a=document.createElement('a');a.href=finalUrl;a.download='G-LUMO-FULL-ONE-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();document.body.removeChild(a);alert('⬇️ Download started — Full One Master Class');}
+function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');v.muted=!v.muted;document.getElementById('volCircle').innerHTML=v.muted?'🔇':'🔊';document.getElementById('volLabel').innerHTML=v.muted?'Vol OFF':'Vol ON';if(!v.muted){v.volume=1;v.play();}}
+function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
+function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
+function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim()||'Full One Master Class!';var list=document.getElementById('commentList');var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='12px';div.style.padding='10px';div.style.marginTop='8px';div.innerHTML='<b>@'+(currentUser||'guest')+'</b> '+text;list.appendChild(div);input.value='';commentCount++;document.getElementById('commentCount').innerHTML=commentCount;}
+function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='KSH '+p+' => 6% '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same — Seller '+(p*0.94).toFixed(0);}else{c.style.display='none';}}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML='✅ '+f.name+' '+(f.size/1024/1024).toFixed(2)+'MB Ready — Full One';var pre=document.getElementById('preview');pre.style.display='block';if(f.type.startsWith('video')){pre.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls muted autoplay></video>';}else{pre.innerHTML='<img src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain">';}}
+function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose file');return}if(!currentUser){alert('Login demo/1234');openBox('loginBox');return}var title=document.getElementById('pTitle').value||'Full One Video';var price=document.getElementById('pPrice').value||'';var scroll=document.getElementById('feedScroll');var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',lastBlobUrl);div.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls autoplay playsinline></video><div class="badge">NEW @'+currentUser+' — Full One — 6%→0142550440</div><div class="infoBar"><b>@'+currentUser+' — '+title+' — KSH '+price+'</b><br><span style="font-size:8px">6% -> 0142550440 Pochi same — Full One Master Class — Like Share Message Follow Download</span></div>';scroll.appendChild(div);myVideos.push({title:title,price:price,url:lastBlobUrl,type:lastFile.type,user:currentUser});closeBox('postBox');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';document.getElementById('calc').style.display='none';document.getElementById('reelFile').value='';renderProfile();renderMarket();scroll.scrollTo({top:scroll.scrollHeight,behavior:'smooth'});lastFile=null;lastBlobUrl=null;}
+function d
