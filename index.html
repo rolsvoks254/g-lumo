@@ -3,127 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO PROMAX FIXED - No Blank</title>
+<title>G-LUMO SURE - Login + Friends + Market</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial}
-.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:100}
-.h{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:2px solid #00ffcc}
-.b{height:56px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto}
-.btn{flex-shrink:0;padding:12px 18px;border-radius:20px;border:0;font-weight:900;font-size:15px}
+.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:100;border-bottom:2px solid #00ffcc}
+.h{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
+.b{height:52px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 6px;overflow-x:auto}
+.btn{flex-shrink:0;padding:10px 14px;border-radius:18px;border:0;font-weight:900;font-size:14px}
 .btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-#feed{width:100vw;height:100vh;padding-top:104px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000}
-#feed::-webkit-scrollbar{display:none}
-.page{min-width:100vw;width:100vw;height:calc(100vh - 104px);scroll-snap-align:center;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
-.big{font-size:60px;font-weight:900;text-align:center;line-height:1.1}
-.info{position:absolute;bottom:0;left:0;right:90px;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.95))}
-.name{font-size:22px;font-weight:900}.cap{font-size:18px;margin-top:6px}
-.actions{position:absolute;right:8px;bottom:15px;display:flex;flex-direction:column;gap:12px}
-.ab{width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.6);border:2px solid #fff5;display:flex;align-items:center;justify-content:center;font-size:28px}
-.popup{position:fixed;top:104px;left:0;right:0;bottom:0;background:#f8f8f8;color:#000;z-index:200;display:none;overflow:auto;padding:12px}
+#feed{width:100%;margin-top:100px;white-space:nowrap;overflow-x:auto;overflow-y:hidden;background:#000;-webkit-overflow-scrolling:touch}
+.page{width:100vw;height:75vh;display:inline-block;position:relative;white-space:normal;vertical-align:top}
+.big{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:900;text-align:center}
+.info{position:absolute;bottom:0;left:0;right:80px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.actions{position:absolute;right:6px;bottom:10px;display:flex;flex-direction:column;gap:10px}
+.ab{width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.6);border:2px solid #fff5;display:flex;align-items:center;justify-content:center;font-size:24px}
+.popup{position:fixed;top:100px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:200;display:none;overflow:auto;padding:12px}
 .popup.show{display:block}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.loginBox{max-width:400px;margin:20px auto;background:#fff;border-radius:16px;padding:20px;border:3px solid #00ffcc}
+.input{width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:10px;font-size:18px}
+.btnFull{width:100%;padding:16px;border:0;border-radius:12px;font-weight:900;font-size:18px;margin-top:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 </style>
 </head>
 <body>
 <div class="top">
-<div class="h"><b style="color:#00ffcc;font-size:22px">G-LUMO 🌍 PROMAX - FIXED</b><button onclick="document.getElementById('sellPop').classList.add('show')" style="padding:10px 16px;background:#00ffcc;border:0;border-radius:20px;font-weight:900">+ SELL</button></div>
+<div class="h"><b style="color:#00ffcc;font-size:20px">G-LUMO 🌍 SURE FIX</b><div><button onclick="showLogin()" style="padding:8px 12px;background:#fff;color:#000;border:0;border-radius:12px;font-weight:900;font-size:12px" id="userBtn">👤 LOGIN</button><button onclick="openSell()" style="padding:8px 12px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:12px;margin-left:6px">+ SELL</button></div></div>
 <div class="b">
-<button class="btn btnB" onclick="document.getElementById('marketPop').classList.toggle('show')">🛒 MARKET AMAZON KILLER</button>
-<button class="btn btnG" onclick="document.getElementById('sellPop').classList.add('show')">+ SELL PHOTO/VIDEO</button>
-<button class="btn btnB">6% → 0142550440 COMPANY</button>
-<button class="btn btnB">WORLD CLASS BIG FONTS</button>
+<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET 6%→0142550440</button>
+<button class="btn btnG" onclick="openSell()">+ SELL PHOTO/VIDEO</button>
+<button class="btn btnB" onclick="showFriends()">👥 SEARCH FRIENDS</button>
+<button class="btn btnB" onclick="showProfile()">👤 PROFILE</button>
 </div>
 </div>
 
-<!-- FEED IS DIRECT HTML - NO JAVASCRIPT NEEDED - SO IT CAN NEVER BE BLANK -->
+<!-- SURE FEED - INLINE-BLOCK SO IT CAN NEVER BE BLANK -->
 <div id="feed">
-<!-- VIDEO 1 -->
-<div class="page" style="background:#ff2d55">
-<div class="big">G-LUMO<br>WORLD<br><span style="font-size:24px">VIDEO 1<br>👈 SWIPE L/R 👉</span></div>
-<div class="info"><div class="name">G-LUMO WORLD</div><div class="cap">Swipe Left/Right for next video - BIGGER FONTS - 22px</div><div style="font-size:14px;margin-top:6px">1/4 • TikTok L/R • Market Amazon Killer</div></div>
-<div class="actions">
-<div class="ab" onclick="alert('Followed')">+</div>
-<div class="ab" onclick="this.innerHTML='❤️'">🤍</div>
-<div class="ab" onclick="alert('Comment')">💬</div>
-<div class="ab" onclick="alert('Message')">✉️</div>
-<div class="ab" onclick="alert('Shared')">↗️</div>
-<div class="ab" onclick="document.getElementById('marketPop').classList.add('show')">🛒</div>
+<div class="page" style="background:#ff2d55"><div class="big">G-LUMO<br>WORLD<br><span style="font-size:22px">VIDEO 1<br>SWIPE L/R →</span></div><div class="info"><b style="font-size:20px">G-LUMO WORLD - BIG FONTS</b><br><span style="font-size:16px">Swipe Left/Right for next video - You are logged as <span id="feedUser1">Guest</span></span></div><div class="actions"><div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">🛒</div></div></div><div class="page" style="background:#7000ff"><div class="big">POCHI<br>0142550440<br><span style="font-size:20px">COMPANY 6% AUTO</span></div><div class="info"><b style="font-size:20px">POCHI COMPANY 0142550440</b><br><span style="font-size:16px">Company gets 6% auto cut on every sale</span></div><div class="actions"><div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">🛒</div></div></div><div class="page" style="background:#00a896"><div class="big">AMAZON<br>KILLER<br><span style="font-size:20px">MARKET<br>BETTER THAN AMAZON</span></div><div class="info"><b style="font-size:20px">MARKET - AMAZON KILLER</b><br><span style="font-size:16px">Search, Cart, Orders, Seller Dashboard</span></div><div class="actions"><div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">🛒</div></div></div><div class="page" style="background:#ff7b00"><div class="big">FRIENDS<br>SEARCH<br><span style="font-size:20px">FIND & FOLLOW</span></div><div class="info"><b style="font-size:20px">SEARCH FRIENDS - NEW FEATURE</b><br><span style="font-size:16px">Tap SEARCH FRIENDS to find users and follow</span></div><div class="actions"><div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">🛒</div></div></div>
+</div>
+
+<!-- LOGIN / REGISTER / FORGOT PASSWORD -->
+<div id="loginPop" class="popup">
+<div class="loginBox">
+<h2 style="font-size:26px;text-align:center">G-LUMO LOGIN - SURE</h2>
+<div id="loginForm">
+<input id="lUser" placeholder="Username or Phone" class="input">
+<input id="lPass" type="password" placeholder="Password" class="input">
+<button onclick="doLogin()" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button>
+<button onclick="showForgot()" class="btnFull" style="background:#eee;color:#000">FORGOT PASSWORD? RESET</button>
+<button onclick="showRegister()" class="btnFull" style="background:#fff;color:#000;border:2px solid #000">CREATE NEW ACCOUNT</button>
+</div>
+<div id="regForm" style="display:none">
+<input id="rUser" placeholder="Choose Username" class="input">
+<input id="rPhone" placeholder="Phone e.g. 0712..." class="input">
+<input id="rPass" type="password" placeholder="Choose Password" class="input">
+<input id="rPass2" type="password" placeholder="Confirm Password" class="input">
+<input id="rBio" placeholder="Your Bio - e.g. I sell shoes" class="input">
+<button onclick="doRegister()" class="btnFull" style="background:#00ffcc;color:#000">REGISTER - CREATE ACCOUNT</button>
+<button onclick="showLoginForm()" class="btnFull" style="background:#eee">BACK TO LOGIN</button>
+</div>
+<div id="forgotForm" style="display:none">
+<p style="font-size:16px;margin-top:10px"><b>Reset Password - Company Pochi 0142550440</b><br>Enter your username, we will reset.</p>
+<input id="fUser" placeholder="Enter Username" class="input">
+<input id="fNewPass" type="password" placeholder="New Password" class="input">
+<button onclick="doReset()" class="btnFull" style="background:#ff2d55;color:#fff">RESET PASSWORD NOW</button>
+<button onclick="showLoginForm()" class="btnFull" style="background:#eee">BACK TO LOGIN</button>
+</div>
+<div style="text-align:center;margin-top:12px"><button onclick="closeLogin()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">CLOSE X</button></div>
 </div>
 </div>
 
-<!-- VIDEO 2 -->
-<div class="page" style="background:#7000ff">
-<div class="big">POCHI<br>COMPANY<br><span style="font-size:22px">0142550440<br>6% AUTO CUT</span></div>
-<div class="info"><div class="name">POCHI COMPANY 0142550440</div><div class="cap">Company Pochi Till gets 6% auto on every sale</div><div style="font-size:14px">2/4 • Seller gets 94% • Company 6%</div></div>
-<div class="actions">
-<div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">✉️</div><div class="ab">↗️</div><div class="ab">🛒</div>
+<!-- FRIENDS SEARCH -->
+<div id="friendsPop" class="popup">
+<div style="display:flex;justify-content:space-between"><b style="font-size:22px">👥 SEARCH FRIENDS - Find Users to Follow</b><button onclick="closeFriends()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<input id="friendSearch" placeholder="🔍 Search friends by username..." style="width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:12px;font-size:18px" oninput="searchFriends()">
+<div id="friendList" style="margin-top:12px"></div>
+</div>
+
+<!-- PROFILE -->
+<div id="profilePop" class="popup">
+<div style="display:flex;justify-content:space-between"><b style="font-size:22px">👤 MY PROFILE - For Posting Videos/Photos</b><button onclick="closeProfile()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<div id="profileInfo" style="margin-top:12px"></div>
+<div style="margin-top:14px">
+<b style="font-size:18px">Edit Profile (Required to Post)</b>
+<input id="editBio" placeholder="Your Bio" class="input">
+<input id="editPhone" placeholder="Your Phone" class="input">
+<button onclick="saveProfile()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-top:10px;font-size:16px">SAVE PROFILE - Allow Posting</button>
+<button onclick="doLogout()" style="width:100%;padding:14px;background:#ff2d55;color:#fff;border:0;border-radius:12px;font-weight:900;margin-top:8px">LOGOUT</button>
 </div>
 </div>
 
-<!-- VIDEO 3 -->
-<div class="page" style="background:#00a896">
-<div class="big">AMAZON<br>KILLER<br><span style="font-size:22px">MARKET<br>BETTER THAN AMAZON</span></div>
-<div class="info"><div class="name">MARKET BETTER THAN AMAZON</div><div class="cap">Search, Cart, Orders, Seller Dashboard - All in one place</div><div style="font-size:14px">3/4 • Swipe L/R only • No editor in swipe</div></div>
-<div class="actions">
-<div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">✉️</div><div class="ab">↗️</div><div class="ab">🛒</div>
-</div>
-</div>
-
-<!-- VIDEO 4 -->
-<div class="page" style="background:#ff7b00">
-<div class="big">SELLER<br>MODE<br><span style="font-size:22px">YOU GET 94%<br>COMPANY 6%</span></div>
-<div class="info"><div class="name">SELLER MODE</div><div class="cap">You sell, you get 94%, company Pochi 0142550440 gets 6% auto</div><div style="font-size:14px">4/4 • Big fonts • World class</div></div>
-<div class="actions">
-<div class="ab">+</div><div class="ab">🤍</div><div class="ab">💬</div><div class="ab">✉️</div><div class="ab">↗️</div><div class="ab">🛒</div>
-</div>
-</div>
-</div>
-
-<!-- MARKETPLACE - BETTER THAN AMAZON -->
+<!-- MARKET -->
 <div id="marketPop" class="popup">
-<div style="background:#000;color:#fff;padding:14px;border-radius:12px">
-<div style="display:flex;justify-content:space-between"><b style="font-size:20px">🛒 MARKET - BETTER THAN AMAZON - BIGGER FONTS</b><button onclick="document.getElementById('marketPop').classList.remove('show')" style="padding:8px 14px;background:#fff;color:#000;border-radius:8px;border:0;font-weight:900">X</button></div>
-<div style="font-size:16px;margin-top:8px;color:#00ffcc">Company Pochi Till: <b>0142550440</b> | Every sale: Buyer pays extra 6%, Seller gets 94%, Company auto 6%</div>
-<input id="search" placeholder="🔍 Search products..." style="width:100%;padding:16px;border-radius:12px;border:2px solid #ddd;font-size:18px;margin-top:12px" oninput="searchProd()">
+<div style="background:#000;color:#fff;padding:12px;border-radius:12px"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">🛒 MARKET - 6% → Company 0142550440 Pochi Till - AMAZON KILLER</b><button onclick="toggleMarket()" style="padding:8px 14px;background:#fff;color:#000;border-radius:8px;border:0">X</button></div><div style="font-size:14px;color:#00ffcc;margin-top:6px">Company Pochi: 0142550440 | Seller gets 94% | Company gets 6% auto</div></div>
+<div id="marketGrid" class="grid"></div>
+<div id="cartBox" style="background:#111;color:#00ffcc;padding:12px;border-radius:12px;margin-top:10px;font-size:16px;font-weight:700">Cart: 0 | Company 6% auto to 0142550440</div>
+<div id="orderBox" style="margin-top:10px"></div>
+<button onclick="checkout()" style="width:100%;padding:16px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-top:10px;font-size:18px">CHECKOUT - PAY 0142550440</button>
 </div>
 
-<div id="grid" class="grid">
-<div style="background:#fff;border-radius:16px;overflow:hidden;border:2px solid #eee"><div style="height:120px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900">Jordan 4</div><div style="padding:12px"><b style="font-size:18px">Jordan 4 Retro</b><div style="font-size:15px;margin-top:4px">Seller KSH 3500 (94%)<br>Buyer KSH 3724<br><span style="color:red;font-weight:900">6% KSH 224 → 0142550440 COMPANY</span></div><button onclick="buyNow('Jordan 4',3724,224,3500)" style="width:100%;margin-top:8px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">BUY NOW</button><button onclick="addCart('Jordan 4',3724,224,3500)" style="width:100%;margin-top:6px;padding:10px;background:#fff;color:#000;border:2px solid #000;border-radius:10px;font-weight:900">ADD TO CART</button></div></div>
-
-<div style="background:#fff;border-radius:16px;overflow:hidden;border:2px solid #eee"><div style="height:120px;background:#222;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900">AirPods</div><div style="padding:12px"><b style="font-size:18px">AirPods Pro Max</b><div style="font-size:15px">Seller 12000<br>Buyer 12766<br><span style="color:red;font-weight:900">6% 766 → 0142550440</span></div><button onclick="buyNow('AirPods',12766,766,12000)" style="width:100%;margin-top:8px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">BUY NOW</button><button onclick="addCart('AirPods',12766,766,12000)" style="width:100%;margin-top:6px;padding:10px;background:#fff;color:#000;border:2px solid #000;border-radius:10px;font-weight:900">ADD TO CART</button></div></div>
-
-<div style="background:#fff;border-radius:16px;overflow:hidden;border:2px solid #eee"><div style="height:120px;background:#333;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900">iPhone 15</div><div style="padding:12px"><b style="font-size:18px">iPhone 15 Pro</b><div style="font-size:15px">Seller 95000<br>Buyer 101065<br><span style="color:red;font-weight:900">6% 6065 → 0142550440</span></div><button onclick="buyNow('iPhone 15',101065,6065,95000)" style="width:100%;margin-top:8px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">BUY NOW</button><button onclick="addCart('iPhone 15',101065,6065,95000)" style="width:100%;margin-top:6px;padding:10px;background:#fff;color:#000;border:2px solid #000;border-radius:10px;font-weight:900">ADD TO CART</button></div></div>
-
-<div style="background:#fff;border-radius:16px;overflow:hidden;border:2px solid #eee"><div style="height:120px;background:#ff2d55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900">Jacket</div><div style="padding:12px"><b style="font-size:18px">Designer Jacket</b><div style="font-size:15px">Seller 5500<br>Buyer 5851<br><span style="color:red;font-weight:900">6% 351 → 0142550440</span></div><button onclick="buyNow('Jacket',5851,351,5500)" style="width:100%;margin-top:8px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">BUY NOW</button><button onclick="addCart('Jacket',5851,351,5500)" style="width:100%;margin-top:6px;padding:10px;background:#fff;color:#000;border:2px solid #000;border-radius:10px;font-weight:900">ADD TO CART</button></div></div>
-</div>
-
-<div style="padding:12px">
-<div style="background:#111;color:#00ffcc;padding:14px;border-radius:12px;font-size:16px;font-weight:700" id="cartBox">🛒 Cart: 0 items | Total KSH 0 | Company 6% KSH 0 → 0142550440</div>
-<div id="orderBox" style="margin-top:12px"></div>
-<div style="background:#000;color:#fff;padding:14px;border-radius:12px;margin-top:12px">
-<b style="color:#00ffcc;font-size:18px">💼 SELLER DASHBOARD - Company 0142550440</b>
-<div id="dash" style="margin-top:8px;font-size:16px;line-height:1.8">Total Sales: KSH 0<br>You Earned 94%: KSH 0<br>Company Cut 6% to 0142550440: KSH 0<br>Orders: 0</div>
-</div>
-<div style="position:sticky;bottom:0;background:#000;color:#fff;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:12px;border-top:4px solid #00ffcc;border-radius:12px">
-<div><b style="font-size:18px">Cart Checkout</b><br><span style="font-size:14px;color:#00ffcc">Pochi Till 0142550440 gets 6% auto</span></div>
-<button onclick="checkout()" style="padding:14px 22px;background:#00ffcc;color:#000;border:0;border-radius:12px;font-weight:900;font-size:16px">CHECKOUT PAY 0142550440</button>
-</div>
-</div>
-</div>
-
-<!-- SELL POPUP -->
+<!-- SELL -->
 <div id="sellPop" class="popup">
-<div style="padding:12px">
-<div style="display:flex;justify-content:space-between"><b style="font-size:22px">SELL - 94% Yours, 6% to Company 0142550440 Pochi</b><button onclick="document.getElementById('sellPop').classList.remove('show')" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
-<input id="pName" placeholder="Title e.g. Jordan 4" style="width:100%;padding:18px;border:2px solid #ddd;border-radius:12px;margin-top:14px;font-size:20px;font-weight:700">
-<input id="pPrice" type="number" placeholder="Your price you want (94%)" oninput="calcFee()" style="width:100%;padding:18px;border:2px solid #ddd;border-radius:12px;margin-top:10px;font-size:20px">
-<div id="fee" style="background:#111;color:#00ffcc;padding:16px;border-radius:12px;margin-top:10px;font-size:18px;font-weight:800">Enter price - Amazon Killer fee auto</div>
-<button onclick="addProd()" style="width:100%;padding:20px;background:#00ffcc;border:0;border-radius:14px;font-weight:900;margin-top:14px;font-size:20px">POST NOW - 6% auto to 0142550440</button>
-</div>
+<div style="display:flex;justify-content:space-between"><b style="font-size:20px">SELL - Need Login + Profile</b><button onclick="document.getElementById('sellPop').classList.remove('show')" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<input id="pName" placeholder="Title" class="input">
+<input id="pPrice" type="number" placeholder="Your price 94%" oninput="calcFee()" class="input">
+<div id="fee" style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px;font-size:16px;font-weight:700">Enter price - Login required to post</div>
+<button onclick="addProduct()" style="width:100%;padding:16px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-top:10px;font-size:18px">POST - 6% auto to 0142550440</button>
 </div>
 
 <script>
-var cart=[];var orders=[];var totalSales=0;var totalEarn=0;var totalComp=0;
-function calcFee(){var p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}var b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer pays KSH <b>'+b+'</b> | You get KSH <b>'+p+'</b> | Company 0142550440 gets KSH <b>'+(b-p)+' (6%) AUTO</b>'}
-function addCart(n,bp
+var currentUser=null;
+var users=JSON.parse(localStorage.getItem('glumo_users')||'[]');
+if(users.length==0){users=[{user:'demo',phone:'0712345678',pass:'1234',bio:'Demo seller - I sell shoes'}];localStorage.setItem('glumo_users',JSON.stringify(users))}
+
+function showLogin(){document.getElementById('loginPop').classList.add('show');showLoginForm()}
+function closeLogin(){document.getElementById('loginPop').classList.remove('show')}
+function showLoginForm(){document.getElementById('loginForm').style.display='block';document.getElementById('regForm').style.display='none';document.getElementById('forgotForm').style.display='none'}
+function showRegister(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='block';document.getElementById('forgotForm').style.display='none'}
+function showForgot(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='none';document.getElementById('forgotForm').style.display='block'}
+
+function doLogin(){var u=document.getElementById('lUser').value.trim();var p=document.getElementById('lPass').value;var found=users.find(x=> (x.user==u||x.phone==u) && x.pass==p);if(!found)return alert('Wrong username or password - Try demo/1234');currentUser=found;localStorage.setItem('glumo_current',JSON.stringify(found));updateUI();closeLogin();alert('Welcome '+found.user+'! You can now post and search friends');}
+function doRegister(){var u=document.getElementById('rUser').value.trim();var ph=document.getElementById('rPhone').value.trim();var p=document.getElementById('rPass').value;var p2=document.getElementById('rPass2').value;var bio=document.getElementById('rBio').value.trim();if(!u||!ph||!p)return alert('Fill all');if(p!=p2)return alert('Passwords not match');if(users.find(x=>x.user==u))return alert('Username taken');var newU={user:u,phone:ph,pass:p,bio:bio||'New G-LUMO user'};users.push(newU);localStorage.setItem('glumo_users',JSON.stringify(users));currentUser=newU;localStorage.setItem('glumo_current',JSON.stringify(newU));updateUI();closeLogin();alert('Account created! '+u+' - You can post now');}
+function doReset(){var u=document.getElementById('fUser
