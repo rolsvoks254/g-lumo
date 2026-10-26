@@ -3,166 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO WORLD - Fixed</title>
+<title>G-LUMO WORLD - Editor Visible</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-bottom:1px solid #222}
-header h1{color:#00ffcc;font-size:16px;font-weight:900}
-#marketTopBar{position:fixed;top:42px;left:0;right:0;z-index:99;height:54px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto;border-bottom:3px solid #00ffcc}
-.marketBtn{flex-shrink:0;padding:8px 12px;border-radius:18px;border:0;font-size:13px;font-weight:900}
-.btnMarket{background:#000;color:#00ffcc}.btnSell{background:#00ffcc;color:#000}
-#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:96px;background:#000}
-#feed::-webkit-scrollbar{display:none}
-.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 96px);scroll-snap-align:center;flex-shrink:0;background:#111;overflow-y:auto}
-.reel::-webkit-scrollbar{display:none}
-.reelMedia{position:relative;width:100%;height:100%;flex-shrink:0;background:#000}
+body{background:#000;color:#fff;font-family:system-ui}
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #222}
+#topBar{position:fixed;top:44px;left:0;right:0;z-index:99;height:50px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto}
+.btn{flex-shrink:0;padding:8px 14px;border-radius:20px;border:0;font-weight:900;font-size:13px}
+.btnBlack{background:#000;color:#00ffcc}.btnGreen{background:#00ffcc;color:#000}
+#feed{padding-top:94px}
+.reel{width:100vw;min-height:100vh;background:#111;border-bottom:6px solid #00ffcc;position:relative}
+.reelMedia{width:100%;height:75vh;background:#000;position:relative;overflow:hidden}
 .reelMedia img,.reelMedia video{width:100%;height:100%;object-fit:cover;display:block}
-.reelEdit{width:100%;background:#0f0f0f;padding:12px;border-top:4px solid #00ffcc}
-.info{position:absolute;bottom:0;left:0;right:80px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:5}
-.userRow{display:flex;gap:6px;align-items:center;font-size:18px;font-weight:900}
-.userRow img{width:40px;height:40px;border-radius:50%;border:2px solid #00ffcc}
-.cap{font-size:16px;font-weight:700;margin-top:2px}
-.actions{position:absolute;right:4px;bottom:20px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:10}
-.actBtn{border:0;background:transparent;cursor:pointer}
-.actIcon{width:50px;height:50px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid rgba(255,255,255,.2)}
-.followBtn{width:56px;height:56px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden}
-.followPlus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:20px;height:20px;border-radius:50%;color:#fff;font-size:12px;border:2px solid #fff;display:flex;align-items:center;justify-content:center}
-.editHint{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:900;z-index:6}
-.toolRow{display:flex;overflow-x:auto;gap:8px;padding:8px 0}
+.info{position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.editBtnDown{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:10px 20px;border-radius:25px;font-weight:900;font-size:13px;border:0;z-index:10;animation:bounce 1.5s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+.reelEdit{width:100%;background:#fff;color:#000;padding:14px;min-height:90vh}
+.toolRow{display:flex;overflow-x:auto;gap:8px;padding:10px 0;scroll-snap-type:x mandatory}
 .toolRow::-webkit-scrollbar{display:none}
-.filterBtn{flex-shrink:0;padding:10px 16px;border-radius:20px;border:1px solid #333;background:#1e1e1e;color:#fff;font-weight:800;font-size:12px}
-.filterBtn.active{background:#00ffcc;color:#000}
-.canvasWrap{background:#000;border-radius:12px;overflow:hidden;border:2px solid #222;position:relative}
-.canvasWrap canvas{width:100%;height:300px;object-fit:contain;display:block}
-.popup{position:fixed;left:0;right:0;z-index:200;background:#fff;color:#000;display:none;flex-direction:column}
-#marketPopup{top:96px;bottom:0;overflow:auto;padding:12px}#marketPopup.show{display:flex}
-#sellModal{top:0;bottom:0;overflow:auto;padding:0;background:#f8f8f8;z-index:300}#sellModal.show{display:flex}
-#buyModal{bottom:0;max-height:90vh;overflow:auto;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0;padding:16px;z-index:250}#buyModal.show{display:flex}
+.tool{flex-shrink:0;padding:12px 18px;border-radius:25px;border:0;font-weight:900;font-size:13px;scroll-snap-align:start}
+.toolBlack{background:#000;color:#00ffcc}.toolGreen{background:#00ffcc;color:#000}.toolWhite{background:#eee;color:#000;border:1px solid #ddd}
+.canvasBox{width:100%;height:320px;background:#000;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #00ffcc}
+.popup{position:fixed;left:0;right:0;z-index:200;background:#fff;color:#000;display:none;flex-direction:column;top:94px;bottom:0;overflow:auto;padding:12px}
+.popup.show{display:flex}
+#buyModal{bottom:0;top:auto;max-height:85vh;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0;padding:16px}
 </style>
 </head>
 <body>
-<header><h1>G-LUMO 🌍 EDIT STUDIO</h1><button onclick="openSell()" style="padding:6px 12px;background:#00ffcc;border:0;border-radius:18px;font-weight:900;font-size:12px">+ SELL</button></header>
-<div id="marketTopBar">
-<button class="marketBtn btnMarket" onclick="toggleMarket()">🛒 MARKET 6%→0142550440</button>
-<button class="marketBtn btnSell" onclick="openSell()">+ SELL</button>
-<button class="marketBtn btnMarket">👇 SCROLL DOWN FOR EDITOR</button>
+<header><h1>G-LUMO 🌍 EDITOR BELOW</h1><button onclick="openSell()" style="padding:6px 12px;background:#00ffcc;border:0;border-radius:18px;font-weight:900">+ SELL</button></header>
+<div id="topBar">
+<button class="btn btnBlack" onclick="toggleMarket()">🛒 MARKET 6%→0142550440</button>
+<button class="btn btnGreen" onclick="openSell()">+ SELL</button>
+<button class="btn btnBlack">👇 SCROLL DOWN TO SEE EDITOR</button>
 </div>
-<div id="marketPopup" class="popup"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET - 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div></div>
-<div id="sellModal" class="popup"><div style="background:#000;color:#fff;padding:12px;display:flex;justify-content:space-between"><b>SELL</b><button onclick="closeSell()" style="padding:6px 12px;background:#fff;color:#000;border-radius:8px;border:0">X</button></div><div style="padding:12px"><input id="pName" placeholder="Title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px"><input id="pPrice" type="number" placeholder="Price you get" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><input id="pImg" placeholder="Image/Video link" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><div id="feePreview" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px;font-size:12px"></div><button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST</button></div></div>
+
+<div id="marketPopup" class="popup"><div style="display:flex;justify-content:space-between"><b>MARKET - 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div></div>
+<div id="sellPopup" class="popup"><div style="display:flex;justify-content:space-between"><b>SELL ANYTHING</b><button onclick="closeSell()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><input id="pName" placeholder="Title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px"><input id="pPrice" type="number" placeholder="Price you get (94%)" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><input id="pImg" placeholder="Image/Video link" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><div id="feePreview" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px;font-size:12px">Enter price</div><button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST NOW</button></div>
 <div id="buyModal" class="popup"><div id="buyDetails"></div></div>
+
 <div id="feed"></div>
 
 <script>
-let openM=false;function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM)}function openSell(){document.getElementById('sellModal').classList.add('show')}function closeSell(){document.getElementById('sellModal').classList.remove('show')}function calcFee(){let p=parseFloat(document.getElementById('pPrice').value)||0;if(!p){document.getElementById('feePreview').innerHTML='Enter price';return}let b=Math.round(p/0.94);document.getElementById('feePreview').innerHTML='Buyer KSH '+b+' | You KSH '+p+' | 6% KSH '+(b-p)+' to 0142550440'}
-
-const data=[
-{type:'image',src:'https://picsum.photos/seed/g1/800/1200',user:'@g_lumo',name:'G-LUMO',cap:'SCROLL DOWN 👇 Editor below - Swipe left/right for posts'},
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi',name:'Pochi 0142550440',cap:'Video editor below - Scroll down past video'},
-{type:'image',src:'https://picsum.photos/seed/g2/800/1200',user:'@market',name:'Market',cap:'Photo editor world class'},
-];
-
-let following={},liked={},editFilters={};
-
-function render(){
-try{
-let f=document.getElementById('feed');f.innerHTML='';
-data.forEach((d,i)=>{
-let media=d.type==='video'?`<video src="${d.src}" loop muted playsinline autoplay style="width:100%;height:100%;object-fit:cover"></video>`:`<img src="${d.src}" style="width:100%;height:100%;object-fit:cover">`;
-f.innerHTML+=`<div class="reel" id="reel${i}">
-<div class="reelMedia">
-${media}
-<div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div></div>
-<div class="actions">
-<button class="actBtn" onclick="following[${i}]=!following[${i}];render()"><div class="followBtn"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
-<button class="actBtn" onclick="liked[${i}]=!liked[${i}];render()"><div class="actIcon">${liked[i]?'❤️':'🤍'}</div></button>
-<button class="actBtn" onclick="doShare(${i})"><div class="actIcon">↗️</div></button>
-<button class="actBtn" onclick="doDownload(${i})"><div class="actIcon">⬇️</div></button>
-</div>
-<div class="editHint">👇 SCROLL DOWN FOR EDITOR</div>
-</div>
-
-<div class="reelEdit">
-<div style="display:flex;justify-content:space-between"><b style="color:#00ffcc;font-size:14px">🎨 WORLD CLASS EDITOR - Below Video</b><span style="font-size:10px;background:#00ffcc;color:#000;padding:3px 8px;border-radius:12px;font-weight:900">SCROLL L/R →</span></div>
-
-<div class="canvasWrap" style="margin-top:10px">
-<canvas id="c${i}" width="600" height="600"></canvas>
-<div id="txt${i}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#fff;text-shadow:0 2px 6px #000;text-align:center;pointer-events:none"></div>
-</div>
-
-<div style="font-size:11px;color:#888;margin-top:10px">FILTERS - Scroll Left/Right →</div>
-<div class="toolRow">
-<button class="filterBtn active" onclick="setFilter(${i},'none',this)">✨ Original</button>
-<button class="filterBtn" onclick="setFilter(${i},'grayscale(100%)',this)">⚫ B&W</button>
-<button class="filterBtn" onclick="setFilter(${i},'sepia(100%)',this)">🟤 Sepia</button>
-<button class="filterBtn" onclick="setFilter(${i},'saturate(200%) contrast(120%)',this)">🌈 Vivid</button>
-<button class="filterBtn" onclick="setFilter(${i},'hue-rotate(180deg)',this)">❄️ Cold</button>
-<button class="filterBtn" onclick="setFilter(${i},'sepia(40%) saturate(150%)',this)">🔥 Warm</button>
-<button class="filterBtn" onclick="setFilter(${i},'blur(4px)',this)">💨 Blur</button>
-<button class="filterBtn" onclick="setFilter(${i},'brightness(150%)',this)">☀️ Bright</button>
-<button class="filterBtn" onclick="setFilter(${i},'brightness(60%)',this)">🌙 Dark</button>
-<button class="filterBtn" onclick="setFilter(${i},'contrast(200%) saturate(300%)',this)">💡 Neon</button>
-</div>
-
-<div style="font-size:11px;color:#888">ADJUST - Scroll Left/Right →</div>
-<div class="toolRow">
-<button class="filterBtn" onclick="adj(${i},'brightness',15)">☀️ +Bright</button>
-<button class="filterBtn" onclick="adj(${i},'brightness',-15)">☀️ -Bright</button>
-<button class="filterBtn" onclick="adj(${i},'contrast',15)">◐ +Contrast</button>
-<button class="filterBtn" onclick="adj(${i},'contrast',-15)">◑ -Contrast</button>
-<button class="filterBtn" onclick="rot(${i},90)">🔄 Rotate</button>
-<button class="filterBtn" onclick="flip(${i})">↔️ Flip</button>
-<button class="filterBtn" onclick="reset(${i})">♻️ Reset</button>
-</div>
-
-<div style="font-size:11px;color:#888">TEXT & STICKERS - Scroll →</div>
-<div class="toolRow">
-<button class="filterBtn" onclick="addTxt(${i},'G-LUMO WORLD 🌍')">🌍 Text</button>
-<button class="filterBtn" onclick="addTxt(${i},'🔥 FIRE')">🔥</button>
-<button class="filterBtn" onclick="addTxt(${i},'❤️ LOVE')">❤️</button>
-<button class="filterBtn" onclick="addTxt(${i},'💰')">💰</button>
-<button class="filterBtn" onclick="addTxt(${i},'😎')">😎</button>
-<button class="filterBtn" onclick="addTxt(${i},'👑')">👑</button>
-<button class="filterBtn" onclick="addTxt(${i},'🚀')">🚀</button>
-<button class="filterBtn" onclick="clearTxt(${i})">🧹 Clear</button>
-</div>
-
-<div style="display:flex;gap:8px;margin-top:10px">
-<button onclick="downloadE(${i})" style="flex:1;padding:12px;background:#00ffcc;color:#000;border:0;border-radius:10px;font-weight:900">⬇️ DOWNLOAD</button>
-<button onclick="postE(${i})" style="flex:1;padding:12px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900">📤 POST</button>
-</div>
-
-<div style="font-size:10px;color:#555;text-align:center;margin-top:8px">↑ Scroll up for video • Scroll left/right for tools • Beats all platforms</div>
-</div>
-</div>`;
-});
-setTimeout(initCanvas,400);
-}catch(e){document.getElementById('feed').innerHTML='<div style="padding:100px 20px;text-align:center">Error: '+e.message+'<br>Reload page</div>'}
-}
-
-function initCanvas(){
-data.forEach((d,i)=>{
-let canvas=document.getElementById('c'+i);if(!canvas)return;let ctx=canvas.getContext('2d');
-let img=new Image();img.crossOrigin='anonymous';img.src=d.src;
-img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);editFilters[i]={filter:'none',b:100,c:100,rot:0}};
-if(d.type==='video'){let v=document.querySelector('#reel'+i+' video');if(v){v.addEventListener('play',()=>{let draw=()=>{if(v.paused)return;ctx.drawImage(v,0,0,canvas.width,canvas.height);requestAnimationFrame(draw)};draw()})}}
-});
-}
-function setFilter(i,fil,el){
-let row=el.parentElement;row.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-if(!editFilters[i])editFilters[i]={filter:'none',b:100,c:100,rot:0};editFilters[i].filter=fil;apply(i);
-}
-function adj(i,type,val){
-if(!editFilters[i])editFilters[i]={filter:'none',b:100,c:100,rot:0};
-if(type==='brightness')editFilters[i].b+=val;if(type==='contrast')editFilters[i].c+=val;apply(i);
-}
-function apply(i){
-let canvas=document.getElementById('c'+i);if(!canvas)return;let ctx=canvas.getContext('2d');
-let f=editFilters[i]||{filter:'none',b:100,c:100};ctx.filter=f.filter+' brightness('+f.b+'%) contrast('+f.c+'%)';
-let d=data[i];let img=new Image();img.crossOrigin='anonymous';img.src=d.src;img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height)};
-}
-function rot(i,deg){let c=document.getElementById('c'+i);if(!editFilters[i])editFilters[i]={filter:'none',b:100,c:100,rot:0};editFilters[i].rot+=deg;c.style.transform='rotate('+editFilters[i].rot+'deg)'}
-function flip(i){let c=document.getElementById('c'+i);c.style.transform=c.style.transform.includes('scaleX')?c.style.transform.replace('scaleX(-1)',''):c.style.transform+' scaleX(-1)'}
-function reset(i){editFilters[i]={filter:'none',b:100,c:100,rot:0};let c=document.getElementById('c'+i);c.style.transform='none';let ctx=c.getContext('2d');ctx.filter='none';initCanvas()}
-function addTxt(i,t){let el=document.getElementById('txt'+i);el.innerText=(el.innerText+' '+t).trim()}
-function clearTxt(i){document.getElementById('txt'+i
+let openM=false;function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM)}function openSell(){document.getElementById('sellPopup').classList.add('show')}function closeSell(){document.getElementById('sellPopup').classList.remove('show')}function calcFee
