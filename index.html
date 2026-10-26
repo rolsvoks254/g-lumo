@@ -1,1073 +1,147 @@
 <!DOCTYPE html>
 <html>
-  
 <head>
-  
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>G-LUMO</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#00ffcc">
-  <meta name="theme-color" content="#00ffcc">
-<meta name="google-site-verification" content="-CSPhlyP9f1In0WMQBk3Ng7cduvWfsKvEvzj0GoR__M" />
-<link rel="apple-touch-icon" href="IMG-20261021-WA9270.png">
-<link rel="icon" type="image/png" href="IMG-20261021-WA9270.png">
 <style>
-body{font-family:Arial;background:#0f0f1a;color:#fff;margin:0;padding:20px;text-align:center}
+body{font-family:Arial;background:#0f0f1a;color:#fff;margin:0;padding:20px;text-align:center; overflow-y:auto !important; height:auto !important; min-height:100vh;}
+html{overflow-y:auto !important; height:auto !important;}
 h1{color:#00ffcc}
 .card{background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;text-align:left}
-button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%}
+button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%;cursor:pointer}
 input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizing:border-box}
-  /* G-LUMO Compact Editor - Small Space Mode */
-/* G-LUMO Compact Editor - Small Left to Right */
-.editor-compact, #photoEditor, #videoEditor, #clipEditor {
- max-width: 100% !important;
- padding: 10px !important;
- margin: 10px auto !important;
- white-space: normal !important;
- overflow: visible !important;
-}
-#photoEditor button, #videoEditor button, #clipEditor button {
- display: inline-block !important;
- width: auto !important;
- min-width: 68px !important;
- max-width: 85px !important;
- padding: 7px 8px !important;
- margin: 4px 4px !important;
- font-size: 11px !important;
- height: 32px !important;
- line-height: 1 !important;
- border-radius: 20px !important;
- flex: 0 0 auto !important;
- scroll-snap-align: start !important;
-}
-/* The actual scroll row - make buttons scroll */
-#photoEditor, #videoEditor, #clipEditor {
- overflow-x: auto !important;
- overflow-y: hidden !important;
- white-space: nowrap !important;
- -webkit-overflow-scrolling: touch !important;
- scroll-snap-type: x mandatory !important;
- padding-bottom: 8px !important;
-}
-#photoEditor canvas, #photoEditor video, #videoEditor video {
- white-space: normal !important;
- display: block !important;
- width: 100% !important;
-}
-input[type="range"] {
-  height: 4px !important;
-  margin: 6px 0 12px 0 !important;
-}
-
-label, .slider-label {
-  font-size: 12px !important;
-  margin-top: 8px !important;
-  display: block !important;
-}
-
-canvas, video, #preview, #videoPreview {
-  max-height: 220px !important;
-  width: 100% !important;
-  object-fit: contain !important;
-  border-radius: 12px !important;
-}
-  
-
-
-  .sticky-video {
-  position: sticky;
-  top: 10px;
-  z-index: 999;
-  background: #000;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.sticky-video video {
-  width: 100%;
-  display: block;
-}
-  html, body{overflow-y:auto !important; overflow-x:hidden !important; height:auto !important;}
-#feed,#promaxFeed{overflow:visible !important;}
+#photoEditor, #videoEditor, #clipEditor{overflow-x:auto !important; white-space:nowrap !important; padding-bottom:8px !important;}
+#photoEditor button{display:inline-block !important; min-width:68px !important; max-width:85px !important; height:32px !important; font-size:11px !important; margin:4px !important;}
+canvas,video{max-height:220px !important; width:100% !important; object-fit:contain !important; border-radius:12px !important;}
+#promaxReelsFeed{display:flex !important; gap:12px; overflow-x:auto !important; scroll-snap-type:x mandatory; padding:15px 0;}
+#promaxReelsFeed::-webkit-scrollbar{display:none;}
+.promax-reel{flex:0 0 88%; scroll-snap-align:center; background:#000; border-radius:14px; overflow:hidden; position:relative; border:1px solid #222; height:480px;}
+.promax-reel video{width:100%; height:100%; object-fit:cover; display:block;}
+.promax-caption{position:absolute; bottom:0; left:0; right:0; padding:40px 12px 12px; background:linear-gradient(transparent,rgba(0,0,0,0.9)); color:white;}
+.promax-user{font-weight:bold; color:#00ffcc;}
+.promax-actions{position:absolute; right:10px; bottom:80px; display:flex; flex-direction:column; gap:15px;}
+.promax-btn{background:rgba(0,0,0,0.6); border:none; color:white; width:45px; height:45px; border-radius:50%; font-size:20px;}
+.pm-post{background:#111827; border:1px solid #222; border-radius:14px; padding:14px; margin:14px 0; text-align:left;}
+.pm-head{display:flex; align-items:center; gap:10px;}
+.pm-avatar{width:42px; height:42px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold;}
+.pm-follow{margin-left:auto; background:#00ffcc; color:#000; border:none; padding:7px 14px; border-radius:20px; font-weight:bold;}
+.friend-card{display:flex; flex-direction:column; align-items:center; background:#1e293b; padding:12px; border-radius:16px; min-width:110px; max-width:110px; flex:0 0 auto; scroll-snap-align:start; text-align:center;}
+.friend-avatar{width:55px; height:55px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; margin-bottom:8px;}
+.add-btn{background:#00ffcc; color:#000; border:none; padding:6px 12px; border-radius:20px; font-weight:bold; font-size:11px; margin-top:8px; width:100%;}
 </style>
 </head>
 <body>
-<h1>G-LUMO</h1><img src="Screenshot_20261020-080441.jpg" style="width:120px;height:120px;border-radius:50%;margin-top:10px">
+<h1>G-LUMO</h1>
 <p>Connect. Share. Glow.</p>
 <input id="postText" placeholder="What's happening in the world?">
 <button onclick="addPost()">Post</button>
-  <button onclick="shareGLUMO()" style="width:100%; background:#ffffff; color:#000; padding:12px; margin-top:10px; border:none; border-radius:25px; font-weight:bold; cursor:pointer;">
-  Share G-LUMO
-</button>
+<button onclick="shareGLUMO()" style="background:#fff;color:#000;margin-top:10px;">Share G-LUMO</button>
 
-<script>
-function shareGLUMO() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'G-LUMO',
-      text: 'Connect. Share. Glow. Join G-LUMO!',
-      url: 'https://rolsvoks254.github.io/g-lumo/'
-    });
-  } else {
-    alert('Copy this link: https://rolsvoks254.github.io/g-lumo/');
-  }
-}
-</script>
 <div id="feed"></div>
 
-  <!-- G-LUMO PROMAX SOCIAL ENGINE -->
-<div style="background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;">
-  <h3 style="color:#00ffcc;margin:0 0 10px;">✨ Suggested for you</h3>
-<div id="followSuggestions" style="display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;padding:10px 2px 12px 2px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;"></div>
-
-
-<div id="promaxFeed"></div>
-
-<style>
-.pm-post{background:#111827;border:1px solid #222;border-radius:14px;padding:14px;margin:14px 0;color:white;}
-.pm-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.pm-avatar{width:42px;height:42px;border-radius:50%;background:#00ffcc;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold;}
-.pm-follow{margin-left:auto;background:#00ffcc;color:#000;border:none;padding:7px 14px;border-radius:20px;font-weight:bold;cursor:pointer;}
-.pm-follow.following{background:#333;color:white;}
-.pm-actions{display:flex;justify-content:space-between;margin-top:12px;border-top:1px solid #222;padding-top:10px;}
-.pm-btn{background:none;border:none;color:#aaa;font-size:14px;cursor:pointer;}
-.pm-btn.liked{color:#ff2e63;}
-.pm-comments{margin-top:10px;display:none;}
-.pm-comment{background:#1a1a2e;padding:8px;border-radius:8px;margin:6px 0;font-size:13px;}
-.pm-suggest{min-width:140px;max-width:140px;flex:0 0 auto;scroll-snap-align:start;background:#111827;border:1px solid #222;border-radius:12px;padding:12px;text-align:center;
-</style>
-
-<script>
-// Demo users & posts - this will later connect to your real posts
-let pmUsers = [
-  {id:'kelvin', name:'Kelvin Kip', handle:'@kelvin', following:false},
-  {id:'mary', name:'Mary Chebet', handle:'@mary_salon', following:false},
-  {id:'brian', name:'Brian Boda', handle:'@brian_boda', following:true},
-  {id:'faith', name:'Faith Shop', handle:'@faith_store', following:false},
-  {id:'peter', name:'Peter Fundi', handle:'@peter_fundi', following:false},
-];
-
-let pmPosts = [
-  {id:1, userId:'mary', text:'New salon offers in Sosiot today! Book now 💇‍♀️', likes:24, liked:false, reposts:3, comments:[{user:'Kelvin', text:'Nice! 🔥'}]},
-  {id:2, userId:'brian', text:'Boda available Kericho - Sosiot, call me for fast ride 🏍️', likes:41, liked:false, reposts:7, comments:[]},
-  {id:3, userId:'faith', text:'Fresh stock arrived! Sugar, unga, oil at best price.', likes:18, liked:false, reposts:2, comments:[]},
-];
-
-function renderSuggestions(){
-  const box = document.getElementById('followSuggestions');
-  box.innerHTML = '';
-  pmUsers.filter(u => !u.following).forEach(u=>{
-    const d = document.createElement('div');
-    d.className = 'pm-suggest';
-    d.innerHTML = `<div class="pm-avatar" style="margin:0 auto 8px;">${u.name[0]}</div><b>${u.name}</b><br><span style="color:#aaa;font-size:12px;">${u.handle}</span><br><button class="pm-follow" style="margin:10px 0 0;width:100%;" onclick="toggleFollow('${u.id}')">Follow</button>`;
-    box.appendChild(d);
-  });
-  if(box.innerHTML==='') box.innerHTML = '<p style="color:#aaa;">You follow everyone 🎉</p>';
-}
-
-function renderFeed(){
-  const feed = document.getElementById('promaxFeed');
-  feed.innerHTML = '';
-  pmPosts.forEach(p=>{
-    const u = pmUsers.find(x=>x.id===p.userId);
-    const post = document.createElement('div');
-    post.className = 'pm-post';
-    post.innerHTML = `
-      <div class="pm-head">
-        <div class="pm-avatar">${u.name[0]}</div>
-        <div><b>${u.name}</b><br><span style="color:#aaa;font-size:12px;">${u.handle}</span></div>
-        <button class="pm-follow ${u.following?'following':''}" onclick="toggleFollow('${u.id}')">${u.following ? (u.id==='brian' ? 'Follow Back ✓' : 'Following') : 'Follow'}</button>
-      </div>
-      <p>${p.text}</p>
-      <div class="pm-actions">
-        <button class="pm-btn ${p.liked?'liked':''}" onclick="likePost(${p.id})">❤️ ${p.likes} Like</button>
-        <button class="pm-btn" onclick="toggleComments(${p.id})">💬 ${p.comments.length} Comment</button>
-        <button class="pm-btn" onclick="repostPost(${p.id})">🔁 ${p.reposts} Repost</button>
-        <button class="pm-btn" onclick="sharePost('${p.text.replace(/'/g,"")}')">↗️ Share</button>
-      </div>
-      <div class="pm-comments" id="comments-${p.id}">
-        ${p.comments.map(c=>`<div class="pm-comment"><b>${c.user}:</b> ${c.text}</div>`).join('')}
-        <div style="display:flex;gap:6px;margin-top:8px;">
-          <input id="input-${p.id}" placeholder="Add comment..." style="flex:1;padding:8px;border-radius:8px;border:1px solid #333;background:#000;color:white;">
-          <button onclick="addComment(${p.id})" style="background:#00ffcc;border:none;padding:8px 12px;border-radius:8px;font-weight:bold;">Post</button>
-        </div>
-      </div>
-    `;
-    feed.appendChild(post);
-  });
-  renderSuggestions();
-}
-
-function toggleFollow(id){
-  const u = pmUsers.find(x=>x.id===id);
-  u.following = !u.following;
-  if(u.following) alert(`You followed ${u.name}. They will get a Follow Back request!`);
-  renderFeed();
-}
-
-function likePost(id){
-  const p = pmPosts.find(x=>x.id===id);
-  p.liked = !p.liked;
-  p.likes += p.liked ? 1 : -1;
-  renderFeed();
-}
-
-function toggleComments(id){
-  const el = document.getElementById('comments-'+id);
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
-}
-
-function addComment(id){
-  const input = document.getElementById('input-'+id);
-  if(!input.value.trim()) return;
-  const p = pmPosts.find(x=>x.id===id);
-  const myName = (window.auth && auth.currentUser) ? auth.currentUser.email.split('@')[0] : 'You';
-  p.comments.push({user:myName, text:input.value});
-  renderFeed();
-  setTimeout(()=>toggleComments(id), 50);
-}
-
-function repostPost(id){
-  const p = pmPosts.find(x=>x.id===id);
-  p.reposts++;
-  pmPosts.unshift({...p, id:Date.now(), text:`🔁 Reposted: ${p.text}`});
-  alert('Reposted to your profile!');
-  renderFeed();
-  window.scrollTo({top: document.getElementById('promaxFeed').offsetTop, behavior:'smooth'});
-}
-
-function sharePost(text){
-  if(navigator.share){
-    navigator.share({title:'G-LUMO Post', text:text, url:location.href});
-  } else {
-    navigator.clipboard.writeText(text + ' - via G-LUMO ' + location.href);
-    alert('Post copied! Paste to WhatsApp, Facebook, TikTok...');
-  }
-}
-
-renderFeed();
-</script>
-<!-- END PROMAX SOCIAL -->
-  <div style="background:linear-gradient(135deg,#111827,#1e1b4b);padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
-  <h2 style="color:#00ffcc;text-align:center;margin:5px;">🎬 G-LUMO Elite Studio</h2>
-  <p style="text-align:center;margin:5px;"><small>Photo • Video • Clip Editor - Free for G-LUMO Users</small></p>
-
-  <div style="display:flex;gap:6px;overflow-x:auto;margin:10px 0;">
-    <button onclick="showEditor('photo')">📸 Photo</button>
-    <button onclick="showEditor('video')">🎥 Video</button>
-    <button onclick="showEditor('clip')">✂️ Clip</button>
-<!-- G-LUMO PROMAX REELS - SWIPE LEFT/RIGHT FAST -->
+<!-- FRIENDS REELS ONLY - NO YOUTUBE -->
 <div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
-  <h3 style="color:#00ffcc;margin:0;">▶️ G-LUMO Reels ProMax</h3>
-  <p style="color:#aaa;font-size:12px;margin:5px 0 12px;">Swipe left / right • Friends posts show instantly</p>
-  
-  <label for="promaxReelUpload" style="display:block;background:#00ffcc;color:#000;text-align:center;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;">+ Post a Reel</label>
-  <input type="file" id="promaxReelUpload" accept="video/*" style="display:none;">
-  <input type="text" id="promaxCaption" placeholder="Add caption... #sosiot #trending" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#000;color:white;box-sizing:border-box;">
-
-  <div id="promaxReelsFeed" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:15px 0 5px;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
-  </div>
-  <p style="text-align:center;color:#00ffcc;font-size:11px;margin:5px 0 0;">👉 Swipe LEFT for next • Swipe RIGHT for back 👈</p>
+<h3 style="color:#00ffcc;margin:0;">▶️ G-LUMO Reels ProMax</h3>
+<p style="color:#aaa;font-size:12px;">Swipe left / right • Friends posts only</p>
+<label for="promaxReelUpload" style="display:block;background:#00ffcc;color:#000;text-align:center;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;">+ Post a Reel</label>
+<input type="file" id="promaxReelUpload" accept="video/*" style="display:none;">
+<input type="text" id="promaxCaption" placeholder="Add caption... #sosiot #trending" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#000;color:white;">
+<div id="promaxReelsFeed"></div>
+<p style="text-align:center;color:#00ffcc;font-size:11px;">👉 Swipe LEFT for next • RIGHT for back 👈</p>
 </div>
 
-<style>
-#promaxReelsFeed::-webkit-scrollbar{display:none;}
-.promax-reel{flex:0 0 88%;scroll-snap-align:center;background:#000;border-radius:14px;overflow:hidden;position:relative;border:1px solid #222;height:480px;}
-.promax-reel video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
-.promax-caption{position:absolute;bottom:0;left:0;right:0;padding:40px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.9));color:white;font-size:14px;pointer-events:none;}
-.promax-user{font-weight:bold;color:#00ffcc;font-size:14px;margin-bottom:4px;}
-.promax-actions{position:absolute;right:10px;bottom:80px;display:flex;flex-direction:column;gap:15px;align-items:center;}
-.promax-btn{background:rgba(0,0,0,0.6);border:none;color:white;width:45px;height:45px;border-radius:50%;font-size:20px;cursor:pointer;}
-</style>
+<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
+<h3 style="color:#00ffcc;">👥 Find Friends</h3>
+<input type="text" id="friendSearch" placeholder="Search name..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:white;" onkeyup="searchFriends()">
+<div id="suggestedFriends" style="margin-top:15px;display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;"></div>
+<div id="searchResults" style="margin-top:10px;"></div>
+</div>
 
 <script>
+function shareGLUMO(){ if(navigator.share){navigator.share({title:'G-LUMO',text:'Connect. Share. Glow.',url:'https://rolsvoks254.github.io/g-lumo/'})} else {alert('Copy: https://rolsvoks254.github.io/g-lumo/')} }
+
 let promaxReels = JSON.parse(localStorage.getItem('glumo_promax_reels') || '[]');
-
-if(promaxReels.length === 0){
-  promaxReels = [
-    {user:'@mary_salon', caption:'Salon vibes Sosiot 💇‍♀️ #trending', likes:24, src:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'},
-    {user:'@brian_boda', caption:'Kericho ride today 🏍️ #boda', likes:18, src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'},
-    {user:'@faith_254', caption:'New dance challenge 🔥', likes:56, src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
-  ];
-  localStorage.setItem('glumo_promax_reels', JSON.stringify(promaxReels));
+if(promaxReels.length===0){
+ promaxReels=[
+  {user:'@mary_salon',caption:'Salon vibes Sosiot 💇‍♀️',likes:24,src:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'},
+  {user:'@brian_boda',caption:'Kericho ride today 🏍️',likes:18,src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'},
+  {user:'@faith_254',caption:'New dance challenge 🔥',likes:56,src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
+ ];
 }
-
-const promaxFeed = document.getElementById('promaxReelsFeed');
-
-function savePromax(){
-  // Don't save blob URLs (they expire), only save real ones
-  const toSave = promaxReels.filter(r => !r.src.startsWith('blob:'));
-  localStorage.setItem('glumo_promax_reels', JSON.stringify(toSave));
-}
-
+const promaxFeed=document.getElementById('promaxReelsFeed');
+function savePromax(){ const toSave=promaxReels.filter(r=>!r.src.startsWith('blob:')); localStorage.setItem('glumo_promax_reels',JSON.stringify(toSave)); }
 function renderPromaxReels(){
-  promaxFeed.innerHTML = '';
-  promaxReels.forEach((r, i) => {
-    const div = document.createElement('div');
-    div.className = 'promax-reel';
-    div.innerHTML = `
-      <video src="${r.src}" loop playsinline muted onclick="this.muted=!this.muted; this.paused?this.play():this.pause()"></video>
-      <div class="promax-actions">
-        <button class="promax-btn" onclick="likePromax(${i},this)">❤️</button>
-        <span style="color:white;font-size:12px;margin-top:-10px;">${r.likes||0}</span>
-        <button class="promax-btn" onclick="alert('Comments coming soon!')">💬</button>
-        <button class="promax-btn" onclick="sharePromax()">↗️</button>
-      </div>
-      <div class="promax-caption">
-        <div class="promax-user">${r.user}</div>
-        ${r.caption || ''}
-      </div>
-    `;
-    promaxFeed.appendChild(div);
-  });
-
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      const v = e.target.querySelector('video');
-      if(!v) return;
-      if(e.intersectionRatio > 0.6){ v.play().catch(()=>{}); } else { v.pause(); v.currentTime = 0; }
-    });
-  }, {root: promaxFeed, threshold:[0, 0.6, 1]});
-  document.querySelectorAll('.promax-reel').forEach(el=>observer.observe(el));
+ promaxFeed.innerHTML='';
+ promaxReels.forEach((r,i)=>{
+  const div=document.createElement('div'); div.className='promax-reel';
+  div.innerHTML=`<video src="${r.src}" loop playsinline muted onclick="this.muted=!this.muted; this.paused?this.play():this.pause()"></video>
+  <div class="promax-actions"><button class="promax-btn" onclick="likePromax(${i},this)">❤️</button><span style="color:white;font-size:12px;">${r.likes||0}</span></div>
+  <div class="promax-caption"><div class="promax-user">${r.user}</div>${r.caption||''}</div>`;
+  promaxFeed.appendChild(div);
+ });
 }
-
-function likePromax(i, btn){
-  promaxReels[i].likes = (promaxReels[i].likes || 0) + 1;
-  btn.nextElementSibling.innerText = promaxReels[i].likes;
-  btn.style.transform = 'scale(1.3)';
-  setTimeout(()=>btn.style.transform='scale(1)',200);
-  savePromax();
-}
-
-function sharePromax(){
-  if(navigator.share){ navigator.share({title:'G-LUMO Reel', url: window.location.href}); }
-  else { alert('Link copied! Share it with friends.'); }
-}
-
-// FAST POST - shows in <1 second
-document.getElementById('promaxReelUpload').addEventListener('change', function(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const caption = document.getElementById('promaxCaption').value.trim();
-  const fastUrl = URL.createObjectURL(file);
-  
-  let myName = '@you';
-  try{
-    if(window.auth && auth.currentUser && auth.currentUser.email){
-      myName = '@' + auth.currentUser.email.split('@')[0];
-    } else if(localStorage.getItem('glumo_username')){
-      myName = '@' + localStorage.getItem('glumo_username');
-    }
-  }catch(err){}
-  
-  promaxReels.unshift({user:myName, caption:caption, likes:0, src:fastUrl});
-  renderPromaxReels();
-  promaxFeed.scrollTo({left:0, behavior:'smooth'});
-  document.getElementById('promaxCaption').value = '';
-  alert('Reel posted! Now swipe left/right to see friends reels 🔥');
-  e.target.value = '';
+function likePromax(i,btn){ promaxReels[i].likes=(promaxReels[i].likes||0)+1; btn.nextElementSibling.innerText=promaxReels[i].likes; savePromax(); }
+document.getElementById('promaxReelUpload').addEventListener('change',function(e){
+ const file=e.target.files[0]; if(!file) return;
+ const caption=document.getElementById('promaxCaption').value.trim();
+ const fastUrl=URL.createObjectURL(file);
+ let myName='@you';
+ try{ if(window.auth && auth.currentUser && auth.currentUser.email){ myName='@'+auth.currentUser.email.split('@')[0]; }}catch{}
+ promaxReels.unshift({user:myName,caption:caption,likes:0,src:fastUrl});
+ renderPromaxReels(); promaxFeed.scrollTo({left:0,behavior:'smooth'}); document.getElementById('promaxCaption').value=''; e.target.value='';
 });
-
 renderPromaxReels();
-</script>
-<!-- END PROMAX REELS -->    
-<!-- G-LUMO PROMAX FIND FRIENDS -->
-<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
-  <h3 style="color:#00ffcc;margin:0;">👥 Find Friends</h3>
-  <p style="color:#aaa;font-size:12px;margin:5px 0 12px;">Find people and friends near you</p>
-  
-  <input type="text" id="friendSearch" placeholder="Search name or @username..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:white;box-sizing:border-box;" onkeyup="searchFriends()">
-  
-  <div id="suggestedFriends" style="margin-top:15px; display:flex; flex-direction:row; gap:12px; overflow-x:auto; padding-bottom:10px; scroll-snap-type:x mandatory;"></div>
-  <div id="searchResults" style="margin-top:10px;"></div>
-</div>
 
-<style>
-.friend-card{display:flex; flex-direction:column; align-items:center; background:#1e293b; padding:12px; border-radius:16px; min-width:110px; max-width:110px; flex:0 0 auto; scroll-snap-align:start; border:1px solid #1e293b; text-align:center;}
-.friend-avatar{width:55px; height:55px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; margin-bottom:8px;}
-.friend-info{width:100%;}
-.friend-name{color:white; font-weight:bold; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.friend-user{color:#aaa; font-size:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.add-btn{background:#00ffcc; color:#000; border:none; padding:6px 12px; border-radius:20px; font-weight:bold; cursor:pointer; font-size:11px; margin-top:8px; width:100%;}
-.add-btn.added{background:#222; color:#00ffcc; border:1px solid #00ffcc;}
-</style>
-
-<script>
-let allUsers = JSON.parse(localStorage.getItem('glumo_users') || '[]');
-let myFriends = JSON.parse(localStorage.getItem('glumo_friends') || '[]');
-
-if(allUsers.length === 0){
-  allUsers = [
-    {name:'Mary Chebet', username:'mary_salon', location:'Sosiot', avatar:'M'},
-    {name:'Brian Kiprop', username:'brian_boda', location:'Kericho', avatar:'B'},
-    {name:'Faith Nyambura', username:'faith_254', location:'Sosiot', avatar:'F'},
-    {name:'Kevin Mutai', username:'kevin_tech', location:'Kericho', avatar:'K'},
-    {name:'Sharon Achieng', username:'sharon_beauty', location:'Sosiot', avatar:'S'},
-    {name:'Dennis Kiplangat', username:'dennis_fx', location:'Bomet', avatar:'D'},
-    {name:'Mercy Wanjiku', username:'mercy_shop', location:'Sosiot', avatar:'M'},
-    {name:'Peter Njoroge', username:'peter_driver', location:'Kericho', avatar:'P'}
-  ];
-  localStorage.setItem('glumo_users', JSON.stringify(allUsers));
+// FRIENDS SYSTEM - FIXED COMPLETE
+let allUsers=JSON.parse(localStorage.getItem('glumo_users')||'[]');
+let myFriends=JSON.parse(localStorage.getItem('glumo_friends')||'[]');
+if(allUsers.length===0){
+ allUsers=[
+  {name:'Mary Chebet',username:'mary_salon',location:'Sosiot',avatar:'M'},
+  {name:'Brian Kiprop',username:'brian_boda',location:'Kericho',avatar:'B'},
+  {name:'Faith Nyambura',username:'faith_254',location:'Sosiot',avatar:'F'},
+  {name:'Kevin Mutai',username:'kevin_tech',location:'Kericho',avatar:'K'}
+ ];
+ localStorage.setItem('glumo_users',JSON.stringify(allUsers));
 }
-
 function renderSuggested(){
-  const box = document.getElementById('suggestedFriends');
-  box.innerHTML = '<p style="color:#00ffcc;font-size:13px;margin:0 0 10px;">✨ Suggested for you</p>';
-  allUsers.forEach(u => {
-    const isFriend = myFriends.includes(u.username);
-    const card = document.createElement('div');
-    card.className = 'friend-card';
-    card.innerHTML = `
-      <div class="friend-avatar">${u.avatar}</div>
-      <div class="friend-info">
-        <div class="friend-name">${u.name}</div>
-        <div class="friend-user">@${u.username} • ${u.location}</div>
-      </div>
-      <button class="add-btn ${isFriend?'added':''}" onclick="toggleFriend('${u.username}', this)">${isFriend?'Friends':'Add Friend'}</button>
-    `;
-    box.appendChild(card);
-  });
+ const box=document.getElementById('suggestedFriends'); box.innerHTML='';
+ allUsers.forEach(u=>{
+  const isFriend=myFriends.includes(u.username);
+  const card=document.createElement('div'); card.className='friend-card';
+  card.innerHTML=`<div class="friend-avatar">${u.avatar}</div><div style="font-weight:bold;font-size:12px;">${u.name}</div><div style="color:#aaa;font-size:10px;">@${u.username}</div><button class="add-btn" onclick="toggleFriend('${u.username}',this)">${isFriend?'Friends':'Add Friend'}</button>`;
+  box.appendChild(card);
+ });
 }
-
+function toggleFriend(username,btn){
+ if(myFriends.includes(username)){ myFriends=myFriends.filter(x=>x!==username); btn.innerText='Add Friend'; }
+ else { myFriends.push(username); btn.innerText='Friends'; }
+ localStorage.setItem('glumo_friends',JSON.stringify(myFriends));
+}
 function searchFriends(){
-  const q = document.getElementById('friendSearch').value.toLowerCase().trim();
-  const resultsBox = document.getElementById('searchResults');
-  const suggestedBox = document.getElementById('suggestedFriends');
-  
-  if(q === ''){
-    resultsBox.innerHTML = '';
-    suggestedBox.style.display = 'block';
-    return;
-  }
-  suggestedBox.style.display = 'none';
-  const filtered = allUsers.filter(u => u.name.toLowerCase().includes(q) || u.username.toLowerCase().includes(q));
-  
-  if(filtered.length === 0){
-    resultsBox.innerHTML = '<p style="color:#aaa;text-align:center;padding:10px;">No people found</p>';
-    return;
-  }
-  resultsBox.innerHTML = '<p style="color:#00ffcc;font-size:13px;">Search Results</p>';
-  filtered.forEach(u => {
-    const isFriend = myFriends.includes(u.username);
-    const card = document.createElement('div');
-    card.className = 'friend-card';
-    card.innerHTML = `
-      <div class="friend-avatar">${u.avatar}</div>
-      <div class="friend-info">
-        <div class="friend-name">${u.name}</div>
-        <div class="friend-user">@${u.username} • ${u.location}</div>
-      </div>
-      <button class="add-btn ${isFriend?'added':''}" onclick="toggleFriend('${u.username}', this)">${isFriend?'Friends':'Add Friend'}</button>
-    `;
-    resultsBox.appendChild(card);
-  });
+ const q=document.getElementById('friendSearch').value.toLowerCase().trim();
+ const resultsBox=document.getElementById('searchResults');
+ const suggestedBox=document.getElementById('suggestedFriends');
+ if(q===''){ resultsBox.innerHTML=''; suggestedBox.style.display='flex'; renderSuggested(); return; }
+ suggestedBox.style.display='none';
+ const filtered=allUsers.filter(u=>u.name.toLowerCase().includes(q) || u.username.toLowerCase().includes(q));
+ resultsBox.innerHTML='';
+ if(filtered.length===0){ resultsBox.innerHTML='<p style="color:#aaa;">No friends found</p>'; return; }
+ filtered.forEach(u=>{
+  const isFriend=myFriends.includes(u.username);
+  const div=document.createElement('div'); div.style.cssText='background:#111827;padding:10px;border-radius:10px;margin:8px 0;display:flex;align-items:center;gap:10px;';
+  div.innerHTML=`<div class="friend-avatar" style="width:35px;height:35px;font-size:14px;">${u.avatar}</div><div style="flex:1;text-align:left;"><b>${u.name}</b><br><small style="color:#aaa;">@${u.username}</small></div><button class="add-btn" style="width:auto;" onclick="toggleFriend('${u.username}',this)">${isFriend?'Friends':'Add'}</button>`;
+  resultsBox.appendChild(div);
+ });
 }
-
-function toggleFriend(username, btn){
-  if(myFriends.includes(username)){
-    myFriends = myFriends.filter(f => f !== username);
-    btn.innerText = 'Add Friend';
-    btn.classList.remove('added');
-    alert('@' + username + ' removed');
-  } else {
-    myFriends.push(username);
-    btn.innerText = 'Friends';
-    btn.classList.add('added');
-    alert('You are now friends with @' + username + ' 🎉');
-  }
-  localStorage.setItem('glumo_friends', JSON.stringify(myFriends));
-}
-
 renderSuggested();
+
+// FORCE SCROLL FIX
+document.body.style.overflow='auto';
+document.documentElement.style.overflow='auto';
+setTimeout(()=>{ renderPromaxReels(); window.scrollTo(0,0); },500);
 </script>
-<!-- END PROMAX FIND FRIENDS -->
-    
-
-
- <!-- FULL PHOTO EDITOR -->
-<div style="background:#1a1a1a;padding:15px;border-radius:15px;margin-top:15px;">
-  <h3 style="color:#00ff88;margin:0 0 10px 0;">🖼️ Photo Editor Pro</h3>
-  <input type="file" id="photoInput" accept="image/*" style="width:100%;margin-bottom:10px;">
-  <canvas id="photoCanvas" style="width:100%;border-radius:10px;background:#000;"></canvas>
-  
-  <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0;">
-    <button onclick="cropPhoto('1:1')">Square</button>
-    <button onclick="cropPhoto('4:5')">Portrait</button>
-    <button onclick="cropPhoto('9:16')">Story</button>
-    <button onclick="rotatePhoto()">Rotate</button>
-    <button onclick="flipPhoto()">Flip</button>
-  </div>
-
-  <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0;">
-    <button onclick="setFilter('none')">Normal</button>
-    <button onclick="setFilter('grayscale(100%)')">B&W</button>
-    <button onclick="setFilter('sepia(80%)')">Vintage</button>
-    <button onclick="setFilter('hue-rotate(90deg)')">Cool</button>
-    <button onclick="setFilter('saturate(2)')">Vivid</button>
-    <button onclick="setFilter('contrast(1.5) brightness(0.9)')">Drama</button>
-  </div>
-
-  <label style="color:white;font-size:12px;">Brightness</label>
-  <input type="range" id="bright" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
-  <label style="color:white;font-size:12px;">Contrast</label>
-  <input type="range" id="contrast" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
-  <label style="color:white;font-size:12px;">Saturation</label>
-  <input type="range" id="sat" min="0" max="200" value="100" oninput="applyEdits()" style="width:100%;">
-
-  <input type="text" id="photoText" placeholder="Add text on photo..." style="width:100%;padding:8px;margin:10px 0;border-radius:8px;border:none;">
-  <button onclick="addText()" style="width:100%;background:#00ff88;color:black;padding:10px;border:none;border-radius:8px;font-weight:bold;">Add Text</button>
-
-  <div style="margin:10px 0;font-size:24px;">
-    <span onclick="addSticker('🔥')">🔥</span> <span onclick="addSticker('❤️')">❤️</span> <span onclick="addSticker('😂')">😂</span> <span onclick="addSticker('⭐')">⭐</span> <span onclick="addSticker('👑')">👑</span>
-  </div>
-
-  <button onclick="downloadPhoto()" style="width:100%;background:#ff0066;color:white;padding:12px;border:none;border-radius:8px;font-weight:bold;">Download Photo</button>
-</div>
-
-<script>
-let img = new Image(), angle = 0, flip = 1, filter = 'none', stickers = [], texts = [];
-const canvas = document.getElementById('photoCanvas'), ctx = canvas.getContext('2d');
-
-document.getElementById('photoInput').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if(file){ img.src = URL.createObjectURL(file); img.onload = () => { canvas.width = img.width; canvas.height = img.height; applyEdits(); } }
-});
-
-function applyEdits(){
-  const b = document.getElementById('bright').value, c = document.getElementById('contrast').value, s = document.getElementById('sat').value;
-  ctx.save();
-  ctx.filter = `${filter} brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.translate(canvas.width/2, canvas.height/2);
-  ctx.rotate(angle * Math.PI/180);
-  ctx.scale(flip, 1);
-  ctx.drawImage(img, -img.width/2, -img.height/2);
-  ctx.restore();
-  ctx.filter = 'none';
-  texts.forEach(t => { ctx.font = 'bold 60px Arial'; ctx.fillStyle = 'white'; ctx.strokeStyle = 'black'; ctx.lineWidth = 4; ctx.strokeText(t, 50, canvas.height - 80); ctx.fillText(t, 50, canvas.height - 80); });
-  stickers.forEach((st,i) => { ctx.font = '80px Arial'; ctx.fillText(st, 50 + (i*90), 100); });
-}
-function setFilter(f){ filter = f; applyEdits(); }
-function rotatePhoto(){ angle = (angle + 90) % 360; applyEdits(); }
-function flipPhoto(){ flip = flip * -1; applyEdits(); }
-function cropPhoto(ratio){ 
-  if(ratio=='1:1'){ canvas.height = canvas.width; }
-  if(ratio=='4:5'){ canvas.height = canvas.width * 1.25; }
-  if(ratio=='9:16'){ canvas.height = canvas.width * 1.77; }
-  applyEdits();
-}
-function addText(){ const t = document.getElementById('photoText').value; if(t){ texts.push(t); applyEdits(); } }
-function addSticker(s){ stickers.push(s); applyEdits(); }
-function downloadPhoto(){ const a = document.createElement('a'); a.download = 'g-lumo-photo.png'; a.href = canvas.toDataURL(); a.click(); }
-</script> 
-
-  <!-- VIDEO EDITOR -->
-  <div id="editor-video" style="display:none;">
-    <input type="file" id="videoInput" accept="video/*">
-    <video id="videoPlayer" controls style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></video>
-    <input type="range" id="vBright" min="50" max="150" value="100" oninput="applyVideoFilter()"> Brightness
-    <input type="range" id="vSaturate" min="0" max="200" value="100" oninput="applyVideoFilter()"> Color
-    <button onclick="downloadVideoLink()" style="background:#00ffcc;color:#000;">⬇️ Download Video</button>
-  </div>
-
-  <!-- CLIP EDITOR -->
-  <div id="editor-clip" style="display:none;">
-    <input type="file" id="clipInput" accept="video/*">
-    <video id="clipPlayer" controls style="width:100%;border-radius:8px;background:#000;margin-top:8px;"></video>
-    <p style="font-size:12px;">Use your phone gallery to trim, then upload here to add G-LUMO filter & share to feed.</p>
-    <button onclick="shareClip()" style="background:#fff;color:#000;">🚀 Share Clip to G-LUMO</button>
-  </div>
-</div>
-
-<script>
-let photoImg = new Image(), extraFilter = '';
-function showEditor(t){
-  document.getElementById('editor-photo').style.display = t=='photo'?'block':'none';
-  document.getElementById('editor-video').style.display = t=='video'?'block':'none';
-  document.getElementById('editor-clip').style.display = t=='clip'?'block':'none';
-}
-document.getElementById('photoInput').onchange = e => {
-  photoImg.onload = () => {
-    let c = document.getElementById('photoCanvas');
-    c.width = photoImg.width; c.height = photoImg.height;
-    applyPhotoFilter();
-  };
-  photoImg.src = URL.createObjectURL(e.target.files[0]);
-};
-function setPreset(f){ extraFilter = f; applyPhotoFilter(); }
-function applyPhotoFilter(){
-  let c = document.getElementById('photoCanvas'), ctx = c.getContext('2d');
-  if(!photoImg.src) return;
-  ctx.filter = `brightness(${bright.value}%) contrast(${contrast.value}%) saturate(${saturate.value}%) ${extraFilter}`;
-  ctx.drawImage(photoImg,0,0);
-}
-function downloadPhoto(){
-  let a = document.createElement('a');
-  a.download = 'glumo-photo.png';
-  a.href = document.getElementById('photoCanvas').toDataURL();
-  a.click();
-}
-document.getElementById('videoInput').onchange = e => {
-  document.getElementById('videoPlayer').src = URL.createObjectURL(e.target.files[0]);
-};
-function applyVideoFilter(){
-  document.getElementById('videoPlayer').style.filter = `brightness(${vBright.value}%) saturate(${vSaturate.value}%)`;
-}
-function downloadVideoLink(){
-  let v = document.getElementById('videoPlayer').src;
-  if(v){ let a=document.createElement('a'); a.href=v; a.download='glumo-video.mp4'; a.click(); }
-}
-document.getElementById('clipInput').onchange = e => {
-  document.getElementById('clipPlayer').src = URL.createObjectURL(e.target.files[0]);
-  document.getElementById('clipPlayer').style.filter = 'saturate(140%) contrast(110%)';
-};
-function shareClip(){
-  if(navigator.share){ navigator.share({title:'G-LUMO Clip', text:'Check my clip on G-LUMO!', url:'https://rolsvoks254.github.io/g-lumo/'}); }
-  else { alert('Copy link: https://rolsvoks254.github.io/g-lumo/'); }
-}
-</script>
-  <div style="background:#111827;padding:15px;border-radius:12px;margin:15px 0;border:1px solid #00ffcc;">
-<h2 style="color:#00ffcc;text-align:center;">🌍 G-LUMO World Elite Marketplace</h2>
-<p style="text-align:center;"><small>Social Shopping • G-LUMO takes 5% • Seller gets 95%</small></p>
-
-<input id="mSearch" onkeyup="renderMarket()" placeholder="🔍 Search phones, food, fashion, services...">
-<div style="display:flex;gap:6px;overflow-x:auto;margin:8px 0;">
-<button onclick="filterCat('All')">All</button>
-<button onclick="filterCat('Food')">🍔 Food</button>
-<button onclick="filterCat('Fashion')">👗 Fashion</button>
-<button onclick="filterCat('Electronics')">📱 Electronics</button>
-<button onclick="filterCat('Transport')">🛵 Transport</button>
-<button onclick="filterCat('Beauty')">💄 Beauty</button>
-</div>
-<div id="marketList"></div>
-
-<h3 style="color:#00ffcc;">💰 Sell on G-LUMO (Agree 5% Fee)</h3>
-<input id="pName" placeholder="Product / Service name">
-<input id="pCat" placeholder="Category: Food, Fashion, Electronics">
-<input id="pPrice" type="number" placeholder="Price KSh e.g. 2500">
-   <input id="pMedia" type="file" accept="image/*,video/*" style="margin:8px 0;"> 
-<input id="pSeller" placeholder="Your Business Name">
-<input id="pPhone" placeholder="Seller WhatsApp 2547...">
-<input id="ppochi" placeholder="Seller M-Pesa to receive 95%">
-<input id="pLoc" placeholder="Location e.g. Sosiot, Nairobi, Mombasa">
-<button onclick="addProduct()" style="background:#00ffcc;color:#000;">+ List Product & Start Selling</button>
-</div>
-
-<script>
-const ADMIN_WA = '254142550440'; // YOUR WhatsApp - all orders come here
-const GLUMO_pochi = '0142550440'; // YOUR pochi- buyers pay G-LUMO first
-let currentCat = 'All';
-let market = JSON.parse(localStorage.getItem('glumoMarket5') || '[]');
-if(market.length === 0){
-  market = [
-    {name:"iPhone 13 Pro - Clean UK Used", cat:"Electronics", price:65000, seller:"Sosiot Phones Hub", phone:"254700000000", till:"0700000000", loc:"Sosiot", rating:5, verified:true, sales:142},
-    {name:"Fresh Tilapia + Ugali Full Meal", cat:"Food", price:350, seller:"Mama Oliech Kitchen", phone:"254711111111", till:"0711111111", loc:"Sosiot Market", rating:5, verified:true, sales:89},
-    {name:"Nike Air Force 1 - All Sizes", cat:"Fashion", price:3800, seller:"Glow Fashion254", phone:"254722222222", till:"0722222222", loc:"Online Delivery", rating:4, verified:false, sales:56}
-  ];
-}
-function filterCat(c){ currentCat = c; renderMarket(); }
-function renderMarket(){
-  function renderMarket(){
-  const q = document.getElementById('mSearch').value.toLowerCase();
-  let html = '';
-  market.filter(p => (currentCat==='All' || p.cat===currentCat) && p.name.toLowerCase().includes(q)).forEach((p,i)=>{
-    
-    html += `<div class="card">
-    ${p.media ? (p.mediaType==='video' ? `<video src="${p.media}" controls style="width:100%;border-radius:12px;"></video>` : `<img src="${p.media}" style="width:100%;border-radius:12px;">`) : ''}
-      <b>${p.name} ${p.verified ? '✅ Verified' : ''}</b> <span style="float:right;color:#00ffcc;">⭐ ${p.rating}.0</span><br>
-      <small>${p.seller} • ${p.cat} • 📍 ${p.loc} • ${p.sales} sold</small><br>
-      <b style="color:#00ffcc;font-size:22px;">KSh ${p.price.toLocaleString()}</b><br>
-      <button onclick="buyProduct(${i})" style="background:#25D366;color:white;padding:12px;border-radius:20px;width:100%;border:none;margin-top:8px;">Buy Now on WhatsApp</button>
-    </div>`;
-  });
-  document.getElementById('marketList').innerHTML = html || '<p style="text-align:center;">No products found. Be the first to sell!</p>';
-  }
-function buyProduct(i){
-  const p = market[i];
-  const fee = Math.round(p.price * 0.05);
-  const gets = p.price - fee;
-  p.sales++;
-  localStorage.setItem('glumoMarket5', JSON.stringify(market));
-  renderMarket();
-  const msg = `NEW G-LUMO ORDER%0AProduct: ${encodeURIComponent(p.name)}%0APrice: KSh ${p.price}%0AG-LUMO 5%25 Fee: KSh ${fee}%0ASeller Gets 95%25: KSh ${gets}%0ASeller: ${encodeURIComponent(p.seller)}%0ASeller WhatsApp: ${p.phone}%0ASeller M-Pesa: ${p.till}%0ALocation: ${encodeURIComponent(p.loc)}%0A%0AI paid to G-LUMO Till: ${GLUMO_TILL}`;
-  window.open(`https://wa.me/${ADMIN_WA}?text=${msg}`);
-}
-function addProduct(){
-  const name = document.getElementById('pName').value;
-  const price = parseInt(document.getElementById('pPrice').value);
-  const phone = document.getElementById('pPhone').value;
-  const file = document.getElementById('pMedia').files[0];
-  if(!name || !price || !phone) return alert('Add product name, price, and WhatsApp');
-
-  const save = (media, mediaType) => {
-    market.unshift({name:name, cat:document.getElementById('pCat').value||'Shop', price:price, seller:'Seller', phone:phone, media:media, mediaType:mediaType, verified:false, rating:5, loc:'Kenya', sales:0});
-    localStorage.setItem('glumoMarket5', JSON.stringify(market));
-    renderMarket();
-    alert('Live on G-LUMO Marketplace!');
-  };
-
-  if(file){
-    const reader = new FileReader();
-    reader.onload = e => save(e.target.result, file.type.startsWith('video') ? 'video' : 'image');
-    reader.readAsDataURL(file);
-  } else {
-    save('', '');
-  }
-}
-renderMarket();
-</script>
-<script>
-function addPost(){
-let t=document.getElementById('postText').value;
-if(!t) return;
-let d=document.createElement('div');
-d.className='card';
-d.innerHTML='<b>@rolsvoks254</b><br>'+t+'<br><small>Just now • Sosiot</small>';
-document.getElementById('feed').prepend(d);
-document.getElementById('postText').value='';
-}
-</script><script>
-// SECURITY SHIELD - G-LUMO
-(function(){
-  // Block XSS in inputs
-  window.secureText = function(str){
-    if(!str) return "";
-    return str.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/\//g,"&#x2F;");
-  };
-
-  // Block dangerous pasting into inputs
-  document.addEventListener('paste', function(e){
-    let target = e.target;
-    if(target.tagName === 'INPUT' || target.tagName === 'TEXTAREA'){
-      setTimeout(()=>{
-        target.value = window.secureText(target.value);
-      }, 10);
-    }
-  });
-
-  // Stop right-click inspect on sensitive areas (basic deterrent)
-  document.addEventListener('contextmenu', function(e){
-    if(e.target.tagName === 'IFRAME') e.preventDefault();
-  });
-
-  // Block iframe hijacking
-  if (window.top !== window.self) {
-    window.top.location = window.self.location;
-  }
-
-  // Auto-block suspicious links
-  document.querySelectorAll('a').forEach(a=>{
-    if(a.href && !a.href.startsWith(location.origin) && !a.href.startsWith('https://')){
-      a.removeAttribute('href');
-    }
-  });
-})();
-</script><style>
-/* ELITE VIDEO SYSTEM - G-LUMO */
-.sticky-videos{position:sticky;top:0;z-index:998;background:#000;box-shadow:0 4px 25px rgba(0,255,204,0.3)}
-#miniPlayer{position:fixed;bottom:75px;right:12px;width:160px;height:280px;z-index:9999;background:#000;border:2px solid #00ffcc;border-radius:16px;overflow:hidden;display:none;box-shadow:0 8px 30px rgba(0,0,0,0.9)}
-#miniPlayer video,#miniPlayer iframe{width:100%;height:100%;object-fit:cover}
-#miniClose{position:absolute;top:5px;right:5px;background:red;color:#fff;border:none;width:24px;height:24px;border-radius:50%;font-weight:bold;z-index:10}
-#scrollTopBtn{position:fixed;bottom:75px;left:12px;z-index:9999;background:#00ffcc;color:#000;border:none;width:48px;height:48px;border-radius:50%;font-size:20px;font-weight:bold;display:none;box-shadow:0 4px 15px rgba(0,255,204,0.6)}
-</style>
-
-<div id="miniPlayer"><button id="miniClose">×</button><div id="miniContent"></div></div>
-<button id="scrollTopBtn">↑</button>
-
-<script>
-// ELITE VIDEO CONTROLLER
-const hub = document.querySelector('.card'); // your video hub card
-let currentVideoHTML = '';
-
-// 1. Make Video Hub Sticky
-if(hub && hub.innerHTML.includes('FASHION VIDEO HUB')){
-  hub.classList.add('sticky-videos');
-}
-
-// 2. Floating Mini-Player when hub scrolls out of view
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    const mini = document.getElementById('miniPlayer');
-    const activeVideo = hub ? hub.querySelector('video, iframe') : null;
-    if(!entry.isIntersecting && activeVideo){
-      currentVideoHTML = activeVideo.outerHTML;
-      document.getElementById('miniContent').innerHTML = currentVideoHTML;
-      mini.style.display = 'block';
-      let mv = mini.querySelector('video');
-      if(mv){ mv.play().catch(()=>{}); mv.muted = true; }
-    } else {
-      mini.style.display = 'none';
-      document.getElementById('miniContent').innerHTML = '';
-    }
-  });
-},{threshold:0.1});
-if(hub) observer.observe(hub);
-
-// 3. Close mini player
-document.getElementById('miniClose').onclick = ()=>{
-  document.getElementById('miniPlayer').style.display='none';
-  document.getElementById('miniContent').innerHTML='';
-};
-
-// 4. Auto Scroll Top Button
-const topBtn = document.getElementById('scrollTopBtn');
-window.addEventListener('scroll', ()=>{
-  topBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
-});
-topBtn.onclick = ()=> window.scrollTo({top:0, behavior:'smooth'});
-</script>
-    <script>
-// G-LUMO TikTok Remover - Removes ALL TikTok videos
-(function() {
-  // 1. Clean videoPool if it exists
-  if (typeof videoPool !== 'undefined' && Array.isArray(videoPool)) {
-    for (let i = videoPool.length - 1; i >= 0; i--) {
-      if (videoPool[i].toLowerCase().includes('tiktok')) {
-        videoPool.splice(i, 1);
-      }
-    }
-  }
-
-  // 2. Remove all TikTok elements already on page
-  function removeTikTokElements() {
-    const selectors = [
-      'iframe[src*="tiktok.com"]',
-      'blockquote.tiktok-embed',
-      'div[data-tiktok]',
-      'a[href*="tiktok.com"]',
-      '.tiktok-embed',
-      '#tiktok-section',
-      '[id*="tiktok"]',
-      '[class*="tiktok"]'
-    ];
-    selectors.forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => el.remove());
-    });
-
-    // Remove any parent box that says Video currently unavailable
-    document.querySelectorAll('div, section, article').forEach(el => {
-      if (el.textContent && el.textContent.includes('Video currently unavailable') && el.textContent.includes('TikTok')) {
-        el.remove();
-      }
-    });
-  }
-
-  // 3. Run on load and keep watching for new TikTok loads
-  document.addEventListener('DOMContentLoaded', removeTikTokElements);
-  window.addEventListener('load', removeTikTokElements);
-  setInterval(removeTikTokElements, 1000);
-
-  const observer = new MutationObserver(removeTikTokElements);
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  // 4. Block TikTok script from loading
-  const originalCreateElement = document.createElement.bind(document);
-  document.createElement = function(tag) {
-    const el = originalCreateElement(tag);
-    if (tag.toLowerCase() === 'script') {
-      Object.defineProperty(el, 'src', {
-        set: function(value) {
-          if (value && value.toLowerCase().includes('tiktok')) return;
-          el.setAttribute('src', value);
-        },
-        get: function() { return el.getAttribute('src'); }
-      });
-    }
-    return el;
-  };
-})();
-    </script>
-  <button onclick="openFYP()" style="position:fixed;bottom:80px;right:16px;background:#00ffcc;color:#000;border:none;padding:14px 18px;border-radius:50px;font-weight:bold;z-index:99;">▶ FYP Feed</button>
-
-<div id="fypFeed" style="display:none;position:fixed;inset:0;background:#000;z-index:9999;overflow-y:scroll;scroll-snap-type:y mandatory;">
-  <button onclick="closeFYP()" style="position:fixed;top:16px;right:16px;z-index:10000;background:#00ffcc;border:none;padding:10px 14px;border-radius:20px;font-weight:bold;">Close X</button>
-  <div id="feedItems"></div>
-</div>
-
-<div style="background:#111;padding:16px;border-radius:16px;margin:16px;">
-  <h3 style="color:#00ffcc;">Post Photo / Video to FYP</h3>
-  <input id="postText" placeholder="Write something..." style="width:100%;padding:12px;margin:8px 0;">
-  <input id="postMedia" type="file" accept="image/*,video/*" style="margin:8px 0;color:#fff;">
-  <button onclick="addToFeed()" style="background:#00ffcc;color:#000;padding:12px;width:100%;border:none;border-radius:20px;font-weight:bold;">Post Now</button>
-</div>
-
-<script>
-let feedPosts = JSON.parse(localStorage.getItem('glumoFeed') || '[]');
-function addToFeed(){
-  let text = document.getElementById('postText').value;
-  let file = document.getElementById('postMedia').files[0];
-  if(!text && !file) return alert('Add text or a photo/video');
-  const savePost = (media, type) => {
-    feedPosts.unshift({text:text, media:media, mediaType:type, likes:0, user:'@rolsvoks254', time:'Just now • Sosiot'});
-    localStorage.setItem('glumoFeed', JSON.stringify(feedPosts));
-    document.getElementById('postText').value=''; document.getElementById('postMedia').value='';
-    renderFeed(); alert('Live on FYP!'); openFYP();
-  };
-  if(file){
-    let reader = new FileReader();
-    reader.onload = e => savePost(e.target.result, file.type.startsWith('video') ? 'video' : 'image');
-    reader.readAsDataURL(file);
-  } else { savePost('', 'text'); }
-}
-function renderFeed(){
-  let html = '';
-  feedPosts.forEach((p,i)=>{
-    html += `<div style="height:100vh;scroll-snap-align:start;position:relative;background:#000;display:flex;align-items:center;justify-content:center;">
-      ${p.mediaType==='video' ? `<video src="${p.media}" autoplay muted loop playsinline controls style="width:100%;height:100%;object-fit:cover;"></video>` : ''}
-      ${p.mediaType==='image' ? `<img src="${p.media}" style="width:100%;height:100%;object-fit:cover;">` : ''}
-      ${p.mediaType==='text' ? `<div style="color:#fff;font-size:28px;padding:30px;text-align:center;">${p.text}</div>` : ''}
-      <div style="position:absolute;left:16px;bottom:90px;color:#fff;max-width:70%;"><b>${p.user}</b><br><small>${p.time}</small><br><br>${p.text}</div>
-      <div style="position:absolute;right:12px;bottom:120px;color:#fff;text-align:center;">
-        <button onclick="likePost(${i})" style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:55px;height:55px;border-radius:50%;font-size:22px;">❤️</button><br><small>${p.likes}</small>
-      </div>
-    </div>`;
-  });
-  document.getElementById('feedItems').innerHTML = html || '<p style="color:#fff;text-align:center;padding-top:50vh;">No posts yet</p>';
-}
-function likePost(i){ feedPosts[i].likes++; localStorage.setItem('glumoFeed', JSON.stringify(feedPosts)); renderFeed(); }
-function openFYP(){ document.getElementById('fypFeed').style.display='block'; renderFeed(); }
-function closeFYP(){ document.getElementById('fypFeed').style.display='none'; }
-renderFeed();
-</script>
-  <script type="importmap">
-{
-  "imports": {
-    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
-    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
-    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js",
-    "firebase/analytics": "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js"
-  }
-}
-</script>
-<script type="module">
-import { auth, db } from "./firebase.js";
-window.auth = auth;
-window.db = db;
-console.log("G-LUMO Firebase connected");
-</script>
- <script type="module">
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
-
-const box = document.createElement("div");
-box.className = "card";
-box.innerHTML = `
-  <h3 style="color:#00ffcc">G-LUMO Account</h3>
-  <p id="userStatus">Not logged in</p>
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-  <label style="color:#fff;font-size:14px"><input type="checkbox" onclick="togglePass()"> Show Password</label>
-  <p style="text-align:right;margin:6px 0;"><span onclick="resetPassword()" style="color:#00ffcc;font-size:12px;cursor:pointer;text-decoration:underline;">Forgot password? Reset</span></p>
-  <button onclick="signup()">Sign Up</button>
-  <button onclick="login()">Login</button>
-  <button onclick="logout()">Logout</button>
-`;
-document.body.insertBefore(box, document.body.children[1]);
-
-window.signup = async () => {
-  try {
-    await createUserWithEmailAndPassword(window.auth, email.value, password.value);
-    alert("Account created!");
-    } catch(e) {
-    if (e.code === 'auth/email-already-in-use') alert('This email is already registered. Please Login instead.');
-    else if (e.code === 'auth/weak-password') alert('Password is too weak. Please use at least 6 characters.');
-    else if (e.code === 'auth/invalid-email') alert('Please enter a valid email address.');
-    else alert('Sign Up failed. Please try again.');
-  }
-};
-
-window.login = async () => {
-  try {
-    await signInWithEmailAndPassword(window.auth, email.value, password.value);
-    alert("Logged in!");
-    } catch(e) {
-    if (e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') alert('Wrong email or password.\n\nPlease check your details, or Sign Up first if you don\'t have an account.');
-    else if (e.code === 'auth/invalid-email') alert('Please enter a valid email address.');
-    else if (e.code === 'auth/too-many-requests') alert('Too many failed attempts. Please wait a few minutes and try again.');
-    else alert('Login failed. Please try again.');
-  }
-};
-
-window.logout = async () => {
-  await signOut(window.auth);
-  alert("Logged out");
-};
-window.togglePass = () => {
-  const p = document.getElementById("password");
-  p.type = p.type === "password" ? "text" : "password";
-};
-  window.resetPassword = async () => {
-  let email = document.getElementById("email")?.value;
-  if(!email || !email.includes("@")){
-    email = prompt("Enter your Gmail to reset password:");
-  }
-  if(!email) return;
-  try{
-    await sendPasswordResetEmail(window.auth, email);
-    alert("✅ Reset link sent to " + email + "\nCheck Gmail + Spam folder.");
-  }catch(e){
-    alert("❌ " + e.message);
-  }
-}; 
-onAuthStateChanged(window.auth, (user) => {
-  const status = document.getElementById("userStatus");
-  const eInput = document.getElementById("email");
-  const pInput = document.getElementById("password");
-  const forgot = document.getElementById("forgotLink");
-
-  if (user) {
-    document.getElementById("userStatus").innerHTML = "Logged in as: " + user.email;
-    if(eInput) eInput.style.display = "none";
-    if(pInput) pInput.style.display = "none";
-    if(forgot) forgot.style.display = "none";
-    document.body.style.overflow = "auto";
-  } else {
-    document.getElementById("userStatus").innerText = "Not logged in";
-    if(eInput) eInput.style.display = "block";
-    if(pInput) pInput.style.display = "block";
-    if(forgot) forgot.style.display = "block";
-    document.body.style.overflow = "auto";
-  }
-});
- </script> 
-  <button id="installBtn" style="display:none;background:#00ffcc;color:#000;width:100%;padding:14px;border:none;border-radius:20px;font-weight:bold;margin:15px 0;">📲 Install G-LUMO App</button>
-<button onclick="enableNotifs()" style="background:#1e1b4b;color:white;width:100%;padding:12px;border:1px solid #00ffcc;border-radius:20px;margin-bottom:15px;">🔔 Enable Notifications</button>
-<script>
-let deferredPrompt;
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; document.getElementById('installBtn').style.display='block'; });
-document.getElementById('installBtn').onclick = async () => { if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt=null; document.getElementById('installBtn').style.display='none'; } };
-function enableNotifs(){
-  Notification.requestPermission().then(p => {
-    if(p==='granted'){ new Notification('G-LUMO', {body:'Notifications ON! You will get likes, orders & messages.'}); alert('Notifications enabled!'); }
-    else alert('Please allow notifications in your browser settings.');
-  });
-}
-    </script>
- <script>
-
-  <style>
-html, body { overflow-y:auto!important; height:auto!important; min-height:100vh!important; }
-#promaxReelsFeed { display:flex!important; min-height:200px!important; }
-body { position:relative!important; }
-</style>
-<script>
-// FORCE SHOW FRIENDS POSTS + FORCE SCROLL
-setTimeout(()=>{
-  try{
-    if(typeof renderPromaxReels==='function'){
-      renderPromaxReels();
-      console.log('Promax rendered');
-    }
-    const feed=document.getElementById('promaxReelsFeed');
-    if(feed){ feed.style.display='flex'; feed.style.overflowX='auto'; }
-    document.body.style.overflow='auto';
-    document.documentElement.style.overflow='auto';
-    window.scrollTo(0,0);
-  }catch(e){ console.log(e); }
-},800);
-</script>  
 </body>
-  
-
+</html>
