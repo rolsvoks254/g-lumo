@@ -2,28 +2,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO FULL ICONS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>G-LUMO CLICK FIXED</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#000;color:#fff;font-family:Arial;overflow:hidden}
-.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:100;border-bottom:2px solid #00ffcc}
+.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:999;border-bottom:2px solid #00ffcc}
 .h{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
 .b{height:52px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 6px;overflow-x:auto}
 .btn{flex-shrink:0;padding:10px 14px;border-radius:18px;border:0;font-weight:900;font-size:13px}
 .btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-#feed{width:100%;margin-top:100px;white-space:nowrap;overflow-x:auto;background:#000;-webkit-overflow-scrolling:touch}
-.page{width:100vw;height:80vh;display:inline-block;position:relative;white-space:normal;vertical-align:top}
-.big{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:900;text-align:center;line-height:1.1}
-.info{position:absolute;bottom:0;left:0;right:88px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:5}
-.actions{position:absolute;right:4px;bottom:8px;display:flex;flex-direction:column;gap:6px;z-index:20;align-items:center}
-.iconBtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;width:76px;padding:4px}
-.iconCircle{width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.7);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:28px;backdrop-filter:blur(8px)}
-.iconLabel{font-size:11px;font-weight:900;color:#fff;text-shadow:0 1px 4px #000;text-align:center;line-height:1.1;max-width:70px}
-.followWrap{position:relative;width:66px;height:66px}
-.followImg{width:66px;height:66px;border-radius:50%;border:3px solid #fff;background:#222;object-fit:cover}
-.plusBadge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;border:2px solid #fff;color:#fff;font-weight:900}
-.popup{position:fixed;top:100px;left:0;right:0;bottom:0;background:#f8f8f8;color:#000;z-index:200;display:none;overflow:auto;padding:12px}
+#viewport{width:100vw;height:100vh;padding-top:100px;overflow:hidden;position:relative;background:#000}
+#feed{width:100%;height:100%;white-space:nowrap;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;display:flex;flex-direction:row}
+.page{width:100vw;min-width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;position:relative;white-space:normal;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.pageContent{pointer-events:none;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:900;text-align:center}
+.info{position:absolute;bottom:0;left:0;right:88px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95);pointer-events:none;z-index:5}
+.actions{position:fixed;right:4px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:9999;pointer-events:auto}
+.iconBtn{width:72px;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px;pointer-events:auto;cursor:pointer}
+.iconCircle{width:60px;height:60px;border-radius:50%;background:#222;border:2px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.8)}
+.iconLabel{font-size:10px;font-weight:900;color:#fff;text-shadow:0 1px 4px #000;text-align:center;line-height:1.1}
+.followWrap{position:relative;width:62px;height:62px}
+.followImg{width:62px;height:62px;border-radius:50%;border:3px solid #fff;background:#222}
+.plusBadge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;border:2px solid #fff;color:#fff;font-weight:900}
+.popup{position:fixed;top:100px;left:0;right:0;bottom:0;background:#f8f8f8;color:#000;z-index:10000;display:none;overflow:auto;padding:12px}
 .popup.show{display:block}
 .input{width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:10px;font-size:18px}
 .btnFull{width:100%;padding:16px;border:0;border-radius:12px;font-weight:900;font-size:18px;margin-top:10px}
@@ -31,92 +32,26 @@ body{background:#000;color:#fff;font-family:Arial;overflow:hidden}
 </head>
 <body>
 <div class="top">
-<div class="h"><b style="color:#00ffcc;font-size:18px">G-LUMO 🌍 FULL ICONS</b><div><button id="userBtn" onclick="showLogin()" style="padding:8px 10px;background:#fff;color:#000;border:0;border-radius:12px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openSell()" style="padding:8px 10px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:11px;margin-left:4px">+ SELL</button></div></div>
+<div class="h"><b style="color:#00ffcc;font-size:17px">G-LUMO 🌍 CLICK FIXED</b><div><button id="userBtn" onclick="showLogin()" style="padding:8px 10px;background:#fff;color:#000;border:0;border-radius:12px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openSell()" style="padding:8px 10px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:11px;margin-left:4px">+ SELL</button></div></div>
 <div class="b">
-<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET AMAZON KILLER</button>
+<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET 0142550440</button>
 <button class="btn btnG" onclick="openSell()">+ SELL PHOTO/VIDEO</button>
 <button class="btn btnB" onclick="showFriends()">👥 FRIENDS</button>
 <button class="btn btnB" onclick="showProfile()">👤 PROFILE</button>
 </div>
 </div>
 
+<div id="viewport">
 <div id="feed">
-<div class="page" style="background:#ff2d55"><div class="big">G-LUMO<br>WORLD<br><span style="font-size:20px">1/4 SWIPE L/R →</span></div><div class="info"><b style="font-size:20px">G-LUMO WORLD @g_lumo</b><br><span style="font-size:16px">Full clickable icons on right - Try them!</span><div style="font-size:13px;margin-top:4px">Seller 94% | Company 6% → 0142550440</div></div><div class="actions">
-<button class="iconBtn" onclick="doFollow(0)"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=11" class="followImg"><div class="plusBadge" id="plus0">+</div></div><div class="iconLabel">Follow</div></button>
-<button class="iconBtn" onclick="doLike(0)"><div class="iconCircle" id="heart0">🤍</div><div class="iconLabel" id="like0">1.2K Likes</div></button>
-<button class="iconBtn" onclick="doComment(0)"><div class="iconCircle">💬</div><div class="iconLabel" id="com0">89 Comments</div></button>
-<button class="iconBtn" onclick="doMessage(0)"><div class="iconCircle">✉️</div><div class="iconLabel">Message</div></button>
-<button class="iconBtn" onclick="doShare(0)"><div class="iconCircle">↗️</div><div class="iconLabel">Share</div></button>
-<button class="iconBtn" onclick="doSave(0)"><div class="iconCircle">🔖</div><div class="iconLabel">Save</div></button>
-<button class="iconBtn" onclick="toggleMarket()"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
-</div></div>
-
-<div class="page" style="background:#7000ff"><div class="big">POCHI<br>COMPANY<br><span style="font-size:18px">0142550440<br>6% AUTO CUT</span></div><div class="info"><b style="font-size:20px">POCHI COMPANY 0142550440 @pochi_0142550440</b><br><span style="font-size:16px">Company gets 6% auto on every sale</span><div style="font-size:13px">2/4 Swipe L/R - All icons clickable</div></div><div class="actions">
-<button class="iconBtn" onclick="doFollow(1)"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=12" class="followImg"><div class="plusBadge" id="plus1">+</div></div><div class="iconLabel">Follow</div></button>
-<button class="iconBtn" onclick="doLike(1)"><div class="iconCircle" id="heart1">🤍</div><div class="iconLabel" id="like1">892 Likes</div></button>
-<button class="iconBtn" onclick="doComment(1)"><div class="iconCircle">💬</div><div class="iconLabel" id="com1">45 Comments</div></button>
-<button class="iconBtn" onclick="doMessage(1)"><div class="iconCircle">✉️</div><div class="iconLabel">Message</div></button>
-<button class="iconBtn" onclick="doShare(1)"><div class="iconCircle">↗️</div><div class="iconLabel">Share</div></button>
-<button class="iconBtn" onclick="doSave(1)"><div class="iconCircle">🔖</div><div class="iconLabel">Save</div></button>
-<button class="iconBtn" onclick="toggleMarket()"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
-</div></div>
-
-<div class="page" style="background:#00a896"><div class="big">AMAZON<br>KILLER<br><span style="font-size:18px">BETTER THAN AMAZON</span></div><div class="info"><b style="font-size:20px">MARKET @market</b><br><span style="font-size:16px">Search, Cart, Orders, Dashboard</span><div style="font-size:13px">3/4 Swipe L/R - Big fonts 18px</div></div><div class="actions">
-<button class="iconBtn" onclick="doFollow(2)"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=13" class="followImg"><div class="plusBadge" id="plus2">+</div></div><div class="iconLabel">Follow</div></button>
-<button class="iconBtn" onclick="doLike(2)"><div class="iconCircle" id="heart2">🤍</div><div class="iconLabel" id="like2">2.1K Likes</div></button>
-<button class="iconBtn" onclick="doComment(2)"><div class="iconCircle">💬</div><div class="iconLabel" id="com2">120 Comments</div></button>
-<button class="iconBtn" onclick="doMessage(2)"><div class="iconCircle">✉️</div><div class="iconLabel">Message</div></button>
-<button class="iconBtn" onclick="doShare(2)"><div class="iconCircle">↗️</div><div class="iconLabel">Share</div></button>
-<button class="iconBtn" onclick="doSave(2)"><div class="iconCircle">🔖</div><div class="iconLabel">Save</div></button>
-<button class="iconBtn" onclick="toggleMarket()"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
-</div></div>
-
-<div class="page" style="background:#ff7b00"><div class="big">FRIENDS<br>&<br>PROFILE<br><span style="font-size:18px">SEARCH + POST</span></div><div class="info"><b style="font-size:20px">FRIENDS & PROFILE @seller</b><br><span style="font-size:16px">Login to post photos/videos</span><div style="font-size:13px">4/4 Login system included</div></div><div class="actions">
-<button class="iconBtn" onclick="doFollow(3)"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=14" class="followImg"><div class="plusBadge" id="plus3">+</div></div><div class="iconLabel">Follow</div></button>
-<button class="iconBtn" onclick="doLike(3)"><div class="iconCircle" id="heart3">🤍</div><div class="iconLabel" id="like3">560 Likes</div></button>
-<button class="iconBtn" onclick="doComment(3)"><div class="iconCircle">💬</div><div class="iconLabel" id="com3">23 Comments</div></button>
-<button class="iconBtn" onclick="doMessage(3)"><div class="iconCircle">✉️</div><div class="iconLabel">Message</div></button>
-<button class="iconBtn" onclick="doShare(3)"><div class="iconCircle">↗️</div><div class="iconLabel">Share</div></button>
-<button class="iconBtn" onclick="doSave(3)"><div class="iconCircle">🔖</div><div class="iconLabel">Save</div></button>
-<button class="iconBtn" onclick="toggleMarket()"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
-</div></div>
+<div class="page" style="background:#ff2d55"><div class="pageContent">G-LUMO<br>WORLD<br><span style="font-size:20px">1/4 SWIPE L/R</span></div><div class="info"><b style="font-size:18px">G-LUMO WORLD @g_lumo</b><br><span style="font-size:14px">Tap icons on right - Now clickable!</span></div></div>
+<div class="page" style="background:#7000ff"><div class="pageContent">POCHI<br>COMPANY<br><span style="font-size:18px">0142550440<br>6% AUTO</span></div><div class="info"><b style="font-size:18px">POCHI 0142550440 @pochi</b><br><span style="font-size:14px">2/4 Swipe L/R</span></div></div>
+<div class="page" style="background:#00a896"><div class="pageContent">AMAZON<br>KILLER<br><span style="font-size:18px">MARKET</span></div><div class="info"><b style="font-size:18px">MARKET AMAZON KILLER</b><br><span style="font-size:14px">3/4 Better than Amazon</span></div></div>
+<div class="page" style="background:#ff7b00"><div class="pageContent">FRIENDS<br>PROFILE<br><span style="font-size:18px">LOGIN SYSTEM</span></div><div class="info"><b style="font-size:18px">FRIENDS & PROFILE</b><br><span style="font-size:14px">4/4 Search + Post</span></div></div>
 </div>
 
-<div id="loginPop" class="popup"><div style="max-width:420px;margin:10px auto;background:#fff;border-radius:16px;padding:18px;border:3px solid #00ffcc"><h2 style="font-size:24px;text-align:center">LOGIN</h2><div id="loginForm"><input id="lUser" placeholder="Username/Phone" class="input"><input id="lPass" type="password" placeholder="Password" class="input"><button onclick="doLogin()" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button><button onclick="showForgot()" class="btnFull" style="background:#eee">FORGOT? RESET</button><button onclick="showRegister()" class="btnFull" style="background:#fff;border:2px solid #000">CREATE ACCOUNT</button></div><div id="regForm" style="display:none"><input id="rUser" placeholder="Username" class="input"><input id="rPhone" placeholder="Phone" class="input"><input id="rPass" type="password" placeholder="Password" class="input"><input id="rPass2" type="password" placeholder="Confirm" class="input"><input id="rBio" placeholder="Bio" class="input"><button onclick="doRegister()" class="btnFull" style="background:#00ffcc">REGISTER</button><button onclick="showLoginForm()" class="btnFull" style="background:#eee">BACK</button></div><div id="forgotForm" style="display:none"><input id="fUser" placeholder="Username" class="input"><input id="fNewPass" type="password" placeholder="New Password" class="input"><button onclick="doReset()" class="btnFull" style="background:#ff2d55;color:#fff">RESET NOW</button><button onclick="showLoginForm()" class="btnFull" style="background:#eee">BACK</button></div><div style="text-align:center;margin-top:10px"><button onclick="closeLogin()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">CLOSE X</button><div style="font-size:12px;color:#666;margin-top:6px">Demo: demo / 1234</div></div></div></div>
-<div id="friendsPop" class="popup"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">👥 SEARCH FRIENDS</b><button onclick="closeFriends()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><input id="friendSearch" placeholder="Search..." class="input" oninput="searchFriends()"><div id="friendList" style="margin-top:12px"></div></div>
-<div id="profilePop" class="popup"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">👤 PROFILE</b><button onclick="closeProfile()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="profileInfo" style="margin-top:12px"></div><input id="editBio" placeholder="Bio" class="input"><input id="editPhone" placeholder="Phone" class="input"><button onclick="saveProfile()" class="btnFull" style="background:#00ffcc">SAVE PROFILE</button><button onclick="doLogout()" class="btnFull" style="background:#ff2d55;color:#fff">LOGOUT</button></div>
-<div id="marketPop" class="popup"><div style="background:#000;color:#fff;padding:12px;border-radius:12px"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET - 6% → 0142550440</b><button onclick="toggleMarket()" style="padding:8px 14px;background:#fff;color:#000;border-radius:8px;border:0">X</button></div></div><div id="marketGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div><div id="cartBox" style="background:#111;color:#00ffcc;padding:12px;border-radius:12px;margin-top:10px">Cart: 0</div><div id="orderBox" style="margin-top:10px"></div></div>
-<div id="sellPop" class="popup"><div style="display:flex;justify-content:space-between"><b>SELL</b><button onclick="document.getElementById('sellPop').classList.remove('show')" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><input id="pName" placeholder="Title" class="input"><input id="pPrice" type="number" placeholder="Your price 94%" class="input" oninput="calcFee()"><div id="fee" style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px">Enter price</div><button onclick="addProduct()" class="btnFull" style="background:#00ffcc">POST</button></div>
-
-<script>
-var users=JSON.parse(localStorage.getItem('glumo_users')||'[]');if(users.length==0){users=[{user:'demo',phone:'0712345678',pass:'1234',bio:'Demo seller'}];localStorage.setItem('glumo_users',JSON.stringify(users))}
-var currentUser=JSON.parse(localStorage.getItem('glumo_current')||'null');
-var liked=[false,false,false,false];var followed=[false,false,false,false];var likes=[1200,892,2100,560];var comments=[89,45,120,23];
-function doFollow(i){followed[i]=!followed[i];document.getElementById('plus'+i).innerHTML=followed[i]?'✓':'+';document.getElementById('plus'+i).style.background=followed[i]?'#00ffcc':'#ff2d55';alert(followed[i]?'Followed!':'Unfollowed')}
-function doLike(i){liked[i]=!liked[i];document.getElementById('heart'+i).innerHTML=liked[i]?'❤️':'🤍';likes[i]+=liked[i]?1:-1;var t=likes[i]>=1000?(likes[i]/1000).toFixed(1)+'K':likes[i];document.getElementById('like'+i).innerHTML=t+' Likes';}
-function doComment(i){var c=prompt('Comment on video '+(i+1)+':');if(c){comments[i]++;document.getElementById('com'+i).innerHTML=comments[i]+' Comments';alert('Comment posted: '+c)}}
-function doMessage(i){var m=prompt('Message to user '+(i+1)+':');if(m)alert('Message sent: '+m)}
-function doShare(i){if(navigator.share){navigator.share({title:'G-LUMO',text:'Check this video '+(i+1)})}else{alert('Link copied! Video '+(i+1)+' shared')}}
-function doSave(i){alert('Saved to gallery! Video '+(i+1))}
-function showLogin(){document.getElementById('loginPop').classList.add('show');showLoginForm()}
-function closeLogin(){document.getElementById('loginPop').classList.remove('show')}
-function showLoginForm(){document.getElementById('loginForm').style.display='block';document.getElementById('regForm').style.display='none';document.getElementById('forgotForm').style.display='none'}
-function showRegister(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='block';document.getElementById('forgotForm').style.display='none'}
-function showForgot(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='none';document.getElementById('forgotForm').style.display='block'}
-function doLogin(){var u=document.getElementById('lUser').value.trim();var p=document.getElementById('lPass').value;var f=users.find(x=>(x.user==u||x.phone==u)&&x.pass==p);if(!f)return alert('Wrong - demo/1234');currentUser=f;localStorage.setItem('glumo_current',JSON.stringify(f));updateUI();closeLogin();alert('Welcome '+f.user)}
-function doRegister(){var u=document.getElementById('rUser').value.trim();var ph=document.getElementById('rPhone').value.trim();var p=document.getElementById('rPass').value;var p2=document.getElementById('rPass2').value;var bio=document.getElementById('rBio').value.trim();if(!u||!ph||!p)return alert('Fill all');if(p!=p2)return alert('No match');if(users.find(x=>x.user==u))return alert('Taken');var nu={user:u,phone:ph,pass:p,bio:bio||'New user'};users.push(nu);localStorage.setItem('glumo_users',JSON.stringify(users));currentUser=nu;localStorage.setItem('glumo_current',JSON.stringify(nu));updateUI();closeLogin();alert('Created '+u)}
-function doReset(){var u=document.getElementById('fUser').value.trim();var np=document.getElementById('fNewPass').value;if(!u||!np)return alert('Fill');var idx=users.findIndex(x=>x.user==u);if(idx==-1)return alert('Not found');users[idx].pass=np;localStorage.setItem('glumo_users',JSON.stringify(users));alert('Reset! New pass: '+np);showLoginForm()}
-function doLogout(){currentUser=null;localStorage.removeItem('glumo_current');updateUI()}
-function updateUI(){var s=JSON.parse(localStorage.getItem('glumo_current')||'null');if(s)currentUser=s;var b=document.getElementById('userBtn');if(currentUser){b.innerHTML='👤 '+currentUser.user;b.style.background='#00ffcc'}else{b.innerHTML='👤 LOGIN';b.style.background='#fff'}renderFriends();renderProfile()}
-function showFriends(){document.getElementById('friendsPop').classList.add('show');renderFriends()}
-function closeFriends(){document.getElementById('friendsPop').classList.remove('show')}
-function renderFriends(){var l=document.getElementById('friendList');var h='';for(var i=0;i<users.length;i++){var u=users[i];if(currentUser&&u.user==currentUser.user)continue;h+='<div style="background:#fff;border:2px solid #eee;border-radius:12px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between"><div><b style="font-size:18px">'+u.user+'</b><br>'+u.bio+'</div><button onclick="alert(\'Followed '+u.user+'\')" style="padding:10px 16px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">FOLLOW</button></div>'}l.innerHTML=h||'<div style="padding:20px;text-align:center">No users</div>'}
-function searchFriends(){var q=document.getElementById('friendSearch').value.toLowerCase();var items=document.getElementById('friendList').children;for(var i=0;i<items.length;i++){items[i].style.display=items[i].innerText.toLowerCase().includes(q)?'flex':'none'}}
-function showProfile(){document.getElementById('profilePop').classList.add('show');renderProfile()}
-function closeProfile(){document.getElementById('profilePop').classList.remove('show')}
-function renderProfile(){var box=document.getElementById('profileInfo');if(!currentUser){box.innerHTML='<div style="background:#ff2d55;color:#fff;padding:14px;border-radius:12px">Not logged in</div>';return}box.innerHTML='<div style="background:#111;color:#fff;padding:14px;border-radius:12px"><b style="font-size:20px;color:#00ffcc">'+currentUser.user+'</b><br>Phone: '+currentUser.phone+'<br>Bio: '+currentUser.bio+'</div>';document.getElementById('editBio').value=currentUser.bio;document.getElementById('editPhone').value=currentUser.phone}
-function saveProfile(){if(!currentUser)return alert('Login');currentUser.bio=document.getElementById('editBio').value;currentUser.phone=document.getElementById('editPhone').value;var idx=users.findIndex(x=>x.user==currentUser.user);if(idx!=-1){users[idx]=currentUser;localStorage.setItem('glumo_users',JSON.stringify(users));localStorage.setItem('glumo_current',JSON.stringify(currentUser))}alert('Saved');renderProfile()}
-function toggleMarket(){document.getElementById('marketPop').classList.toggle('show');renderMarket()}
-function openSell(){if(!currentUser){alert('Login + Profile required');showLogin();return}document.getElementById('sellPop').classList.add('show')}
-function calcFee(){var p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}var b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer KSH '+b+' | You KSH '+p+' | Company 0142550440 KSH '+(b-p)}
-var products=[{name:'Jordan 4',price:3500,buyerPrice:3724,comm:224},{name:'AirPods',price:12000,buyerPrice:12766,comm:766},{name:'iPhone 15',price:95000,buyer
+<!-- ACTIONS FIXED OUTSIDE SCROLL SO THEY ARE ALWAYS CLICKABLE -->
+<div class="actions">
+<button class="iconBtn" onclick="doFollow()"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=11" class="followImg"><div class="plusBadge" id="plus">+</div></div><div class="iconLabel">Follow</div></button>
+<button class="iconBtn" onclick="doLike()"><div class="iconCircle" id="heart">🤍</div><div class="iconLabel" id="likeTxt">1.2K Likes</div></button>
+<button class="iconBtn" onclick="doComment()"><div class="iconCircle">💬</div><div class="iconLabel" id="comTxt">89 Comments</div></button>
+<button class="iconBtn" onclick="doMessage()"><div class="iconCircle">✉
