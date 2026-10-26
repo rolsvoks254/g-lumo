@@ -8,61 +8,67 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
 header{position:fixed;top:0;left:0;right:0;z-index:100;background:#000;height:38px;display:flex;align-items:center;padding:0 10px;border-bottom:1px solid #222}
-header h1{color:#00ffcc;font-size:28px !important;font-weight:900}
-#marketTopBar{position:fixed;top:38px;left:0;right:0;z-index:99;height:78px;background:#ffffff;display:flex;align-items:center;gap:8px;padding:0 10px;overflow-x:auto;border-bottom:3px solid #00ffcc}
-#marketTopBar::-webkit-scrollbar{display:none}
-.marketBtn{flex-shrink:0;padding:12px 18px;border-radius:24px;border:0;font-size:22px !important;font-weight:900;cursor:pointer}
+header h1{color:#00ffcc;font-size:24px;font-weight:900}
+#marketTopBar{position:fixed;top:38px;left:0;right:0;z-index:99;height:72px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;overflow-x:auto;border-bottom:3px solid #00ffcc}
+.marketBtn{flex-shrink:0;padding:10px 16px;border-radius:22px;border:0;font-size:18px;font-weight:900}
 .btnMarket{background:#000;color:#00ffcc}
 .btnSell{background:#00ffcc;color:#000}
-#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:116px}
-#feed::-webkit-scrollbar{display:none}
-.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 116px);scroll-snap-align:center;flex-shrink:0;background:#111}
+#feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:110px}
+.reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 110px);scroll-snap-align:center;flex-shrink:0;background:#111}
 .reel img,.reel video{width:100%;height:100%;object-fit:cover}
-.info{position:absolute;bottom:0;left:0;right:95px;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-.userRow{display:flex;gap:10px;align-items:center;font-weight:900;font-size:32px !important}
-.userRow img{width:56px;height:56px;border-radius:50%;border:3px solid #00ffcc}
-.cap{font-size:26px !important;font-weight:700 !important;line-height:1.3}
-.actions{position:absolute;right:8px;bottom:100px;display:flex;flex-direction:column;align-items:center;gap:16px;z-index:10}
-.actBtn{display:flex;flex-direction:column;align-items:center;background:transparent;border:0;color:#fff;cursor:pointer}
-.actIcon{width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px)}
-.followBtn{width:68px;height:68px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden;background:#000}
-.followPlus{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;border:2px solid #fff;font-weight:900}
-.whatsappBtn{width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid #fff}
-#marketPopup{position:fixed;top:116px;left:0;right:0;z-index:98;background:#fff;color:#000;display:none;max-height:70vh;overflow:auto;padding:10px;border-bottom:3px solid #00ffcc}
+.info{position:absolute;bottom:0;left:0;right:95px;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.userRow{display:flex;gap:8px;align-items:center;font-size:28px;font-weight:900}
+.userRow img{width:52px;height:52px;border-radius:50%;border:3px solid #00ffcc}
+.cap{font-size:24px;font-weight:700;margin-top:6px}
+.actions{position:absolute;right:8px;bottom:90px;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:10}
+.actBtn{border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.actIcon{width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:32px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+.followBtn{width:68px;height:68px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden}
+.followPlus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:26px;height:26px;border-radius:50%;color:#fff;font-size:18px;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.whatsappBtn{width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid #fff;color:#fff;font-weight:900}
+#marketPopup{position:fixed;top:110px;left:0;right:0;z-index:98;background:#fff;color:#000;display:none;max-height:70vh;overflow:auto;padding:10px}
 #marketPopup.show{display:block}
+/* COMMENT MODAL */
+#commentModal{position:fixed;bottom:0;left:0;right:0;z-index:200;background:#111;border-top:3px solid #00ffcc;display:none;flex-direction:column;max-height:75vh}
+#commentModal.show{display:flex}
+#commentList{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.commentItem{background:#222;padding:8px 12px;border-radius:12px;font-size:16px}
+#commentInputArea{display:flex;gap:8px;padding:10px;border-top:1px solid #333;background:#000}
+#commentInput{flex:1;padding:12px;border-radius:20px;border:1px solid #444;background:#222;color:#fff;font-size:16px}
+#sendBtn{padding:12px 18px;border-radius:20px;border:0;background:#00ffcc;font-weight:900;color:#000}
 </style>
 </head>
 <body>
-<header><h1>G-LUMO WORLD 🌍 - 0142550440</h1></header>
+<header><h1>G-LUMO WORLD 🌍 0142550440</h1></header>
 <div id="marketTopBar">
-<button class="marketBtn btnMarket" onclick="toggleMarket()">🛒 MARKET BEST</button>
+<button class="marketBtn btnMarket" onclick="toggleMarket()">🛒 MARKET</button>
 <button class="marketBtn btnSell" onclick="toggleMarket()">+ Sell</button>
 <button class="marketBtn btnMarket">Pochi 0142550440</button>
-<button class="marketBtn btnMarket">Beats All</button>
 </div>
-<div id="marketPopup">
-<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">🛒 World Best Market - Pochi 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;border-radius:8px;border:0;background:#000;color:#fff">X Close</button></div>
-<div style="margin-top:8px">
-<input id="pName" placeholder="Product name" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin:4px 0">
-<input id="pPrice" type="number" placeholder="Price KSH" oninput="calcFee()" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin:4px 0">
-<div id="feePreview" style="font-size:12px;color:#00a896;font-weight:800"></div>
-<button onclick="addProduct()" style="width:100%;padding:10px;background:#00ffcc;border:0;border-radius:8px;font-weight:900;margin-top:6px">Post to Market</button>
-</div>
-<div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"></div>
-</div>
+<div id="marketPopup"><div style="display:flex;justify-content:space-between"><b>🛒 Market - Pochi 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"></div></div>
 <div id="feed"></div>
+
+<!-- COMMENT BOX - TYPE SOMETHING -->
+<div id="commentModal">
+<div style="padding:10px;display:flex;justify-content:space-between;border-bottom:1px solid #333"><b id="commentTitle">Comments</b><button onclick="closeComment()" style="background:#333;color:#fff;border:0;padding:6px 12px;border-radius:8px">X Close</button></div>
+<div id="commentList"></div>
+<div id="commentInputArea">
+<input id="commentInput" placeholder="Type a comment... add text here">
+<button id="sendBtn" onclick="sendComment()">Send</button>
+</div>
+</div>
+
 <script>
-let openM=false;
-function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM)}
-function calcFee(){let p=parseFloat(document.getElementById('pPrice').value)||0;if(!p){document.getElementById('feePreview').innerHTML='';return}document.getElementById('feePreview').innerHTML=`Buyer KSH ${(p*1.05).toFixed(0)} | You get KSH ${(p*0.95).toFixed(0)} | Fee to 0142550440`}
+let openM=false;function toggleMarket(){openM=!openM;document.getElementById('marketPopup').classList.toggle('show',openM)}
 const data=[
-{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO',cap:'CINEMA • Market bar white top visible'},
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi',name:'Pochi 0142550440',cap:'Fee auto to 0142550440'},
-{type:'image',src:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800',user:'@market',name:'Market',cap:'World Best Market - Beats All'},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@seller',name:'Seller',cap:'Sell here + Sell button'},
-{type:'image',src:'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800',user:'@travel',name:'Travel',cap:'Swipe left right to see posts'}
+{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO',cap:'CINEMA • Tap icons to interact'},
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi',name:'Pochi 0142550440',cap:'Comment, Share, Download works'},
+{type:'image',src:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800',user:'@market',name:'Market',cap:'Save works • Share to WhatsApp'},
+{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@seller',name:'Seller',cap:'Download any video'},
 ];
-let following={}; let liked={}; let saved={};
+let following={},liked={},saved={},comments={},currentPost=0;
+comments[0]=[{u:'@fan',t:'Nice 🔥'}];comments[1]=[];comments[2]=[];comments[3]=[];
+
 function render(){
 let f=document.getElementById('feed');f.innerHTML='';
 data.forEach((d,i)=>{
@@ -70,20 +76,74 @@ let m=d.type==='video'?`<video src="${d.src}" loop muted playsinline autoplay></
 f.innerHTML+=`<div class="reel">${m}
 <div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div></div>
 <div class="actions">
-<button class="actBtn" onclick="following[${i}]=!following[${i}];render()"><div class="followBtn"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
-<button class="actBtn" onclick="liked[${i}]=!liked[${i}];render()"><div class="actIcon">${liked[i]?'❤️':'🤍'}</div></button>
-<button class="actBtn"><div class="actIcon">💬</div></button>
-<button class="actBtn" onclick="saved[${i}]=!saved[${i}];render()"><div class="actIcon">${saved[i]?'🔖':'🔖'}</div></button>
-<button class="actBtn" onclick="navigator.clipboard.writeText(d.src);alert('Link copied')"><div class="actIcon">↗️</div></button>
-<button class="actBtn" onclick="window.open('https://wa.me/?text='+encodeURIComponent('G-LUMO '+d.src),'_blank')"><div class="whatsappBtn">W</div></button>
-<button class="actBtn"><div class="actIcon" style="padding:0;overflow:hidden"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"></div></button>
+<button class="actBtn" onclick="doFollow(${i})"><div class="followBtn"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
+<button class="actBtn" onclick="doLike(${i})"><div class="actIcon">${liked[i]?'❤️':'❤️'}</div></button>
+<button class="actBtn" onclick="openComment(${i})"><div class="actIcon">💬</div></button>
+<button class="actBtn" onclick="doSave(${i})"><div class="actIcon" style="background:${saved[i]?'#00ffcc':'rgba(0,0,0,.4)'}">🏷️</div></button>
+<button class="actBtn" onclick="doShare(${i})"><div class="actIcon">↗️</div></button>
+<button class="actBtn" onclick="doWhatsApp(${i})"><div class="whatsappBtn">W</div></button>
+<button class="actBtn" onclick="doDownload(${i})"><div class="actIcon">⬇️</div></button>
 </div></div>`;
 });
 }
-let products=[{name:'Jordan',price:3500,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300'},{name:'iPhone',price:85000,img:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300'}];
-function renderMarket(){let g=document.getElementById('grid');g.innerHTML='';products.forEach(p=>{g.innerHTML+=`<div style="border:1px solid #ddd;border-radius:10px;overflow:hidden"><img src="${p.img}" style="width:100%;height:90px;object-fit:cover"><div style="padding:6px"><div style="font-size:12px;font-weight:800">${p.name}</div><div style="font-size:12px;color:#00a896">KSH ${p.price}</div></div></div>`})}
-function addProduct(){let n=document.getElementById('pName').value.trim();let pr=parseFloat(document.getElementById('pPrice').value);if(!n||!pr)return;products.unshift({name:n,price:pr,img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300'});renderMarket();document.getElementById('pName').value='';document.getElementById('pPrice').value=''}
+
+// ALL CLICKABLE FUNCTIONS
+function doFollow(i){following[i]=!following[i];render(); if(following[i]) alert('Following '+data[i].name+' ✓')}
+function doLike(i){liked[i]=!liked[i];render(); }
+function doSave(i){saved[i]=!saved[i];render(); alert(saved[i]?'Saved to bookmark ✅':'Removed from saved')}
+function openComment(i){
+ currentPost=i;
+ document.getElementById('commentModal').classList.add('show');
+ document.getElementById('commentTitle').innerText='Comments • '+data[i].name;
+ renderComments();
+}
+function closeComment(){document.getElementById('commentModal').classList.remove('show')}
+function renderComments(){
+ let list=document.getElementById('commentList');list.innerHTML='';
+ (comments[currentPost]||[]).forEach(c=>{
+   list.innerHTML+=`<div class="commentItem"><b>${c.u}</b> ${c.t}</div>`;
+ });
+ if(list.innerHTML==='') list.innerHTML='<div style="color:#888;text-align:center;padding:20px">No comments yet. Type below 👇</div>';
+}
+function sendComment(){
+ let inp=document.getElementById('commentInput');
+ let txt=inp.value.trim(); if(!txt) return;
+ if(!comments[currentPost]) comments[currentPost]=[];
+ comments[currentPost].push({u:'@you',t:txt});
+ inp.value=''; renderComments();
+}
+function doShare(i){
+ let d=data[i];
+ if(navigator.share){
+   navigator.share({title:'G-LUMO WORLD',text:d.cap,url:d.src});
+ } else {
+   navigator.clipboard.writeText(d.src);
+   alert('Link copied ✅ Share anywhere:\n'+d.src);
+ }
+}
+function doWhatsApp(i){
+ let d=data[i];
+ let url=`https://wa.me/?text=${encodeURIComponent('G-LUMO WORLD 🌍 - '+d.cap+'\n'+d.src)}`;
+ window.open(url,'_blank');
+}
+function doDownload(i){
+ let d=data[i];
+ let a=document.createElement('a');
+ a.href=d.src;
+ a.download='g-lumo-'+i+'.'+(d.type==='video'?'mp4':'jpg');
+ a.target='_blank';
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+ alert('Downloading... Check your gallery ✅\n'+d.src);
+}
+function calcFee(){}
+function addProduct(){}
+
+let products=[{name:'Jordan',price:3500,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300'}];
+function renderMarket(){let g=document.getElementById('grid');g.innerHTML='';products.forEach(p=>{g.innerHTML+=`<div style="border:1px solid #ddd;border-radius:10px;overflow:hidden"><img src="${p.img}" style="width:100%;height:90px;object-fit:cover"><div style="padding:6px"><b>${p.name}</b><div style="color:#00a896">KSH ${p.price}</div></div></div>`})}
 render();renderMarket();
+document.getElementById('commentInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendComment()});
 </script>
 </body>
 </html>
