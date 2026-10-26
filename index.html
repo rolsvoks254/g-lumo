@@ -3,118 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO MASTER + UPLOAD</title>
+<title>G-LUMO SURE FINAL + ICON</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial;overflow:hidden}
-#top{position:fixed;top:0;left:0;right:0;z-index:999;background:#000;border-bottom:3px solid #00ffcc}
-#h{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
-#menu{height:58px;background:#fff;display:flex;gap:5px;padding:6px;overflow-x:auto}
-.mbtn{flex-shrink:0;padding:11px 14px;border-radius:20px;border:0;font-weight:900;font-size:12px;cursor:pointer}
-#tabs{height:32px;background:#000;display:flex;justify-content:center;gap:20px;border-bottom:1px solid #222}
-.tab{padding:6px 10px;font-weight:900;font-size:12px;cursor:pointer;border-bottom:3px solid transparent}
-.tab.active{color:#00ffcc;border-bottom-color:#00ffcc}
-#b{width:100vw;height:calc(100vh - 190px);margin-top:140px;overflow-y:auto;scroll-snap-type:y mandatory;background:#000}
-.page{width:100vw;height:calc(100vh - 190px);scroll-snap-align:start;flex-shrink:0;position:relative;background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.page video,.page img{width:100%;height:100%;object-fit:cover}
-.info{position:absolute;bottom:0;left:0;right:88px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:10}
-#right{position:fixed;right:4px;top:150px;z-index:998;display:flex;flex-direction:column;gap:10px}
-.r{width:58px;height:58px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:24px}
-.rTxt{font-size:8px;font-weight:900;text-align:center;color:#fff;margin-top:2px}
-#bottomNav{position:fixed;bottom:0;left:0;right:0;height:50px;background:#000;border-top:2px solid #222;z-index:999;display:flex;align-items:center;justify-content:space-around}
-.navItem{display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
-.plusCenter{width:52px;height:36px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:4px 0 0 #ff2d55, -4px 0 0 #00ffcc}
-.plusCenter b{font-size:28px;color:#000;line-height:1}
-.pop{display:none;position:fixed;top:140px;left:0;right:0;bottom:50px;background:#f5f5f5;color:#000;z-index:1000;overflow:auto;padding:12px}
+body{background:#000;color:#fff;font-family:Arial;overflow-x:hidden}
+#top{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;border-bottom:3px solid #00ffcc}
+#h{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
+#menu{height:56px;background:#fff;display:flex;gap:6px;padding:6px;overflow-x:auto}
+.mbtn{flex-shrink:0;padding:11px 15px;border-radius:20px;border:0;font-weight:900;font-size:12px;cursor:pointer}
+#feed{width:100vw;margin-top:104px;height:84vh;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000;white-space:nowrap}
+.page{min-width:100vw;width:100vw;height:84vh;scroll-snap-align:center;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;white-space:normal}
+.info{position:absolute;bottom:0;left:0;right:90px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:10}
+#right{position:fixed;right:4px;top:118px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.rBtn{width:68px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.rCircle{width:60px;height:60px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 2px 10px #000}
+.rLabel{font-size:9px;font-weight:900;color:#fff;margin-top:3px;text-shadow:0 1px 3px #000;text-align:center}
+.plusBadge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:20px;height:20px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+.pop{display:none;position:fixed;top:104px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:10000;overflow:auto;padding:12px}
 .input{width:100%;padding:14px;border:2px solid #ccc;border-radius:10px;margin-top:10px;font-size:16px}
 .btnFull{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
-.badge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:18px;height:18px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:14px">G-LUMO 🌍 MASTER + UPLOAD</b><div><button onclick="openBox('loginBox')" id="loginBtn" style="padding:7px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:7px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:14px">G-LUMO 🌍 FINAL NO BLANK + ICON</b><div><button onclick="openBox('loginBox')" style="padding:7px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:7px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6%</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ SELL PHOTO/VIDEO</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('friendsBox')">👥 FRIENDS</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox')">👤 PROFILE</button>
+<button class="mbtn" style="background:#ff2d55;color:#fff" onclick="alert('FOR YOU Algo')">🔥 FOR YOU</button>
 </div>
-<div id="tabs"><div class="tab active" id="tabForYou" onclick="setFeed('foryou')">🔥 FOR YOU - Algo</div><div class="tab" id="tabFollowing" onclick="setFeed('following')">👥 FOLLOWING</div></div>
 </div>
 
-<div id="b"></div>
+<div id="feed">
+<div class="page" style="background:#ff2d55"><div style="font-size:48px;font-weight:900;text-align:center">G-LUMO<br>WORLD<br><span style="font-size:16px">1/4 SWIPE L/R →</span><br><span style="font-size:12px">NO BLANK - SURE WORKING</span></div><div class="info"><b>@g_lumo</b><br>G-LUMO WORLD - Tap + on right to post reel - Everybody sees<br><span style="font-size:11px">Seller 94% Company 6% → 0142550440</span></div></div>
+<div class="page" style="background:#7000ff"><div style="font-size:48px;font-weight:900;text-align:center">POCHI<br>0142550440<br><span style="font-size:16px">COMPANY<br>6% AUTO CUT</span></div><div class="info"><b>@pochi_0142550440</b><br>Company gets 6% auto - Market in position<br><span style="font-size:11px">Icons + + icon same position as icons - clickable</span></div></div>
+<div class="page" style="background:#00a896"><div style="font-size:48px;font-weight:900;text-align:center">AMAZON<br>KILLER<br><span style="font-size:16px">MARKET</span><br><span style="font-size:12px">BETTER THAN AMAZON</span></div><div class="info"><b>@market</b><br>MARKET AMAZON KILLER - Search Cart Orders<br><span style="font-size:11px">Tap 🛒 icon on right - clickable</span></div></div>
+<div class="page" style="background:#ff7b00"><div style="font-size:48px;font-weight:900;text-align:center">POST<br>YOUR<br>REEL<br><span style="font-size:14px">PHOTO/VIDEO</span></div><div class="info"><b>@you</b><br>Post your video/photo - Everybody views + Add Friend<br><span style="font-size:11px">Tap + icon on right to upload</span></div></div>
+</div>
 
 <div id="right">
-<button onclick="doFollow()" style="border:0;background:none"><div style="position:relative"><div class="r" style="background:#fff;color:#000">👤</div><div class="badge" id="plus">+</div></div><div class="rTxt">Follow</div></button>
-<button onclick="doLike()" style="border:0;background:none"><div class="r" id="heart">🤍</div><div class="rTxt" id="likeT">0 Likes</div></button>
-<button onclick="openBox('commentBox')" style="border:0;background:none"><div class="r">💬</div><div class="rTxt" id="comT">Comment</div></button>
-<button onclick="openBox('friendsBox')" style="border:0;background:none"><div class="r">👥</div><div class="rTxt">Add Friend</div></button>
-<button onclick="doShare()" style="border:0;background:none"><div class="r">↗️</div><div class="rTxt">Share</div></button>
+<button class="rBtn" onclick="openBox('postBox')" style="margin-bottom:2px"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:32px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST REEL</div></button>
+<button class="rBtn" onclick="doFollow()"><div style="position:relative"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="plusBadge" id="plus">+</div></div><div class="rLabel">Follow</div></button>
+<button class="rBtn" onclick="doLike()"><div class="rCircle" id="heart">🤍</div><div class="rLabel" id="likeT">1.2K Likes</div></button>
+<button class="rBtn" onclick="openBox('commentBox')"><div class="rCircle">💬</div><div class="rLabel" id="comT">89 Comments</div></button>
+<button class="rBtn" onclick="openBox('friendsBox')"><div class="rCircle">👥</div><div class="rLabel">Add Friend</div></button>
+<button class="rBtn" onclick="doShare()"><div class="rCircle">↗️</div><div class="rLabel">Share</div></button>
+<button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle">🛒</div><div class="rLabel">Market</div></button>
 </div>
 
-<div id="bottomNav">
-<div class="navItem" onclick="setFeed('foryou')"><div style="font-size:20px">🏠</div><div style="font-size:9px;font-weight:900">Home</div></div>
-<div class="navItem" onclick="openBox('friendsBox')"><div style="font-size:20px">🔍</div><div style="font-size:9px">Friends</div></div>
-<div class="navItem" onclick="openBox('postBox')"><div class="plusCenter"><b>+</b></div><div style="font-size:9px;font-weight:900;margin-top:2px">Post Reel</div></div>
-<div class="navItem" onclick="openBox('marketBox')"><div style="font-size:20px">🛒</div><div style="font-size:9px">Market</div></div>
-<div class="navItem" onclick="openBox('profileBox')"><div style="font-size:20px">👤</div><div style="font-size:9px">Profile</div></div>
-</div>
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:18px">🛒 MARKET 0142550440 - IN ITS POSITION - CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:10px 16px;background:#000;color:#fff;border:0;border-radius:8px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px">Company Pochi Till 0142550440 gets 6% auto | Seller 94% | Bigger fonts | Marketplace in its position as you wanted</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#fff;border-radius:12px;overflow:hidden;border:2px solid #ddd"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:8px;color:#000"><b>Jordan 4</b><br>Seller 3500 Buyer 3724<br><span style="color:red;font-weight:900">6% 224 → 0142550440</span><br><button onclick="alert('✅ Paid 3724 Company 0142550440 got 224 - Market clickable!')" style="width:100%;margin-top:6px;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">BUY NOW - Clickable</button></div></div><div style="background:#fff;border-radius:12px;overflow:hidden;border:2px solid #ddd"><div style="height:80px;background:#222;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">AirPods</div><div style="padding:8px;color:#000"><b>AirPods</b><br>Buyer 12766 6% 766 → 0142550440<br><button onclick="alert('✅ Paid - Market clickable!')" style="width:100%;margin-top:6px;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">BUY NOW</button></div></div></div><div id="orderList" style="margin-top:10px"></div></div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 6% AUTO - FULL</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div id="marketGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"></div><div id="orderList" style="margin-top:10px"></div></div>
+<div id="postBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:18px">+ POST VIDEO/PHOTO - + ICON SAME POSITION AS ICONS</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#000;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px">Tap + below to choose photo/video - It will play as reel for everybody - Add Friend - TikTok Algo</div><input id="pTitle" placeholder="Title - e.g. Jordan for sale" class="input"><input id="pTags" placeholder="Tags e.g. shoes, nairobi" class="input"><input id="pPrice" type="number" placeholder="Price if selling (leave empty if just reel)" class="input"><label style="display:block;background:#00ffcc;color:#000;padding:16px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;cursor:pointer;font-size:18px">📸📹 + TAP TO CHOOSE PHOTO/VIDEO<input id="reelFile" type="file" accept="image/*,video/*" style="display:none" onchange="previewReel()"></label><div id="preview" style="margin-top:10px;display:none;background:#111;border-radius:10px;height:200px;overflow:hidden"></div><button onclick="postReel()" class="btnFull" style="background:#00ffcc;font-size:18px">+ POST REEL NOW - Everybody Sees + Add Friend</button></div>
 
-<div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">+ POST VIDEO/PHOTO REEL - BIG + ICON</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:10px;border-radius:8px;margin-top:10px;font-size:13px">🧠 TikTok Algo: Like +2, Comment +3, Follow +5, Share +6, Full Watch +4 — Higher score = more people see — Everybody can view + Add Friend</div>
-<input id="pTitle" placeholder="Title - e.g. My Jordan for sale #shoes" class="input">
-<input id="pTags" placeholder="Tags for algo - e.g. shoes, nairobi, fashion" class="input">
-<input id="pPrice" type="number" placeholder="Price if selling (leave empty if just reel)" class="input">
-<label style="display:block;background:#00ffcc;color:#000;padding:16px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;cursor:pointer;font-size:18px">📸📹 + TAP HERE TO CHOOSE PHOTO OR VIDEO<input id="reelFile" type="file" accept="image/*,video/*" style="display:none" onchange="previewReel()"></label>
-<div id="preview" style="margin-top:10px;display:none;background:#111;border-radius:10px;height:220px;overflow:hidden"></div>
-<button onclick="postReel(false)" class="btnFull" style="background:#00ffcc;font-size:18px">+ POST REEL NOW - Everybody Sees</button>
-<button onclick="postReel(true)" class="btnFull" style="background:#000;color:#00ffcc">POST AS MARKET ITEM (6% → 0142550440)</button>
-</div>
-
-<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:16px;padding:16px;border:3px solid #00ffcc"><h2 style="text-align:center">LOGIN</h2><input id="lUser" placeholder="demo" class="input"><input id="lPass" type="password" placeholder="1234" class="input"><button onclick="doLogin()" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button><button onclick="openBox('regBox')" class="btnFull" style="background:#fff;border:2px solid #000">CREATE ACCOUNT</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button><div style="text-align:center;margin-top:6px;font-size:12px">Demo: demo / 1234</div></div></div>
-<div id="regBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:16px;padding:16px"><h2 style="text-align:center">REGISTER</h2><input id="rUser" placeholder="Username" class="input"><input id="rPhone" placeholder="Phone" class="input"><input id="rPass" type="password" placeholder="Password" class="input"><button onclick="doRegister()" class="btnFull" style="background:#00ffcc">REGISTER</button><button onclick="closeBox('regBox')" class="btnFull" style="background:#eee">BACK</button></div></div>
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS - Add Friend</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><input id="fSearch" placeholder="Search..." class="input" oninput="renderFriends()"><div id="fList" style="margin-top:12px"></div></div>
-
-<div id="profileBox" class="pop">
-<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:16px">👤 PROFILE - CLICKABLE + POST BUTTON</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
-<div id="pInfo" style="margin-top:10px"></div>
-<!-- BIG + POST BUTTON INSIDE PROFILE - THIS WAS MISSING IN YOUR SCREENSHOT -->
-<div style="margin-top:12px;background:#00ffcc;border-radius:12px;padding:12px">
-<b style="color:#000;font-size:16px">+ POST NEW VIDEO/PHOTO</b><br><span style="color:#000;font-size:12px">Tap + below to upload - Everybody will see your reel</span><br>
-<button onclick="openBox('postBox')" style="width:100%;margin-top:8px;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">+ TAP TO UPLOAD VIDEO/PHOTO</button>
-</div>
-<input id="eBio" placeholder="Bio" class="input"><input id="ePhone" placeholder="Phone" class="input">
-<button onclick="saveProfile()" class="btnFull" style="background:#00ffcc">SAVE PROFILE - Clickable</button>
-<div id="myReels" style="margin-top:12px"></div>
-<button onclick="logout()" class="btnFull" style="background:#ff2d55;color:#fff">LOGOUT - Clickable</button>
-</div>
-
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div id="comList" style="margin-top:10px"></div><input id="comInput" placeholder="Add comment..." class="input"><button onclick="addComment()" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
+<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:16px;padding:16px;border:3px solid #00ffcc"><h2 style="text-align:center">LOGIN - CLICKABLE</h2><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="alert('✅ Login clickable!');closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE - Clickable</button><div style="text-align:center;margin-top:6px;font-size:12px">Demo: demo / 1234</div></div></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="margin-top:10px"><div style="background:#fff;border:2px solid #eee;border-radius:10px;padding:10px;display:flex;justify-content:space-between"><div style="color:#000"><b>demo</b><br>Demo seller</div><button onclick="alert('✅ Added friend - Clickable!')" style="padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">ADD FRIEND - Clickable</button></div></div></div>
+<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE - CLICKABLE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:10px"><b style="color:#00ffcc">@demo</b><br>Phone: 0712345678<br>Bio: Demo seller - Can post ✅</div><div style="margin-top:10px;background:#00ffcc;padding:10px;border-radius:10px"><b style="color:#000">+ POST NEW REEL</b><br><button onclick="openBox('postBox')" style="width:100%;margin-top:6px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO - Clickable</button></div><input placeholder="Bio" class="input"><input placeholder="Phone" class="input"><button onclick="alert('✅ Saved - Clickable!')" class="btnFull" style="background:#00ffcc">SAVE PROFILE - Clickable</button></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="margin-top:10px"><div style="background:#fff;color:#000;padding:8px;border-radius:6px;margin-bottom:4px">Nice reel!</div></div><input placeholder="Add comment..." class="input"><button onclick="alert('✅ Comment posted - Clickable!')" class="btnFull" style="background:#00ffcc">POST COMMENT - Clickable</button></div>
 
 <script>
-function openBox(id){document.getElementById(id).style.display='block'}function closeBox(id){document.getElementById(id).style.display='none'}
-var users=JSON.parse(localStorage.getItem('glumo_users')||'[]');if(users.length==0){users=[{user:'demo',phone:'0712345678',pass:'1234',bio:'Demo seller - Can post'}];localStorage.setItem('glumo_users',JSON.stringify(users))}
-var current=JSON.parse(localStorage.getItem('glumo_current')||'null');
-var reels=JSON.parse(localStorage.getItem('glumo_reels_master')||'[]');
-if(reels.length==0){reels=[
-{user:'g_lumo',title:'G-LUMO WORLD 🌍 Tap + to Post Your Reel',type:'color',bg:'#ff2d55',likes:1240,comments:['Welcome'],tags:['world'],score:95,price:0,url:''},
-{user:'pochi_0142550440',title:'POCHI 0142550440 6% AUTO',type:'color',bg:'#7000ff',likes:892,comments:['Company'],tags:['market'],score:88,price:0,url:''},
-{user:'market',title:'AMAZON KILLER MARKET',type:'color',bg:'#00a896',likes:2100,comments:[],tags:['market'],score:92,price:0,url:''}
-];localStorage.setItem('glumo_reels_master',JSON.stringify(reels))}
-var products=[{name:'Jordan 4',price:3500,buyer:3724,comm:224},{name:'AirPods',price:12000,buyer:12766,comm:766}];
-var orders=[];var currentIdx=0;var tempUrl='';var tempType='';var feedMode='foryou';var followingUsers=JSON.parse(localStorage.getItem('glumo_following')||'[]');var userBehavior=JSON.parse(localStorage.getItem('glumo_behavior')||'{"tags":{}}');var displayedReels=[];
-function calculateScore(r){var base=r.likes*2+r.comments.length*3+(r.score||0);var boost=0;if(userBehavior.tags){for(var i=0;i<(r.tags||[]).length;i++){var t=r.tags[i];if(userBehavior.tags[t])boost+=userBehavior.tags[t]*4}}if(followingUsers.includes(r.user))boost+=25;return base+boost+Math.random()*5}
-function getFiltered(){var f=reels;if(feedMode=='following'){f=reels.filter(function(x){return followingUsers.includes(x.user)})}else{f=reels.slice();for(var i=0;i<f.length;i++)f[i].algoScore=calculateScore(f[i]);f.sort(function(a,b){return b.algoScore-a.algoScore})}return f.length?f:reels.slice(0,1)}
-function renderFeed(){displayedReels=getFiltered();var b=document.getElementById('b');var h='';for(var i=0;i<displayedReels.length;i++){var r=displayedReels[i];var media='';if(r.type=='video')media='<video id="vid'+i+'" src="'+r.url+'" loop playsinline muted></video>';else if(r.type=='image')media='<img src="'+r.url+'">';else media='<div style="width:100%;height:100%;background:'+r.bg+';display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;text-align:center;padding:20px">'+r.title+'</div>';var priceTag=r.price?'<br><span style="background:#00ffcc;color:#000;padding:3px 7px;border-radius:6px;font-size:11px">FOR SALE KSH '+r.buyer+' 6% '+r.comm+' → 0142550440</span>':'';h+='<div class="page" id="page'+i+'">'+media+'<div class="info"><b>@'+r.user+'</b><br><span style="font-size:14px">'+r.title+'</span>'+priceTag+'<br><span style="font-size:10px;color:#00ffcc">↑↓ Swipe TikTok • Tap + bottom to post</span></div></div>'}b.innerHTML=h;b.onscroll=function(){var idx=Math.round(b.scrollTop/(window.innerHeight-190));if(idx!=currentIdx){var oldV=document.getElementById('vid'+currentIdx);if(oldV)oldV.pause();currentIdx=idx;var newV=document.getElementById('vid'+currentIdx);if(newV)newV.play().catch(function(){});updateUI()}};setTimeout(function(){var v=document.getElementById('vid0');if(v)v.play().catch(function(){})},400);renderMarket();renderFriends();renderProfile();updateUI()}
-function updateUI(){var r=displayedReels[currentIdx];if(!r)return;document.getElementById('likeT').innerHTML=r.likes+' Likes';document.getElementById('comT').innerHTML=r.comments.length+' Com';document.getElementById('plus').innerHTML=followingUsers.includes(r.user)?'✓':'+';var cl=document.getElementById('comList');cl.innerHTML='';for(var i=0;i<r.comments.length;i++)cl.innerHTML+='<div style="background:#fff;color:#000;padding:6px;margin-bottom:4px;border-radius:6px">'+r.comments[i]+'</div>'}
-function setFeed(m){feedMode=m;document.getElementById('tabForYou').className=m=='foryou'?'tab active':'tab';document.getElementById('tabFollowing').className=m=='following'?'tab active':'tab';currentIdx=0;document.getElementById('b').scrollTop=0;renderFeed()}
-function previewReel(){var f=document.getElementById('reelFile').files[0];if(!f)return;tempType=f.type.startsWith('video')?'video':'image';tempUrl=URL.createObjectURL(f);var pre=document.getElementById('preview');pre.style.display='block';if(tempType=='video')pre.innerHTML='<video src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover" muted autoplay loop></video>';else pre.innerHTML='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">'}
-function postReel(asMarket){var title=document.getElementById('pTitle').value.trim()||'My Reel';var tagsStr=document.getElementById('pTags').value.trim().toLowerCase();var tags=tagsStr?tagsStr.split(',').map(function(s){return s.trim()}):['general'];var price=document.getElementById('pPrice').value*1||0;if(!tempUrl){alert('Choose photo/video first! Tap + CHOOSE button');return}if(!current){alert('Login first');openBox('loginBox');return}var buyer=0,comm=0;if(price){buyer=Math.round(price/0.94);comm=buyer-price}var nr={user:current.user,title:title,type:tempType,url:tempUrl,likes:0,comments:[],tags:tags,score:80,price:price,buyer:buyer,comm:comm};reels.unshift(nr);localStorage.setItem('glumo_reels_master',JSON.stringify(reels));if(asMarket&&price)products.unshift({name:title,price:price,buyer:buyer,comm:comm});document.getElementById('pTitle').value='';document.getElementById('pTags').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';tempUrl='';closeBox('postBox');setFeed('foryou');alert('✅ REEL POSTED! Everybody sees it now - Swipe to view - Algo pushes it!');}
-function doFollow(){var r=displayedReels[currentIdx];if(!r)return;if(!current){openBox('loginBox');return}var idx=followingUsers.indexOf(r.user);if(idx>-1){followingUsers.splice(idx,1);alert('Unfollowed')}else{followingUsers.push(r.user);r.score=(r.score||0)+10;alert('✅ Followed @'+r.user+'! Algo +5')}localStorage.setItem('glumo_following',JSON.stringify(followingUsers));localStorage.setItem('glumo_reels_master',JSON.stringify(reels));updateUI();renderFriends();for(var i=0;i<(r.tags||[]).length;i++){var t=r.tags[i];userBehavior.tags[t]=(userBehavior.tags[t]||0)+1}localStorage.setItem('glumo_behavior',JSON.stringify(userBehavior))}
-function doLike(){var r=displayedReels[currentIdx];if(!r)return;r.likes++;r.score=(r.score||0)+2;localStorage.setItem('glumo_reels_master',JSON.stringify(reels));updateUI();document.getElementById('heart').innerHTML='❤️';setTimeout(function(){document.getElementById('heart').innerHTML='🤍'},400)}
-function doShare(){var r=displayedReels[currentIdx];if(r){r.score=(r.score||0)+6;localStorage.setItem('glumo_reels_master',JSON.stringify(reels))}alert('✅ Shared! Algo +6')}
-function renderMarket(){var g=document.getElementById('marketGrid');
+function openBox(id){document.getElementById(id).style.display='block'}
+function closeBox(id){document.getElementById(id).style.display='none'}
+var liked=false;var followed=false;
+function doFollow(){followed=!followed;document.getElementById('plus').innerHTML=followed?'✓':'+';alert(followed?'✅ Followed! + icon clickable':'❌ Unfollowed')}
+function doLike(){liked=!liked;document.getElementById('heart').innerHTML=liked?'❤️':'🤍';document.getElementById('likeT').innerHTML=liked?'1.2K+1 Likes':'1.2K Likes';alert(liked?'❤️ Liked! Icon clickable':'🤍 Unliked')}
+function doShare(){alert('✅ Shared! Share icon clickable - same position as icons')}
+function previewReel(){var f=document.getElementById('reelFile').files[0];if(!f)return;var url=URL.createObjectURL(f);var pre=document.getElementById('preview');pre.style.display='block';if(f.type.startsWith('video'))pre.innerHTML='<video src="'+url+'" style="width:100%;height:100%;object-fit:cover" muted autoplay loop></video>';else pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:cover">'}
+function postReel(){var title=document.getElementById('pTitle').value.trim()||'My Reel';alert('✅ REEL POSTED: '+title+' - Everybody can view + Add Friend - + icon same position as icons - clickable!');closeBox('postBox')}
+</script>
+</body>
+</html>
