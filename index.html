@@ -3,134 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO - FIXED</title>
+<title>G-LUMO TEST</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial}
-header{position:fixed;top:0;left:0;right:0;height:44px;background:#000;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #222}
-#bar{position:fixed;top:44px;left:0;right:0;height:50px;background:#fff;z-index:99;display:flex;align-items:center;gap:8px;padding:0 8px}
-.btn{padding:8px 14px;border-radius:20px;border:0;font-weight:900;font-size:12px}
-.btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-#feed{padding-top:94px}
-.post{width:100%;border-bottom:8px solid #00ffcc}
-.media{width:100%;height:70vh;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:#fff;position:relative}
-.info{position:absolute;bottom:10px;left:10px;right:10px;background:rgba(0,0,0,.7);padding:10px;border-radius:10px;font-size:14px}
-.downBtn{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:10px 18px;border-radius:20px;font-weight:900;border:0}
-.editor{background:#fff;color:#000;padding:14px;min-height:80vh}
-.tools{display:flex;overflow-x:auto;gap:8px;padding:10px 0}
-.tools::-webkit-scrollbar{display:none}
-.t{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-weight:900;background:#000;color:#00ffcc}
-.t2{flex-shrink:0;padding:10px 16px;border-radius:20px;border:1px solid #ddd;background:#eee;color:#000;font-weight:900}
-.box{width:100%;height:300px;background:#111;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #00ffcc;color:#fff;font-size:24px;font-weight:900}
-.popup{position:fixed;top:94px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:200;display:none;padding:12px;overflow:auto}
-.popup.show{display:flex;flex-direction:column}
+body{margin:0;background:#fff;color:#000;font-family:Arial}
+header{height:44px;background:#000;color:#00ffcc;display:flex;align-items:center;padding:0 12px;font-weight:900;position:fixed;top:0;left:0;right:0}
+#bar{height:50px;background:#fff;display:flex;gap:8px;padding:0 8px;align-items:center;position:fixed;top:44px;left:0;right:0;border-bottom:3px solid #00ffcc}
+.box{width:100%;height:60vh;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:#fff}
+.whiteBox{width:100%;min-height:80vh;background:#fff;color:#000;padding:20px;border-top:8px solid #00ffcc}
+.tools{display:flex;overflow-x:auto;gap:10px;padding:10px 0}
+.tools span{flex-shrink:0;padding:12px 20px;background:#000;color:#00ffcc;border-radius:20px;font-weight:900}
 </style>
 </head>
 <body>
-<header><h1 style="color:#00ffcc;font-size:16px">G-LUMO 🌍 FIXED - MUST SHOW</h1><button onclick="openSell()" style="padding:6px 12px;background:#00ffcc;border:0;border-radius:12px;font-weight:900">+ SELL</button></header>
+<header>G-LUMO 🌍 - TEST IF THIS SHOWS, YOUR GITHUB WORKS</header>
 <div id="bar">
-<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET 6%→0142550440</button>
-<button class="btn btnG" onclick="openSell()">+ SELL</button>
-<button class="btn btnB">👇 SCROLL DOWN FOR EDITOR</button>
+<button style="padding:8px 14px;border-radius:20px;border:0;background:#000;color:#00ffcc;font-weight:900">MARKET 6%→0142550440</button>
+<button style="padding:8px 14px;border-radius:20px;border:0;background:#00ffcc;color:#000;font-weight:900">+ SELL</button>
 </div>
 
-<div id="marketPop" class="popup"><div style="display:flex;justify-content:space-between"><b>MARKET 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div></div>
-<div id="sellPop" class="popup"><div style="display:flex;justify-content:space-between"><b>SELL</b><button onclick="closeSell()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><input id="pName" placeholder="Title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px"><input id="pPrice" type="number" placeholder="Price you get" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><input id="pImg" placeholder="Image link" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><div id="fee" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px"></div><button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST</button></div>
-<div id="buyPop" class="popup" style="top:auto;bottom:0;max-height:85vh;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0"><div id="buyDet"></div></div>
-
-<div id="feed"></div>
-
-<script>
-function toggleMarket(){document.getElementById('marketPop').classList.toggle('show')}
-function openSell(){document.getElementById('sellPop').classList.add('show')}
-function closeSell(){document.getElementById('sellPop').classList.remove('show')}
-function calcFee(){let p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}let b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer KSH '+b+' | You KSH '+p+' | 6% KSH '+(b-p)+' to 0142550440'}
-
-const posts=[
-{bg:'#ff2d55',type:'PHOTO 1',cap:'POST 1 - SCROLL DOWN FOR WHITE EDITOR'},
-{bg:'#00ffcc',type:'VIDEO 1',cap:'VIDEO POST - EDITOR IS BELOW - WHITE AREA'},
-{bg:'#7000ff',type:'PHOTO 2',cap:'POST 3 - EDITOR BELOW'},
-];
-
-function render(){
-let f=document.getElementById('feed');
-let html='';
-for(let i=0;i<posts.length;i++){
-let p=posts[i];
-html+=`
-<div class="post">
-<div class="media" style="background:${p.bg}" id="m${i}">
-${p.type}
-<div class="info"><b>G-LUMO</b> - ${p.cap}<br>👇 Scroll down past this ${p.type} to see editor</div>
-<button class="downBtn" onclick="document.getElementById('e${i}').scrollIntoView({behavior:'smooth'})">👇 EDITOR BELOW</button>
-</div>
-<div class="editor" id="e${i}">
-<b style="color:#00a896">🎨 WORLD CLASS EDITOR - Below ${p.type} - Only visible after scroll down</b>
-<div style="background:#000;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:11px">LEFT/RIGHT SCROLL TOOLS - Beating all platforms</div>
-<div class="box" id="box${i}" style="margin-top:10px"><div id="img${i}" style="width:100%;height:100%;background:${p.bg};display:flex;align-items:center;justify-content:center;filter:none">${p.type}</div><div id="txt${i}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#fff;text-shadow:0 2px 8px #000;text-align:center"></div></div>
-
-<div style="margin-top:10px;font-weight:900;font-size:13px">FILTERS - SCROLL LEFT/RIGHT →</div>
+<div style="padding-top:94px">
+<div class="box" style="background:#ff2d55">POST 1 - RED - SCROLL DOWN</div>
+<div class="whiteBox">
+<b>🎨 EDITOR BELOW VIDEO - WHITE AREA - YOU SHOULD SEE THIS</b><br><br>
+If you see this white area, your editor is working! This is below the video.<br><br>
+<b>FILTERS - SCROLL LEFT/RIGHT →</b>
 <div class="tools">
-<button class="t" onclick="filterIt(${i},'none')">✨ Original</button>
-<button class="t" onclick="filterIt(${i},'grayscale(100%)')">⚫ B&W</button>
-<button class="t" onclick="filterIt(${i},'sepia(100%)')">🟤 Sepia</button>
-<button class="t" onclick="filterIt(${i},'saturate(300%)')">🌈 Vivid</button>
-<button class="t" onclick="filterIt(${i},'hue-rotate(90deg)')">❄️ Cold</button>
-<button class="t" onclick="filterIt(${i},'blur(5px)')">💨 Blur</button>
-<button class="t" onclick="filterIt(${i},'brightness(150%)')">☀️ Bright</button>
-<button class="t" onclick="filterIt(${i},'brightness(50%)')">🌙 Dark</button>
-<button class="t" onclick="filterIt(${i},'invert(100%)')">🌓 Invert</button>
+<span>✨ Original</span><span>⚫ B&W</span><span>🟤 Sepia</span><span>🌈 Vivid</span><span>❄️ Cold</span><span>🔥 Warm</span><span>💨 Blur</span><span>☀️ Bright</span><span>🌙 Dark</span><span>💡 Neon</span><span>🌓 Invert</span>
 </div>
-
-<div style="font-weight:900;font-size:13px">ADJUST - SCROLL LEFT/RIGHT →</div>
+<b>TEXT - SCROLL →</b>
 <div class="tools">
-<button class="t2" onclick="bright(${i},20)">☀️ Bright +</button>
-<button class="t2" onclick="bright(${i},-20)">☀️ Bright -</button>
-<button class="t2" onclick="rot(${i},90)">🔄 Rotate</button>
-<button class="t2" onclick="flip(${i})">↔️ Flip</button>
-<button class="t2" onclick="resetIt(${i})">♻️ Reset</button>
+<span>🌍 Add Text</span><span>🔥 FIRE</span><span>❤️ LOVE</span><span>💰 MONEY</span><span>😎</span><span>👑</span><span>🚀</span>
+</div>
+<br><br>
+<button style="width:100%;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">⬇️ DOWNLOAD EDITED</button><br><br>
+<button style="width:100%;padding:14px;background:#00ffcc;color:#000;border:0;border-radius:10px;font-weight:900">📤 POST EDITED</button>
+<br><br>
+<div style="background:#e6fffb;padding:10px;border-radius:10px">✅ If you see this, GitHub updated! Now I will send you full working editor code.</div>
 </div>
 
-<div style="font-weight:900;font-size:13px">TEXT - SCROLL →</div>
-<div class="tools">
-<button class="t" onclick="addTxt(${i},'G-LUMO 🌍')">🌍 Text</button>
-<button class="t" onclick="addTxt(${i},'🔥')">🔥</button>
-<button class="t" onclick="addTxt(${i},'❤️')">❤️</button>
-<button class="t" onclick="addTxt(${i},'💰')">💰</button>
-<button class="t" onclick="addTxt(${i},'👑')">👑</button>
-<button class="t" onclick="clearTxt(${i})">🧹 Clear</button>
+<div class="box" style="background:#00ccff">POST 2 - BLUE - SCROLL DOWN</div>
+<div class="whiteBox">
+<b>🎨 EDITOR FOR POST 2 - BELOW VIDEO</b>
+<div class="tools"><span>✨ Original</span><span>⚫ B&W</span><span>🌈 Vivid</span><span>🔥 Warm</span></div>
 </div>
 
-<div style="display:flex;gap:8px;margin-top:10px">
-<button onclick="alert('Edited saved!')" style="flex:1;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900">⬇️ SAVE</button>
-<button onclick="alert('Posted!')" style="flex:1;padding:12px;background:#00ffcc;color:#000;border:0;border-radius:10px;font-weight:900">📤 POST</button>
+<div class="box" style="background:#7000ff">POST 3 - PURPLE</div>
+<div class="whiteBox"><b>EDITOR 3 - WHITE - BELOW VIDEO</b></div>
 </div>
 
-<div style="background:#e6fffb;padding:10px;border-radius:10px;margin-top:10px;font-size:11px">✅ WHITE EDITOR VISIBLE - You are now BELOW video. Scroll up to see video again. This beats CapCut.</div>
-</div>
-</div>
-`;
-}
-f.innerHTML=html;
-}
-
-let states={};
-function filterIt(i,f){let el=document.getElementById('img'+i);if(!el)return;if(!states[i])states[i]={b:100};states[i].filter=f;el.style.filter=f+' brightness('+states[i].b+'%)'}
-function bright(i,v){if(!states[i])states[i]={filter:'none',b:100};states[i].b+=v;let el=document.getElementById('img'+i);el.style.filter=(states[i].filter||'none')+' brightness('+states[i].b+'%)'}
-function rot(i,d){if(!states[i])states[i]={b:100,rot:0};states[i].rot=(states[i].rot||0)+d;let el=document.getElementById('img'+i);el.style.transform='rotate('+states[i].rot+'deg)'}
-function flip(i){let el=document.getElementById('img'+i);el.style.transform=el.style.transform.includes('scaleX')?el.style.transform.replace('scaleX(-1)',''):el.style.transform+' scaleX(-1)'}
-function resetIt(i){states[i]={filter:'none',b:100,rot:0};let el=document.getElementById('img'+i);el.style.filter='none';el.style.transform='none';clearTxt(i)}
-function addTxt(i,t){let el=document.getElementById('txt'+i);el.innerText=(el.innerText+' '+t).trim()}
-function clearTxt(i){document.getElementById('txt'+i).innerText=''}
-
-let products=[{name:'Jordan 4',price:3500,buyerPrice:3724,comm:224,img:'https://picsum.photos/seed/j/400/300'}];
-function renderMarket(){let g=document.getElementById('grid');let h='';for(let p of products){h+=`<div style="border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff"><div style="height:100px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center">${p.name}</div><div style="padding:6px"><b>${p.name}</b><div style="font-size:11px">Buyer ${p.buyerPrice} 6% ${p.comm}→0142550440</div><button onclick="openBuy('${p.name}')" style="width:100%;margin-top:4px;padding:6px;background:#000;color:#00ffcc;border:0;border-radius:6px">BUY</button></div></div>`}g.innerHTML=h}
-function addProduct(){let n=document.getElementById('pName').value;let pr=document.getElementById('pPrice').value*1;if(!n||!pr)return alert('Enter');let b=Math.round(pr/0.94);let c=b-pr;products.unshift({name:n,price:pr,buyerPrice:b,comm:c,img:''});renderMarket();closeSell();toggleMarket()}
-function openBuy(name){document.getElementById('buyDet').innerHTML='<div style="display:flex;justify-content:space-between"><b>'+name+'</b><button onclick="closeBuy()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div style="margin-top:10px">6% auto to 0142550440</div><button onclick="alert(\'Paid - 6% to 0142550440\');closeBuy()" style="width:100%;padding:12px;background:#25D366;color:#fff;border:0;border-radius:10px;margin-top:10px">Pay 0142550440</button>';document.getElementById('buyPop').classList.add('show')}
-function closeBuy(){document.getElementById('buyPop').classList.remove('show')}
-
-render();
-renderMarket();
-</script>
 </body>
 </html>
