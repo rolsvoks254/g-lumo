@@ -3,145 +3,73 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>G-LUMO</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#00ffcc">
 <style>
-body{font-family:Arial;background:#0f0f1a;color:#fff;margin:0;padding:20px;text-align:center; overflow-y:auto !important; height:auto !important; min-height:100vh;}
-html{overflow-y:auto !important; height:auto !important;}
-h1{color:#00ffcc}
-.card{background:#1a1a2e;padding:15px;border-radius:12px;margin:15px 0;text-align:left}
-button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%;cursor:pointer}
-input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizing:border-box}
-#photoEditor, #videoEditor, #clipEditor{overflow-x:auto !important; white-space:nowrap !important; padding-bottom:8px !important;}
-#photoEditor button{display:inline-block !important; min-width:68px !important; max-width:85px !important; height:32px !important; font-size:11px !important; margin:4px !important;}
-canvas,video{max-height:220px !important; width:100% !important; object-fit:contain !important; border-radius:12px !important;}
-#promaxReelsFeed{display:flex !important; gap:12px; overflow-x:auto !important; scroll-snap-type:x mandatory; padding:15px 0;}
-#promaxReelsFeed::-webkit-scrollbar{display:none;}
-.promax-reel{flex:0 0 88%; scroll-snap-align:center; background:#000; border-radius:14px; overflow:hidden; position:relative; border:1px solid #222; height:480px;}
-.promax-reel video{width:100%; height:100%; object-fit:cover; display:block;}
-.promax-caption{position:absolute; bottom:0; left:0; right:0; padding:40px 12px 12px; background:linear-gradient(transparent,rgba(0,0,0,0.9)); color:white;}
-.promax-user{font-weight:bold; color:#00ffcc;}
-.promax-actions{position:absolute; right:10px; bottom:80px; display:flex; flex-direction:column; gap:15px;}
-.promax-btn{background:rgba(0,0,0,0.6); border:none; color:white; width:45px; height:45px; border-radius:50%; font-size:20px;}
-.pm-post{background:#111827; border:1px solid #222; border-radius:14px; padding:14px; margin:14px 0; text-align:left;}
-.pm-head{display:flex; align-items:center; gap:10px;}
-.pm-avatar{width:42px; height:42px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold;}
-.pm-follow{margin-left:auto; background:#00ffcc; color:#000; border:none; padding:7px 14px; border-radius:20px; font-weight:bold;}
-.friend-card{display:flex; flex-direction:column; align-items:center; background:#1e293b; padding:12px; border-radius:16px; min-width:110px; max-width:110px; flex:0 0 auto; scroll-snap-align:start; text-align:center;}
-.friend-avatar{width:55px; height:55px; border-radius:50%; background:#00ffcc; color:#000; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; margin-bottom:8px;}
-.add-btn{background:#00ffcc; color:#000; border:none; padding:6px 12px; border-radius:20px; font-weight:bold; font-size:11px; margin-top:8px; width:100%;}
+body{background:#0f0f1a;color:#fff;margin:0;padding:15px;font-family:Arial;text-align:center;overflow-y:auto !important;height:auto !important;min-height:100vh}
+html{overflow-y:auto !important}
+button{background:#00ffcc;border:0;padding:12px;border-radius:20px;font-weight:bold;width:100%;margin:5px 0}
+input{width:100%;padding:12px;border-radius:8px;border:0;margin:8px 0;box-sizing:border-box}
+#reels{display:flex;gap:12px;overflow-x:auto;padding:15px 0}
+.reel{min-width:85%;background:#000;border:1px solid #333;border-radius:14px;padding:0;overflow:hidden;height:400px;position:relative}
+.reel video{width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,black);padding:12px;text-align:left}
 </style>
 </head>
 <body>
-<h1>G-LUMO</h1>
+<h1 style="color:#00ffcc">G-LUMO</h1>
 <p>Connect. Share. Glow.</p>
-<input id="postText" placeholder="What's happening in the world?">
+<input id="postText" placeholder="What's happening in Sosiot?">
 <button onclick="addPost()">Post</button>
-<button onclick="shareGLUMO()" style="background:#fff;color:#000;margin-top:10px;">Share G-LUMO</button>
+<button onclick="share()" style="background:#fff;color:#000">Share G-LUMO</button>
 
 <div id="feed"></div>
 
-<!-- FRIENDS REELS ONLY - NO YOUTUBE -->
-<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
-<h3 style="color:#00ffcc;margin:0;">▶️ G-LUMO Reels ProMax</h3>
-<p style="color:#aaa;font-size:12px;">Swipe left / right • Friends posts only</p>
-<label for="promaxReelUpload" style="display:block;background:#00ffcc;color:#000;text-align:center;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;">+ Post a Reel</label>
-<input type="file" id="promaxReelUpload" accept="video/*" style="display:none;">
-<input type="text" id="promaxCaption" placeholder="Add caption... #sosiot #trending" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#000;color:white;">
-<div id="promaxReelsFeed"></div>
-<p style="text-align:center;color:#00ffcc;font-size:11px;">👉 Swipe LEFT for next • RIGHT for back 👈</p>
-</div>
-
-<div style="background:#0f172a;padding:15px;border-radius:15px;margin:20px 0;border:1px solid #1e293b;">
-<h3 style="color:#00ffcc;">👥 Find Friends</h3>
-<input type="text" id="friendSearch" placeholder="Search name..." style="width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#000;color:white;" onkeyup="searchFriends()">
-<div id="suggestedFriends" style="margin-top:15px;display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;"></div>
-<div id="searchResults" style="margin-top:10px;"></div>
+<div style="background:#1a1a2e;padding:12px;border-radius:12px;margin-top:15px;text-align:left">
+<h3 style="color:#00ffcc;margin:0">G-LUMO Reels - Friends Only</h3>
+<p style="font-size:12px;color:#aaa">Swipe left/right - NO YouTube</p>
+<div id="reels"></div>
 </div>
 
 <script>
-function shareGLUMO(){ if(navigator.share){navigator.share({title:'G-LUMO',text:'Connect. Share. Glow.',url:'https://rolsvoks254.github.io/g-lumo/'})} else {alert('Copy: https://rolsvoks254.github.io/g-lumo/')} }
+function share(){ 
+  if(navigator.share){navigator.share({title:'G-LUMO',url:location.href})} else {alert(location.href)} 
+}
 
-let promaxReels = JSON.parse(localStorage.getItem('glumo_promax_reels') || '[]');
-if(promaxReels.length===0){
- promaxReels=[
-  {user:'@mary_salon',caption:'Salon vibes Sosiot 💇‍♀️',likes:24,src:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'},
-  {user:'@brian_boda',caption:'Kericho ride today 🏍️',likes:18,src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'},
-  {user:'@faith_254',caption:'New dance challenge 🔥',likes:56,src:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
- ];
-}
-const promaxFeed=document.getElementById('promaxReelsFeed');
-function savePromax(){ const toSave=promaxReels.filter(r=>!r.src.startsWith('blob:')); localStorage.setItem('glumo_promax_reels',JSON.stringify(toSave)); }
-function renderPromaxReels(){
- promaxFeed.innerHTML='';
- promaxReels.forEach((r,i)=>{
-  const div=document.createElement('div'); div.className='promax-reel';
-  div.innerHTML=`<video src="${r.src}" loop playsinline muted onclick="this.muted=!this.muted; this.paused?this.play():this.pause()"></video>
-  <div class="promax-actions"><button class="promax-btn" onclick="likePromax(${i},this)">❤️</button><span style="color:white;font-size:12px;">${r.likes||0}</span></div>
-  <div class="promax-caption"><div class="promax-user">${r.user}</div>${r.caption||''}</div>`;
-  promaxFeed.appendChild(div);
- });
-}
-function likePromax(i,btn){ promaxReels[i].likes=(promaxReels[i].likes||0)+1; btn.nextElementSibling.innerText=promaxReels[i].likes; savePromax(); }
-document.getElementById('promaxReelUpload').addEventListener('change',function(e){
- const file=e.target.files[0]; if(!file) return;
- const caption=document.getElementById('promaxCaption').value.trim();
- const fastUrl=URL.createObjectURL(file);
- let myName='@you';
- try{ if(window.auth && auth.currentUser && auth.currentUser.email){ myName='@'+auth.currentUser.email.split('@')[0]; }}catch{}
- promaxReels.unshift({user:myName,caption:caption,likes:0,src:fastUrl});
- renderPromaxReels(); promaxFeed.scrollTo({left:0,behavior:'smooth'}); document.getElementById('promaxCaption').value=''; e.target.value='';
-});
-renderPromaxReels();
+var reels = [
+  {user:'@mary_salon', text:'Salon vibes Sosiot', likes:24},
+  {user:'@brian_boda', text:'Kericho ride today', likes:18},
+  {user:'@faith_254', text:'New dance challenge', likes:56}
+];
 
-// FRIENDS SYSTEM - FIXED COMPLETE
-let allUsers=JSON.parse(localStorage.getItem('glumo_users')||'[]');
-let myFriends=JSON.parse(localStorage.getItem('glumo_friends')||'[]');
-if(allUsers.length===0){
- allUsers=[
-  {name:'Mary Chebet',username:'mary_salon',location:'Sosiot',avatar:'M'},
-  {name:'Brian Kiprop',username:'brian_boda',location:'Kericho',avatar:'B'},
-  {name:'Faith Nyambura',username:'faith_254',location:'Sosiot',avatar:'F'},
-  {name:'Kevin Mutai',username:'kevin_tech',location:'Kericho',avatar:'K'}
- ];
- localStorage.setItem('glumo_users',JSON.stringify(allUsers));
+function render(){
+  var box = document.getElementById('reels');
+  box.innerHTML = '';
+  for(var i=0;i<reels.length;i++){
+    var r = reels[i];
+    var d = document.createElement('div');
+    d.className = 'reel';
+    d.innerHTML = '<div style="height:100%;background:#111;display:flex;align-items:center;justify-content:center;font-size:50px">🎬</div><div class="cap"><b style="color:#00ffcc">'+r.user+'</b><br>'+r.text+'<br>❤️ '+r.likes+'</div>';
+    box.appendChild(d);
+  }
+  var f = document.getElementById('feed');
+  f.innerHTML = '';
+  for(var j=0;j<reels.length;j++){
+    var p = document.createElement('div');
+    p.style.cssText='background:#111827;border:1px solid #333;border-radius:12px;padding:12px;margin:10px 0;text-align:left';
+    p.innerHTML = '<b>'+reels[j].user+'</b><br>'+reels[j].text;
+    f.appendChild(p);
+  }
 }
-function renderSuggested(){
- const box=document.getElementById('suggestedFriends'); box.innerHTML='';
- allUsers.forEach(u=>{
-  const isFriend=myFriends.includes(u.username);
-  const card=document.createElement('div'); card.className='friend-card';
-  card.innerHTML=`<div class="friend-avatar">${u.avatar}</div><div style="font-weight:bold;font-size:12px;">${u.name}</div><div style="color:#aaa;font-size:10px;">@${u.username}</div><button class="add-btn" onclick="toggleFriend('${u.username}',this)">${isFriend?'Friends':'Add Friend'}</button>`;
-  box.appendChild(card);
- });
-}
-function toggleFriend(username,btn){
- if(myFriends.includes(username)){ myFriends=myFriends.filter(x=>x!==username); btn.innerText='Add Friend'; }
- else { myFriends.push(username); btn.innerText='Friends'; }
- localStorage.setItem('glumo_friends',JSON.stringify(myFriends));
-}
-function searchFriends(){
- const q=document.getElementById('friendSearch').value.toLowerCase().trim();
- const resultsBox=document.getElementById('searchResults');
- const suggestedBox=document.getElementById('suggestedFriends');
- if(q===''){ resultsBox.innerHTML=''; suggestedBox.style.display='flex'; renderSuggested(); return; }
- suggestedBox.style.display='none';
- const filtered=allUsers.filter(u=>u.name.toLowerCase().includes(q) || u.username.toLowerCase().includes(q));
- resultsBox.innerHTML='';
- if(filtered.length===0){ resultsBox.innerHTML='<p style="color:#aaa;">No friends found</p>'; return; }
- filtered.forEach(u=>{
-  const isFriend=myFriends.includes(u.username);
-  const div=document.createElement('div'); div.style.cssText='background:#111827;padding:10px;border-radius:10px;margin:8px 0;display:flex;align-items:center;gap:10px;';
-  div.innerHTML=`<div class="friend-avatar" style="width:35px;height:35px;font-size:14px;">${u.avatar}</div><div style="flex:1;text-align:left;"><b>${u.name}</b><br><small style="color:#aaa;">@${u.username}</small></div><button class="add-btn" style="width:auto;" onclick="toggleFriend('${u.username}',this)">${isFriend?'Friends':'Add'}</button>`;
-  resultsBox.appendChild(div);
- });
-}
-renderSuggested();
 
-// FORCE SCROLL FIX
+function addPost(){
+  var inp = document.getElementById('postText');
+  if(!inp.value) return;
+  reels.unshift({user:'@you', text:inp.value, likes:0});
+  inp.value='';
+  render();
+}
+
+render();
 document.body.style.overflow='auto';
-document.documentElement.style.overflow='auto';
-setTimeout(()=>{ renderPromaxReels(); window.scrollTo(0,0); },500);
 </script>
 </body>
 </html>
