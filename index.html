@@ -3,76 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO WORLD PROMAX - LEFT RIGHT</title>
+<title>G-LUMO WORLD PROMAX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:system-ui;overflow:hidden}
-/* AUTH MUST LOGIN FIRST */
-#auth{position:fixed;inset:0;z-index:999;background:#000;display:flex;align-items:center;justify-content:center;padding:16px}
-.authBox{width:100%;max-width:360px;background:#111;border:1px solid #333;border-radius:20px;padding:20px}
-.authBox h1{color:#00ffcc;text-align:center;font-size:20px}
-.authBox input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;margin:6px 0}
-.authBox button{width:100%;padding:12px;border-radius:10px;border:0;font-weight:900;margin-top:8px}
-.btnMain{background:#00ffcc;color:#000}
-.btnGhost{background:transparent;color:#888;font-size:11px}
-.tabs{display:flex;gap:8px;margin-bottom:12px}
-.tabs button{flex:1;padding:8px;border-radius:8px;border:1px solid #333;background:#000;color:#aaa}
-.tabs button.active{background:#00ffcc;color:#000}
 header{position:fixed;top:0;left:0;right:0;z-index:90;background:#000;display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #222}
 header h2{color:#00ffcc;font-size:16px}
 #feed{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;width:100vw;height:100vh;padding-top:46px;scroll-behavior:smooth}
 #feed::-webkit-scrollbar{display:none}
 .reel{position:relative;min-width:100vw;width:100vw;height:calc(100vh - 46px);scroll-snap-align:center;flex-shrink:0;background:#0a0a0a;overflow:hidden}
 .reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block}
-.info{position:absolute;bottom:0;left:0;right:70px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.info{position:absolute;bottom:0;left:0;right:70px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.92))}
 .userRow{display:flex;gap:8px;align-items:center;font-weight:800;font-size:14px}
 .userRow img{width:34px;height:34px;border-radius:50%;border:2px solid #00ffcc}
-.cap{font-size:13px;margin-top:5px;line-height:1.3}
+.cap{font-size:13px;margin-top:5px;line-height:1.35}
+.music{color:#00ffcc;font-size:11px;margin-top:4px}
 .actions{position:absolute;right:6px;bottom:80px;display:flex;flex-direction:column;gap:14px}
 .act{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid #444;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
 .act span{font-size:20px}
 .act label{font-size:8px;color:#fff;margin-top:1px}
 .act.follow{background:#00ffcc;color:#000;font-weight:900}
 .act.follow.following{background:#fff}
-.hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;z-index:99;animation:fade 4s forwards}
-@keyframes fade{0%,70%{opacity:1}100%{opacity:0}}
+.hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;z-index:99}
 #msgBox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:16px}
 #msgBox.show{display:flex}
 </style>
 </head>
 <body>
 
-<div id="auth">
-<div class="authBox">
-<h1>G-LUMO WORLD PROMAX</h1>
-<p style="text-align:center;color:#aaa;font-size:11px;margin:6px 0 12px">TikTok without watermark • Instagram without watermark • Swipe Left ↔ Right</p>
-<div class="tabs">
-<button id="tabIn" class="active" onclick="switchAuth('in')">Sign In</button>
-<button id="tabUp" onclick="switchAuth('up')">Sign Up</button>
-</div>
-<input id="aUser" placeholder="Username (min 3)">
-<input id="aPass" type="password" placeholder="Password (min 4)">
-<button class="btnMain" id="aMainBtn" onclick="doAuth()">Sign In</button>
-<button class="btnGhost" onclick="document.getElementById('resetArea').style.display=document.getElementById('resetArea').style.display==='none'?'block':'none'">Forgot password? Reset</button>
-<div id="resetArea" style="display:none;margin-top:10px;border-top:1px solid #222;padding-top:10px">
-<input id="rUser" placeholder="Username to reset">
-<input id="rNew" type="password" placeholder="New password">
-<button class="btnMain" onclick="doReset()">Reset Password</button>
-</div>
-</div>
-</div>
-
 <header>
-<h2>G-LUMO PROMAX</h2>
-<div style="display:flex;gap:8px;align-items:center">
-<span style="font-size:11px;color:#aaa">← Scroll → TikTok</span>
-<span id="who" style="font-size:11px;color:#00ffcc"></span>
-<button onclick="logout()" style="background:#222;color:#fff;border:1px solid #333;padding:4px 8px;border-radius:6px;font-size:10px">Logout</button>
-</div>
+<h2>G-LUMO WORLD 🌍</h2>
+<span style="font-size:11px;color:#aaa">← Scroll →</span>
 </header>
 
 <div id="feed"></div>
-<div class="hint">👉 Swipe LEFT / RIGHT to scroll</div>
+<div class="hint">👉 Swipe LEFT / RIGHT</div>
 
 <div id="msgBox" onclick="this.classList.remove('show')">
 <div style="width:100%;max-width:360px;background:#111;border:1px solid #333;border-radius:16px;padding:14px" onclick="event.stopPropagation()">
@@ -85,30 +50,12 @@ header h2{color:#00ffcc;font-size:16px}
 </div>
 
 <script>
-// AUTH
-let mode='in';
-function switchAuth(m){mode=m;document.getElementById('tabIn').classList.toggle('active',m==='in');document.getElementById('tabUp').classList.toggle('active',m==='up');document.getElementById('aMainBtn').innerText=m==='in'?'Sign In':'Sign Up';}
-function getUsers(){return JSON.parse(localStorage.getItem('gl_users')||'{}')}
-function saveUsers(u){localStorage.setItem('gl_users',JSON.stringify(u))}
-function doAuth(){
-let u=document.getElementById('aUser').value.trim();let p=document.getElementById('aPass').value.trim();
-if(u.length<3||p.length<4){alert('Username 3+ and Password 4+');return}
-let users=getUsers();
-if(mode==='up'){if(users[u]){alert('Taken, sign in');switchAuth('in');return}users[u]=p;saveUsers(users);localStorage.setItem('gl_current',u);enter(u)}
-else{if(users[u]!==p){alert('Wrong password, try reset');return}localStorage.setItem('gl_current',u);enter(u)}
-}
-function doReset(){let u=document.getElementById('rUser').value.trim();let np=document.getElementById('rNew').value.trim();if(!u||np.length<4){alert('Fill correctly');return}let users=getUsers();if(!users[u]){alert('No user');return}users[u]=np;saveUsers(users);alert('Reset done, now Sign In');switchAuth('in')}
-function enter(u){document.getElementById('auth').style.display='none';document.getElementById('who').innerText='@'+u;render()}
-function logout(){localStorage.removeItem('gl_current');location.reload()}
-if(localStorage.getItem('gl_current')){document.getElementById('auth').style.display='none';document.getElementById('who').innerText='@'+localStorage.getItem('gl_current');}
-
-// FEED - LEFT RIGHT - NO WATERMARK
 const data=[
-{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO World',cap:'🌍 WORLD PROMAX - Left Right Scroll! TikTok no watermark, Instagram no watermark',music:'♫ Original - G-LUMO'},
-{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi254',name:'Pochi La Biashara',cap:'M-Pesa 0142550440 📦 Buyer Total = Price + 5% Fee • Seller Payout = Price - 5%',music:'♫ Trending KE'},
-{type:'image',src:'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800',user:'@kenya_style',name:'Kenya Style',cap:'Photos scroll left right same as videos 📸 Like Share Message Follow Download',music:'♫ Photo vibe'},
-{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@market_ke',name:'Market KE',cap:'Post products 🛒 No watermark, your brand stays',music:'♫ Business'},
-{type:'image',src:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800',user:'@travel_ke',name:'Travel KE',cap:'Swipe LEFT ↔ RIGHT to see next • Follow • Download • Instagram',music:'♫ Night'}
+{type:'image',src:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',user:'@g_lumo',name:'G-LUMO World',cap:'🌍 WORLD PROMAX LIVE! Swipe left right • Full screen photos & videos • No watermark',music:'♫ Original Sound'},
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@pochi254',name:'Pochi La Biashara',cap:'M-Pesa 0142550440 📦 Buyer Total = Price + 5% • Seller Payout = Price - 5%',music:'♫ Trending Sound'},
+{type:'image',src:'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800',user:'@kenya_style',name:'Kenya Style',cap:'Photos & videos both support Like • Share • Message • Follow • Download • All without watermark',music:'♫ Photo Vibes'},
+{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@market_ke',name:'Market KE',cap:'Post your products 🛒 Your content stays yours, no logo added',music:'♫ Business Sound'},
+{type:'image',src:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800',user:'@travel_ke',name:'Travel KE',cap:'Swipe LEFT ↔ RIGHT for next • Smooth scroll • World Edition',music:'♫ Night Sound'}
 ];
 let following={}, liked={};
 function render(){
@@ -116,18 +63,18 @@ let f=document.getElementById('feed');f.innerHTML='';
 data.forEach((d,i)=>{
 let m=d.type==='video'?`<video src="${d.src}" loop muted playsinline autoplay></video>`:`<img src="${d.src}">`;
 let ft=following[i]?'Following':'Follow';let fc=following[i]?'act follow following':'act follow';let lk=liked[i]?'❤️':'🤍';
-f.innerHTML+=`<div class="reel">${m}<div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div><div style="color:#00ffcc;font-size:11px;margin-top:4px">${d.music}</div></div><div class="actions"><button class="${fc}" onclick="follow(${i})"><span>👤</span><label>${ft}</label></button><button class="act" onclick="like(${i})"><span>${lk}</span><label>Like</label></button><button class="act" onclick="openMsg('${d.user}')"><span>💬</span><label>Message</label></button><button class="act" onclick="shareLink('${d.src}')"><span>🔗</span><label>Share</label></button><button class="act" onclick="downloadMedia('${d.src}')"><span>⬇️</span><label>Download</label></button><button class="act" onclick="ig('${d.src}')"><span>📸</span><label>Instagram</label></button></div></div>`;
+f.innerHTML+=`<div class="reel">${m}<div class="info"><div class="userRow"><img src="https://i.pravatar.cc/100?img=${i+10}">${d.name} • ${d.user}</div><div class="cap">${d.cap}</div><div class="music">${d.music}</div></div><div class="actions"><button class="${fc}" onclick="follow(${i})"><span>👤</span><label>${ft}</label></button><button class="act" onclick="like(${i})"><span>${lk}</span><label>Like</label></button><button class="act" onclick="openMsg('${d.user}')"><span>💬</span><label>Message</label></button><button class="act" onclick="shareLink('${d.src}')"><span>🔗</span><label>Share</label></button><button class="act" onclick="downloadMedia('${d.src}')"><span>⬇️</span><label>Download</label></button><button class="act" onclick="copyLink('${d.src}')"><span>📸</span><label>Copy</label></button></div></div>`;
 });
 setTimeout(()=>{document.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}))},500);
 }
 function follow(i){following[i]=!following[i];render()}
 function like(i){liked[i]=!liked[i];render()}
-function downloadMedia(s){let a=document.createElement('a');a.href=s;a.download='g-lumo-'+Date.now();document.body.appendChild(a);a.click();a.remove()}
-function shareLink(s){navigator.clipboard.writeText(s);alert('Link copied 🔗 No watermark!')}
-function ig(s){navigator.clipboard.writeText(s);window.open('https://instagram.com','_blank');alert('Link copied for Instagram 📸 No watermark')}
+function downloadMedia(s){let a=document.createElement('a');a.href=s;a.download='g-lumo-world-'+Date.now();document.body.appendChild(a);a.click();a.remove()}
+function shareLink(s){navigator.clipboard.writeText(s);alert('Link copied 🔗')}
+function copyLink(s){navigator.clipboard.writeText(s);alert('Link copied 📸 No watermark, ready to post anywhere')}
 function openMsg(u){document.getElementById('msgTo').innerText=u;document.getElementById('msgBox').classList.add('show')}
 function sendMsg(){let t=document.getElementById('msgText').value.trim();if(!t)return;document.getElementById('msgList').innerHTML+=`<div>You: ${t}</div>`;document.getElementById('msgText').value=''}
-if(localStorage.getItem('gl_current')) render();
+render();
 </script>
 </body>
 </html>
