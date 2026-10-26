@@ -1,86 +1,400 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>G-LUMO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>G-LUMO PROMAX - Sosiot Super App</title>
 <style>
-body{background:#0f0f1a;color:#fff;margin:0;padding:15px;font-family:Arial;text-align:center;overflow-y:auto !important;height:auto !important;min-height:100vh}
-html{overflow-y:auto !important}
-button{background:#00ffcc;border:0;padding:12px;border-radius:20px;font-weight:bold;width:100%;margin:5px 0;cursor:pointer}
-input{width:100%;padding:12px;border-radius:8px;border:0;margin:8px 0;box-sizing:border-box}
-#reels{display:flex;gap:12px;overflow-x:auto;padding:15px 0}
-.reel{min-width:85%;background:#000;border:1px solid #333;border-radius:14px;padding:0;overflow:hidden;height:400px;position:relative;flex-shrink:0}
-.reel video{width:100%;height:100%;object-fit:cover}
-.cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,black);padding:12px;text-align:left}
-.mp-card{background:#111827;border:1px solid #333;border-radius:12px;overflow:hidden;margin:12px 0;text-align:left}
-.mp-media{width:100%;height:220px;object-fit:cover;background:#000}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#0a0a12;color:#fff;font-family:Inter,Arial;overflow-y:auto !important;min-height:100vh}
+body{padding:0 0 120px}
+header{position:sticky;top:0;z-index:99;background:#0a0a12ee;backdrop-filter:blur(10px);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
+.logo{color:#00ffcc;font-weight:900;font-size:20px}
+.nav-btn{background:#111827;border:1px solid #222;padding:8px 12px;border-radius:20px;font-size:12px;color:#fff}
+.btn{border:0;padding:12px;border-radius:22px;font-weight:bold;cursor:pointer;width:100%;margin:6px 0}
+.btn-cyan{background:#00ffcc;color:#000}
+.btn-white{background:#fff;color:#000}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#111827;color:#fff;margin:6px 0}
+.section{background:#12121f;border:1px solid #1f1f30;border-radius:16px;margin:12px;padding:12px;text-align:left}
+.section h3{margin:6px 0;color:#00ffcc}
+.hscroll{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 0}
+.chip{min-width:86px;flex-shrink:0;background:#171727;border:1px solid #262640;border-radius:12px;padding:10px;text-align:center;scroll-snap-align:center}
+.avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00ffcc,#4aa8ff);color:#000;display:flex;align-items:center;justify-content:center;font-weight:900;margin:0 auto;font-size:18px}
+.reelsWrap{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 0}
+.reelCard{min-width:88%;height:520px;background:#000;border:1px solid #2a2a3a;border-radius:18px;position:relative;overflow:hidden;scroll-snap-align:center;flex-shrink:0;cursor:pointer}
+.reelCard img,.reelCard video{width:100%;height:100%;object-fit:cover}
+.reelOverlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.95));padding:12px}
+.reelActions{position:absolute;right:10px;bottom:90px;display:flex;flex-direction:column;gap:14px;align-items:center}
+.act{width:44px;height:44px;background:#000a;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #333;font-size:18px;cursor:pointer}
+.act.active{background:#00ffcc;color:#000}
+.enlarge{position:fixed;top:0;left:0;right:0;bottom:0;background:#000f;display:flex;align-items:center;justify-content:center;z-index:999;padding:0}
+.enlargeBox{width:100%;height:75vh;background:#000;border-radius:18px;overflow:hidden;position:relative;max-width:420px;margin:0 auto;border:1px solid #333}
+.enlargeBox img,.enlargeBox video{width:100%;height:100%;object-fit:contain;background:#000}
+.closeEnlarge{position:absolute;top:12px;right:12px;background:#000c;border:1px solid #333;color:#fff;border-radius:50%;width:36px;height:36px}
+.marketCard{background:#0f172a;border:1px solid #222;border-radius:14px;overflow:hidden;margin:10px 0}
+.marketImg{width:100%;height:240px;object-fit:cover;background:#000}
+.feeBox{background:#000;padding:8px;border-radius:8px;color:#aaa;font-size:11px;margin-top:6px;line-height:1.4;border:1px solid #1a1a2a}
+.editorTools{display:flex;gap:10px;overflow-x:auto;padding:10px 0}
+.tool{min-width:78px;background:#111827;border:1px solid #2a2a3a;border-radius:12px;padding:10px;text-align:center;font-size:11px;flex-shrink:0;cursor:pointer}
+canvas{max-width:100%;border-radius:12px;background:#000}
+.badge{background:#00ffcc;color:#000;padding:2px 6px;border-radius:8px;font-size:10px;font-weight:bold}
 </style>
 </head>
 <body>
-<h1 style="color:#00ffcc">G-LUMO</h1>
-<p>Connect. Share. Glow.</p>
-<input id="postText" placeholder="What's happening in Sosiot?">
-<button onclick="addPost()">Post</button>
-<button onclick="share()" style="background:#fff;color:#000">Share G-LUMO</button>
-<div id="feed"></div>
+<header>
+<div class="logo">G-LUMO PROMAX</div>
+<div style="display:flex;gap:6px"><button class="nav-btn" onclick="scrollToId('reelsSec')">Reels</button><button class="nav-btn" onclick="scrollToId('marketSec')">Market</button><button class="nav-btn" onclick="scrollToId('editSec')">Edit</button></div>
+</header>
+<div style="padding:12px">
+<div style="text-align:center;padding:8px 0">
+<h2 style="margin:6px 0;color:#00ffcc">Connect. Share. Glow.</h2>
+<p style="color:#aaa;font-size:12px;margin:0">Sosiot • Kericho • Bomet • Worldwide - Everyone who registers sees posts</p>
+</div>
+<div class="section" id="accountSec">
+<h3>👤 My Account & Add Friends</h3>
+<div style="display:flex;gap:8px">
+<input id="myName" placeholder="Your name - e.g. Brian Sosiot">
+<input id="myUser" placeholder="@username" style="max-width:130px">
+</div>
+<input type="file" id="myPic" accept="image/*">
+<button class="btn btn-cyan" onclick="saveProfile()">Save Profile & Join G-LUMO</button>
+<p style="font-size:11px;color:#aaa">Your profile + your posts will be seen by everyone registered in G-LUMO (local demo).</p>
+<div id="myProfileView" style="margin-top:10px"></div>
+</div>
+<div class="section">
+<h3>📸 Post Photo / Video to Everyone</h3>
+<input type="file" id="postFile" accept="image/*,video/*">
+<input id="postCap" placeholder="Caption + #hashtags - Seen by all registered">
+<button class="btn btn-white" onclick="createPost()">Post to G-LUMO Feed</button>
+</div>
+<div class="section">
+<h3>👥 Friends Suggestions - Add Friends</h3>
+<input id="friendQ" placeholder="Search name..." oninput="filterFriends(this.value)">
+<div class="hscroll" id="friendsH"></div>
+</div>
+<div class="section" id="reelsSec">
+<h3>🎬 G-LUMO Reels - Follow • Like • Download • Message • Share</h3>
+<p style="font-size:11px;color:#aaa">Tap reel to enlarge 3/4 screen • Swipe left/right • NO YouTube - Friends only</p>
+<button class="btn btn-cyan" onclick="document.getElementById('reelUp').click()">+ Post a Reel (Photo/Video)</button>
+<input type="file" id="reelUp" accept="image/*,video/*" style="display:none">
+<input id="reelCap" placeholder="Reel caption">
+<div class="reelsWrap" id="reelsFeed"></div>
+<p style="text-align:center;color:#00ffcc;font-size:11px">👉 Tap to enlarge 75% • Swipe left/right 👈</p>
+</div>
+<div class="section" id="marketSec">
+<h3>🛒 World Best Marketplace - Transparent 5%</h3>
+<p style="font-size:11px;color:#aaa">List product photo/video • Comments • Automatic fee visible • Beats all platforms</p>
+<button class="btn btn-cyan" onclick="document.getElementById('mpFile').click()">+ List Product (Photo/Video)</button>
+<input type="file" id="mpFile" accept="image/*,video/*" style="display:none">
+<input id="mpName" placeholder="Product name - e.g. Fresh Milk">
+<input type="number" id="mpPrice" placeholder="Price KSh - e.g. 1000">
+<input id="mpDesc" placeholder="Description + location">
+<button class="btn btn-white" onclick="publishProduct()">Publish Product - Fee Shown Clearly</button>
+<div id="marketFeed"></div>
+<div style="background:#111827;border:1px solid #222;padding:12px;border-radius:10px;margin-top:10px">
+<h4 style="margin:0 0 6px;color:#00ffcc">💳 Payment - Pochi La Biashara</h4>
+<p style="font-size:13px;margin:4px 0">1. Pochi: <b style="color:#00ffcc">0142550440</b> (Official)</p>
+<p style="font-size:13px;margin:4px 0">2. Second Pochi: <b style="color:#00ffcc">0142550440</b> (Backup)</p>
+<p style="font-size:11px;color:#aaa;margin-top:8px">✅ BUYER sees: Price + 5% Fee = Total<br>✅ SELLER sees: Price - 5% = You Get<br>✅ No hidden cut - shown BEFORE pay. Builds trust.</p>
+</div>
+</div>
+ <!-- BEST PHOTO + VIDEO EDITOR - LEFT TO RIGHT SCROLL - START -->
+<div class="section" id="editSec" style="background:#0a0a12;border:2px solid #00ffcc">
+<h3 style="color:#00ffcc;margin:0">🎨 G-LUMO Studio - Photo + Video Editor PROMAX</h3>
+<p style="font-size:11px;color:#aaa;margin:4px 0">Scroll tools LEFT → RIGHT • Photo + Video combined • Best editor</p>
 
-<div style="background:#1a1a2e;padding:12px;border-radius:12px;margin-top:15px;text-align:left">
-<h3 style="color:#00ffcc;margin:0">G-LUMO Reels - Friends Only</h3>
-<p style="font-size:12px;color:#aaa">Swipe left/right - NO YouTube</p>
-<div id="reels"></div>
+<input type="file" id="editFile" accept="image/*,video/*" style="display:none">
+<button class="btn btn-cyan" onclick="document.getElementById('editFile').click()">📁 Choose Photo / Video to Edit</button>
+
+<div style="position:relative;background:#000;border-radius:14px;overflow:hidden;margin:10px 0;min-height:320px;display:flex;align-items:center;justify-content:center">
+<canvas id="editCanvas" width="360" height="480" style="display:none;max-width:100%"></canvas>
+<video id="editVideo" controls playsinline style="display:none;width:100%;max-height:480px;border-radius:14px;background:#000"></video>
+<div id="editPlaceholder" style="color:#555;font-size:12px">No media - Choose file above</div>
+<div id="editTextLayer" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none"></div>
 </div>
 
-<div style="background:#0f172a;padding:14px;border-radius:15px;margin:20px 0;border:1.5px solid #00ffcc;text-align:left">
-<h2 style="color:#00ffcc;margin:0;text-align:center">🛒 Elite Marketplace</h2>
-<p style="text-align:center;color:#aaa;font-size:11px">Photos • Videos • Comments • Transparent 5%</p>
-<button onclick="document.getElementById('prodUpload').click()" style="background:#00ffcc;color:#000;">+ Sell Product</button>
-<input type="file" id="prodUpload" accept="image/*,video/*" style="display:none">
-<input id="prodName" placeholder="Product name - e.g. Avocados">
-<input type="number" id="prodPrice" placeholder="Price KSh - e.g. 1000">
-<input id="prodDesc" placeholder="Description + location">
-<button onclick="postProduct()" style="background:#fff;color:#000;">Publish Product</button>
-<div id="marketFeed"></div>
-<div style="background:#111827;padding:10px;border-radius:8px;margin-top:10px">
-<p style="font-size:12px;margin:4px 0">1. Pochi La Biashara: <b style="color:#00ffcc">0142550440</b></p>
-<p style="font-size:12px;margin:4px 0">2. Second Pochi: <b style="color:#00ffcc">0142550440</b></p>
-<p style="font-size:10px;color:#aaa">✅ Fee 5% visible: Buyer Total = Price + 5% | Seller Gets = Price - 5% | No hidden</p>
+<!-- TOOLS - LEFT TO RIGHT SCROLL -->
+<div style="background:#111827;border:1px solid #222;border-radius:12px;padding:6px">
+<p style="font-size:10px;color:#00ffcc;margin:0 0 4px">⬅️ SCROLL LEFT → RIGHT FOR ALL TOOLS ➡️</p>
+<div class="editorTools" style="display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 0">
+
+<div class="tool" onclick="applyFilter('none')"><span style="font-size:20px">✅</span><br>Original</div>
+<div class="tool" onclick="applyFilter('grayscale(100%)')"><span style="font-size:20px">⚫</span><br>Black/White</div>
+<div class="tool" onclick="applyFilter('sepia(100%)')"><span style="font-size:20px">🟤</span><br>Sepia</div>
+<div class="tool" onclick="applyFilter('contrast(180%) brightness(120%)')"><span style="font-size:20px">🔆</span><br>HD Pop</div>
+<div class="tool" onclick="applyFilter('brightness(150%)')"><span style="font-size:20px">☀️</span><br>Bright</div>
+<div class="tool" onclick="applyFilter('brightness(70%)')"><span style="font-size:20px">🌙</span><br>Dark</div>
+<div class="tool" onclick="applyFilter('contrast(200%)')"><span style="font-size:20px">💡</span><br>Contrast</div>
+<div class="tool" onclick="applyFilter('saturate(200%)')"><span style="font-size:20px">🌈</span><br>Vivid</div>
+<div class="tool" onclick="applyFilter('saturate(0%)')"><span style="font-size:20px">📺</span><br>Fade</div>
+<div class="tool" onclick="applyFilter('invert(100%)')"><span style="font-size:20px">🔄</span><br>Negative</div>
+<div class="tool" onclick="applyFilter('blur(5px)')"><span style="font-size:20px">💧</span><br>Blur</div>
+<div class="tool" onclick="applyFilter('hue-rotate(90deg)')"><span style="font-size:20px">🎨</span><br>Hue</div>
+<div class="tool" onclick="rotateEdit(90)"><span style="font-size:20px">↪️</span><br>Rotate</div>
+<div class="tool" onclick="flipEdit()"><span style="font-size:20px">↔️</span><br>Flip</div>
+<div class="tool" onclick="cropCenter()"><span style="font-size:20px">✂️</span><br>Crop</div>
+<div class="tool" onclick="addText()"><span style="font-size:20px">🔤</span><br>Text</div>
+<div class="tool" onclick="addSticker('🔥')"><span style="font-size:20px">🔥</span><br>Fire</div>
+<div class="tool" onclick="addSticker('❤️')"><span style="font-size:20px">❤️</span><br>Love</div>
+<div class="tool" onclick="addSticker('😂')"><span style="font-size:20px">😂</span><br>Fun</div>
+<div class="tool" onclick="videoMute()"><span style="font-size:20px">🔇</span><br>Mute Video</div>
+<div class="tool" onclick="videoSpeed(2)"><span style="font-size:20px">⏩</span><br>Speed x2</div>
+<div class="tool" onclick="videoSpeed(0.5)"><span style="font-size:20px">🐢</span><br>Slow</div>
+<div class="tool" onclick="downloadEdited()"><span style="font-size:20px">⬇️</span><br>Download</div>
+<div class="tool" onclick="postEditedToReels()" style="background:#00ffcc;color:#000"><span style="font-size:20px">🎬</span><br>Post Reel</div>
+<div class="tool" onclick="postEditedToMarket()" style="background:#fff;color:#000"><span style="font-size:20px">🛒</span><br>To Market</div>
+
+</div>
+</div>
+
+<div style="display:flex;gap:6px;margin-top:8px">
+<input type="range" id="brightRange" min="50" max="200" value="100" style="flex:1" oninput="adjustBright(this.value)">
+<input type="range" id="contrastRange" min="50" max="200" value="100" style="flex:1" oninput="adjustContrast(this.value)">
+</div>
+<p style="font-size:10px;color:#aaa;margin:4px 0">Slide: Left = Brightness • Right = Contrast • Works on photo</p>
+</div>
+
+<style>
+.editorTools::-webkit-scrollbar{display:none}
+.tool{min-width:74px;height:68px;background:#0f172a;border:1px solid #222;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:bold;flex-shrink:0;scroll-snap-align:center;cursor:pointer;color:#fff}
+.tool:active{transform:scale(0.95);background:#00ffcc;color:#000}
+</style>
+
+<script>
+let editCtx=document.getElementById('editCanvas').getContext('2d');
+let editImg=new Image(); let currentFilter='none'; let editMode='none'; let editRotation=0; let isFlipped=false;
+
+document.getElementById('editFile').addEventListener('change',function(){
+ let file=this.files[0]; if(!file)return;
+ document.getElementById('editPlaceholder').style.display='none';
+ if(file.type.startsWith('video')){
+  editMode='video'; document.getElementById('editCanvas').style.display='none';
+  let v=document.getElementById('editVideo'); v.style.display='block'; v.src=URL.createObjectURL(file); v.style.filter=currentFilter;
+ } else {
+  editMode='image'; document.getElementById('editVideo').style.display='none';
+  let c=document.getElementById('editCanvas'); c.style.display='block';
+  let r=new FileReader(); r.onload=e=>{
+   editImg.onload=()=>{ c.width=editImg.width; c.height=editImg.height; drawEdit(); };
+   editImg.src=e.target.result;
+  }; r.readAsDataURL(file);
+ }
+});
+
+function drawEdit(){
+ let c=document.getElementById('editCanvas'); let ctx=editCtx;
+ ctx.save(); ctx.clearRect(0,0,c.width,c.height);
+ ctx.translate(c.width/2,c.height/2); ctx.rotate(editRotation*Math.PI/180);
+ if(isFlipped) ctx.scale(-1,1);
+ ctx.filter=currentFilter; ctx.drawImage(editImg,-c.width/2,-c.height/2);
+ ctx.restore();
+}
+function applyFilter(f){ currentFilter=f;
+ if(editMode==='image') drawEdit();
+ else if(editMode==='video') document.getElementById('editVideo').style.filter=f;
+}
+function rotateEdit(d){ editRotation+=d; if(editMode==='image') drawEdit(); else { let v=document.getElementById('editVideo'); v.style.transform=`rotate(${editRotation}deg)`; } }
+function flipEdit(){ isFlipped=!isFlipped; if(editMode==='image') drawEdit(); else { let v=document.getElementById('editVideo'); v.style.transform=`scaleX(${isFlipped?-1:1}) rotate(${editRotation}deg)`; } }
+function cropCenter(){
+ if(editMode!=='image'){alert('Crop works for photo only');return}
+ let c=document.getElementById('editCanvas'); let w=c.width*0.8, h=c.height*0.8;
+ let tmp=document.createElement('canvas'); tmp.width=w; tmp.height=h;
+ tmp.getContext('2d').drawImage(c,c.width*0.1,c.height*0.1,w,h,0,0,w,h);
+ c.width=w; c.height=h; editCtx.drawImage(tmp,0,0); editImg.src=c.toDataURL();
+}
+function addText(){
+ let t=prompt('Type text to add:'); if(!t)return;
+ if(editMode==='image'){
+  let c=document.getElementById('editCanvas'); let ctx=editCtx;
+  ctx.filter='none'; ctx.font='bold 48px Arial'; ctx.fillStyle='#00ffcc'; ctx.strokeStyle='#000'; ctx.lineWidth=6;
+  ctx.strokeText(t,40,80); ctx.fillText(t,40,80);
+ } else { alert('Text added as caption when you Post Reel'); }
+}
+function addSticker(emo){ addText(emo); }
+function adjustBright(v){ currentFilter=`brightness(${v}%)`; if(editMode==='image') drawEdit(); else document.getElementById('editVideo').style.filter=currentFilter; }
+function adjustContrast(v){ currentFilter=`contrast(${v}%) brightness(${document.getElementById('brightRange').value}%)`; if(editMode==='image') drawEdit(); else document.getElementById('editVideo').style.filter=currentFilter; }
+function videoMute(){ let v=document.getElementById('editVideo'); v.muted=!v.muted; alert(v.muted?'Video muted':'Video unmuted'); }
+function videoSpeed(s){ let v=document.getElementById('editVideo'); v.playbackRate=s; alert('Speed '+s+'x'); }
+function downloadEdited(){
+ let c=document.getElementById('editCanvas');
+ if(c.style.display!=='none'){ let a=document.createElement('a'); a.download='g-lumo-edited.png'; a.href=c.toDataURL(); a.click(); }
+ else { alert('Download video: long press video → Save video (on phone)'); }
+}
+function postEditedToReels(){
+ let c=document.getElementById('editCanvas'); let v=document.getElementById('editVideo');
+ let url = c.style.display!=='none' ? c.toDataURL() : v.src;
+ if(!url){alert('Edit something first');return}
+ if(typeof reels!=='undefined'){ reels.unshift({id:Date.now(),user:myProfile.user||'@you',name:myProfile.name||'You',text:'Edited in G-LUMO Studio ✨ #edited',likes:0,liked:false,following:false,img:url,type:editMode==='video'?'video':'image'}); saveReels(); renderReels(); }
+ alert('Posted to Reels!'); scrollToId('reelsSec');
+}
+function postEditedToMarket(){
+ let c=document.getElementById('editCanvas'); let v=document.getElementById('editVideo');
+ let url = c.style.display!=='none' ? c.toDataURL() : v.src;
+ if(!url){alert('Edit something first');return}
+ if(typeof products!=='undefined'){ products.unshift({id:Date.now(),name:'Edited Product',price:500,desc:'Edited in Studio',user:myProfile.user||'@you',img:url,type:editMode==='video'?'video':'image',comments:[]}); renderMarket(); }
+ alert('Added to Marketplace!'); scrollToId('marketSec');
+}
+</script>
+<!-- BEST EDITOR END -->
+
+<div id="enlarge" class="enlarge" style="display:none" onclick="closeEnlarge()">
+<div class="enlargeBox" onclick="event.stopPropagation()">
+<button class="closeEnlarge" onclick="closeEnlarge()">✕</button>
+<div id="enlargeContent" style="width:100%;height:100%"></div>
 </div>
 </div>
 
 <script>
-function share(){ if(navigator.share){navigator.share({title:'G-LUMO',url:location.href})} else {alert(location.href)} }
-
-var reels = [{user:'@mary_salon',text:'Salon vibes Sosiot',likes:24},{user:'@brian_boda',text:'Kericho ride today',likes:18},{user:'@faith_254',text:'New dance challenge',likes:56}];
-var products = JSON.parse(localStorage.getItem('glumo_market')||'[]');
-if(products.length==0){products=[{id:1,name:'Sosiot Avocados',price:400,desc:'Farm fresh 1kg',user:'@mary_salon',img:'https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa',comments:[]}];}
-
-function render(){
- var box=document.getElementById('reels'); box.innerHTML='';
- for(var i=0;i<reels.length;i++){var r=reels[i]; var d=document.createElement('div'); d.className='reel'; d.innerHTML='<div style="height:100%;background:#111;display:flex;align-items:center;justify-content:center;font-size:50px">🎬</div><div class="cap"><b style="color:#00ffcc">'+r.user+'</b><br>'+r.text+'<br>❤️ '+r.likes+'</div>'; box.appendChild(d);}
- var f=document.getElementById('feed'); f.innerHTML=''; for(var j=0;j<reels.length;j++){var p=document.createElement('div'); p.style.cssText='background:#111827;border:1px solid #333;border-radius:12px;padding:12px;margin:10px 0;text-align:left'; p.innerHTML='<b>'+reels[j].user+'</b><br>'+reels[j].text; f.appendChild(p);}
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+let myProfile = JSON.parse(localStorage.getItem('glumo_my')||'null') || {name:'',user:'@you',pic:''};
+function saveProfile(){
+ let name=document.getElementById('myName').value.trim()||'G-LUMO User';
+ let user=document.getElementById('myUser').value.trim()||'@you';
+ let file=document.getElementById('myPic').files[0];
+ if(file){ let r=new FileReader(); r.onload=e=>{myProfile={name,user,pic:e.target.result}; localStorage.setItem('glumo_my',JSON.stringify(myProfile)); renderProfile();}; r.readAsDataURL(file); }
+ else { myProfile={name,user,pic:myProfile.pic||''}; localStorage.setItem('glumo_my',JSON.stringify(myProfile)); renderProfile(); }
+}
+function renderProfile(){
+ let v=document.getElementById('myProfileView');
+ if(!myProfile.name){v.innerHTML='<span style="color:#aaa">Not joined yet</span>';return}
+ v.innerHTML=`<div style="display:flex;gap:10px;align-items:center;background:#000;padding:10px;border-radius:10px"><img src="${myProfile.pic||'https://via.placeholder.com/52x52/00ffcc/000?text=G'}" style="width:52px;height:52px;border-radius:50%;object-fit:cover"><div><b>${myProfile.name}</b><br><span style="color:#00ffcc;font-size:12px">${myProfile.user}</span><br><span class="badge">Registered - Seen by All</span></div></div>`;
+}
+renderProfile();
+let allUsers = JSON.parse(localStorage.getItem('glumo_users')||'null') || [
+ {id:1,name:'Mary Chebet',user:'@mary_salon',initial:'M',following:false},
+ {id:2,name:'Brian Kiprop',user:'@brian_boda',initial:'B',following:false},
+ {id:3,name:'Faith Nyambura',user:'@faith_254',initial:'F',following:false},
+ {id:4,name:'Kevin Mutai',user:'@kevin_tech',initial:'K',following:false},
+ {id:5,name:'Sharon Achieng',user:'@sharon_beauty',initial:'S',following:false},
+ {id:6,name:'Dennis Kiplangat',user:'@dennis_ft',initial:'D',following:false}
+];
+function renderFriends(list){
+ let h=document.getElementById('friendsH'); h.innerHTML='';
+ list.forEach(u=>{
+  let d=document.createElement('div'); d.className='chip';
+  d.innerHTML=`<div class="avatar">${u.initial}</div><div style="font-size:12px;font-weight:bold;margin-top:6px">${u.name.split(' ')[0]}</div><div style="font-size:10px;color:#aaa">${u.user}</div><div style="margin-top:6px"><button onclick="toggleFollow(${u.id})" style="padding:6px 10px;border-radius:20px;border:0;font-size:10px;font-weight:bold;background:${u.following?'#fff':'#00ffcc'};color:#000">${u.following?'Following':'Follow'}</button><br><button onclick="messageUser('${u.name}')" style="padding:4px 8px;margin-top:4px;border-radius:20px;background:#222;border:1px solid #333;color:#fff;font-size:10px">Message</button></div>`;
+  h.appendChild(d);
+ });
+}
+function toggleFollow(id){ let u=allUsers.find(x=>x.id==id); u.following=!u.following; localStorage.setItem('glumo_users',JSON.stringify(allUsers)); renderFriends(allUsers); }
+function messageUser(name){ let msg=prompt('Message to '+name+':'); if(msg){ alert('Message sent to '+name+' (demo)'); } }
+function filterFriends(q){ let f=allUsers.filter(x=>x.name.toLowerCase().includes(q.toLowerCase())||x.user.toLowerCase().includes(q.toLowerCase())); renderFriends(f); }
+renderFriends(allUsers);
+let reels = JSON.parse(localStorage.getItem('glumo_promax_reels')||'null') || [
+ {id:101,user:'@mary_salon',name:'Mary',text:'Salon vibes Sosiot 💇‍♀️ #trending',likes:24,liked:false,following:false,img:'https://images.unsplash.com/photo-1526045612212-70caf35c14df',type:'image'},
+ {id:102,user:'@brian_boda',name:'Brian',text:'Kericho ride today 🏍️ #boda',likes:18,liked:false,following:false,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060',type:'image'},
+ {id:103,user:'@faith_254',name:'Faith',text:'New dance challenge 🔥 #kenya',likes:56,liked:false,following:false,img:'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',type:'image'}
+];
+function saveReels(){ localStorage.setItem('glumo_promax_reels',JSON.stringify(reels.slice(0,60))); }
+function renderReels(){
+ let feed=document.getElementById('reelsFeed'); feed.innerHTML='';
+ reels.forEach((r,idx)=>{
+  let card=document.createElement('div'); card.className='reelCard';
+  card.onclick=()=>enlargeReel(idx);
+  let media = r.type==='video'?`<video src="${r.img}" loop muted playsinline></video>`:`<img src="${r.img}">`;
+  card.innerHTML=`${media}<div class="reelActions">
+   <div class="act ${r.liked?'active':''}" onclick="event.stopPropagation();likeReel(${idx})">❤️<br><span style="font-size:10px">${r.likes}</span></div>
+   <div class="act" onclick="event.stopPropagation();toggleFollowReel(${idx})" style="background:${r.following?'#00ffcc':'#000a'};color:${r.following?'#000':'#fff'}">${r.following?'✓':'＋'}</div>
+   <div class="act" onclick="event.stopPropagation();shareReel(${idx})">↗️</div>
+   <div class="act" onclick="event.stopPropagation();downloadReel(${idx})">⬇️</div>
+   <div class="act" onclick="event.stopPropagation();messageUser('${r.name}')">💬</div>
+  </div><div class="reelOverlay"><b style="color:#00ffcc">${r.user}</b> ${r.following?'<span class="badge">Following</span>':''}<br><span style="font-size:13px">${r.text}</span><br><span style="font-size:11px;color:#aaa">Tap to enlarge 3/4 • Swipe →</span></div>`;
+  feed.appendChild(card);
+ });
+}
+function likeReel(i){ let r=reels[i]; r.liked=!r.liked; r.likes+= r.liked?1:-1; saveReels(); renderReels(); }
+function toggleFollowReel(i){ reels[i].following=!reels[i].following; saveReels(); renderReels(); }
+function shareReel(i){ let r=reels[i]; if(navigator.share){navigator.share({title:'G-LUMO Reel',text:r.text,url:location.href})} else { navigator.clipboard.writeText(location.href+' - '+r.text); alert('Link copied!'); } }
+function downloadReel(i){ let r=reels[i]; let a=document.createElement('a'); a.href=r.img; a.download='g-lumo-'+r.id; a.target='_blank'; a.click(); }
+function enlargeReel(i){
+ let r=reels[i]; let box=document.getElementById('enlargeContent'); let overlay=document.getElementById('enlarge');
+ let media = r.type==='video'?`<video src="${r.img}" controls autoplay style="width:100%;height:75vh;object-fit:contain"></video>`:`<img src="${r.img}" style="width:100%;height:75vh;object-fit:contain">`;
+ box.innerHTML=`${media}<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,black);padding:14px"><b style="color:#00ffcc">${r.user}</b><br>${r.text}<br><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button onclick="likeReel(${i});enlargeReel(${i})" style="padding:8px 12px;border-radius:20px;border:0;background:${r.liked?'#00ffcc':'#fff'};color:#000">❤️ ${r.likes} Like</button><button onclick="toggleFollowReel(${i});enlargeReel(${i})" style="padding:8px 12px;border-radius:20px;border:0;background:#111827;color:#fff;border:1px solid #333">${r.following?'Following':'Follow'}</button><button onclick="downloadReel(${i})" style="padding:8px 12px;border-radius:20px;border:0;background:#111827;color:#fff">Download</button><button onclick="shareReel(${i})" style="padding:8px 12px;border-radius:20px;border:0;background:#111827;color:#fff">Share</button></div></div>`;
+ overlay.style.display='flex';
+}
+function closeEnlarge(){ document.getElementById('enlarge').style.display='none'; }
+document.getElementById('reelUp').addEventListener('change',function(){
+ let file=this.files[0]; if(!file)return; let cap=document.getElementById('reelCap').value||'New G-LUMO reel Sosiot';
+ let url=URL.createObjectURL(file); let type=file.type.startsWith('video')?'video':'image';
+ reels.unshift({id:Date.now(),user:myProfile.user||'@you',name:myProfile.name||'You',text:cap,likes:0,liked:false,following:false,img:url,type:type});
+ this.value=''; document.getElementById('reelCap').value=''; saveReels(); renderReels();
+});
+function createPost(){
+ let file=document.getElementById('postFile').files[0]; let cap=document.getElementById('postCap').value||'Hello G-LUMO!';
+ if(!file){ alert('Pick photo/video first'); return; }
+ let url=URL.createObjectURL(file); let type=file.type.startsWith('video')?'video':'image';
+ reels.unshift({id:Date.now(),user:myProfile.user||'@you',name:myProfile.name||'You',text:cap+' - Seen by all',likes:0,liked:false,following:false,img:url,type:type});
+ document.getElementById('postFile').value=''; document.getElementById('postCap').value=''; saveReels(); renderReels(); scrollToId('reelsSec');
+}
+let products = JSON.parse(localStorage.getItem('glumo_market_promax')||'null') || [
+ {id:201,name:'Sosiot Fresh Avocados',price:400,desc:'Farm fresh 1kg - Sosiot',user:'@mary_salon',img:'https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa',type:'image',comments:[{u:'@brian',t:'Niko na order'}]}
+];
+function renderMarket(){
+ let feed=document.getElementById('marketFeed'); feed.innerHTML='';
+ products.forEach((p,i)=>{
+  let fee=Math.round(p.price*0.05); let total=p.price+fee; let net=p.price-fee;
+  let div=document.createElement('div'); div.className='marketCard';
+  let media = p.type==='video'?`<video src="${p.img}" controls style="width:100%;height:240px;object-fit:cover;background:#000"></video>`:`<img src="${p.img}" class="marketImg">`;
+  div.innerHTML=`${media}<div style="padding:12px">
+   <div style="display:flex;justify-content:space-between"><b>${p.name}</b><span style="color:#00ffcc;font-size:11px">${p.user}</span></div>
+   <div style="color:#aaa;font-size:12px;margin:4px 0">${p.desc}</div>
+   <div style="color:#00ffcc;font-weight:900;font-size:18px">KSh ${p.price}</div>
+   <div class="feeBox">✅ TRANSPARENT 5% - Fee KSh ${fee} | Buyer Total KSh ${total} | Seller Gets KSh ${net}<br>Pochi <b style="color:#00ffcc">0142550440</b> | Second Pochi same <b style="color:#00ffcc">0142550440</b></div>
+   <div style="display:flex;gap:6px;margin-top:8px"><button onclick="buyProd(${i})" style="flex:1;background:#00ffcc;color:#000;padding:10px;border-radius:20px;border:0;font-weight:bold">Buy - 0142550440</button><button onclick="toggleProdCom(${p.id})" style="flex:1;background:#1a1a2e;color:#fff;border:1px solid #333;padding:10px;border-radius:20px">💬 ${p.comments.length}</button></div>
+   <div id="prodC-${p.id}" style="display:none;margin-top:10px">${p.comments.map(c=>`<div style="background:#000;padding:6px;border-radius:6px;margin:4px 0;font-size:12px"><b>${c.u}:</b> ${c.t}</div>`).join('')}<div style="display:flex;gap:6px"><input id="prodIn-${p.id}" placeholder="Add comment"><button onclick="addProdCom(${p.id})" style="width:auto;padding:8px 12px;background:#00ffcc;color:#000;border-radius:8px;border:0">Post</button></div></div>
+  </div>`;
+  feed.appendChild(div);
+ });
+ localStorage.setItem('glumo_market_promax',JSON.stringify(products));
+}
+function publishProduct(){
+ let name=document.getElementById('mpName').value.trim(), price=parseInt(document.getElementById('mpPrice').value), desc=document.getElementById('mpDesc').value.trim(), file=document.getElementById('mpFile').files[0];
+ if(!name||!price){alert('Add name & price');return}
+ let url=file?URL.createObjectURL(file):'https://via.placeholder.com/400x240/111/0ff?text='+encodeURIComponent(name);
+ let type=file&&file.type.startsWith('video')?'video':'image';
+ products.unshift({id:Date.now(),name,price,desc:desc||'Sosiot',user:myProfile.user||'@you',img:url,type,comments:[]});
+ document.getElementById('mpName').value='';document.getElementById('mpPrice').value='';document.getElementById('mpDesc').value='';document.getElementById('mpFile').value='';
  renderMarket();
 }
-function addPost(){var inp=document.getElementById('postText'); if(!inp.value) return; reels.unshift({user:'@you',text:inp.value,likes:0}); inp.value=''; render();}
-
-function renderMarket(){
- var feed=document.getElementById('marketFeed'); feed.innerHTML='';
- for(var i=0;i<products.length;i++){var p=products[i]; var fee=Math.round(p.price*0.05); var tot=p.price+fee; var net=p.price-fee;
- var div=document.createElement('div'); div.className='mp-card';
- div.innerHTML='<img src="'+p.img+'" class="mp-media"><div style="padding:12px"><b>'+p.name+'</b><span style="float:right;color:#00ffcc;font-size:11px">'+p.user+'</span><br><span style="color:#aaa;font-size:12px">'+p.desc+'</span><br><span style="color:#00ffcc;font-weight:bold">KSh '+p.price+'</span><div style="background:#000;padding:6px;border-radius:6px;font-size:11px;color:#aaa;margin:6px 0">Transparent: Fee 5% = KSh '+fee+' | Buyer pays KSh '+tot+' | Seller gets KSh '+net+' | Pay 0142550440</div><button onclick="buyProduct('+i+')" style="background:#00ffcc;color:#000;padding:10px;border-radius:20px;width:48%;font-weight:bold;border:0">Buy 0142550440</button> <button onclick="var x=document.getElementById(\'com-'+p.id+'\');x.style.display=x.style.display==\'none\'?\'block\':\'none\'" style="background:#222;color:#fff;padding:10px;border-radius:20px;width:48%;border:1px solid #333">💬 '+p.comments.length+'</button><div id="com-'+p.id+'" style="display:none;margin-top:8px">'+p.comments.map(function(c){return '<div style="background:#000;padding:6px;border-radius:6px;margin:3px 0;font-size:12px"><b>'+c.u+':</b> '+c.t+'</div>'}).join('')+'<div style="display:flex;gap:6px"><input id="in-'+p.id+'" placeholder="Comment" style="flex:1"><button onclick="addCom('+p.id+')" style="width:auto;background:#00ffcc;color:#000;padding:8px 12px">Post</button></div></div></div>';
- feed.appendChild(div);
+function buyProd(i){
+ let p=products[i], fee=Math.round(p.price*0.05), tot=p.price+fee, net=p.price-fee;
+ if(confirm(`TRANSPARENT CHECKOUT\n${p.name}\nPrice KSh ${p.price}\nFee 5% KSh ${fee}\nTOTAL KSh ${tot}\nSeller gets KSh ${net}\nPay Pochi 0142550440\nSecond Pochi 0142550440`)){
+  navigator.clipboard.writeText(`Pay KSh ${tot} to Pochi 0142550440 for ${p.name}`);
+  alert('Copied! Lipa 0142550440 KSh '+tot);
  }
- localStorage.setItem('glumo_market',JSON.stringify(products));
 }
-function postProduct(){
- var n=document.getElementById('prodName').value, pr=parseInt(document.getElementById('prodPrice').value), d=document.getElementById('prodDesc').value, f=document.getElementById('prodUpload').files[0];
- if(!n||!pr){alert('Add name & price');return}
- var img=f?URL.createObjectURL(f):'https://via.placeholder.com/400x260/111/0ff?text='+encodeURIComponent(n);
- products.unshift({id:Date.now(),name:n,price:pr,desc:d||'Sosiot',user:'@you',img:img,comments:[]});
- document.getElementById('prodName').value='';document.getElementById('prodPrice').value='';document.getElementById('prodDesc').value='';document.getElementById('prodUpload').value=''; renderMarket();
+function toggleProdCom(id){ let el=document.getElementById('prodC-'+id); el.style.display=el.style.display==='none'?'block':'none'; }
+function addProdCom(id){ let inp=document.getElementById('prodIn-'+id); if(!inp.value.trim())return; let p=products.find(x=>x.id==id); p.comments.push({u:myProfile.user||'@you',t:inp.value}); inp.value=''; renderMarket(); document.getElementById('prodC-'+id).style.display='block'; }
+renderMarket();
+let editCtx=document.getElementById('editCanvas').getContext('2d');
+let editImg=new Image(); let currentFilter='none'; let editMode='image';
+document.getElementById('editFile').addEventListener('change',function(){
+ let file=this.files[0]; if(!file)return;
+ if(file.type.startsWith('video')){
+  editMode='video'; document.getElementById('editCanvas').style.display='none'; let v=document.getElementById('editVideo'); v.style.display='block'; v.src=URL.createObjectURL(file);
+ } else {
+  editMode='image'; document.getElementById('editVideo').style.display='none'; let c=document.getElementById('editCanvas'); c.style.display='block';
+  let r=new FileReader(); r.onload=e=>{ editImg.onload=()=>{ c.width=editImg.width; c.height=editImg.height; drawEdit(); }; editImg.src=e.target.result; }; r.readAsDataURL(file);
+ }
+});
+function drawEdit(){ let c=document.getElementById('editCanvas'); let ctx=editCtx; ctx.clearRect(0,0,c.width,c.height); ctx.filter=currentFilter==='none'?'none':currentFilter; ctx.drawImage(editImg,0,0); }
+function applyFilter(f){
+ if(editMode!=='image'){alert('Filter for photos');return}
+ if(f==='grayscale') currentFilter='grayscale(100%)';
+ else if(f==='sepia') currentFilter='sepia(100%)';
+ else if(f==='contrast') currentFilter='contrast(200%)';
+ else if(f==='bright') currentFilter='brightness(150%)';
+ else if(f==='invert') currentFilter='invert(100%)';
+ else if(f==='blur') currentFilter='blur(4px)';
+ else currentFilter='none';
+ drawEdit();
 }
-function buyProduct(i){var p=products[i], fee=Math.round(p.price*0.05), tot=p.price+fee, net=p.price-fee; if(confirm('TRANSPARENT CHECKOUT\n'+p.name+'\nPrice KSh '+p.price+'\nFee 5% KSh '+fee+'\nTOTAL KSh '+tot+'\nPay Pochi 0142550440\nSeller gets KSh '+net)){navigator.clipboard.writeText('Pay KSh '+tot+' to Pochi 0142550440 for '+p.name); alert('Copied! Lipa 0142550440 KSh '+tot);}}
-function addCom(id){var inp=document.getElementById('in-'+id); if(!inp.value) return; var p=products.find(function(x){return x.id==id}); p.comments.push({u:'@you',t:inp.value}); inp.value=''; renderMarket();}
-render();
+function addText(){ let t=prompt('Text to add:'); if(!t)return; let c=document.getElementById('editCanvas'); let ctx=editCtx; ctx.filter='none'; ctx.font='bold 48px Arial'; ctx.fillStyle='#00ffcc'; ctx.strokeStyle='#000'; ctx.lineWidth=4; ctx.strokeText(t,30,60); ctx.fillText(t,30,60); }
+function cropCenter(){ let c=document.getElementById('editCanvas'); let w=c.width*0.8, h=c.height*0.8; let tmp=document.createElement('canvas'); tmp.width=w; tmp.height=h; tmp.getContext('2d').drawImage(c,c.width*0.1,c.height*0.1,w,h,0,0,w,h); c.width=w; c.height=h; editCtx.drawImage(tmp,0,0); }
+function downloadEdited(){ let c=document.getElementById('editCanvas'); if(c.style.display==='none'){alert('Edit photo first');return} let a=document.createElement('a'); a.download='g-lumo-edited.png'; a.href=c.toDataURL(); a.click(); }
+function postEditedToReels(){ let c=document.getElementById('editCanvas'); if(c.style.display==='none'){alert('Edit first');return} let url=c.toDataURL(); reels.unshift({id:Date.now(),user:myProfile.user||'@you',name:myProfile.name||'You',text:'Edited in Studio ✨',likes:0,liked:false,following:false,img:url,type:'image'}); saveReels(); renderReels(); alert('Posted to Reels!'); scrollToId('reelsSec'); }
+function postEditedToMarket(){ let c=document.getElementById('editCanvas'); if(c.style.display==='none'){alert('Edit first');return} let url=c.toDataURL(); products.unshift({id:Date.now(),name:'Edited Product',price:500,desc:'Studio edit',user:myProfile.user||'@you',img:url,type:'image',comments:[]}); renderMarket(); alert('Added to Marketplace!'); scrollToId('marketSec'); }
+renderReels();
+document.body.style.overflow='auto';
 </script>
 </body>
 </html>
