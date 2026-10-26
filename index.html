@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO VIDEO PLAYING FIXED</title>
+<title>G-LUMO REAL REELS ONLY</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial}
@@ -12,11 +12,11 @@ body{background:#000;color:#fff;font-family:Arial}
 #menu{height:56px;background:#fff;display:flex;gap:6px;padding:6px;overflow-x:auto}
 .mbtn{flex-shrink:0;padding:11px 15px;border-radius:20px;border:0;font-weight:900;font-size:12px;cursor:pointer}
 #feed{width:100vw;margin-top:104px;height:86vh;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000}
-.page{min-width:100vw;width:100vw;height:86vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.page{min-width:100vw;width:100vw;height:86vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .page video{width:100%;height:100%;object-fit:contain;background:#000}
-.page img{width:100%;height:100%;object-fit:cover}
-.info{position:absolute;bottom:0;left:0;right:90px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:5}
-.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:rgba(0,255,204,.9);border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:40px;color:#000;z-index:20;cursor:pointer;box-shadow:0 4px 20px #000}
+.page img{width:100%;height:100%;object-fit:contain;background:#000}
+.info{position:absolute;bottom:0;left:0;right:90px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:5}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:rgba(0,255,204,.9);border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:40px;color:#000;z-index:20;cursor:pointer}
 #right{position:fixed;right:4px;top:114px;z-index:9999;display:flex;flex-direction:column;gap:7px}
 .rBtn{width:68px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
 .rCircle{width:58px;height:58px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:24px}
@@ -28,9 +28,9 @@ body{background:#000;color:#fff;font-family:Arial}
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:12px">G-LUMO ▶️ VIDEO PLAYING FIXED</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:12px">G-LUMO ▶️ REAL REELS ONLY</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6% AUTO</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ SELL PHOTO/VIDEO</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('friendsBox')">👥 FRIENDS</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox')">👤 PROFILE</button>
@@ -38,54 +38,48 @@ body{background:#000;color:#fff;font-family:Arial}
 </div>
 
 <div id="feed">
-<div class="page" style="background:#ff2d55"><div style="font-size:40px;font-weight:900;text-align:center">G-LUMO<br>WORLD<br><span style="font-size:13px">TAP + POST → VIDEO PLAYS</span></div><div class="info"><b>@g_lumo</b><br>Fixed video playing - tap PLAY button - sound ON - marketplace in position</div></div>
+<div class="page" id="emptyPage" style="background:#111"><div style="text-align:center;padding:20px"><div style="font-size:60px">📹</div><div style="font-size:22px;font-weight:900;margin-top:10px">NO REELS YET</div><div style="font-size:14px;margin-top:8px;color:#00ffcc">Tap + POST on right to upload your first video/photo<br>Everybody will see it + Add Friend<br>Marketplace in its position - Icons same position clickable<br>Video will play with sound - Tap PLAY button</div><button onclick="openBox('postBox')" style="margin-top:16px;padding:14px 24px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">+ TAP TO POST FIRST REEL</button></div></div>
 </div>
 
 <div id="right">
 <button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:30px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST</div></button>
-<button class="rBtn" onclick="togglePlay()"><div class="rCircle" id="playIcon">▶️</div><div class="rLabel" id="playLabel">PLAY/PAUSE</div></button>
-<button class="rBtn" onclick="toggleSound()"><div class="rCircle" id="soundIcon">🔊</div><div class="rLabel" id="soundLabel">Sound ON</div></button>
-<button class="rBtn" onclick="doFollow()"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="rLabel">Follow</div></button>
-<button class="rBtn" onclick="doLike()"><div class="rCircle" id="heart">🤍</div><div class="rLabel">Likes</div></button>
+<button class="rBtn" onclick="togglePlay()"><div class="rCircle" id="playIcon">▶️</div><div class="rLabel">PLAY/PAUSE</div></button>
+<button class="rBtn" onclick="toggleSound()"><div class="rCircle" id="soundIcon">🔊</div><div class="rLabel" id="soundLabel">Sound</div></button>
+<button class="rBtn" onclick="alert('✅ Follow - clickable - same position')"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="rLabel">Follow</div></button>
+<button class="rBtn" onclick="alert('✅ Like - clickable')"><div class="rCircle" id="heart">🤍</div><div class="rLabel">Likes</div></button>
 <button class="rBtn" onclick="openBox('commentBox')"><div class="rCircle">💬</div><div class="rLabel">Comments</div></button>
 <button class="rBtn" onclick="openBox('friendsBox')"><div class="rCircle">👥</div><div class="rLabel">Add Friend</div></button>
 <button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle">🛒</div><div class="rLabel">Market</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 - CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">Marketplace in its position - Icons same position clickable</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Buyer 3724 6% 224 → 0142550440<br><button onclick="alert('✅ Paid')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW - Clickable</button></div></div></div></div>
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 6% AUTO - IN POSITION</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">Company Pochi Till 0142550440 gets 6% auto | Seller 94% | Marketplace in its position - not in swipe feed anymore</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Seller 3500 Buyer 3724<br><span style="color:red">6% 224 → 0142550440</span><br><button onclick="alert('✅ Paid - clickable')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#222;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">AirPods</div><div style="padding:6px;color:#000;font-size:12px"><b>AirPods</b><br>12766 6% 766 → 0142550440<br><button onclick="alert('✅ Paid')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b>POST VIDEO - VIDEO PLAYING FIXED</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Now video WILL PLAY - Tap big PLAY button - Has sound + volume control + controls</div>
+<div style="display:flex;justify-content:space-between"><b>POST VIDEO - REAL REELS ONLY - NO POCHI PAGE</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
+<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Now after your video, next page will be YOUR NEXT VIDEO - No more purple POCHI 0142550440 dummy page - Only real reels - Marketplace in its position</div>
 <input id="pTitle" placeholder="Title" class="input">
 <input id="pPrice" type="number" placeholder="Price if selling" class="input">
 <label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:10px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer">📸📹 + TAP TO CHOOSE PHOTO/VIDEO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="previewReel()"></label>
 <div id="preview" style="margin-top:8px;display:none;background:#111;border-radius:10px;height:220px;overflow:hidden;position:relative"></div>
-<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Will Play With Sound</button>
+<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Only Real Reels</button>
 </div>
 
-<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:8px;color:#000"><b>demo</b><br><button onclick="alert('✅ Added')" style="padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:6px">ADD FRIEND</button></div></div>
-<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:8px"><b style="color:#00ffcc">@demo</b><br>Can post video with sound</div><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:12px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO</button></div>
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><input placeholder="Add comment" class="input"><button onclick="alert('✅ Comment')" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
+<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:8px;color:#000"><b>demo</b><br><button onclick="alert('✅ Added')" style="padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:6px">ADD FRIEND - Clickable</button></div></div>
+<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:8px"><b style="color:#00ffcc">@demo</b><br>Real reels only - No dummy pages</div><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:12px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO</button></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><input placeholder="Add comment" class="input"><button onclick="alert('✅ Comment - clickable')" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
 
 <script>
-var tempUrl='';var tempType='';var currentVideo=null;
+var tempUrl='';var tempType='';var currentVideo=null;var hasRealPost=false;
 function openBox(id){document.getElementById(id).style.display='block'}
 function closeBox(id){document.getElementById(id).style.display='none'}
-function doFollow(){alert('✅ Follow - clickable')}
-function doLike(){var el=document.getElementById('heart');el.innerHTML=el.innerHTML=='❤️'?'🤍':'❤️';alert('✅ Like - clickable')}
 function togglePlay(){
 if(!currentVideo){var v=document.querySelector('#feed .page video');if(v)currentVideo=v;else{alert('Post a video first');return}}
-if(currentVideo.paused){currentVideo.play();document.getElementById('playIcon').innerHTML='⏸️';document.getElementById('playLabel').innerHTML='PAUSE'}
-else{currentVideo.pause();document.getElementById('playIcon').innerHTML='▶️';document.getElementById('playLabel').innerHTML='PLAY'}
+if(currentVideo.paused){currentVideo.play();document.getElementById('playIcon').innerHTML='⏸️'}else{currentVideo.pause();document.getElementById('playIcon').innerHTML='▶️'}
 }
 function toggleSound(){
 if(!currentVideo){var v=document.querySelector('#feed .page video');if(v)currentVideo=v;else{alert('Post video first');return}}
-currentVideo.muted=!currentVideo.muted;
-document.getElementById('soundIcon').innerHTML=currentVideo.muted?'🔇':'🔊';
-document.getElementById('soundLabel').innerHTML=currentVideo.muted?'Sound OFF':'Sound ON\nVol Slider ↓';
-alert(currentVideo.muted?'🔇 Muted - Tap again to hear sound':'🔊 Sound ON - Use slider below to increase/decrease');
+currentVideo.muted=!currentVideo.muted;document.getElementById('soundIcon').innerHTML=currentVideo.muted?'🔇':'🔊';document.getElementById('soundLabel').innerHTML=currentVideo.muted?'Sound OFF':'Sound ON';
 }
 function previewReel(){
 var f=document.getElementById('reelFile').files[0];if(!f)return;
@@ -93,46 +87,40 @@ tempType=f.type.startsWith('video')?'video':'image';
 tempUrl=URL.createObjectURL(f);
 var pre=document.getElementById('preview');pre.style.display='block';
 if(tempType=='video'){
-pre.innerHTML='<video id="preVid" src="'+tempUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video><div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,.7);color:#00ffcc;padding:4px;border-radius:4px;font-size:10px;text-align:center">✅ Video ready - Will play with sound after post - Tap play to test</div>';
+pre.innerHTML='<video id="preVid" src="'+tempUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video>';
 document.getElementById('preVid').onloadeddata=function(){this.play().catch(function(){})}
 }
 else{pre.innerHTML='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">'}
 }
 function postReel(){
 if(!tempUrl){alert('Choose video/photo first');return}
-var title=document.getElementById('pTitle').value.trim()||'My Reel With Sound';
+var title=document.getElementById('pTitle').value.trim()||'My Reel';
 var feed=document.getElementById('feed');
+if(!hasRealPost){
+var empty=document.getElementById('emptyPage');
+if(empty)empty.remove();
+hasRealPost=true;
+}
 var newPage=document.createElement('div');
 newPage.className='page';
 newPage.style.background='#000';
 var media='';
 if(tempType=='video'){
-media='<video id="vid_'+Date.now()+'" src="'+tempUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto" volume="1.0"></video><div class="playBtn" onclick="var v=this.nextElementSibling.nextElementSibling||this.parentElement.querySelector(\'video\');if(v){v.muted=false;v.volume=1.0;v.play();this.style.display=\'none\';document.getElementById(\'playIcon\').innerHTML=\'⏸️\';currentVideo=v} " id="bigPlay">▶️</div>';
+media='<video src="'+tempUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play();this.style.display=\'none\';currentVideo=v">▶️</div>';
 }
-else{media='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">'}
+else{media='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000">'}
 var price=document.getElementById('pPrice').value.trim();
 var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:4px 8px;border-radius:6px;font-size:11px">FOR SALE KSH '+price+' 6% → 0142550440</span>':'';
-newPage.innerHTML=media+'<div class="info"><b>@you - NEW VIDEO - TAP ▶️ TO PLAY WITH SOUND</b><br>'+title+priceTag+'<br><span style="font-size:11px;color:#00ffcc">✅ Video WILL PLAY - Tap big ▶️ button center - Tap 🔊 on right to mute/unmute - Slider below for volume - Marketplace in position - Icons same position clickable</span><br><div style="margin-top:6px;background:rgba(255,255,255,.1);padding:6px;border-radius:6px"><label style="font-size:10px">🔊 Volume increase/decrease:</label><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');if(v){v.volume=this.value/100;v.muted=false;v.play();document.getElementById(\'soundIcon\').innerHTML=\'🔊\';currentVideo=v}" style="width:100%"></div></div>';
+newPage.innerHTML=media+'<div class="info"><b>@you - REAL REEL - TAP ▶️ TO PLAY WITH SOUND</b><br>'+title+priceTag+'<br><span style="font-size:11px;color:#00ffcc">✅ Real reel - Next swipe will show your NEXT real video - No more POCHI purple dummy page - Marketplace in its position - Icons same position clickable</span><br><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');if(v){v.volume=this.value/100;v.muted=false;v.play();currentVideo=v}" style="width:100%;margin-top:4px"><span style="font-size:9px">Volume slider - increase/decrease</span></div>';
 feed.insertBefore(newPage, feed.firstChild);
 closeBox('postBox');
 document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';
 feed.scrollLeft=0;
 var vid=newPage.querySelector('video');
-if(vid){
-currentVideo=vid;
-vid.muted=false;
-vid.volume=1.0;
-setTimeout(function(){vid.play().catch(function(){vid.muted=false;var btn=newPage.querySelector('.playBtn');if(btn)btn.style.display='flex';});},300);
-}
-alert('✅ VIDEO POSTED - Now TAP BIG ▶️ PLAY BUTTON IN CENTER to play with sound! Use volume slider at bottom of reel to increase/decrease - Sound fixed! Marketplace in position - Icons same position clickable');
+if(vid){currentVideo=vid;vid.muted=false;vid.volume=1.0;setTimeout(function(){vid.play().catch(function(){var btn=newPage.querySelector('.playBtn');if(btn)btn.style.display='flex'})},300)}
+alert('✅ POSTED! Now swipe L/R - You will see ONLY your real videos - NO MORE purple POCHI 0142550440 page after your video - Next page is your next real reel - If only 1 reel, it stays on same video - Marketplace stays in its position');
 tempUrl='';
 }
-document.getElementById('feed').addEventListener('scroll',function(){
-var pages=document.querySelectorAll('.page');
-var idx=Math.round(this.scrollLeft/window.innerWidth);
-var p=pages[idx];
-if(p){var v=p.querySelector('video');if(v)currentVideo=v;}
-});
 </script>
 </body>
 </html>
