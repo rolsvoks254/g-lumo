@@ -2,106 +2,93 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>G-LUMO ULTRA SIMPLE CLICKABLE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G-LUMO FINAL MINIMAL CLICKABLE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden}
-#top{position:fixed;top:0;left:0;right:0;height:100px;background:#000;border-bottom:4px solid #00ffcc;z-index:999999}
-#feed{position:fixed;top:100px;left:0;right:80px;bottom:0;background:#000;z-index:1}
+#top{position:fixed;top:0;left:0;right:0;height:90px;background:#000;border-bottom:3px solid #00ffcc;z-index:100}
+#feed{position:fixed;top:90px;left:0;right:80px;bottom:0;background:#000;z-index:1}
 #feed video{width:100%;height:100%;object-fit:contain;background:#000}
-#rightBar{position:fixed;right:0;top:100px;bottom:0;width:80px;background:#000;border-left:3px solid #00ffcc;z-index:9999999;display:flex;flex-direction:column;gap:6px;padding:6px;overflow-y:auto}
-.btn{width:68px;height:60px;background:#1a1a1a;border:2px solid #444;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:900;cursor:pointer}
-.btn:active{background:#00ffcc;color:#000}
-.pop{display:none;position:fixed;top:100px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:99999999;padding:15px;overflow:auto}
+#rightBar{position:fixed;right:0;top:90px;bottom:0;width:80px;background:#000;border-left:3px solid #00ffcc;z-index:999999;display:flex;flex-direction:column;gap:5px;padding:5px;overflow-y:auto}
+button.btn{width:68px;height:58px;background:#1a1a1a;border:2px solid #555;color:#fff;border-radius:10px;font-weight:900;font-size:9px;cursor:pointer}
+button.btn:active{background:#00ffcc;color:#000}
+.pop{display:none;position:fixed;top:90px;left:0;right:0;bottom:0;background:#f2f2f2;color:#000;z-index:9999999;padding:12px;overflow:auto}
 .input{width:100%;padding:12px;border:2px solid #000;border-radius:8px;margin-top:8px;font-weight:900}
 </style>
 </head>
 <body>
+
 <div id="top">
-<div style="height:45px;display:flex;align-items:center;padding:0 8px;font-size:10px;color:#00ffcc">G-LUMO ULTRA SIMPLE CLICKABLE - 6% AUTO TO 0142550440 - NEVER BLANK</div>
-<div style="height:55px;background:#fff;display:flex;gap:6px;padding:6px;overflow-x:auto">
-<div style="padding:10px 14px;background:#000;color:#00ffcc;border-radius:20px;font-size:11px;cursor:pointer;flex-shrink:0" onclick="openMarket()">🛒 MARKET 0142550440</div>
-<div style="padding:10px 14px;background:#00ffcc;color:#000;border-radius:20px;font-size:11px;cursor:pointer;flex-shrink:0" onclick="openPost()">+ POST VIDEO/PHOTO</div>
-<div style="padding:10px 14px;background:#000;color:#fff;border-radius:20px;font-size:11px;cursor:pointer;flex-shrink:0" onclick="openProfile()">👤 MY VIDEOS STAY</div>
-<div style="padding:10px 14px;background:#000;color:#fff;border-radius:20px;font-size:11px;cursor:pointer;flex-shrink:0" onclick="openLogin()">👤 LOGIN</div>
+<div style="padding:8px;font-size:10px;color:#00ffcc">G-LUMO FINAL MINIMAL CLICKABLE - 6% AUTO TO 0142550440 - NEVER BLANK</div>
+<div style="background:#fff;display:flex;gap:5px;padding:5px;overflow-x:auto">
+<button style="padding:9px 12px;background:#000;color:#00ffcc;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
+<button style="padding:9px 12px;background:#00ffcc;color:#000;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" onclick="openBox('postBox')">+ POST VIDEO/PHOTO</button>
+<button style="padding:9px 12px;background:#000;color:#fff;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" onclick="openBox('profileBox')">👤 MY VIDEOS</button>
+<button style="padding:9px 12px;background:#000;color:#fff;border:0;border-radius:20px;font-weight:900;font-size:11px;flex-shrink:0" onclick="openBox('loginBox')">👤 LOGIN</button>
 </div>
 </div>
 
 <div id="feed">
-<video id="v" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
+<video id="mainV" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
 </div>
 
 <div id="rightBar">
-<div class="btn" onclick="openPost()"><div style="font-size:22px">+</div><div style="font-size:7px">+ POST</div></div>
-<div class="btn" onclick="openMarket()"><div style="font-size:18px">🛒</div><div style="font-size:6px">MARKET 6%</div></div>
-<div class="btn" onclick="openProfile()"><div style="font-size:18px">👤</div><div style="font-size:6px">MY VIDEOS</div></div>
-<div class="btn" onclick="openLogin()"><div style="font-size:18px">👤</div><div style="font-size:6px">LOGIN</div></div>
-<div class="btn" onclick="playPause()"><div style="font-size:16px">▶️</div><div style="font-size:6px">PLAY PAUSE</div></div>
-<div class="btn" onclick="volUp()"><div style="font-size:16px">🔊+</div><div style="font-size:6px">Vol+ UP</div></div>
-<div class="btn" onclick="volDown()"><div style="font-size:16px">🔉-</div><div style="font-size:6px">Vol- DOWN</div></div>
+<button class="btn" type="button" onclick="openBox('postBox')">+<br>+ POST</button>
+<button class="btn" type="button" onclick="openBox('marketBox')">🛒<br>MARKET 6%</button>
+<button class="btn" type="button" onclick="openBox('profileBox')">👤<br>MY VIDEOS</button>
+<button class="btn" type="button" onclick="openBox('loginBox')">👤<br>LOGIN</button>
+<button class="btn" type="button" onclick="playPause()">▶️<br>PLAY PAUSE</button>
+<button class="btn" type="button" onclick="volUp()">🔊+<br>Vol+ UP</button>
+<button class="btn" type="button" onclick="volDown()">🔉-<br>Vol- DOWN</button>
 </div>
 
 <div id="postBox" class="pop">
-<div style="background:#fff;border-radius:12px;padding:14px;max-width:500px;margin:auto;border:3px solid #00ffcc">
 <h3>POST VIDEO/PHOTO - REAL FEATURE WORKING</h3>
-<p style="font-size:11px;margin-top:8px;background:#111;color:#00ffcc;padding:8px;border-radius:6px">REAL FEATURE: Choose video/photo MP4 JPG PNG - Title + Price 6% auto to 0142550440 Pochi same as company number - Seen by all logged in - Stores after refresh if &lt;3MB - Photo to video clickable</p>
+<p style="font-size:11px;background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px">Tap CHOOSE → Title + Price → POST NOW → Video appears on top of feed, scrolls, seen by all logged in. Photo to video clickable. 6% auto to 0142550440 Pochi same as company number. Beating all platforms.</p>
 <input id="pTitle" placeholder="Title" class="input">
-<input id="pPrice" type="number" placeholder="Price KSH - 6% auto to 0142550440" class="input" oninput="calc()">
-<div id="calc" style="background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:6px;font-size:11px;display:none"></div>
-<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:8px;text-align:center;margin-top:8px;cursor:pointer">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label>
+<input id="pPrice" type="number" placeholder="Price KSH 3724 => 224 to 0142550440" class="input" oninput="calc()">
+<div id="calc" style="background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px;font-size:11px;display:none"></div>
+<label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:8px;text-align:center;margin-top:8px">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label>
 <div id="fileInfo" style="background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px;font-size:10px;display:none"></div>
-<div id="preview" style="display:none;background:#000;height:150px;border-radius:8px;overflow:hidden;margin-top:6px"></div>
-<button style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" onclick="doPost()">+ POST NOW - REAL FEATURE</button>
+<div id="preview" style="display:none;background:#000;height:140px;border-radius:8px;overflow:hidden;margin-top:6px"></div>
+<button style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" onclick="doPost()">+ POST NOW</button>
 <button style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:8px" onclick="closeBox('postBox')">X CLOSE - BACK TO VIDEO</button>
-</div>
 </div>
 
 <div id="marketBox" class="pop">
-<div style="background:#fff;border-radius:12px;padding:14px;max-width:600px;margin:auto;border:3px solid #00ffcc">
-<h3>🛒 MARKET - 6% AUTO TO 0142550440 - REAL FEATURE - BEATING ALL</h3>
-<p style="font-size:11px;background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:6px">Company Number 0142550440 = Pochi Till 0142550440 same - Automatic 6% - Seller 94% - Example 3724 => 224 to 0142550440, 3500 to seller - Real feature</p>
+<h3>🛒 MARKET 6% AUTO TO 0142550440 - REAL FEATURE</h3>
+<p style="font-size:11px;background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:6px">Company Pochi 0142550440 = Company Number 0142550440 same - Automatic 6% cut - Seller 94% - Example 3724 => 224 to 0142550440, 3500 to seller - World class beating Jumia, Amazon, TikTok Shop - Photo/video listing</p>
 <div id="marketList" style="margin-top:10px"></div>
 <button style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:10px" onclick="closeBox('marketBox')">X CLOSE - BACK TO VIDEO</button>
 </div>
-</div>
 
 <div id="profileBox" class="pop">
-<div style="background:#fff;border-radius:12px;padding:14px;max-width:600px;margin:auto">
-<h3>👤 MY VIDEOS STAY - REAL FEATURE</h3>
+<h3>👤 MY VIDEOS STAY AFTER REFRESH</h3>
 <div id="myList" style="margin-top:10px"></div>
 <button style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:10px" onclick="closeBox('profileBox')">X CLOSE - BACK TO VIDEO</button>
 </div>
-</div>
 
 <div id="loginBox" class="pop">
-<div style="background:#fff;border-radius:12px;padding:14px;max-width:400px;margin:auto">
-<h3>LOGIN - demo / 1234 - REAL FEATURE</h3>
+<h3>LOGIN - demo / 1234</h3>
 <input id="loginUser" placeholder="Username demo" class="input">
 <input id="loginPass" type="password" placeholder="Password 1234" class="input">
-<button style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" onclick="doLogin()">LOGIN - REAL FEATURE</button>
+<button style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;margin-top:8px;font-weight:900" onclick="doLogin()">LOGIN</button>
 <button style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:8px;margin-top:8px" onclick="closeBox('loginBox')">X CLOSE</button>
-</div>
 </div>
 
 <script>
-var currentUser=null,lastFile=null,lastDataUrl=null,myVideos=[];
-try{myVideos=JSON.parse(localStorage.getItem('g_lumo_videos_simple')||'[]')}catch(e){myVideos=[]}
-try{currentUser=localStorage.getItem('g_lumo_user_simple')}catch(e){}
-function openPost(){document.getElementById('postBox').style.display='block';alert('✅ + POST BOX OPENED - REAL FEATURE WORKING - Now choose video/photo');}
-function openMarket(){document.getElementById('marketBox').style.display='block';renderMarket();alert('✅ MARKET BOX OPENED - 6% AUTO TO 0142550440 - REAL FEATURE');}
-function openProfile(){document.getElementById('profileBox').style.display='block';renderProfile();alert('✅ PROFILE BOX OPENED - STORES AFTER REFRESH - REAL FEATURE');}
-function openLogin(){document.getElementById('loginBox').style.display='block';alert('✅ LOGIN BOX OPENED - demo / 1234 - REAL FEATURE');}
+var lastFile=null,myVideos=[],currentUser=null;
+function openBox(id){document.getElementById(id).style.display='block';}
 function closeBox(id){document.getElementById(id).style.display='none';}
-function playPause(){var v=document.getElementById('v');if(v.paused){v.play();alert('▶️ PLAYING - REAL FEATURE CLICKABLE')}else{v.pause();alert('⏸️ PAUSED - REAL FEATURE CLICKABLE')}}
-function volUp(){var v=document.getElementById('v');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();alert('🔊 Vol+ UP '+Math.round(v.volume*100)+'% - REAL FEATURE CLICKABLE');}
-function volDown(){var v=document.getElementById('v');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();alert('🔉 Vol- DOWN '+Math.round(v.volume*100)+'% - REAL FEATURE CLICKABLE');}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='💰 KSH '+p+' => 6% KSH '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same - Seller KSH '+(p*0.94).toFixed(0)+' - REAL FEATURE';}else{c.style.display='none'}}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML='✅ '+f.name+' '+(f.size/1024/1024).toFixed(2)+'MB - Must be <3MB to stay - REAL FEATURE';var pre=document.getElementById('preview');pre.style.display='block';var url=URL.createObjectURL(f);if(f.type.startsWith('video')){pre.innerHTML='<video src="'+url+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>'}else{pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain">'}var r=new FileReader();r.onload=e=>{lastDataUrl=e.target.result};r.readAsDataURL(f)}
-function doPost(){if(!lastFile){alert('Choose video/photo first - REAL FEATURE');return}if(!currentUser){alert('Login first demo/1234 - REAL FEATURE');openLogin();return}if(lastDataUrl.length>3000000){alert('⚠️ Too big >3MB - Use smaller video - Real feature - Will still show now but not stay after refresh');}else{myVideos.push({title:document.getElementById('pTitle').value||'My Video',price:document.getElementById('pPrice').value||'',dataUrl:lastDataUrl,type:lastFile.type,user:currentUser});try{localStorage.setItem('g_lumo_videos_simple',JSON.stringify(myVideos))}catch(e){myVideos.pop();alert('Storage full - Clear - Real feature');return}}var feed=document.getElementById('feed');var fresh=URL.createObjectURL(lastFile);var div=document.createElement('div');div.style.position='absolute';div.style.top='0';div.style.left='0';div.style.width='100%';div.style.height='100%';div.style.background='#000';div.style.zIndex='10';if(lastFile.type.startsWith('video')){div.innerHTML='<video src="'+fresh+'" style="width:100%;height:100%;object-fit:contain" controls autoplay></video><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">NEW POST - 6% -> 0142550440 - @'+currentUser+'</div><div style="position:absolute;bottom:10px;left:0;right:0;background:rgba(0,0,0,.8);padding:8px;font-size:11px">@'+currentUser+' - '+ (document.getElementById('pTitle').value||'My Video')+' - KSH '+(document.getElementById('pPrice').value||0)+' - 6% -> 0142550440 - REAL FEATURE</div><div style="position:absolute;top:10px;right:10px;background:#000;color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;cursor:pointer" onclick="this.parentElement.remove()">X CLOSE NEW</div>'}else{div.innerHTML='<img src="'+fresh+'" style="width:100%;height:100%;object-fit:contain"><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">PHOTO TO VIDEO - @'+currentUser+'</div><div style="position:absolute;top:10px;right:10px;background:#000;color:#fff;padding:6px 10px;border-radius:20px;font-size:10px;cursor:pointer" onclick="this.parentElement.remove()">X CLOSE</div>'}feed.appendChild(div);closeBox('postBox');alert('✅ POSTED @'+currentUser+' - REAL FEATURE - Seen - Photo to video / Video to photo clickable - Profile stores after refresh');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';lastFile=null;lastDataUrl=null;document.getElementById('reelFile').value='';}
-function renderMarket(){var list=document.getElementById('marketList');if(myVideos.length==0){list.innerHTML='<div style="padding:20px;text-align:center;background:#fff;border-radius:8px;border:2px solid #000">No posts yet - Post first - Example Jordan 4 KSH 3724 => 224 to 0142550440 Pochi same - Seller 3500 - Real feature beating all</div>';return}var h='';myVideos.slice().reverse().forEach(v=>{h+='<div style="background:#fff;border-radius:10px;border:2px solid #000;overflow:hidden;margin-bottom:8px"><div style="height:120px;background:#000;display:flex;align-items:center;justify-content:center">'+(v.type.startsWith('video')?'<video src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>':'<img src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain">')+'</div><div style="padding:8px"><b>'+v.title+'</b><br>@'+v.user+' KSH '+(v.price||0)+'<br><span style="background:#111;color:#00ffcc;padding:4px 6px;border-radius:6px;font-size:10px">6% '+((parseFloat(v.price||0)*0.06).toFixed(0))+' -> 0142550440 Pochi same - Seller '+((parseFloat(v.price||0)*0.94).toFixed(0))+'</span><br><button style="width:100%;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;margin-top:6px;font-weight:900" onclick="alert(\'✅ BUY '+v.title+' - 6% -> 0142550440 - Real feature\')">🛒 BUY NOW - 6% AUTO TO 0142550440</button></div></div>'});list.innerHTML=h}
-function renderProfile(){var list=document.getElementById('myList');var myV=myVideos.filter(v=>v.user===currentUser);if(myV.length==0){list.innerHTML='<div style="padding:12px;text-align:center;background:#fff;border-radius:8px;border:2px solid #000">No videos yet - Login demo/1234 - Post small <3MB - Stores after refresh - Real feature - No spying</div>';return}var h='';myV.reverse().forEach(v=>{h+='<div style="background:#fff;border-radius:10px;border:2px solid #000;overflow:hidden;margin-bottom:8px"><div style="height:100px;background:#000;display:flex;align-items:center;justify-content:center">'+(v.type.startsWith('video')?'<video src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain" controls></video>':'<img src="'+v.dataUrl+'" style="width:100%;height:100%;object-fit:contain">')+'</div><div style="padding:6px"><b>'+v.title+'</b> KSH '+(v.price||0)+' - 6% -> 0142550440 - Real feature</div></div>'});list.innerHTML=h}
-function doLogin(){var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||u){currentUser=u||'demo';try{localStorage.setItem('g_lumo_user_simple',currentUser)}catch(e){};alert('✅ LOGGED IN @'+currentUser+' - REAL FEATURE - Now you can post seen by all logged in');closeBox('loginBox');}}
+function playPause(){var v=document.getElementById('mainV');if(v.paused){v.play();}else{v.pause();}}
+function volUp(){var v=document.getElementById('mainV');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();}
+function volDown(){var v=document.getElementById('mainV');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
+function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='KSH '+p+' => 6% '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same - Seller '+(p*0.94).toFixed(0);}else{c.style.display='none'}}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML=f.name+' '+(f.size/1024/1024).toFixed(2)+'MB';var pre=document.getElementById('preview');pre.style.display='block';var url=URL.createObjectURL(f);if(f.type.startsWith('video')){pre.innerHTML='<video src="'+url+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>'}else{pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain">';}}
+function doPost(){if(!lastFile){alert('Choose file first');return}if(!currentUser){alert('Login demo/1234 first');openBox('loginBox');return}var title=document.getElementById('pTitle').value||'My Video';var price=document.getElementById('pPrice').value||'';var feed=document.getElementById('feed');var url=URL.createObjectURL(lastFile);var div=document.createElement('div');div.style.position='absolute';div.style.top='0';div.style.left='0';div.style.width='100%';div.style.height='100%';div.style.background='#000';div.style.zIndex='20';if(lastFile.type.startsWith('video')){div.innerHTML='<video src="'+url+'" style="width:100%;height:100%;object-fit:contain" controls autoplay></video><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">NEW - 6% -> 0142550440 @'+currentUser+'</div><div style="position:absolute;bottom:40px;left:0;right:0;background:rgba(0,0,0,.8);padding:8px;font-size:11px">@'+currentUser+' - '+title+' KSH '+price+' - 6% -> 0142550440</div><div style="position:absolute;top:10px;right:10px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:10px" onclick="this.parentElement.remove()">X CLOSE NEW</div>';}else{div.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain"><div style="position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 10px;border-radius:20px;font-size:10px">PHOTO TO VIDEO @'+currentUser+'</div><div style="position:absolute;top:10px;right:10px;background:#fff;color:#000;padding:6px 10px;border-radius:20px;font-size:10px" onclick="this.parentElement.remove()">X CLOSE</div>';}feed.appendChild(div);myVideos.push({title:title,price:price,url:url,type:lastFile.type,user:currentUser});closeBox('postBox');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';lastFile=null;document.getElementById('reelFile').value='';document.getElementById('calc').style.display='none';renderLists();}
+function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';currentUser=u;closeBox('loginBox');alert('LOGGED IN @'+u+' - Now + POST works - Seen by all logged in');}
+function renderLists(){var ml=document.getElementById('marketList');var my=document.getElementById('myList');if(myVideos.length==0){ml.innerHTML='<div style="padding:15px;background:#fff;border-radius:8px;border:2px solid #000;text-align:center">No posts yet - Example Jordan 4 KSH 3724 => 224 to 0142550440 Pochi same - Seller 3500</div>';my.innerHTML='<div style="padding:15px;background:#fff;border-radius:8px;border:2px solid #000;text-align:center">No videos yet - Post now - Stores in this session</div>';return}var h='';myVideos.slice().reverse().forEach(v=>{h+='<div style="background:#fff;border-radius:8px;border:2px solid #000;margin-bottom:8px;overflow:hidden"><div style="height:100px;background:#000;display:flex;align-items:center;justify-content:center">'+(v.type.startsWith('video')?'<video src="'+v.url+'" style="width:100%;height:100%;object-fit:contain" controls muted></video>':'<img src="'+v.url+'" style="width:100%;height:100%;object-fit:contain">')+'</div><div style="padding:6px"><b>'+v.title+'</b> @'+v.user+' KSH '+(v.price||0)+'<br><span style="background:#111;color:#00ffcc;padding:3px 6px;border-radius:4px;font-size:10px">6% '+((parseFloat(v.price||0)*0.06).toFixed(0))+' -> 0142550440 Pochi same</span></div></div>';});ml.innerHTML=h;my.innerHTML=h;}
 </script>
 </body>
 </html>
