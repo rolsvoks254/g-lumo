@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO FIXED POST ICON</title>
+<title>G-LUMO SOUND FIXED</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:Arial}
@@ -15,19 +15,19 @@ body{background:#000;color:#fff;font-family:Arial}
 .page{min-width:100vw;width:100vw;height:86vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .page video,.page img{width:100%;height:100%;object-fit:cover}
 .info{position:absolute;bottom:0;left:0;right:90px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:5}
-#right{position:fixed;right:4px;top:116px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+#right{position:fixed;right:4px;top:114px;z-index:9999;display:flex;flex-direction:column;gap:7px}
 .rBtn{width:68px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
-.rCircle{width:60px;height:60px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:26px}
-.rLabel{font-size:9px;font-weight:900;color:#fff;margin-top:3px;text-align:center;text-shadow:0 1px 2px #000}
+.rCircle{width:58px;height:58px;border-radius:50%;background:rgba(30,30,30,.95);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:24px}
+.rLabel{font-size:8px;font-weight:900;color:#fff;margin-top:2px;text-align:center;text-shadow:0 1px 2px #000}
 .pop{display:none;position:fixed;top:104px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:10000;overflow:auto;padding:12px}
-.input{width:100%;padding:13px;border:2px solid #ccc;border-radius:10px;margin-top:8px;font-size:15px}
-.btnFull{width:100%;padding:13px;border:0;border-radius:10px;font-weight:900;font-size:15px;margin-top:8px;cursor:pointer}
-.badge{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#ff2d55;width:20px;height:20px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+.input{width:100%;padding:12px;border:2px solid #ccc;border-radius:10px;margin-top:8px;font-size:14px}
+.btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;font-size:14px;margin-top:8px;cursor:pointer}
+#volBar{position:fixed;left:8px;top:50%;transform:translateY(-50%) rotate(-90deg);z-index:9999;width:120px;display:none}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:13px">G-LUMO 🌍 FIXED POST ICON</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:12px">G-LUMO 🔊 SOUND FIXED + VOLUME</b><div><button onclick="openBox('loginBox')" style="padding:6px 10px;background:#fff;color:#000;border:0;border-radius:10px;font-weight:900;font-size:11px">👤 LOGIN</button><button onclick="openBox('postBox')" style="padding:6px 10px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-left:4px;font-size:11px">+ POST</button></div></div>
 <div id="menu">
 <button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ SELL PHOTO/VIDEO</button>
@@ -37,15 +37,15 @@ body{background:#000;color:#fff;font-family:Arial}
 </div>
 
 <div id="feed">
-<div class="page" style="background:#ff2d55"><div style="font-size:44px;font-weight:900;text-align:center">G-LUMO<br>WORLD<br><span style="font-size:14px">1/4 SWIPE →</span></div><div class="info"><b>@g_lumo</b><br>Market in position - Icons + + icon same position - clickable - Post creates icon</div></div>
-<div class="page" style="background:#7000ff"><div style="font-size:44px;font-weight:900;text-align:center">POCHI<br>0142550440<br>6% AUTO</div><div class="info"><b>@pochi</b><br>Company 6% auto cut - Amazon Killer</div></div>
-<div class="page" style="background:#00a896"><div style="font-size:44px;font-weight:900;text-align:center">AMAZON<br>KILLER<br>MARKET</div><div class="info"><b>@market</b><br>Marketplace in its position - tap 🛒 on right - clickable</div></div>
-<div class="page" style="background:#ff7b00"><div style="font-size:44px;font-weight:900;text-align:center">POST<br>YOUR<br>REEL<br><span style="font-size:13px">TAP + ICON</span></div><div class="info"><b>@you</b><br>Tap + POST REEL icon on right to upload</div></div>
+<div class="page" style="background:#ff2d55"><div style="font-size:40px;font-weight:900;text-align:center">G-LUMO<br>WORLD<br><span style="font-size:13px">SOUND FIXED<br>TAP 🔊 ON RIGHT</span></div><div class="info"><b>@g_lumo</b><br>Tap 🔊 to unmute + slider - Video with sound</div></div>
+<div class="page" style="background:#7000ff"><div style="font-size:40px;font-weight:900;text-align:center">POCHI<br>0142550440<br><span style="font-size:14px">6% AUTO</span></div><div class="info"><b>@pochi</b><br>Market in position - Icons same position - clickable</div></div>
+<div class="page" style="background:#00a896"><div style="font-size:40px;font-weight:900;text-align:center">AMAZON<br>KILLER<br>MARKET</div><div class="info"><b>@market</b><br>Marketplace in its position</div></div>
 </div>
 
 <div id="right">
-<button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:34px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST</div></button>
-<button class="rBtn" onclick="doFollow()"><div style="position:relative"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="badge" id="plus">+</div></div><div class="rLabel">Follow</div></button>
+<button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:30px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc">+ POST</div></button>
+<button class="rBtn" onclick="toggleSound()"><div class="rCircle" id="soundIcon">🔇</div><div class="rLabel" id="soundLabel">Sound OFF<br>Tap to ON</div></button>
+<button class="rBtn" onclick="doFollow()"><div class="rCircle" style="background:#fff;color:#000">👤</div><div class="rLabel">Follow</div></button>
 <button class="rBtn" onclick="doLike()"><div class="rCircle" id="heart">🤍</div><div class="rLabel" id="likeT">Likes</div></button>
 <button class="rBtn" onclick="openBox('commentBox')"><div class="rCircle">💬</div><div class="rLabel">Comments</div></button>
 <button class="rBtn" onclick="openBox('friendsBox')"><div class="rCircle">👥</div><div class="rLabel">Add Friend</div></button>
@@ -53,52 +53,92 @@ body{background:#000;color:#fff;font-family:Arial}
 <button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle">🛒</div><div class="rLabel">Market</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET 0142550440 - IN POSITION - CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">Marketplace in its position - Company 6% → 0142550440 - Bigger fonts</div><div id="marketGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Seller 3500 Buyer 3724<br><span style="color:red">6% 224 → 0142550440</span><br><button onclick="alert('✅ Paid - clickable')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#222;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">AirPods</div><div style="padding:6px;color:#000;font-size:12px"><b>AirPods</b><br>12766 6% 766 → 0142550440<br><button onclick="alert('✅ Paid - clickable')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div></div></div>
+<input type="range" id="volBar" min="0" max="100" value="80" oninput="setVolume(this.value)">
+
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b>🛒 MARKET - IN POSITION - CLICKABLE</b><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div id="marketGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div style="background:#fff;border-radius:10px;overflow:hidden"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4</div><div style="padding:6px;color:#000;font-size:12px"><b>Jordan 4</b><br>Seller 3500 Buyer 3724<br><span style="color:red">6% 224 → 0142550440</span><br><button onclick="alert('✅ Paid - clickable')" style="width:100%;margin-top:4px;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW</button></div></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b>+ POST VIDEO/PHOTO - FIXED ICON FOR POST</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px;font-weight:900">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Your post will become a REEL ICON/PAGE in feed - Everybody sees it + Add Friend - Marketplace in position</div>
+<div style="display:flex;justify-content:space-between"><b>+ POST VIDEO/PHOTO - SOUND FIXED</b><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div>
+<div style="background:#000;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Now video will have sound - Tap 🔊 icon on right to unmute + volume slider - Everybody hears</div>
 <input id="pTitle" placeholder="Title e.g. Jordan for sale" class="input">
-<input id="pTags" placeholder="Tags e.g. shoes, nairobi" class="input">
-<input id="pPrice" type="number" placeholder="Price if selling (empty = just reel)" class="input">
+<input id="pPrice" type="number" placeholder="Price if selling" class="input">
 <label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:10px;font-weight:900;text-align:center;margin-top:10px;cursor:pointer">📸📹 + TAP TO CHOOSE PHOTO/VIDEO<input id="reelFile" type="file" accept="image/*,video/*" style="display:none" onchange="previewReel()"></label>
 <div id="preview" style="margin-top:8px;display:none;background:#111;border-radius:10px;height:200px;overflow:hidden"></div>
-<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Creates Icon + Everybody Sees</button>
+<button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - With Sound Icon</button>
 </div>
 
-<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:8px;color:#000"><b>demo</b> - Demo seller<br><button onclick="alert('✅ Added friend')" style="margin-top:6px;padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">ADD FRIEND</button></div></div>
-<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:8px"><b style="color:#00ffcc">@demo</b><br>Demo seller - Can post ✅</div><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:12px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO</button><input placeholder="Bio" class="input"><input placeholder="Phone" class="input"><button onclick="alert('✅ Saved')" class="btnFull" style="background:#00ffcc">SAVE PROFILE</button></div>
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X CLOSE</button></div><div style="margin-top:10px;background:#fff;padding:8px;border-radius:6px;color:#000">Nice!</div><input placeholder="Add comment" class="input"><button onclick="alert('✅ Comment')" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
+<div id="loginBox" class="pop"><div style="max-width:400px;margin:auto;background:#fff;border-radius:14px;padding:14px"><h3 style="text-align:center">LOGIN</h3><input placeholder="demo" class="input"><input type="password" placeholder="1234" class="input"><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#00ffcc">LOGIN</button><button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">CLOSE</button></div></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👥 FRIENDS</b><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="margin-top:10px;background:#fff;padding:10px;border-radius:8px;color:#000"><b>demo</b> - Demo seller<br><button onclick="alert('✅ Added')" style="margin-top:6px;padding:8px 12px;background:#000;color:#00ffcc;border:0;border-radius:6px">ADD FRIEND</button></div></div>
+<div id="profileBox" class="pop"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE</b><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><div style="background:#111;color:#fff;padding:10px;border-radius:8px;margin-top:8px"><b style="color:#00ffcc">@demo</b><br>Can post with sound</div><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:12px;background:#00ffcc;border:0;border-radius:8px;font-weight:900">+ UPLOAD VIDEO/PHOTO</button></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b>💬 Comments</b><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:8px">X</button></div><input placeholder="Add comment" class="input"><button onclick="alert('✅ Comment')" class="btnFull" style="background:#00ffcc">POST COMMENT</button></div>
 
 <script>
-var tempUrl='';var tempType='';
+var tempUrl='';var tempType='';var currentVideo=null;var isMuted=true;
 function openBox(id){document.getElementById(id).style.display='block'}
 function closeBox(id){document.getElementById(id).style.display='none'}
-function doFollow(){var el=document.getElementById('plus');el.innerHTML=el.innerHTML=='+'?'✓':'+';alert('✅ Follow - clickable - icon same position')}
-function doLike(){var el=document.getElementById('heart');var liked=el.innerHTML=='❤️';el.innerHTML=liked?'🤍':'❤️';document.getElementById('likeT').innerHTML=liked?'Likes':'Liked!';alert('✅ Like - clickable')}
-function doShare(){alert('✅ Share - clickable - icon same position')}
-function previewReel(){var f=document.getElementById('reelFile').files[0];if(!f)return;tempType=f.type.startsWith('video')?'video':'image';tempUrl=URL.createObjectURL(f);var pre=document.getElementById('preview');pre.style.display='block';if(tempType=='video')pre.innerHTML='<video src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover" muted autoplay loop></video>';else pre.innerHTML='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">'}
+function doFollow(){alert('✅ Follow - icon same position - clickable')}
+function doLike(){var el=document.getElementById('heart');el.innerHTML=el.innerHTML=='❤️'?'🤍':'❤️';alert('✅ Like - clickable')}
+function doShare(){alert('✅ Share - clickable')}
+function toggleSound(){
+var feed=document.getElementById('feed');
+var videos=feed.querySelectorAll('video');
+if(videos.length==0){alert('No video yet - Post a video first to test sound');return}
+isMuted=!isMuted;
+for(var i=0;i<videos.length;i++){videos[i].muted=isMuted;if(!isMuted)videos[i].volume=0.8}
+var icon=document.getElementById('soundIcon');var label=document.getElementById('soundLabel');var bar=document.getElementById('volBar');
+if(isMuted){icon.innerHTML='🔇';label.innerHTML='Sound OFF<br>Tap to ON';bar.style.display='none'}
+else{icon.innerHTML='🔊';label.innerHTML='Sound ON<br>Tap to OFF<br>Slider ←';bar.style.display='block';if(currentVideo){currentVideo.muted=false;currentVideo.play()}}
+alert(isMuted?'🔇 Sound OFF - Tap 🔊 again to ON':'🔊 Sound ON - Use slider left side to increase/decrease - Video with sound!');
+}
+function setVolume(v){
+var vol=v/100;
+var feed=document.getElementById('feed');
+var videos=feed.querySelectorAll('video');
+for(var i=0;i<videos.length;i++){videos[i].volume=vol;videos[i].muted=false}
+if(currentVideo){currentVideo.volume=vol}
+isMuted=false;
+document.getElementById('soundIcon').innerHTML='🔊';
+document.getElementById('soundLabel').innerHTML='Vol '+v+'%<br>Tap to OFF';
+}
+function previewReel(){
+var f=document.getElementById('reelFile').files[0];if(!f)return;
+tempType=f.type.startsWith('video')?'video':'image';
+tempUrl=URL.createObjectURL(f);
+var pre=document.getElementById('preview');pre.style.display='block';
+if(tempType=='video')pre.innerHTML='<video src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover" muted autoplay loop></video><div style="position:absolute;bottom:4px;left:4px;background:#000;color:#00ffcc;padding:2px 6px;border-radius:4px;font-size:10px">🔊 Sound will be ON after post - Tap 🔊 icon on right</div>';
+else pre.innerHTML='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">';
+}
 function postReel(){
-if(!tempUrl){alert('Choose photo/video first - Tap + TAP TO CHOOSE');return}
-var title=document.getElementById('pTitle').value.trim()||'My New Reel';
-var price=document.getElementById('pPrice').value.trim();
+if(!tempUrl){alert('Choose photo/video first');return}
+var title=document.getElementById('pTitle').value.trim()||'My Reel With Sound';
 var feed=document.getElementById('feed');
 var media='';
-if(tempType=='video'){media='<video src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover" autoplay muted loop playsinline></video>'}
+if(tempType=='video'){
+media='<video id="newVid" src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover" autoplay playsinline loop controls volume="0.8"></video><button onclick="var v=this.previousElementSibling;v.muted=!v.muted;v.play();this.innerHTML=v.muted?\'🔇 TAP TO UNMUTE - Sound OFF\':\'🔊 SOUND ON - Tap to MUTE - Slider left\'" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.7);color:#00ffcc;border:2px solid #00ffcc;padding:10px 16px;border-radius:20px;font-weight:900;z-index:20">🔇 TAP TO UNMUTE - Sound OFF</button>';
+}
 else{media='<img src="'+tempUrl+'" style="width:100%;height:100%;object-fit:cover">'}
-var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:900">FOR SALE KSH '+price+' 6% → 0142550440</span>':'';
 var newPage=document.createElement('div');
 newPage.className='page';
 newPage.style.background='#111';
-newPage.innerHTML=media+'<div class="info"><b>@you - NEW POST ICON</b><br>'+title+priceTag+'<br><span style="font-size:11px;color:#00ffcc">✅ This is your new reel icon - Everybody sees it + Add Friend - Swipe L/R - Marketplace in position</span></div>';
+newPage.innerHTML=media+'<div class="info"><b>@you - NEW POST - 🔊 TAP TO HEAR SOUND</b><br>'+title+'<br><span style="font-size:11px;color:#00ffcc">✅ Video with sound - Tap 🔊 icon on right to increase/decrease volume - Slider on left - Marketplace in position - Icons same position clickable</span><br><input type="range" min="0" max="100" value="80" oninput="var v=this.parentElement.parentElement.querySelector(\'video\');if(v){v.volume=this.value/100;v.muted=false;v.play()} " style="width:100%;margin-top:6px"><span style="font-size:10px">↑ Volume slider - increase/decrease sound</span></div>';
 feed.insertBefore(newPage, feed.firstChild);
 closeBox('postBox');
-document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';
+document.getElementById('pTitle').value='';document.getElementById('preview').style.display='none';
 feed.scrollLeft=0;
-alert('✅ POST ICON CREATED! Swipe to first page - Your video/photo is now a reel - Everybody can view + Add Friend - Icons same position + clickable - Marketplace in position');
+currentVideo=newPage.querySelector('video');
+if(currentVideo){
+currentVideo.muted=false;
+currentVideo.volume=0.8;
+currentVideo.play().then(function(){isMuted=false;document.getElementById('soundIcon').innerHTML='🔊';document.getElementById('soundLabel').innerHTML='Sound ON<br>80%<br>Slider ←';document.getElementById('volBar').style.display='block';}).catch(function(){})
+}
+alert('✅ POST CREATED WITH SOUND! Now tap 🔊 icon on right to unmute, use slider on left or inside reel to increase/decrease sound - Video plays with sound now!');
 tempUrl='';
 }
+document.getElementById('feed').addEventListener('scroll',function(){
+var pages=document.querySelectorAll('.page');
+var idx=Math.round(this.scrollLeft/window.innerWidth);
+if(pages[idx]){var v=pages[idx].querySelector('video');if(v){currentVideo=v;if(!isMuted){v.muted=false;v.volume=0.8;v.play()}}}
+});
 </script>
 </body>
 </html>
