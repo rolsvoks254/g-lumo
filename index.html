@@ -1,46 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO WORLD - Videos L/R, Editors Below All</title>
+<title>G-LUMO WORLD - Full Final</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial;overflow:auto}
+body{background:#000;color:#fff;font-family:system-ui;overflow:auto}
 header{position:fixed;top:0;left:0;right:0;height:44px;background:#000;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #222}
 #bar{position:fixed;top:44px;left:0;right:0;height:50px;background:#fff;z-index:99;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto}
 .btn{flex-shrink:0;padding:8px 14px;border-radius:20px;border:0;font-weight:900;font-size:12px}
 .btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-
-/* VIDEO SECTION - HORIZONTAL ONLY */
-#videoSection{width:100vw;height:75vh;margin-top:94px;background:#000;position:relative;border-bottom:4px solid #00ffcc}
-#videoFeed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;height:100%;background:#000}
+/* VIDEO FEED - ONLY VIDEOS LEFT/RIGHT */
+#videoWrap{width:100vw;height:78vh;margin-top:94px;background:#000;position:relative;border-bottom:5px solid #00ffcc}
+#videoFeed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;height:100%}
 #videoFeed::-webkit-scrollbar{display:none}
-.vReel{position:relative;min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;background:#000;display:flex;align-items:center;justify-content:center}
-.vReel video,.vReel .colorBox{width:100%;height:100%;object-fit:cover}
-.colorBox{display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
-.vInfo{position:absolute;bottom:0;left:0;right:80px;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:5}
-.vActions{position:absolute;right:8px;bottom:20px;display:flex;flex-direction:column;gap:14px;z-index:10;align-items:center}
-.act{width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-.act.follow{width:58px;height:58px;border:2px solid #fff;overflow:hidden;position:relative}
-.followPlus{position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);background:#ff2d55;width:18px;height:18px;border-radius:50%;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
-.sideHint{position:absolute;top:50%;left:10px;transform:translateY(-50%);background:rgba(0,0,0,.6);padding:6px 10px;border-radius:15px;font-size:11px}
-.downAll{position:absolute;bottom:85px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:10px 18px;border-radius:20px;font-weight:900;border:0;z-index:10}
-
-/* ALL EDITORS BELOW ALL VIDEOS */
-#allEditorsTitle{width:100%;background:#00ffcc;color:#000;padding:12px;text-align:center;font-weight:900;font-size:14px}
-#allEditors{width:100%;background:#f5f5f5;color:#000;padding:10px}
-.editorCard{width:100%;background:#fff;border-radius:12px;padding:12px;margin-bottom:14px;border:2px solid #222}
+.vPost{position:relative;min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;background:#000;display:flex;align-items:center;justify-content:center}
+.vPost video{width:100%;height:100%;object-fit:cover}
+.vInfo{position:absolute;bottom:0;left:0;right:85px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:5}
+.vActions{position:absolute;right:6px;bottom:10px;display:flex;flex-direction:column;gap:12px;z-index:10;align-items:center}
+.iconBtn{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.iconCircle{width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:22px}
+.iconCount{font-size:11px;font-weight:800}
+.followWrap{width:58px;height:58px;border-radius:50%;border:3px solid #fff;position:relative;overflow:hidden;background:#222}
+.followPlus{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);background:#ff2d55;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff}
+.downAll{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#00ffcc;color:#000;padding:9px 16px;border-radius:20px;font-weight:900;border:0;z-index:10}
+/* EDITORS BELOW ALL VIDEOS */
+#editTitle{width:100%;background:#00ffcc;color:#000;padding:12px;text-align:center;font-weight:900}
+#allEditors{width:100%;background:#f0f0f0;color:#000;padding:10px}
+.editCard{background:#fff;border-radius:14px;padding:12px;margin-bottom:14px;border:2px solid #222}
 .tools{display:flex;overflow-x:auto;gap:8px;padding:10px 0}
 .tools::-webkit-scrollbar{display:none}
-.t{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-weight:900;background:#000;color:#00ffcc;font-size:12px}
-.t2{flex-shrink:0;padding:10px 16px;border-radius:20px;border:1px solid #ddd;background:#eee;color:#000;font-weight:900;font-size:12px}
-.box{width:100%;height:300px;background:#111;border-radius:12px;display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #00ffcc;overflow:hidden}
-.popup{position:fixed;top:94px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:200;display:none;padding:12px;overflow:auto}
+.t{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;background:#000;color:#00ffcc;font-weight:900;font-size:12px}
+.t2{flex-shrink:0;padding:10px 16px;border-radius:20px;background:#eee;border:1px solid #ddd;color:#000;font-weight:900;font-size:12px}
+.box{width:100%;height:310px;background:#111;border-radius:12px;position:relative;border:3px solid #00ffcc;overflow:hidden;display:flex;align-items:center;justify-content:center}
+/* POPUPS MARKET */
+.popup{position:fixed;left:0;right:0;top:94px;bottom:0;background:#fff;color:#000;z-index:300;display:none;padding:12px;overflow:auto}
 .popup.show{display:flex;flex-direction:column}
-#buyPop{top:auto;bottom:0;max-height:85vh;border-top:4px solid #00ffcc;border-radius:20px 20px 0 0}
+#buyPop{top:auto;bottom:0;max-height:90vh;border-top:5px solid #00ffcc;border-radius:20px 20px 0 0}
+#orderList{margin-top:10px}
+.orderItem{background:#f9f9f9;border:1px solid #ddd;border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px}
 </style>
 </head>
 <body>
-<header><h1 style="color:#00ffcc;font-size:13px">G-LUMO 🌍 VIDEOS L/R • EDITORS BELOW</h1><button onclick="openSell()" style="padding:6px 12px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:12px">+ SELL</button></header>
-<div id="
+<header><h1 style="color:#00ffcc;font-size:13px">G-LUMO 🌍 VIDEOS L/R • EDITORS BELOW</h1><button onclick="openSell()" style="padding:6px 12px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:11px">+ SELL</button></header>
+<div id="bar">
+<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET 6%→0142550440</button>
+<button class="btn btnG" onclick="openSell()">+ SELL</button>
+<button class="btn btnB">👈 L/R = VIDEOS ONLY</button>
+<button class="btn btnB">👇 DOWN = EDITORS</button>
+</div>
+
+<!-- MARKETPLACE POPUP WITH ORDERS - SAME AS YOURS -->
+<div id="marketPop" class="popup">
+<div style="display:flex;justify-content:space-between;align-items:center"><b>🛒 MARKETPLACE - 6% auto to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X CLOSE</button></div>
+<div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"></div>
+<b style="margin-top:14px">📦 MY ORDERS (Buyer pays 6%)</b>
+<div id="orderList"></div>
+<div style="margin-top:10px;background:#111;color:#00ffcc;padding:10px;border-radius:8px;font-size:12px">Every sale: Buyer pays 6% extra. 6% auto goes to Pochi Till 0142550440. Seller gets 94%. Same as your original code.</div>
+</div>
+
+<div id="sellPop" class="popup">
+<div style="display:flex;justify-content:space-between"><b>SELL ANYTHING - 6% to 0142550440</b><button onclick="closeSell()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div>
+<input id="pName" placeholder="Title e.g. Jordan 4" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px">
+<input id="pPrice" type="number" placeholder="Your price you get (94%)" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px">
+<input id="pImg" placeholder="Image/Video link" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px">
+<div id="fee" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px;font-size:12px">Enter price to see fee split</div>
+<button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST NOW - 6% auto to 0142550440</button>
+</div>
+
+<div id="buyPop" class="popup"><div id="buyDet"></div></div>
+
+<!-- VIDEOS ONLY - SWIPE LEFT/RIGHT -->
+<div id="videoWrap">
+<div id="videoFeed"></div>
+<button class="downAll" onclick="document.getElementById('editTitle').scrollIntoView({behavior:'smooth'})">👇 SCROLL DOWN FOR EDITORS</button>
+</div>
+
+<!-- ALL EDITORS BELOW ALL VIDEOS - ONLY VISIBLE IF SCROLL DOWN -->
+<div id="editTitle">🎨 ALL PHOTO & VIDEO EDITORS BELOW ALL VIDEOS — SCROLL DOWN TO SEE — LEFT/RIGHT FOR FILTERS</div>
+<div id="allEditors"></div>
+
+<script>
+function toggleMarket(){document.getElementById('marketPop').classList.toggle('show')}
+function openSell(){document.getElementById('sellPop').classList.add('show')}
+function closeSell(){document.getElementById('sellPop').classList.remove('show')}
+function calcFee(){let p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}let b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer pays KSH '+b+' | You get KSH '+p+' | 6% KSH '+(b-p)+' auto to 0142550440'}
+
+const posts=[
+{type:'video',src:'https://www.w3schools.com/html/mov_bbb.mp4',user:'@g_lumo',name:'G-LUMO',cap:'Video 1 - Swipe L/R for next video',likes:124,comments:12},
+{type:'video',src:'https://www.w3schools.com/html/movie.mp4',user:'@pochi_0142550440',name:'Pochi',cap:'Video 2 - All editors below all videos',likes:89,comments:8},
+{type:'color',bg:'#ff2d55',text:'PHOTO 1',user:'@seller1',name:'Seller One',cap:'Photo - swipe L/R for videos',likes:210,comments:22},
+{type:'color',bg:'#7000ff',text:'PHOTO 2',user:'@market_kenya',name:'Market KE',cap:'Swipe L/R = videos only. No editor in swipe.',likes:56,comments:5},
+];
+let liked=[false,false,false,false];
+let following=[false,false,false,false];
+let orders=[];
+
+function render(){
+let vf=document.getElementById('videoFeed');
+let ae=document.getElementById('allEditors');
+let vHtml=''; let eHtml='';
+for(let i=0;i<posts.length;i++){
+let p=posts[i];
+let media=p.type==='video'?`<video src="${p.src}" autoplay muted loop playsinline></video>`:`<div style="width:100%;height:100%;background:${p.bg};display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900">${p.text}</div>`;
+vHtml+=`
+<div class="vPost">
+${media}
+<div class="vInfo"><b>${p.name}</b> • ${p.user}<br>${p.cap}<br><span style="font-size:11px">${i+1}/${posts.length} • L/R swipe = videos only • No editor here • Scroll down for editors below all</span></div>
+<div class="vActions">
+<button class="iconBtn" onclick="toggleFollow(${i})"><div class="followWrap"><img src="https://i.pravatar.cc/100?img=${i+10}" style="width:100%;height:100%;object-fit:cover"><div class="followPlus">${following[i]?'✓':'+'}</div></div></button>
+<button class="iconBtn" onclick="doLike(${i})"><div class="iconCircle">${liked[i]?'❤️':'🤍'}</div><div class="iconCount">${p.likes + (liked[i]?1:0)} likes</div></button>
+<button class="iconBtn" onclick="doComment(${i})"><div class="iconCircle">💬</div><div class="iconCount">${p.comments} comment</div></button>
+<button class="iconBtn" onclick="doMessage('${p.user}')"><div class="iconCircle">✉️</div><div class="iconCount">Message</div></button>
+<button class="iconBtn" onclick="doShare(${i})"><div class="iconCircle">↗️</div><div class="iconCount">Share</div></button>
+<button class="iconBtn" onclick="doDownload(${i})"><div class="iconCircle">⬇️</div><div class="iconCount">Save</div></button>
+</div>
+</div>
+`;
+
+eHtml+=`
+<div class="editCard">
+<div style="display:flex;justify-content:space-between"><b style="color:#00a896">EDITOR ${i+1} - ${p.name} - Below All Videos</b><span style="background:#000;color:#00ffcc;padding:3px 8px;border-radius:12px;font-size:10px">NOT IN L/R SWIPE</span></div>
+<div class="box"><div id="img${i}" style="width:100%;height:100%;background:${p.bg||'#000'};display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900;filter:none">${p.type==='video'?'VIDEO '+(i+1):p.text}</div><div id="txt${i}" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:900;color:#fff;text-shadow:0 2px 8px #000;text-align:center"></div></div>
+<div style="margin-top:8px;font-weight:900;font-size:12px">FILTERS - SCROLL LEFT/RIGHT →</div>
+<div class="tools">
+<button class="t" onclick="filterIt(${i},'none')">✨ Original</button>
+<button class="t" onclick="filterIt(${i},'grayscale(100%)')">⚫ B&W</button>
+<button class="t" onclick="filterIt(${i},'sepia(100%)')">🟤 Sepia</button>
+<button class="t" onclick="filterIt(${i},'saturate(300%)')">🌈 Vivid</button>
+<button class="t" onclick="filterIt(${i},'hue-rotate(90deg)')">❄️ Cold</button>
+<button class="t" onclick="filterIt(${i},'blur(5px)')">💨 Blur</button>
+<button class="t" onclick="filterIt(${i},'brightness(150%)')">☀️ Bright</button>
+<button class="t" onclick="filterIt(${i},'brightness(50%)')">🌙 Dark</button>
+<button class="t" onclick="filterIt(${i},'invert(100%)')">🌓 Invert</button>
+</div>
+<div style="font-weight:900;font-size:12px">ADJUST - SCROLL LEFT/RIGHT →</div>
+<div class="tools">
+<button class="t2" onclick="bright(${i},20)">☀️ Bright +</button>
+<button class="t2" onclick="bright(${i},-20)">☀️ Bright -</button>
+<button class="t2" onclick="rot(${i},90)">🔄 Rotate</button>
+<button class="t2" onclick="flip(${i})">↔️ Flip</button>
+<button class="t2" onclick="resetIt(${i})">♻️ Reset</button>
+</div>
+<div style="font-weight:900;font-size:12px">TEXT - SCROLL →</div>
+<div class="tools">
+<button class="t" onclick="addTxt(${i},'G-LUMO 🌍')">🌍</button>
+<button class="t" onclick="addTxt(${i},'🔥')">🔥</button>
+<button class="t" onclick="addTxt(${i},'❤️')">❤️</button>
+<button class="t" onclick="addTxt(${i},'💰')">💰</button>
+<button class="t" onclick="clearTxt(${i})">🧹 Clear</button>
+</div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button onclick="alert('Edited saved!')" style="flex:1;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">⬇️ SAVE EDITED</button>
+<button onclick="alert('Posted to feed!')" style="flex:1;padding:10px;background:#00ffcc;color:#000;border:0;border-radius:8px;font-weight:900">📤 POST EDITED</button>
+</div>
+</div>
+`;
+}
+vf.innerHTML=vHtml;
+ae.innerHTML=eHtml;
+}
+
+function toggleFollow(i){following[i]=!following[i];render();document.getElementById('videoFeed').scrollLeft=i*window.innerWidth}
+function doLike(i){liked[i]=!liked[i];posts[i].likes+=liked[i]?1:-1;render();document.getElementById('videoFeed').scrollLeft=i*window.innerWidth}
+function doComment(i){let c=prompt('Comment on '+posts[i].name+':'); if(c){posts[i].comments++; alert('Comment posted: '+c); render()}}
+function doMessage(user){let m=prompt('Message to '+user+':'); if(m) alert('Message sent to '+user+': '+m)}
+function doShare(i){navigator.clipboard.writeText(posts[i].src||posts[i].text); alert('Link copied for share!')}
+function doDownload(i){alert('Video/Photo saved to gallery!')}
+
+let states={};
+function filterIt(i,f){if(!states[i])states[i]={b:100};states[i].filter=f;let el=document.getElementById('img'+i);if(el)el.style.filter=f+' brightness('+states[i].b+'%)'}
+function bright(i,v){if(!states[i])states[i]={filter:'none',b:100};states[i].b+=v;let el=document.getElementById('img'+i);if(el)el.style.filter=(states[i].filter||'none')+' brightness('+states[i].b+'%)'}
+function rot(i,d){if(!states[i])states[i]={b:100,rot:0};states[i].rot=(states[i].rot||0)+d;let el=document.getElementById('img'+i);if(el)el.style.transform='rotate('+states[i].rot+'deg)'}
+function flip(i){let el=document.getElementById('img'+i);if(!el)return;el.style.transform=el.style.transform.includes('scaleX')?el.style.transform.replace('scaleX(-1)',''):el.style.transform+' scaleX(-1)'}
+function resetIt(i){states[i]={filter:'none',b:100,rot:0};let el=document.getElementById('img'+i);if(el){el.style.filter='none';el.style.transform='none'}clearTxt(i)}
+function addTxt(i,t){let el=document.getElementById('txt'+i);el.innerText=(el.innerText+' '+t).trim()}
+function clearTxt(i){document.getElementById('txt'+i).innerText=''}
+
+// MARKETPLACE SAME AS YOURS WITH ORDERS
+let products=[{name:'Jordan 4',price:3500,buyerPrice:3724,comm:224,img:'',bg:'#111'}];
+function renderMarket(){
+let g=document.getElementById('grid');let h='';
+for(let idx=0;idx<products.length;idx++){
+let p=products[idx];
+h+=`<div style="border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff"><div style="height:80px;background:${p.bg};color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">${p.name}</div><div style="padding:6px"><b style="font-size:12px">${p.name}</b><div style="font-size:11px">Buyer KSH ${p.buyerPrice} | Seller KSH ${p.price} | 6% KSH ${p.comm} → 0142550440</div><button onclick="openBuy(${idx})" style="width:100%;margin-top:4px;padding:6px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW - 6% Auto</button></div></div>`;
+}
+g.innerHTML=h;
+let ol=document.getElementById('orderList');
+if(orders.length===0) ol.innerHTML='<div style="font-size:12px;color:#666">No orders yet. Buy something.</div>';
+else{let oh='';orders.forEach(o=>{oh+=`<div class="orderItem"><b>${o.name}</b> - Buyer KSH ${o.buyerPrice} - 6% KSH ${o.comm} sent to 0142550440 - Seller gets KSH ${o.price} - Status: Paid ✅</div>`}); ol.innerHTML=oh}
+}
+function addProduct(){let n=document.getElementById('pName').value.trim();let pr=document.getElementById('pPrice').value*1;let img=document.getElementById('pImg').value;if(!n||!pr)return alert('Enter title and price');let b=Math.round(pr/0.94);let c=b-pr;products.unshift({name:n,price:pr,buyerPrice:b,comm:c,img:img,bg:'#222'});renderMarket();closeSell();toggleMarket()}
+function openBuy(idx){let p=products[idx];document.getElementById('buyDet').innerHTML=`<div style="display:flex;justify-content:space-between"><b>${p.name} - KSH ${p.buyerPrice}</b><button onclick="closeBuy()" style="padding:6px 12px;background:#000;color:#fff;border-radius:8px;border:0">X</button></div><div style="margin-top:10px;background:#111;color:#fff;padding:12px;border-radius:10px">Buyer pays: <b>KSH ${p.buyerPrice}</b><br>Seller gets: KSH ${p.price}<br>6% Commission: <b>KSH ${p.comm} auto to Pochi Till 0142550440</b><br><br>Same as your original marketplace.</div><button onclick="confirmBuy(${idx})" style="width:100%;padding:14px;background:#25D366;color:#fff;border:0;border-radius:10px;margin-top:10px;font-weight:900">✅ Confirm Pay KSH ${p.buyerPrice} to 0142550440</button>`;document.getElementById('buyPop').classList.add('show')}
+function confirmBuy(idx){let p=products[idx];orders.unshift(p);alert('Paid KSH '+p.buyerPrice+' - KSH '+p.comm+' auto sent to 0142550440 Till - Order saved!');renderMarket();closeBuy()}
+function closeBuy(){document.getElementById('buyPop').classList.remove('show')}
+
+render();
+renderMarket();
+</script>
+</body>
+</html>
