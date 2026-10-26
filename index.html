@@ -3,87 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO LARGE + PROFILE STAY + ANY VIDEO</title>
+<title>G-LUMO BOTTOM ICONS LARGE AUTO PAUSE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial;font-size:18px}
-#top{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;border-bottom:4px solid #00ffcc}
-#h{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
-#menu{height:70px;background:#fff;display:flex;gap:8px;padding:8px;overflow-x:auto}
-.mbtn{flex-shrink:0;padding:14px 18px;border-radius:24px;border:0;font-weight:900;font-size:14px;cursor:pointer}
-#feed{width:100vw;margin-top:130px;height:84vh;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000}
-.page{min-width:100vw;width:100vw;height:84vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
+body{background:#000;color:#fff;font-family:Arial;font-size:20px;font-weight:900}
+#top{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;border-bottom:5px solid #00ffcc}
+#h{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+#menu{height:76px;background:#fff;display:flex;gap:10px;padding:10px;overflow-x:auto}
+.mbtn{flex-shrink:0;padding:16px 20px;border-radius:26px;border:0;font-weight:900;font-size:15px;cursor:pointer}
+#feed{width:100vw;margin-top:142px;height:82vh;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;-webkit-overflow-scrolling:touch}
+.page{min-width:100vw;width:100vw;height:82vh;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .page video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
 .page img{width:100%;height:100%;object-fit:contain;background:#000}
-.info{position:absolute;bottom:0;left:0;right:100px;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:5;font-size:16px;line-height:1.3}
-.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:#00ffcc;border:5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:54px;color:#000;z-index:20;cursor:pointer;box-shadow:0 6px 30px #000}
-#right{position:fixed;right:6px;top:138px;z-index:9999;display:flex;flex-direction:column;gap:10px}
-.rBtn{width:80px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
-.rCircle{width:72px;height:72px;border-radius:50%;background:rgba(30,30,30,.95);border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 3px 12px #000}
-.rLabel{font-size:11px;font-weight:900;color:#fff;margin-top:4px;text-align:center;line-height:1.1}
-.pop{display:none;position:fixed;top:130px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:10000;overflow:auto;padding:14px}
-.input{width:100%;padding:16px;border:3px solid #ccc;border-radius:12px;margin-top:10px;font-size:17px}
-.btnFull{width:100%;padding:16px;border:0;border-radius:12px;font-weight:900;font-size:17px;margin-top:10px;cursor:pointer}
-.volBox{background:rgba(255,255,255,.18);padding:10px;border-radius:10px;margin-top:8px}
-.profileVideo{width:100%;height:180px;object-fit:contain;background:#000;border-radius:10px;display:block}
+.info{position:absolute;bottom:0;left:0;right:110px;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.96));z-index:5;font-size:19px;line-height:1.3;font-weight:900;text-shadow:0 2px 4px #000}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:#00ffcc;border:5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:60px;color:#000;z-index:20;cursor:pointer;box-shadow:0 8px 30px #000}
+#right{position:fixed;right:8px;bottom:12px;top:auto;z-index:9999;display:flex;flex-direction:column;gap:12px;background:rgba(0,0,0,.6);padding:8px;border-radius:20px;backdrop-filter:blur(10px)}
+.rBtn{width:86px;border:0;background:none;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.rCircle{width:76px;height:76px;border-radius:50%;background:rgba(30,30,30,.96);border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 15px #000;font-weight:900}
+.rLabel{font-size:12px;font-weight:900;color:#fff;margin-top:5px;text-align:center;line-height:1.1;text-shadow:0 2px 4px #000}
+.pop{display:none;position:fixed;top:142px;left:0;right:0;bottom:0;background:#f5f5f5;color:#000;z-index:10000;overflow:auto;padding:16px}
+.input{width:100%;padding:18px;border:3px solid #ccc;border-radius:14px;margin-top:12px;font-size:19px;font-weight:900}
+.btnFull{width:100%;padding:18px;border:0;border-radius:14px;font-weight:900;font-size:19px;margin-top:12px;cursor:pointer}
+.volBox{background:rgba(255,255,255,.2);padding:12px;border-radius:12px;margin-top:10px}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:17px">G-LUMO 🔥 LARGE FONTS + PROFILE STAY</b><div><button onclick="openBox('profileBox');renderProfile()" style="padding:8px 12px;background:#fff;color:#000;border:0;border-radius:12px;font-weight:900;font-size:13px">👤 PROFILE</button><button onclick="openBox('postBox')" style="padding:8px 12px;background:#00ffcc;border:0;border-radius:12px;font-weight:900;margin-left:6px;font-size:13px">+ POST</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:19px;font-weight:900">G-LUMO 🔥 BOTTOM ICONS + AUTO PAUSE + LARGE</b><div><button onclick="openBox('profileBox');renderProfile()" style="padding:10px 14px;background:#fff;color:#000;border:0;border-radius:14px;font-weight:900;font-size:14px">👤 PROFILE</button><button onclick="openBox('postBox')" style="padding:10px 14px;background:#00ffcc;border:0;border-radius:14px;font-weight:900;margin-left:8px;font-size:14px">+ POST</button></div></div>
 <div id="menu">
 <button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6% AUTO</button>
-<button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ POST ANY VIDEO/PHOTO</button>
-<button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox');renderProfile()">👤 MY VIDEOS STAY IN PROFILE</button>
-<button class="mbtn" style="background:#000;color:#fff" onclick="openBox('friendsBox')">👥 FRIENDS</button>
+<button class="mbtn" style="background:#00ffcc;color:#000" onclick="openBox('postBox')">+ POST ANY VIDEO/PHOTO - LARGE</button>
+<button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox');renderProfile()">👤 MY VIDEOS STAY - LARGE</button>
 </div>
 </div>
 
 <div id="feed">
 <div class="page" style="background:#000">
 <video id="demoVid" src="https://www.w3schools.com/html/mov_bbb.mp4" style="width:100%;height:100%" controls playsinline muted loop></video>
-<div class="playBtn" onclick="var v=document.getElementById('demoVid');v.muted=false;v.volume=1.0;v.play();this.style.display='none'">▶️</div>
-<div class="info" style="font-size:18px"><b style="font-size:20px">@demo - LARGE FONTS + ICONS TEST</b><br>Text size BIG - Icons 72px - Fonts 18px - Tap PLAY + Voice + Volume<br><div class="volBox"><label style="font-size:15px;font-weight:900">🔊 Volume + Voice Buttons:</label><br><input type="range" min="0" max="100" value="100" oninput="var v=document.getElementById('demoVid');v.volume=this.value/100;v.muted=false;v.play()" style="width:100%;height:30px"><br><button onclick="var v=document.getElementById('demoVid');v.muted=!v.muted;v.volume=1.0;v.play()" style="width:48%;padding:10px;background:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:14px">🔊 Voice ON/OFF</button><button onclick="var v=document.getElementById('demoVid');v.volume=Math.min(1,v.volume+0.2);v.muted=false;v.play()" style="width:24%;padding:10px;background:#fff;border:0;border-radius:8px;font-weight:900;font-size:14px">Vol +</button><button onclick="var v=document.getElementById('demoVid');v.volume=Math.max(0,v.volume-0.2);v.play()" style="width:24%;padding:10px;background:#fff;border:0;border-radius:8px;font-weight:900;font-size:14px">Vol -</button></div></div>
+<div class="playBtn" onclick="var v=document.getElementById('demoVid');v.muted=false;v.volume=1.0;v.play();this.style.display='none';currentVideo=v">▶️</div>
+<div class="info" style="font-size:20px"><b style="font-size:22px">BOTTOM ICONS + AUTO PAUSE + LARGE FONTS</b><br>Icons at RIGHT BOTTOM not TOP - Text BIGGER THICKER 20px 900 weight - Scroll to next -> previous PAUSES<br><div class="volBox"><label style="font-size:16px;font-weight:900">🔊 Voice + Volume LARGE:</label><br><input type="range" min="0" max="100" value="100" oninput="var v=document.getElementById('demoVid');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v" style="width:100%;height:32px"><br><button onclick="var v=document.getElementById('demoVid');v.muted=!v.muted;v.volume=1.0;v.play()" style="width:48%;padding:12px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:15px">🔊 Voice ON/OFF</button><button onclick="var v=document.getElementById('demoVid');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play()" style="width:24%;padding:12px;background:#fff;border:0;border-radius:10px;font-weight:900">Vol +</button><button onclick="var v=document.getElementById('demoVid');v.volume=Math.max(0,v.volume-0.25);v.play()" style="width:24%;padding:12px;background:#fff;border:0;border-radius:10px;font-weight:900">Vol -</button></div></div>
 </div>
 </div>
 
 <div id="right">
-<button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:36px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc;font-size:12px">+ POST<br>ANY VIDEO</div></button>
-<button class="rBtn" onclick="playCurrent()"><div class="rCircle" id="playIcon" style="font-size:30px">▶️</div><div class="rLabel" style="font-size:11px">PLAY/<br>PAUSE</div></button>
-<button class="rBtn" onclick="toggleVoice()"><div class="rCircle" id="soundIcon" style="font-size:30px">🔊</div><div class="rLabel" id="soundLabel" style="font-size:11px">Voice<br>ON/OFF<br>Volume</div></button>
-<button class="rBtn" onclick="changeVol(1)"><div class="rCircle" style="font-size:28px">🔊+</div><div class="rLabel" style="font-size:11px">Vol +<br>Increase</div></button>
-<button class="rBtn" onclick="changeVol(-1)"><div class="rCircle" style="font-size:28px">🔉-</div><div class="rLabel" style="font-size:11px">Vol -<br>Decrease</div></button>
-<button class="rBtn" onclick="openBox('profileBox');renderProfile()"><div class="rCircle" style="background:#fff;color:#000;font-size:28px">👤</div><div class="rLabel" style="font-size:11px">PROFILE<br>MY VIDEOS</div></button>
-<button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle" style="font-size:28px">🛒</div><div class="rLabel" style="font-size:11px">Market<br>0142550440</div></button>
+<button class="rBtn" onclick="openBox('postBox')"><div class="rCircle" style="background:#00ffcc;color:#000;font-size:38px;font-weight:900">+</div><div class="rLabel" style="color:#00ffcc;font-size:13px">+ POST<br>ANY VIDEO</div></button>
+<button class="rBtn" onclick="playCurrent()"><div class="rCircle" id="playIcon" style="font-size:32px">▶️</div><div class="rLabel" style="font-size:12px">PLAY/<br>PAUSE</div></button>
+<button class="rBtn" onclick="toggleVoice()"><div class="rCircle" id="soundIcon" style="font-size:32px">🔊</div><div class="rLabel" id="soundLabel" style="font-size:12px">Voice<br>ON/OFF<br>Volume</div></button>
+<button class="rBtn" onclick="changeVol(1)"><div class="rCircle" style="font-size:30px">🔊+</div><div class="rLabel" style="font-size:12px">Vol +<br>Increase</div></button>
+<button class="rBtn" onclick="changeVol(-1)"><div class="rCircle" style="font-size:30px">🔉-</div><div class="rLabel" style="font-size:12px">Vol -<br>Decrease</div></button>
+<button class="rBtn" onclick="openBox('profileBox');renderProfile()"><div class="rCircle" style="background:#fff;color:#000;font-size:30px">👤</div><div class="rLabel" style="font-size:12px">PROFILE<br>MY VIDEOS<br>STAY</div></button>
+<button class="rBtn" onclick="openBox('marketBox')"><div class="rCircle" style="font-size:30px">🛒</div><div class="rLabel" style="font-size:12px">Market<br>0142550440<br>6% AUTO</div></button>
 </div>
 
-<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">🛒 MARKET 0142550440 - LARGE - IN POSITION</b><button onclick="closeBox('marketBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-size:16px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:12px;border-radius:10px;margin-top:10px;font-size:15px">Company Pochi Till 0142550440 gets 6% auto | Seller 94% | Large fonts | Marketplace in position - Not in swipe feed</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#fff;border-radius:12px;overflow:hidden"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">Jordan 4</div><div style="padding:10px;color:#000;font-size:15px"><b>Jordan 4</b><br>Buyer 3724 6% 224 -> 0142550440<br><button onclick="alert('✅ Paid')" style="width:100%;margin-top:6px;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:15px">BUY NOW - Large</button></div></div></div></div>
+<div id="marketBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">🛒 MARKET 0142550440 - LARGE BOTTOM ICONS</b><button onclick="closeBox('marketBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px;font-weight:900">X CLOSE</button></div><div style="background:#111;color:#00ffcc;padding:14px;border-radius:12px;margin-top:12px;font-size:16px;font-weight:900">Company Pochi Till 0142550440 gets 6% auto | Seller 94% | Large fonts thicker | Marketplace in position - Icons at bottom right</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px"><div style="background:#fff;border-radius:14px;overflow:hidden"><div style="height:90px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px">Jordan 4</div><div style="padding:12px;color:#000;font-size:16px;font-weight:900"><b>Jordan 4</b><br>Buyer 3724 6% 224 -> 0142550440<br><button onclick="alert('✅ Paid - Large clickable')" style="width:100%;margin-top:8px;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">BUY NOW - Large</button></div></div></div></div>
 
 <div id="postBox" class="pop">
-<div style="display:flex;justify-content:space-between"><b style="font-size:20px">POST ANY VIDEO - LARGE FONTS - ANY FORMAT</b><button onclick="closeBox('postBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-size:16px">X CLOSE</button></div>
-<div style="background:#000;color:#00ffcc;padding:12px;border-radius:8px;margin-top:10px;font-size:15px;line-height:1.4">✅ Now allows ANY VIDEO: MP4, MOV, 3GP, WEBM, MKV, HEVC + IMAGE to VIDEO (photo becomes 10sec video) - Large fonts 18px - Icons 72px - Videos stay in PROFILE even after refresh - Marketplace in position - Icons same position clickable - Voice + Volume buttons</div>
-<input id="pTitle" placeholder="Title - Large font" class="input">
+<div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">POST ANY VIDEO - BOTTOM ICONS + AUTO PAUSE + LARGE</b><button onclick="closeBox('postBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px">X CLOSE</button></div>
+<div style="background:#000;color:#00ffcc;padding:14px;border-radius:10px;margin-top:12px;font-size:16px;font-weight:900;line-height:1.4">✅ Text BIGGER THICKER 20px 900 weight - Icons 76px at RIGHT BOTTOM not top - Auto pause previous video when scroll to next - Any video allowed MP4 MOV 3GP WEBM + Image to video - Videos stay in profile - Marketplace in position - Voice + Volume buttons</div>
+<input id="pTitle" placeholder="Title - Large Thicker 20px" class="input">
 <input id="pPrice" type="number" placeholder="Price if selling - Large" class="input">
-<label style="display:block;background:#00ffcc;color:#000;padding:18px;border-radius:12px;font-weight:900;text-align:center;margin-top:12px;cursor:pointer;font-size:18px">📸📹 + TAP TO CHOOSE ANY VIDEO OR PHOTO<br><span style="font-size:14px">MP4 MOV 3GP WEBM JPG PNG - All allowed - Will become reel</span><input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none" onchange="previewReel()"></label>
-<div id="fileInfo" style="margin-top:8px;font-size:14px;color:#000;background:#fff;padding:10px;border-radius:8px;display:none"></div>
-<div id="preview" style="margin-top:10px;display:none;background:#111;border-radius:12px;height:260px;overflow:hidden;position:relative"></div>
-<button onclick="postReel()" class="btnFull" style="background:#00ffcc;font-size:20px">+ POST REEL NOW - Large - Stay in Profile - Any Video</button>
+<label style="display:block;background:#00ffcc;color:#000;padding:20px;border-radius:14px;font-weight:900;text-align:center;margin-top:14px;cursor:pointer;font-size:20px">📸📹 + TAP TO CHOOSE ANY VIDEO OR PHOTO<br><span style="font-size:15px">MP4 MOV 3GP WEBM JPG PNG - All allowed - Large fonts</span><input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.avi,.m4v,.hevc,.jpg,.jpeg,.png" style="display:none" onchange="previewReel()"></label>
+<div id="fileInfo" style="margin-top:10px;font-size:15px;color:#000;background:#fff;padding:12px;border-radius:10px;display:none;font-weight:900"></div>
+<div id="preview" style="margin-top:12px;display:none;background:#111;border-radius:14px;height:280px;overflow:hidden;position:relative"></div>
+<button onclick="postReel()" class="btnFull" style="background:#00ffcc;font-size:21px">+ POST REEL NOW - Large Bottom Icons Auto Pause</button>
 </div>
 
 <div id="profileBox" class="pop">
-<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:22px">👤 PROFILE - MY VIDEOS STAY HERE - LARGE</b><button onclick="closeBox('profileBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px;font-size:16px;font-weight:900">X CLOSE</button></div>
-<div style="background:#111;color:#fff;padding:12px;border-radius:10px;margin-top:10px;font-size:16px"><b style="color:#00ffcc;font-size:18px">@demo</b><br>Phone: 0712345678<br>All your posted videos stay here even after refresh - Large fonts - Marketplace in position</div>
-<div style="margin-top:12px;background:#00ffcc;padding:12px;border-radius:12px"><b style="color:#000;font-size:18px">+ POST NEW REEL - ANY VIDEO FORMAT</b><br><button onclick="openBox('postBox')" style="width:100%;margin-top:8px;padding:14px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">+ UPLOAD ANY VIDEO/PHOTO - Large Button</button></div>
-<div id="myVideosList" style="margin-top:14px"></div>
-<div style="margin-top:12px"><input placeholder="Bio - Large" class="input"><input placeholder="Phone - Large" class="input"><button onclick="alert('✅ Profile saved - Large fonts - clickable');renderProfile()" class="btnFull" style="background:#00ffcc;font-size:18px">SAVE PROFILE - Large - Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff;font-size:16px">🗑️ Clear My Videos from Profile</button></div>
+<div style="display:flex;justify-content:space-between"><b style="font-size:23px;font-weight:900">👤 PROFILE - MY VIDEOS STAY - LARGE THICKER</b><button onclick="closeBox('profileBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px;font-size:17px;font-weight:900">X CLOSE</button></div>
+<div style="background:#111;color:#fff;padding:14px;border-radius:12px;margin-top:12px;font-size:17px;font-weight:900"><b style="color:#00ffcc;font-size:20px">@demo</b><br>All your posted videos stay here even after refresh - Large thicker fonts - Bottom icons - Auto pause on scroll</div>
+<div style="margin-top:14px;background:#00ffcc;padding:14px;border-radius:14px"><b style="color:#000;font-size:19px;font-weight:900">+ POST NEW REEL - ANY VIDEO - LARGE</b><br><button onclick="openBox('postBox')" style="width:100%;margin-top:10px;padding:16px;background:#000;color:#00ffcc;border:0;border-radius:12px;font-weight:900;font-size:17px">+ UPLOAD ANY VIDEO/PHOTO - Large Bottom</button></div>
+<div id="myVideosList" style="margin-top:16px"></div>
+<div style="margin-top:14px"><input placeholder="Bio - Large Thicker" class="input"><input placeholder="Phone - Large Thicker" class="input"><button onclick="alert('✅ Saved - Large thicker clickable');renderProfile()" class="btnFull" style="background:#00ffcc;font-size:19px">SAVE PROFILE - Large Thicker Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff;font-size:17px">🗑️ Clear My Videos from Profile - Large</button></div>
 </div>
 
-<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">👥 FRIENDS - Large</b><button onclick="closeBox('friendsBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X</button></div><div style="margin-top:12px;background:#fff;padding:12px;border-radius:10px;color:#000;font-size:16px"><b>demo - Large font</b><br>Demo seller<br><button onclick="alert('✅ Added friend - Large clickable')" style="margin-top:8px;padding:12px 16px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:15px">ADD FRIEND - Large Clickable</button></div></div>
-<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:20px">💬 Comments - Large</b><button onclick="closeBox('commentBox')" style="padding:10px 14px;background:#000;color:#fff;border:0;border-radius:10px">X</button></div><input placeholder="Add comment - Large font" class="input"><button onclick="alert('✅ Comment - Large clickable')" class="btnFull" style="background:#00ffcc;font-size:18px">POST COMMENT - Large</button></div>
+<div id="friendsBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">👥 FRIENDS - Large Thicker</b><button onclick="closeBox('friendsBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px">X</button></div><div style="margin-top:14px;background:#fff;padding:14px;border-radius:12px;color:#000;font-size:17px;font-weight:900"><b>demo - Large thicker</b><br>Demo seller<br><button onclick="alert('✅ Added friend - Large')" style="margin-top:10px;padding:14px 18px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:16px">ADD FRIEND - Large Clickable</button></div></div>
+<div id="commentBox" class="pop"><div style="display:flex;justify-content:space-between"><b style="font-size:22px;font-weight:900">💬 Comments - Large Thicker</b><button onclick="closeBox('commentBox')" style="padding:12px 16px;background:#000;color:#fff;border:0;border-radius:12px">X</button></div><input placeholder="Add comment - Large thicker" class="input"><button onclick="alert('✅ Comment - Large thicker')" class="btnFull" style="background:#00ffcc;font-size:19px">POST COMMENT - Large Thicker</button></div>
 
 <script>
 var lastFile=null;var lastDataUrl=null;var currentVideo=null;var myVideos=[];
 try{myVideos=JSON.parse(localStorage.getItem('g_lumo_my_videos')||'[]')}catch(e){myVideos=[]}
+var feedEl=document.getElementById('feed');
+var scrollTimeout=null;
 function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderProfile()}
 function closeBox(id){document.getElementById(id).style.display='none'}
 function playCurrent(){
@@ -91,13 +91,15 @@ var v=currentVideo||document.querySelector('#feed .page video')||document.getEle
 if(!v)return;
 v.muted=false;v.volume=1.0;v.play().then(()=>{document.getElementById('playIcon').innerHTML='⏸️'}).catch(e=>{alert('Tap big PLAY in center: '+e.message)});
 currentVideo=v;
+pauseAllExcept(v);
 }
 function toggleVoice(){
 var v=currentVideo||document.querySelector('#feed .page video')||document.getElementById('demoVid');
 if(!v)return;
 v.muted=!v.muted;v.volume=1.0;if(!v.muted)v.play();
 document.getElementById('soundIcon').innerHTML=v.muted?'🔇':'🔊';
-alert(v.muted?'🔇 Voice OFF - Volume button - Tap again':'🔊 Voice ON - Volume + / - buttons on right + slider below work - Voice button works!');
+alert(v.muted?'🔇 Voice OFF - Tap again':'🔊 Voice ON - Vol + / - bottom right work - Volume button large thicker');
+pauseAllExcept(v);
 }
 function changeVol(dir){
 var v=currentVideo||document.querySelector('#feed .page video')||document.getElementById('demoVid');
@@ -107,18 +109,46 @@ if(vol<0)vol=0;if(vol>1)vol=1;
 v.volume=vol;v.muted=false;v.play();
 document.getElementById('soundLabel').innerHTML='Vol '+(vol*100).toFixed(0)+'%';
 }
+function pauseAllExcept(keep){
+var all=feedEl.querySelectorAll('video');
+for(var i=0;i<all.length;i++){if(all[i]!==keep){all[i].pause();}}
+}
+function getCurrentPageVideo(){
+var idx=Math.round(feedEl.scrollLeft/window.innerWidth);
+var pages=feedEl.querySelectorAll('.page');
+var page=pages[idx];
+if(page){var v=page.querySelector('video');return v;}
+return null;
+}
+feedEl.addEventListener('scroll',function(){
+if(scrollTimeout)clearTimeout(scrollTimeout);
+scrollTimeout=setTimeout(function(){
+var v=getCurrentPageVideo();
+if(v){
+pauseAllExcept(v);
+currentVideo=v;
+// Auto play new video with sound if previously unmuted
+if(v.paused){
+v.muted=false;v.volume=1.0;
+v.play().catch(function(){v.muted=true;v.play()});
+}
+document.getElementById('playIcon').innerHTML='⏸️';
+}
+},150);
+},{passive:true});
+
 function previewReel(){
 var f=document.getElementById('reelFile').files[0];if(!f)return;
 lastFile=f;
 var info=document.getElementById('fileInfo');info.style.display='block';
-info.innerHTML='✅ File: '+f.name+'<br>Type: '+f.type+' Size: '+(f.size/1024/1024).toFixed(1)+'MB<br>✅ ANY FORMAT ALLOWED - Will post as reel - Large fonts';
+info.innerHTML='✅ File: '+f.name+'<br>Type: '+f.type+' Size: '+(f.size/1024/1024).toFixed(1)+'MB<br>✅ ANY FORMAT ALLOWED - Large thicker - Bottom icons - Auto pause on scroll';
 var pre=document.getElementById('preview');pre.style.display='block';
 var url=URL.createObjectURL(f);
 if(f.type.startsWith('video')){
-pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video><div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,.8);color:#00ffcc;padding:6px;border-radius:6px;font-size:13px;text-align:center">✅ Preview - ANY video allowed - Will play after post - Large fonts</div>';
+pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video>';
 var pv=document.getElementById('preVid');pv.onloadeddata=function(){pv.play().catch(function(){})};
 }else{
-pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div style="position:absolute;bottom:4px;left:4px;right:4px;background:rgba(0,0,0,.8);color:#00ffcc;padding:6px;border-radius:6px;font-size:13px;text-align:center">✅ Image will become 10sec video reel - IMAGE TO VIDEO allowed - Large</div>';
+pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000">';
 }
 var reader=new FileReader();
 reader.onload=function(e){lastDataUrl=e.target.result};
@@ -126,45 +156,42 @@ reader.readAsDataURL(f);
 }
 function postReel(){
 if(!lastFile||!lastDataUrl){alert('Choose any video/photo first and wait 2 sec');return}
-var title=document.getElementById('pTitle').value.trim()||'My Reel - Large';
+var title=document.getElementById('pTitle').value.trim()||'My Reel - Large Thicker';
 var price=document.getElementById('pPrice').value.trim();
-var feed=document.getElementById('feed');
 var freshUrl=URL.createObjectURL(lastFile);
 var isVideo=lastFile.type.startsWith('video');
 var newPage=document.createElement('div');
 newPage.className='page';
 newPage.style.background='#000';
-var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:6px 10px;border-radius:8px;font-size:14px;font-weight:900">FOR SALE KSH '+price+' 6% → 0142550440</span>':'';
+var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:7px 12px;border-radius:10px;font-size:15px;font-weight:900">FOR SALE KSH '+price+' 6% → 0142550440</span>':'';
 if(isVideo){
-newPage.innerHTML='<video src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play().then(()=>{this.style.display=\'none\'});currentVideo=v;document.getElementById(\'playIcon\').innerHTML=\'⏸️\';">▶️</div><div class="info" style="font-size:17px"><b style="font-size:19px">@you - TAP ▶️ TO PLAY WITH VOICE - LARGE</b><br>'+title+priceTag+'<br><span style="font-size:14px;color:#00ffcc">✅ ANY VIDEO allowed - MP4 MOV 3GP WEBM MKV + Voice + Volume - No POCHI dummy after - Large fonts icons - Marketplace in position</span><br><div class="volBox"><label style="font-size:14px;font-weight:900">🔊 Volume increase/decrease - LARGE:</label><br><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v" style="width:100%;height:28px"><br><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.muted=!v.muted;v.volume=1.0;v.play()" style="width:48%;padding:10px;background:#00ffcc;border:0;border-radius:8px;font-weight:900;font-size:13px">🔊 Voice ON/OFF - Large</button><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play()" style="width:24%;padding:10px;background:#fff;border:0;border-radius:8px;font-weight:900">Vol +</button><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=Math.max(0,v.volume-0.25);v.play()" style="width:24%;padding:10px;background:#fff;border:0;border-radius:8px;font-weight:900">Vol -</button></div></div>';
+newPage.innerHTML='<video src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline preload="auto"></video><div class="playBtn" onclick="var v=this.parentElement.querySelector(\'video\');v.muted=false;v.volume=1.0;v.play().then(()=>{this.style.display=\'none\'});currentVideo=v;pauseAllExcept(v);document.getElementById(\'playIcon\').innerHTML=\'⏸️\';">▶️</div><div class="info" style="font-size:19px"><b style="font-size:21px">@you - TAP ▶️ LARGE THICKER - BOTTOM ICONS</b><br>'+title+priceTag+'<br><span style="font-size:15px;color:#00ffcc">✅ Large thicker 20px 900 - Icons at RIGHT BOTTOM not top - Auto pause previous when scroll to next - Any video allowed - Stay in profile</span><br><div class="volBox"><label style="font-size:15px;font-weight:900">🔊 Volume increase/decrease - LARGE THICKER:</label><br><input type="range" min="0" max="100" value="100" oninput="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=this.value/100;v.muted=false;v.play();currentVideo=v;pauseAllExcept(v)" style="width:100%;height:32px"><br><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.muted=!v.muted;v.volume=1.0;v.play();pauseAllExcept(v)" style="width:48%;padding:12px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:14px">🔊 Voice ON/OFF Large</button><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();pauseAllExcept(v)" style="width:24%;padding:12px;background:#fff;border:0;border-radius:10px;font-weight:900">Vol +</button><button onclick="var v=this.closest(\'.page\').querySelector(\'video\');v.volume=Math.max(0,v.volume-0.25);v.play()" style="width:24%;padding:12px;background:#fff;border:0;border-radius:10px;font-weight:900">Vol -</button></div></div>';
 }else{
-// IMAGE TO VIDEO - image becomes video reel (10 sec display)
-newPage.innerHTML='<img src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div class="playBtn" style="background:#fff;color:#000;font-size:24px;width:140px;height:50px;border-radius:25px" onclick="alert(\'✅ Image to video reel - Photo stays 10sec as reel - Large fonts\')">🖼️ PHOTO REEL</div><div class="info" style="font-size:17px"><b style="font-size:19px">@you - IMAGE TO VIDEO REEL - LARGE</b><br>'+title+priceTag+'<br><span style="font-size:14px;color:#00ffcc">✅ Image posted as video reel - Photo becomes reel - Large fonts - Any video allowed - Stay in profile</span></div>';
+newPage.innerHTML='<img src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div class="info" style="font-size:19px"><b style="font-size:21px">@you - IMAGE TO VIDEO - LARGE THICKER BOTTOM</b><br>'+title+priceTag+'<br><span style="font-size:15px;color:#00ffcc">✅ Image to video - Large thicker - Bottom icons - Auto pause</span></div>';
 }
-feed.insertBefore(newPage, feed.firstChild);
-feed.scrollLeft=0;
-currentVideo=newPage.querySelector('video')||newPage.querySelector('img');
-// Save to profile - stays even after refresh - Large
+feedEl.insertBefore(newPage,feedEl.firstChild);
+feedEl.scrollLeft=0;
+var vid=newPage.querySelector('video');
+if(vid){
+currentVideo=vid;
+pauseAllExcept(vid);
+vid.muted=false;vid.volume=1.0;
+setTimeout(function(){vid.play().catch(function(){vid.muted=true;vid.play()})},200);
+}
 try{
-if(lastDataUrl.length<4*1024*1024){ // Only save if <4MB to avoid quota
+if(lastDataUrl.length<4*1024*1024){
 myVideos.unshift({title:title,price:price,dataUrl:lastDataUrl,type:lastFile.type,name:lastFile.name,date:new Date().toISOString()});
 if(myVideos.length>10)myVideos=myVideos.slice(0,10);
 localStorage.setItem('g_lumo_my_videos',JSON.stringify(myVideos));
 }
-}catch(e){console.log('Storage full',e)}
+}catch(e){}
 renderProfile();
 closeBox('postBox');
 document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';
-alert('✅ POSTED - LARGE FONTS - ANY VIDEO ALLOWED - Now check PROFILE - Your video stays in profile even after refresh - Tap PROFILE button on right - Marketplace in position - Icons 72px - Voice + Volume buttons work - Image to video allowed');
+alert('✅ POSTED - LARGE THICKER TEXT - Icons at RIGHT BOTTOM not top - Auto pause: When you scroll to next video, previous pauses - Check PROFILE - Video stays - Any video allowed');
 lastFile=null;lastDataUrl=null;document.getElementById('reelFile').value='';
 }
 function renderProfile(){
 var list=document.getElementById('myVideosList');
 if(!list)return;
-if(myVideos.length==0){
-list.innerHTML='<div style="background:#fff;color:#000;padding:14px;border-radius:10px;text-align:center;font-size:16px"><b style="font-size:18px">No videos yet - Large</b><br>Tap + POST ANY VIDEO to add first video<br>Any format allowed - MP4 MOV 3GP WEBM + Image to Video<br>Large fonts + icons</div>';
-return;
-}
-var html='<div style="font-size:18px;font-weight:900;margin-bottom:8px">📹 MY VIDEOS ('+myVideos.length+') - STAY IN PROFILE - LARGE - Tap to play:</div>';
-for(var i=0;i<myVideos.length;i++){
-var 
+if(myVideos.length==0)
