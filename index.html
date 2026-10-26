@@ -21,32 +21,41 @@ h1{color:#00ffcc}
 button{background:#00ffcc;border:0;padding:12px 20px;border-radius:20px;font-weight:bold;width:100%}
 input{width:100%;padding:12px;border-radius:8px;border:0;margin:10px 0;box-sizing:border-box}
   /* G-LUMO Compact Editor - Small Space Mode */
+/* G-LUMO Compact Editor - Small Left to Right */
 .editor-compact, #photoEditor, #videoEditor, #clipEditor {
-  max-width: 100% !important;
-  padding: 10px !important;
-  margin: 10px auto !important;
-}
-
-.editor-compact button, 
-#photoEditor, #videoEditor, #clipEditor {
-  white-space: nowrap !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
-  scroll-snap-type: x mandatory !important;
-  padding-bottom: 8px !important;
+ max-width: 100% !important;
+ padding: 10px !important;
+ margin: 10px auto !important;
+ white-space: normal !important;
+ overflow: visible !important;
 }
 #photoEditor button, #videoEditor button, #clipEditor button {
-  display: inline-block !important;
-  width: auto !important;
-  min-width: 68px !important;
-  max-width: 80px !important;
-  padding: 7px 8px !important;
-  margin: 3px 4px !important;
-  font-size: 11px !important;
-  height: 32px !important;
-  scroll-snap-align: start !important;
-  flex: 0 0 auto !important;
+ display: inline-block !important;
+ width: auto !important;
+ min-width: 68px !important;
+ max-width: 85px !important;
+ padding: 7px 8px !important;
+ margin: 4px 4px !important;
+ font-size: 11px !important;
+ height: 32px !important;
+ line-height: 1 !important;
+ border-radius: 20px !important;
+ flex: 0 0 auto !important;
+ scroll-snap-align: start !important;
+}
+/* The actual scroll row - make buttons scroll */
+#photoEditor, #videoEditor, #clipEditor {
+ overflow-x: auto !important;
+ overflow-y: hidden !important;
+ white-space: nowrap !important;
+ -webkit-overflow-scrolling: touch !important;
+ scroll-snap-type: x mandatory !important;
+ padding-bottom: 8px !important;
+}
+#photoEditor canvas, #photoEditor video, #videoEditor video {
+ white-space: normal !important;
+ display: block !important;
+ width: 100% !important;
 }
 input[type="range"] {
   height: 4px !important;
