@@ -3,53 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO PROMAX - No Blank</title>
+<title>G-LUMO PROMAX++ - Bigger + Amazon Killer</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial}
-.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:10}
-.h{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-bottom:1px solid #222}
-.b{height:46px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 6px;overflow-x:auto}
-.btn{flex-shrink:0;padding:7px 12px;border-radius:18px;border:0;font-weight:900;font-size:11px}
-.btnB{background:#000;color:#00ffcc}.btnG{background:#00ffcc;color:#000}
-#feed{width:100vw;height:100vh;padding-top:86px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden}
+.top{position:fixed;top:0;left:0;right:0;background:#000;z-index:100}
+.h{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:2px solid #00ffcc}
+.h b{font-size:20px;color:#00ffcc;letter-spacing:1px}
+.b{height:54px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 8px;overflow-x:auto}
+.b::-webkit-scrollbar{display:none}
+.btn{flex-shrink:0;padding:10px 16px;border-radius:20px;border:0;font-weight:900;font-size:14px}
+.btnB{background:#000;color:#00ffcc;font-size:14px}.btnG{background:#00ffcc;color:#000;font-size:14px}
+#feed{width:100vw;height:100vh;padding-top:102px;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000}
 #feed::-webkit-scrollbar{display:none}
-.page{min-width:100vw;width:100vw;height:calc(100vh - 86px);scroll-snap-align:center;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
-.info{position:absolute;bottom:0;left:0;right:80px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-.actions{position:absolute;right:5px;bottom:10px;display:flex;flex-direction:column;gap:10px}
-.ab{width:50px;height:50px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #ffffff44;display:flex;align-items:center;justify-content:center;font-size:20px}
-.popup{position:fixed;top:86px;left:0;right:0;bottom:0;background:#fff;color:#000;z-index:20;display:none;padding:12px;overflow:auto}
+.page{min-width:100vw;width:100vw;height:calc(100vh - 102px);scroll-snap-align:center;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
+.bigText{font-size:58px;font-weight:900;text-align:center;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.8)}
+.info{position:absolute;bottom:0;left:0;right:90px;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.95))}
+.info .name{font-size:20px;font-weight:900}.info .user{font-size:15px;color:#00ffcc}.info .cap{font-size:16px;margin-top:6px;line-height:1.3}
+.actions{position:absolute;right:8px;bottom:15px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.ab{width:62px;height:62px;border-radius:50%;background:rgba(0,0,0,.6);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff}
+.at{font-size:12px;font-weight:900;text-align:center;margin-top:2px;text-shadow:0 1px 3px #000}
+.popup{position:fixed;top:102px;left:0;right:0;bottom:0;background:#f8f8f8;color:#000;z-index:200;display:none;overflow:auto}
 .popup.show{display:block}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.card{border:1px solid #ddd;border-radius:10px;overflow:hidden;background:#fff;padding:0}
+#buyPop{top:auto;bottom:0;max-height:92vh;border-top:6px solid #00ffcc;border-radius:24px 24px 0 0;background:#fff}
+.mHead{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:5}
+.search{width:100%;padding:14px 16px;border-radius:12px;border:2px solid #ddd;font-size:16px;font-weight:700;margin-top:10px}
+.catRow{display:flex;gap:8px;overflow-x:auto;padding:10px 0}
+.cat{flex-shrink:0;padding:10px 18px;border-radius:20px;border:2px solid #000;background:#fff;font-weight:900;font-size:13px}
+.cat.active{background:#000;color:#00ffcc}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:2px solid #eee;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.cardTop{height:110px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:#fff}
+.cardBody{padding:10px}
+.cardName{font-size:16px;font-weight:900;line-height:1.2}
+.cardPrice{font-size:14px;margin-top:4px}
+.buyBtn{width:100%;margin-top:8px;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:10px;font-weight:900;font-size:14px}
+.cartBar{position:sticky;bottom:0;background:#000;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;border-top:3px solid #00ffcc}
+.orderCard{background:#fff;border-radius:12px;padding:12px;margin-bottom:8px;border-left:5px solid #00ffcc}
 </style>
 </head>
 <body>
 <div class="top">
-<div class="h"><b style="color:#00ffcc">G-LUMO 🌍 PROMAX</b><button onclick="openSell()" style="padding:5px 10px;background:#00ffcc;border:0;border-radius:12px;font-weight:900">+ SELL ANYTHING</button></div>
+<div class="h"><b>G-LUMO 🌍 PROMAX++</b><button onclick="openSell()" style="padding:8px 16px;background:#00ffcc;border:0;border-radius:20px;font-weight:900;font-size:13px">+ SELL ANYTHING</button></div>
 <div class="b">
-<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET</button>
+<button class="btn btnB" onclick="toggleMarket()">🛒 MARKET (AMAZON KILLER)</button>
 <button class="btn btnG" onclick="openSell()">+ SELL PHOTO/VIDEO</button>
-<button class="btn btnB">6% → 0142550440</button>
+<button class="btn btnB">6% → 0142550440 COMPANY</button>
 <button class="btn btnB">WORLD CLASS</button>
 </div>
 </div>
 
+<!-- MARKETPLACE - BETTER THAN AMAZON -->
 <div id="marketPop" class="popup">
-<div style="display:flex;justify-content:space-between"><b>🛒 MARKET - 6% to 0142550440</b><button onclick="toggleMarket()" style="padding:6px 10px;background:#000;color:#fff;border-radius:6px;border:0">X</button></div>
+<div class="mHead">
+<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">🛒 G-LUMO MARKET - BETTER THAN AMAZON</b><button onclick="toggleMarket()" style="padding:8px 14px;background:#fff;color:#000;border-radius:8px;border:0;font-weight:900">X CLOSE</button></div>
+<div style="font-size:13px;margin-top:6px;color:#00ffcc">Company Pochi Till: <b>0142550440</b> | Auto 6% cut to company on every sale | Seller gets 94% instantly</div>
+<input id="search" placeholder="🔍 Search products like Amazon..." class="search" oninput="doSearch()">
+<div class="catRow">
+<button class="cat active" onclick="filterCat('all',this)">All</button>
+<button class="cat" onclick="filterCat('shoes',this)">👟 Shoes</button>
+<button class="cat" onclick="filterCat('phone',this)">📱 Phones</button>
+<button class="cat" onclick="filterCat('fashion',this)">👕 Fashion</button>
+<button class="cat" onclick="filterCat('elect',this)">🔌 Electronics</button>
+</div>
+</div>
 <div id="grid" class="grid"></div>
-<div id="orders" style="margin-top:12px"></div>
+
+<div style="padding:10px">
+<b style="font-size:18px">📦 MY CART & ORDERS - Company Cut Auto</b>
+<div id="cartInfo" style="background:#111;color:#00ffcc;padding:12px;border-radius:12px;margin-top:8px;font-size:14px;font-weight:700">Cart: 0 items | Company gets 6% auto to 0142550440</div>
+<div id="orderList" style="margin-top:10px"></div>
+<div style="background:#000;color:#fff;padding:12px;border-radius:12px;margin-top:12px">
+<b style="color:#00ffcc;font-size:16px">💼 SELLER DASHBOARD - Company 0142550440</b><br>
+<div id="sellerDash" style="margin-top:8px;font-size:14px;line-height:1.6">Total Sales: KSH 0<br>You Earned (94%): KSH 0<br>Company Cut (6% to 0142550440): KSH 0<br>Orders: 0</div>
+</div>
+</div>
+
+<div class="cartBar">
+<div><b id="cartCount" style="font-size:16px">🛒 Cart: 0</b><br><span id="cartTotal" style="font-size:13px;color:#00ffcc">Total KSH 0 - Company 6% auto to 0142550440</span></div>
+<button onclick="checkoutAll()" style="padding:12px 20px;background:#00ffcc;color:#000;border:0;border-radius:12px;font-weight:900;font-size:15px">CHECKOUT - PAY 0142550440</button>
+</div>
 </div>
 
 <div id="sellPop" class="popup">
-<div style="display:flex;justify-content:space-between"><b>SELL</b><button onclick="closeSell()" style="padding:6px 10px;background:#000;color:#fff;border-radius:6px;border:0">X</button></div>
-<input id="pName" placeholder="Title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px">
-<input id="pPrice" type="number" placeholder="Your price 94%" oninput="calcFee()" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px">
-<div id="fee" style="background:#111;color:#00ffcc;padding:10px;border-radius:8px;margin-top:8px;font-size:12px">Enter price</div>
-<button onclick="addProduct()" style="width:100%;padding:14px;background:#00ffcc;border:0;border-radius:10px;font-weight:900;margin-top:10px">POST NOW</button>
+<div style="padding:12px">
+<div style="display:flex;justify-content:space-between"><b style="font-size:20px">SELL - Become Seller - 94% Yours, 6% to Company 0142550440</b><button onclick="closeSell()" style="padding:8px 14px;background:#000;color:#fff;border-radius:8px;border:0;font-weight:900">X</button></div>
+<input id="pName" placeholder="Product Title - e.g. Jordan 4 Retro" style="width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:14px;font-size:18px;font-weight:700">
+<input id="pPrice" type="number" placeholder="Your Price You Want (You get 94%)" oninput="calcFee()" style="width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:10px;font-size:18px">
+<input id="pCat" placeholder="Category: shoes, phone, fashion, elect" style="width:100%;padding:16px;border:2px solid #ddd;border-radius:12px;margin-top:10px;font-size:16px">
+<div id="fee" style="background:#111;color:#00ffcc;padding:14px;border-radius:12px;margin-top:10px;font-size:16px;font-weight:800">Enter price to see Amazon-killer split - Buyer pays 6% extra, you get 94%, company 0142550440 gets 6% auto</div>
+<button onclick="addProduct()" style="width:100%;padding:18px;background:#00ffcc;border:0;border-radius:14px;font-weight:900;margin-top:14px;font-size:18px">POST NOW - Start Selling - 6% auto to Company 0142550440</button>
+</div>
 </div>
 
-<div id="buyPop" class="popup"><div id="buyDet"></div></div>
+<div id="buyPop" class="popup"><div id="buyDet" style="padding:14px"></div></div>
 
 <div id="feed"></div>
 
@@ -57,20 +104,68 @@ body{background:#000;color:#fff;font-family:Arial}
 function toggleMarket(){document.getElementById('marketPop').classList.toggle('show')}
 function openSell(){document.getElementById('sellPop').classList.add('show')}
 function closeSell(){document.getElementById('sellPop').classList.remove('show')}
-function calcFee(){var p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}var b=Math.round(p/0.94);document.getElementById('fee').innerHTML='Buyer KSH '+b+' | You KSH '+p+' | 6% KSH '+(b-p)+' → 0142550440'}
+function calcFee(){var p=document.getElementById('pPrice').value*1||0;if(!p){document.getElementById('fee').innerHTML='Enter price';return}var b=Math.round(p/0.94);document.getElementById('fee').innerHTML='AMAZON KILLER FEE: Buyer pays KSH <b>'+b+'</b> | You as Seller get KSH <b>'+p+' (94%)</b> | Company Pochi Till <b>0142550440 gets KSH '+(b-p)+' (6%) AUTO CUT</b>'}
 
 var posts=[
-{name:'G-LUMO 1',user:'@g_lumo',cap:'Swipe L/R 👉 TikTok PROMAX',bg:'#ff2d55',likes:1200},
-{name:'Pochi',user:'@pochi_0142550440',cap:'Market 6% to 0142550440',bg:'#7000ff',likes:892},
-{name:'Viral',user:'@kenya',cap:'All icons clickable',bg:'#00a896',likes:2100},
-{name:'PROMAX',user:'@world',cap:'Best world L/R swipe',bg:'#ff7b00',likes:3400},
-{name:'MARKET',user:'@seller',cap:'Tap MARKET for orders',bg:'#111',likes:560},
+{name:'G-LUMO WORLD',user:'@g_lumo',cap:'PROMAX++ Bigger Fonts - Swipe L/R',bg:'#ff2d55',likes:1200},
+{name:'POCHI COMPANY',user:'@company_0142550440',cap:'Company Till 0142550440 - 6% auto cut',bg:'#7000ff',likes:892},
+{name:'AMAZON KILLER',user:'@market',cap:'Market better than Amazon - Tap MARKET',bg:'#00a896',likes:2100},
+{name:'SELLER MODE',user:'@seller',cap:'You sell, you get 94%, company gets 6%',bg:'#ff7b00',likes:3400},
 ];
-var liked=[false,false,false,false,false];
+var liked=[false,false,false,false];
 
 function render(){
 var f=document.getElementById('feed');
 var html='';
 for(var i=0;i<posts.length;i++){
 var p=posts[i];
-html+='<div class="page" style="background:'+p.bg+'"><div style="font-size:50px;font-weight:900;text-align:center">'+p.name+'<br><span style="font-size:20px">VIDEO '+(i+1)+'</span></div><div class="info"><b>'+p.name+'</b> '+p.user+'<br>'+p.cap+'<br><span style="font-size:11px">'+(i+1)+'/'+posts.length+' Swipe L/R only</span></div><div class="actions"><button class="ab" onclick="alert(\'Followed '+p.user+'\')">+</button><button class="ab" onclick="doLike('+i+')">'+(liked[i]?'❤️':'🤍')+'</button><button class="ab" onclick="alert(\'Comment
+html+='<div class="page" style="background:'+p.bg+'"><div class="bigText">'+p.name+'<br><span style="font-size:24px">VIDEO '+(i+1)+'</span><br><span style="font-size:18px">👈 SWIPE LEFT/RIGHT 👉</span></div><div class="info"><div class="name">'+p.name+'</div><div class="user">'+p.user+'</div><div class="cap">'+p.cap+'</div><div style="font-size:13px;margin-top:6px;opacity:.8">'+(i+1)+'/'+posts.length+' • BIGGER FONTS • Market = Amazon Killer</div></div><div class="actions"><button class="ab" onclick="alert(\'Follow '+p.user+'\')">+</button><div class="at">Follow</div><button class="ab" onclick="doLike('+i+')">'+(liked[i]?'❤️':'🤍')+'</button><div class="at">'+(p.likes+(liked[i]?1:0))+' Likes</div><button class="ab" onclick="alert(\'Comment\')">💬</button><div class="at">Comment</div><button class="ab" onclick="alert(\'Message\')">✉️</button><div class="at">Message</div><button class="ab" onclick="toggleMarket()">🛒</button><div class="at">Market</div></div></div>';
+}
+f.innerHTML=html;
+}
+function doLike(i){liked[i]=!liked[i];posts[i].likes+=liked[i]?1:-1;render();document.getElementById('feed').scrollLeft=i*window.innerWidth}
+
+// MARKETPLACE AMAZON KILLER
+var products=[
+{name:'Jordan 4 Retro',price:3500,buyerPrice:3724,comm:224,bg:'#111',cat:'shoes',stock:10},
+{name:'AirPods Pro Max',price:12000,buyerPrice:12766,comm:766,bg:'#222',cat:'elect',stock:5},
+{name:'iPhone 15 Pro',price:95000,buyerPrice:101065,comm:6065,bg:'#333',cat:'phone',stock:3},
+{name:'Designer Jacket',price:5500,buyerPrice:5851,comm:351,bg:'#ff2d55',cat:'fashion',stock:15},
+{name:'Nike Air Max',price:7500,buyerPrice:7979,comm:479,bg:'#7000ff',cat:'shoes',stock:20},
+{name:'Samsung S24',price:85000,buyerPrice:90426,comm:5426,bg:'#00a896',cat:'phone',stock:2},
+];
+var cart=[];
+var orders=[];
+var filter='all';
+var searchQ='';
+
+function renderMarket(){
+var g=document.getElementById('grid');
+var filtered=products.filter(p=>{
+var matchCat=filter=='all'||p.cat==filter;
+var matchSearch=p.name.toLowerCase().includes(searchQ.toLowerCase());
+return matchCat&&matchSearch;
+});
+var h='';
+for(var idx=0;idx<filtered.length;idx++){
+var p=filtered[idx];
+var realIdx=products.indexOf(p);
+h+='<div class="card"><div class="cardTop" style="background:'+p.bg+'">'+p.name+'</div><div class="cardBody"><div class="cardName">'+p.name+'</div><div class="cardPrice">Seller: <b>KSH '+p.price+'</b> (94%)<br>Buyer: <b>KSH '+p.buyerPrice+'</b><br><span style="color:#ff2d55;font-weight:800">6% KSH '+p.comm+' → Company Pochi 0142550440</span><br>Stock: '+p.stock+' left</div><button class="buyBtn" onclick="addToCart('+realIdx+')">🛒 ADD TO CART</button><button class="buyBtn" style="background:#fff;color:#000;border:2px solid #000;margin-top:6px" onclick="openBuy('+realIdx+')">BUY NOW - 6% Auto to 0142550440</button></div></div>';
+}
+g.innerHTML=h;
+if(filtered.length==0) g.innerHTML='<div style="padding:20px;text-align:center;font-size:18px">No products found - Try Amazon Killer search</div>';
+
+var total=0;var companyCut=0;
+for(var c=0;c<cart.length;c++){total+=cart[c].buyerPrice;companyCut+=cart[c].comm}
+document.getElementById('cartCount').innerHTML='🛒 Cart: '+cart.length+' items';
+document.getElementById('cartTotal').innerHTML='Total KSH '+total+' | Company 6% KSH '+companyCut+' → 0142550440';
+document.getElementById('cartInfo').innerHTML='Cart: '+cart.length+' items | Total KSH '+total+' | Company Cut KSH '+companyCut+' auto to 0142550440 Pochi Till';
+
+var ol=document.getElementById('orderList');
+if(orders.length==0) ol.innerHTML='<div style="color:#666;font-size:15px;padding:10px">No orders yet - Buy like Amazon, but better - 6% auto to company 0142550440</div>';
+else{
+var oh='';var totalSales=0;var totalEarn=0;var totalCompany=0;
+for(var j=0;j<orders.length;j++){
+var o=orders[j];
+totalSales+=o.buyerPrice;totalEarn+=o.price;totalCompany+=o.comm;
+oh+='<div class="orderCard"><b style="font-size:16px">'+o.name+'</b><br>Buyer Paid: <b>KSH '+o.buyerPrice+'</b> | Seller Got: <b>KSH '+o.price+' (94%)</b><br><span style="color:#ff2d55;font-weight:900">Company Cut: KSH '+o.comm+' (6%) → P
