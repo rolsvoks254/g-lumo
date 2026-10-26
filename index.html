@@ -2,34 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G-LUMO FINAL SIMPLE ALL IN ONE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>G-LUMO PROMAX - FULL FINAL</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial;font-weight:900}
-#top{position:fixed;top:0;left:0;right:0;z-index:10;background:#000;border-bottom:3px solid #00ffcc}
-#h{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
-#menu{height:52px;background:#fff;display:flex;gap:5px;padding:5px;overflow-x:auto}
-.mbtn{flex-shrink:0;padding:9px 10px;border-radius:16px;border:0;font-weight:900;font-size:10px}
-#feed{position:fixed;top:98px;left:0;right:0;bottom:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;background:#000;z-index:1}
-.page{min-width:100vw;width:100vw;height:100%;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;display:flex;align-items:center;justify-content:center}
-.page video,.page img{width:100%;height:100%;object-fit:contain;background:#000}
-.info{position:absolute;bottom:0;left:0;right:74px;padding:8px;background:rgba(0,0,0,.85);z-index:2;font-size:11px;pointer-events:none}
+body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden}
+#top{position:fixed;top:0;left:0;right:0;z-index:1000;background:#000;border-bottom:4px solid #00ffcc}
+#h{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
+#menu{height:50px;background:#fff;display:flex;gap:5px;padding:5px;overflow-x:auto}
+.mbtn{flex-shrink:0;padding:9px 12px;border-radius:18px;border:0;font-weight:900;font-size:11px;cursor:pointer}
+#feed{position:fixed;top:100px;left:0;right:78px;bottom:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;background:#000;z-index:1}
+.page{min-width:100%;width:100%;height:100%;scroll-snap-align:center;flex-shrink:0;position:relative;background:#000;display:flex;align-items:center;justify-content:center}
+.page video,.page img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.info{position:absolute;bottom:0;left:0;right:0;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.9));z-index:2;font-size:13px;font-weight:900;pointer-events:none}
 .info *{pointer-events:auto}
-#rightBar{position:fixed;right:2px;bottom:2px;width:66px;z-index:999999;background:rgba(0,0,0,.85);border-radius:12px;padding:3px;border:1px solid #333;display:flex;flex-direction:column;gap:3px}
-.iconBtn{width:60px;height:48px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer}
-.iconCircle{width:40px;height:40px;border-radius:50%;background:#222;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:16px}
-.iconLabel{font-size:6px;color:#fff;margin-top:1px;text-align:center;line-height:1}
-.pop{display:none;position:fixed;top:98px;left:0;right:0;bottom:0;background:#eee;color:#000;z-index:999998;overflow:auto;padding:10px}
-.input{width:100%;padding:10px;border:2px solid #ccc;border-radius:8px;margin-top:6px;font-size:13px;font-weight:900}
-.btnFull{width:100%;padding:10px;border:0;border-radius:8px;font-weight:900;font-size:13px;margin-top:6px;cursor:pointer}
+.playBtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:#00ffcc;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:40px;color:#000;z-index:3}
+/* RIGHT BAR - FIXED - CLICKABLE - SMALLER BUT VISIBLE - BOTTOM */
+#rightBar{position:fixed;right:0;top:100px;bottom:0;width:76px;z-index:9999999;background:#000;border-left:2px solid #222;display:flex;flex-direction:column;gap:2px;padding:4px 2px;overflow-y:auto;overflow-x:hidden;pointer-events:auto}
+.iconBtn{width:70px;height:56px;border:1px solid #333;background:#111;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto}
+.iconBtn:active{background:#00ffcc}
+.iconCircle{width:32px;height:32px;border-radius:50%;background:#222;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:16px;pointer-events:none}
+.iconLabel{font-size:6.5px;color:#fff;margin-top:2px;text-align:center;line-height:1;pointer-events:none}
+.pop{display:none;position:fixed;top:100px;left:0;right:0;bottom:0;background:#eee;color:#000;z-index:99999999;overflow:auto;padding:10px}
+.input{width:100%;padding:12px;border:2px solid #ccc;border-radius:8px;margin-top:6px;font-size:14px;font-weight:900}
+.btnFull{width:100%;padding:12px;border:0;border-radius:8px;font-weight:900;font-size:14px;margin-top:6px;cursor:pointer}
 </style>
 </head>
 <body>
 <div id="top">
-<div id="h"><b style="color:#00ffcc;font-size:11px">G-LUMO ✅ FINAL ALL IN ONE - NOT SPYING - OFFLINE</b><div><span id="userStatus" style="font-size:9px;color:#00ffcc">Not logged</span><button onclick="openBox('loginBox')" style="padding:5px 7px;background:#fff;color:#000;border:0;border-radius:6px;font-weight:900;font-size:9px">LOGIN</button></div></div>
+<div id="h"><b style="color:#00ffcc;font-size:11px">G-LUMO PROMAX ✅ ALL FIXED - LOGIN + CLICKABLE</b><div><span id="userStatus" style="font-size:8px;color:#00ffcc">Not logged</span><button onclick="openBox('loginBox')" style="padding:5px 7px;background:#fff;color:#000;border:0;border-radius:6px;font-weight:900;font-size:9px">👤 LOGIN</button></div></div>
 <div id="menu">
-<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440 6%</button>
+<button class="mbtn" style="background:#000;color:#00ffcc" onclick="openBox('marketBox')">🛒 MARKET 0142550440</button>
 <button class="mbtn" style="background:#00ffcc;color:#000" onclick="checkLoginAndPost()">+ POST ANY VIDEO</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('profileBox')">👤 MY VIDEOS STAY</button>
 <button class="mbtn" style="background:#000;color:#fff" onclick="openBox('friendsBox')">👥 FRIENDS</button>
@@ -37,69 +40,69 @@ body{background:#000;color:#fff;font-family:Arial;font-weight:900}
 </div>
 
 <div id="feed">
-<div class="page" id="firstPage">
-<video id="demoVid" src="https://www.w3schools.com/html/mov_bbb.mp4" controls playsinline muted loop style="width:100%;height:100%"></video>
-<div class="info"><b>ALL BACK - TAP ICONS RIGHT BOTTOM - 100% CLICKABLE - LOGIN RESTORED</b><br>Icons 40px small visible bottom right - All clickable - No spying - Offline - localStorage only</div>
+<div class="page">
+<video id="demoVid" src="https://www.w3schools.com/html/mov_bbb.mp4" controls playsinline muted loop></video>
+<div class="playBtn" onclick="var v=document.getElementById('demoVid');v.muted=false;v.volume=1;v.play();this.style.display='none'">▶️</div>
+<div class="info"><b>PROMAX FULL FINAL - ALL ICONS RIGHT - 100% CLICKABLE - LOGIN RESTORED</b><br>Tap icons right bar - All work - No spying - Offline</div>
 </div>
 </div>
 
 <div id="rightBar">
-<button class="iconBtn" onclick="checkLoginAndPost()"><div class="iconCircle" style="background:#00ffcc;color:#000">+</div><div class="iconLabel" style="color:#00ffcc">+ POST</div></button>
-<button class="iconBtn" onclick="doFollow()"><div class="iconCircle" style="background:#fff;color:#000">👤</div><div class="iconLabel" id="lblFollow">Follow</div></button>
-<button class="iconBtn" onclick="doLike()"><div class="iconCircle" id="circleLike">🤍</div><div class="iconLabel" id="lblLike">Like 2.3K</div></button>
-<button class="iconBtn" onclick="openBox('commentBox')"><div class="iconCircle">💬</div><div class="iconLabel">Message Comment</div></button>
-<button class="iconBtn" onclick="openBox('friendsBox')"><div class="iconCircle">👥</div><div class="iconLabel">Add Friend</div></button>
-<button class="iconBtn" onclick="doShare()"><div class="iconCircle">↗️</div><div class="iconLabel">Share</div></button>
-<button class="iconBtn" onclick="playCurrent()"><div class="iconCircle" id="circlePlay">▶️</div><div class="iconLabel">PLAY</div></button>
-<button class="iconBtn" onclick="toggleVoice()"><div class="iconCircle" id="circleVoice">🔊</div><div class="iconLabel">Voice</div></button>
-<button class="iconBtn" onclick="changeVol(1)"><div class="iconCircle">🔊+</div><div class="iconLabel">Vol+</div></button>
-<button class="iconBtn" onclick="changeVol(-1)"><div class="iconCircle">🔉-</div><div class="iconLabel">Vol-</div></button>
-<button class="iconBtn" onclick="openBox('profileBox')"><div class="iconCircle" style="background:#fff;color:#000">👤</div><div class="iconLabel">PROFILE</div></button>
-<button class="iconBtn" onclick="openBox('marketBox')"><div class="iconCircle">🛒</div><div class="iconLabel">Market</div></button>
+<button class="iconBtn" onclick="checkLoginAndPost()"><div class="iconCircle" style="background:#00ffcc;color:#000">+</div><div class="iconLabel" style="color:#00ffcc">+ POST<br>ANY VIDEO</div></button>
+<button class="iconBtn" onclick="doFollow()"><div class="iconCircle" style="background:#fff;color:#000">👤</div><div class="iconLabel" id="lblFollow">Follow<br>1.5K</div></button>
+<button class="iconBtn" onclick="doLike()"><div class="iconCircle" id="circleLike">🤍</div><div class="iconLabel" id="lblLike">Like<br>2.3K Likes</div></button>
+<button class="iconBtn" onclick="openBox('commentBox')"><div class="iconCircle">💬</div><div class="iconLabel">Message<br>Comment 342</div></button>
+<button class="iconBtn" onclick="openBox('friendsBox')"><div class="iconCircle">👥</div><div class="iconLabel">Add Friend<br>Friends</div></button>
+<button class="iconBtn" onclick="doShare()"><div class="iconCircle">↗️</div><div class="iconLabel">Share<br>128 Shares</div></button>
+<button class="iconBtn" onclick="playCurrent()"><div class="iconCircle" id="circlePlay">▶️</div><div class="iconLabel">PLAY<br>PAUSE</div></button>
+<button class="iconBtn" onclick="toggleVoice()"><div class="iconCircle" id="circleVoice">🔊</div><div class="iconLabel" id="lblVoice">Voice<br>ON/OFF</div></button>
+<button class="iconBtn" onclick="changeVol(1)"><div class="iconCircle">🔊+</div><div class="iconLabel">Vol +<br>Increase</div></button>
+<button class="iconBtn" onclick="changeVol(-1)"><div class="iconCircle">🔉-</div><div class="iconLabel">Vol -<br>Decrease</div></button>
+<button class="iconBtn" onclick="openBox('profileBox')"><div class="iconCircle" style="background:#fff;color:#000">👤</div><div class="iconLabel">PROFILE<br>MY VIDEOS<br>STAY</div></button>
+<button class="iconBtn" onclick="openBox('marketBox')"><div class="iconCircle">🛒</div><div class="iconLabel">Market<br>0142550440<br>6% AUTO</div></button>
 </div>
 
 <div id="loginBox" class="pop">
 <div style="max-width:400px;margin:auto;background:#fff;border-radius:12px;padding:12px">
-<h3 style="text-align:center">LOGIN / SIGN UP / RESET - RESTORED - OFFLINE - NO SPYING</h3>
+<h3 style="text-align:center">G-LUMO PROMAX LOGIN - RESTORED - NO SPYING</h3>
 <div style="display:flex;gap:4px;margin-top:8px">
-<button onclick="showTab('login')" id="tabLogin" style="flex:1;padding:8px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">LOGIN</button>
-<button onclick="showTab('signup')" id="tabSignup" style="flex:1;padding:8px;background:#ddd;color:#000;border:0;border-radius:6px;font-weight:900">SIGN UP</button>
-<button onclick="showTab('reset')" id="tabReset" style="flex:1;padding:8px;background:#ddd;color:#000;border:0;border-radius:6px;font-weight:900">RESET</button>
+<button onclick="showTab('login')" id="tabLogin" style="flex:1;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">LOGIN</button>
+<button onclick="showTab('signup')" id="tabSignup" style="flex:1;padding:10px;background:#ddd;color:#000;border:0;border-radius:6px;font-weight:900">SIGN UP</button>
+<button onclick="showTab('reset')" id="tabReset" style="flex:1;padding:10px;background:#ddd;color:#000;border:0;border-radius:6px;font-weight:900">RESET PWD</button>
 </div>
 <div id="loginTab">
 <input id="loginUser" placeholder="Username demo" class="input">
 <input id="loginPass" type="password" placeholder="Password 1234" class="input">
-<button onclick="doLogin()" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - Clickable</button>
-<div style="font-size:11px;background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px">Demo: demo / 1234 - No spying - Saved in your phone only - localStorage - Works offline - Turn airplane mode ON to test</div>
+<button onclick="doLogin()" class="btnFull" style="background:#000;color:#00ffcc">LOGIN - 100% Clickable - Offline - No spying</button>
+<div style="font-size:11px;background:#111;color:#00ffcc;padding:6px;border-radius:6px;margin-top:6px">Demo: demo / 1234 - Phone 0712345678 - All saved in your phone localStorage - Works airplane mode - No spying</div>
 </div>
 <div id="signupTab" style="display:none">
 <input id="signupUser" placeholder="New Username" class="input">
 <input id="signupPhone" placeholder="Phone 07..." class="input">
 <input id="signupPass" type="password" placeholder="Password" class="input">
 <input id="signupPass2" type="password" placeholder="Confirm Password" class="input">
-<button onclick="doSignup()" class="btnFull" style="background:#00ffcc;color:#000">SIGN UP - Clickable</button>
+<button onclick="doSignup()" class="btnFull" style="background:#00ffcc;color:#000">SIGN UP - Create Account - 100% Clickable - No spying</button>
 </div>
 <div id="resetTab" style="display:none">
 <input id="resetUser" placeholder="Username" class="input">
 <input id="resetPhone" placeholder="Phone you used at signup" class="input">
 <input id="resetPass" type="password" placeholder="New Password" class="input">
-<button onclick="doReset()" class="btnFull" style="background:#ff2d55;color:#fff">RESET PASSWORD - Clickable</button>
-<div style="font-size:10px;margin-top:4px">For demo user demo, phone is 0712345678 - Reset works offline - No spying</div>
+<button onclick="doReset()" class="btnFull" style="background:#ff2d55;color:#fff">RESET PASSWORD - 100% Clickable - No spying</button>
 </div>
 <div id="loginInfo" style="font-size:11px;background:#fff;border:2px solid #00ffcc;padding:6px;border-radius:6px;margin-top:8px"></div>
-<button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">X CLOSE</button>
+<button onclick="closeBox('loginBox')" class="btnFull" style="background:#000;color:#fff">X CLOSE - Clickable</button>
 </div>
 </div>
 
-<div id="marketBox" class="pop"><b>🛒 MARKET 0142550440 6% AUTO - IN POSITION - CLICKABLE</b><br><button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div style="background:#fff;border-radius:10px;overflow:hidden;margin-top:8px"><div style="height:70px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4 KSH 3724</div><div style="padding:8px;color:#000;font-size:12px;font-weight:900"><b>Jordan 4</b><br>6% 224 -> 0142550440<br><button onclick="alert('✅ BUY NOW Paid - Market clickable - No spying - Offline')" style="width:100%;margin-top:4px;padding:10px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">BUY NOW - Clickable 100%</button></div></div></div>
+<div id="marketBox" class="pop"><b>🛒 MARKET 0142550440 - 6% AUTO - IN POSITION - CLICKABLE - NO SPYING</b> <button onclick="closeBox('marketBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div style="background:#fff;border-radius:10px;overflow:hidden;margin-top:8px"><div style="height:80px;background:#111;color:#00ffcc;display:flex;align-items:center;justify-content:center;font-weight:900">Jordan 4 - KSH 3724 - 6% 224 -> 0142550440</div><div style="padding:10px;color:#000;font-size:13px;font-weight:900"><button onclick="alert('✅ BUY NOW Paid - Market icon 100% clickable - No spying')" style="width:100%;padding:12px;background:#000;color:#00ffcc;border:0;border-radius:8px;font-weight:900">BUY NOW - 100% Clickable</button></div></div></div>
 
-<div id="postBox" class="pop"><b>POST ANY VIDEO - ANY FORMAT - CLICKABLE - NO SPYING</b><br><button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><br><input id="pTitle" placeholder="Title" class="input"><input id="pPrice" type="number" placeholder="Price" class="input"><label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:8px;font-weight:900;text-align:center;margin-top:8px;cursor:pointer;font-size:12px">📸📹 TAP TO CHOOSE ANY VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.jpg,.png" style="display:none" onchange="previewReel()"></label><div id="fileInfo" style="font-size:11px;background:#fff;padding:6px;border-radius:6px;display:none;margin-top:6px"></div><div id="preview" style="display:none;background:#111;border-radius:8px;height:180px;overflow:hidden;margin-top:8px"></div><button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - Clickable 100% - No spying</button></div>
+<div id="postBox" class="pop"><b>POST ANY VIDEO - ANY FORMAT - IMAGE TO VIDEO - CLICKABLE - NO SPYING</b> <button onclick="closeBox('postBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><br><input id="pTitle" placeholder="Title - Bigger thicker" class="input"><input id="pPrice" type="number" placeholder="Price if selling" class="input"><label style="display:block;background:#00ffcc;color:#000;padding:14px;border-radius:10px;font-weight:900;text-align:center;margin-top:8px;cursor:pointer">📸📹 TAP TO CHOOSE ANY VIDEO OR PHOTO - MP4 MOV 3GP WEBM JPG PNG - All allowed<input id="reelFile" type="file" accept="video/*,image/*,.mp4,.mov,.3gp,.webm,.mkv,.jpg,.png" style="display:none" onchange="previewReel()"></label><div id="fileInfo" style="font-size:11px;background:#fff;padding:6px;border-radius:6px;display:none;margin-top:6px"></div><div id="preview" style="display:none;background:#111;border-radius:10px;height:200px;overflow:hidden;margin-top:8px"></div><button onclick="postReel()" class="btnFull" style="background:#00ffcc">+ POST REEL NOW - 100% Clickable - Videos stay in profile</button></div>
 
-<div id="profileBox" class="pop"><b>👤 PROFILE - MY VIDEOS STAY - CLICKABLE - NO SPYING</b><br><button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div id="profileUserInfo" style="background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Not logged</div><div id="myVideosList" style="margin-top:10px"></div><button onclick="doLogout()" class="btnFull" style="background:#000;color:#00ffcc">LOGOUT - Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff">Clear My Videos - Clickable</button></div>
+<div id="profileBox" class="pop"><b>👤 PROFILE - MY VIDEOS STAY EVEN AFTER REFRESH - CLICKABLE - NO SPYING</b> <button onclick="closeBox('profileBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div id="profileUserInfo" style="background:#111;color:#00ffcc;padding:8px;border-radius:6px;margin-top:8px;font-size:12px">Not logged</div><div id="myVideosList" style="margin-top:10px"></div><button onclick="doLogout()" class="btnFull" style="background:#000;color:#00ffcc">LOGOUT - Clickable</button><button onclick="clearMyVideos()" class="btnFull" style="background:#ff2d55;color:#fff">Clear My Videos - Clickable</button></div>
 
-<div id="friendsBox" class="pop"><b>👥 FRIENDS - Clickable - No spying</b><br><button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div style="background:#fff;padding:10px;border-radius:8px;margin-top:8px;color:#000;font-size:12px"><b>demo</b><br><button onclick="alert('✅ ADDED FRIEND - Add Friend clickable 100% - Smaller visible bottom - No spying');closeBox('friendsBox')" style="padding:10px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">ADD FRIEND - Clickable 100%</button></div></div>
+<div id="friendsBox" class="pop"><b>👥 FRIENDS - CLICKABLE - NO SPYING</b> <button onclick="closeBox('friendsBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div style="background:#fff;padding:10px;border-radius:8px;margin-top:8px;color:#000"><b>demo</b><br><button onclick="alert('✅ ADDED FRIEND - Add Friend icon 100% clickable - Small visible bottom - No spying');closeBox('friendsBox')" style="padding:10px;background:#000;color:#00ffcc;border:0;border-radius:6px;font-weight:900">ADD FRIEND - 100% Clickable</button></div></div>
 
-<div id="commentBox" class="pop"><b>💬 Message / Comments - Clickable - No spying</b><br><button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div id="commentList" style="margin-top:8px"><div style="background:#fff;color:#000;padding:8px;border-radius:6px;margin-bottom:4px;font-size:12px">Nice video!</div></div><input id="commentInput" placeholder="Add comment/message" class="input"><button onclick="doComment()" class="btnFull" style="background:#00ffcc">POST COMMENT - Clickable 100%</button></div>
+<div id="commentBox" class="pop"><b>💬 Message / Comments - CLICKABLE - NO SPYING</b> <button onclick="closeBox('commentBox')" style="padding:8px 12px;background:#000;color:#fff;border:0;border-radius:6px">X CLOSE</button><div id="commentList" style="margin-top:8px"><div style="background:#fff;color:#000;padding:8px;border-radius:6px;margin-bottom:4px;font-size:12px">Nice video! - Clickable</div></div><input id="commentInput" placeholder="Add comment/message" class="input"><button onclick="doComment()" class="btnFull" style="background:#00ffcc">POST COMMENT/MESSAGE - 100% Clickable</button></div>
 
 <script>
 var lastFile=null,lastDataUrl=null,currentVideo=null,myVideos=[],isFollowing=false,isLiked=false,likeCount=2300;
@@ -110,22 +113,22 @@ var feedEl=document.getElementById('feed');
 function qs(id){return document.getElementById(id)}
 function openBox(id){qs(id).style.display='block';if(id==='profileBox')renderProfile();if(id==='loginBox')updateLoginInfo()}
 function closeBox(id){qs(id).style.display='none'}
-function showTab(t){qs('loginTab').style.display=t==='login'?'block':'none';qs('signupTab').style.display=t==='signup'?'block':'none';qs('resetTab').style.display=t==='reset'?'block':'none';qs('tabLogin').style.background=t==='login'?'#000':'#ddd';qs('tabLogin').style.color=t==='login'?'#00ffcc':'#000';qs('tabSignup').style.background=t==='signup'?'#000':'#ddd';qs('tabSignup').style.color=t==='signup'?'#00ffcc':'#000';qs('tabReset').style.background=t==='reset'?'#000':'#ddd';qs('tabReset').style.color=t==='reset'?'#00ffcc':'#000'}
-function updateUserStatus(){var el=qs('userStatus'),p=qs('profileUserInfo');if(currentUser){el.innerHTML='@'+currentUser+' ✅';p.innerHTML='Logged in as @'+currentUser+'<br>Phone: '+(users[currentUser]?users[currentUser].phone:'')+'<br>✅ No spying - Offline - localStorage only'}else{el.innerHTML='Not logged';p.innerHTML='Not logged - Demo: demo / 1234 - No spying - Offline'}}
-function updateLoginInfo(){var info=qs('loginInfo');info.innerHTML='<b>Saved accounts ('+Object.keys(users).length+'):</b><br>'+Object.keys(users).map(function(u){return '@'+u+' - '+users[u].phone}).join('<br>')+'<br><b>Current:</b> '+(currentUser?'@'+currentUser+' logged':'Not logged')+'<br>✅ No spying - All saved in your phone - Turn airplane mode ON, still works - Proof no spying';}
-function checkLoginAndPost(){if(!currentUser){alert('⚠️ Please LOGIN first - Demo: demo / 1234 - No spying - Offline');openBox('loginBox');return}openBox('postBox')}
-function doLogin(){var u=qs('loginUser').value.trim(),p=qs('loginPass').value.trim();if(!u||!p){alert('Enter username and password');return}if(users[u]&&users[u].pass===p){currentUser=u;localStorage.setItem('g_lumo_current_user',u);updateUserStatus();updateLoginInfo();alert('✅ LOGGED IN @'+u+' - No spying - Offline - Stays logged');closeBox('loginBox')}else{alert('❌ Wrong - Try demo / 1234 or SIGN UP - No spying')}}
-function doSignup(){var u=qs('signupUser').value.trim(),ph=qs('signupPhone').value.trim(),p=qs('signupPass').value.trim(),p2=qs('signupPass2').value.trim();if(!u||!ph||!p){alert('Fill all');return}if(p!==p2){alert('Passwords not match');return}if(users[u]){alert('Username exists - Login or Reset');return}users[u]={pass:p,phone:ph};localStorage.setItem('g_lumo_users',JSON.stringify(users));currentUser=u;localStorage.setItem('g_lumo_current_user',u);updateUserStatus();updateLoginInfo();alert('✅ SIGNED UP @'+u+' - Saved offline - No spying');closeBox('loginBox')}
-function doReset(){var u=qs('resetUser').value.trim(),ph=qs('resetPhone').value.trim(),p=qs('resetPass').value.trim();if(!u||!ph||!p){alert('Fill all');return}if(!users[u]){alert('User not found - Sign up');return}if(users[u].phone!==ph){alert('Phone not match - Demo phone 0712345678 - No spying');return}users[u].pass=p;localStorage.setItem('g_lumo_users',JSON.stringify(users));alert('✅ PASSWORD RESET @'+u+' - Now LOGIN - No spying');showTab('login');updateLoginInfo()}
+function showTab(t){qs('loginTab').style.display=t==='login'?'block':'none';qs('signupTab').style.display=t==='signup'?'block':'none';qs('resetTab').style.display=t==='reset'?'block':'none'}
+function updateUserStatus(){var el=qs('userStatus'),p=qs('profileUserInfo');if(currentUser){el.innerHTML='@'+currentUser+' ✅';p.innerHTML='Logged in as @'+currentUser+'<br>Phone: '+(users[currentUser]?users[currentUser].phone:'')+'<br>✅ No spying - Offline - localStorage only - All icons clickable'}else{el.innerHTML='Not logged';p.innerHTML='Not logged - Demo: demo / 1234 - No spying - Offline - All icons clickable'}}
+function updateLoginInfo(){var info=qs('loginInfo');info.innerHTML='<b>Saved accounts ('+Object.keys(users).length+') - 100% Clickable - No spying:</b><br>'+Object.keys(users).map(function(u){return '@'+u+' - '+users[u].phone}).join('<br>')+'<br><b>Current:</b> '+(currentUser?'@'+currentUser+' logged':'Not logged')+'<br>✅ Works airplane mode - Proof no spying - All offline';}
+function checkLoginAndPost(){if(!currentUser){alert('⚠️ Please LOGIN first - Demo: demo / 1234 - Login restored - No spying');openBox('loginBox');return}openBox('postBox')}
+function doLogin(){var u=qs('loginUser').value.trim(),p=qs('loginPass').value.trim();if(!u||!p){alert('Enter username and password');return}if(users[u]&&users[u].pass===p){currentUser=u;localStorage.setItem('g_lumo_current_user',u);updateUserStatus();updateLoginInfo();alert('✅ LOGGED IN @'+u+' - Login info saved - Stays logged - No spying - 100% clickable');closeBox('loginBox')}else{alert('❌ Wrong - Try demo / 1234 or SIGN UP - No spying - Clickable')}}
+function doSignup(){var u=qs('signupUser').value.trim(),ph=qs('signupPhone').value.trim(),p=qs('signupPass').value.trim(),p2=qs('signupPass2').value.trim();if(!u||!ph||!p){alert('Fill all');return}if(p!==p2){alert('Passwords not match');return}if(users[u]){alert('Username exists - Login or Reset');return}users[u]={pass:p,phone:ph};localStorage.setItem('g_lumo_users',JSON.stringify(users));currentUser=u;localStorage.setItem('g_lumo_current_user',u);updateUserStatus();updateLoginInfo();alert('✅ SIGNED UP @'+u+' - Saved offline - No spying - 100% clickable');closeBox('loginBox')}
+function doReset(){var u=qs('resetUser').value.trim(),ph=qs('resetPhone').value.trim(),p=qs('resetPass').value.trim();if(!u||!ph||!p){alert('Fill all');return}if(!users[u]){alert('User not found - Sign up');return}if(users[u].phone!==ph){alert('Phone not match - Demo phone 0712345678 - No spying');return}users[u].pass=p;localStorage.setItem('g_lumo_users',JSON.stringify(users));alert('✅ PASSWORD RESET @'+u+' - Now LOGIN - No spying - Clickable');showTab('login');updateLoginInfo()}
 function doLogout(){currentUser=null;localStorage.removeItem('g_lumo_current_user');updateUserStatus();updateLoginInfo();alert('✅ LOGGED OUT - Accounts still saved offline - No spying')}
-function doFollow(){isFollowing=!isFollowing;qs('lblFollow').innerHTML=isFollowing?'Following':'Follow';alert(isFollowing?'✅ FOLLOWED - Follow clickable 100% - 40px small visible bottom right - No spying':'❌ Unfollowed - Clickable')}
-function doLike(){isLiked=!isLiked;var c=qs('circleLike'),l=qs('lblLike');if(isLiked){c.innerHTML='❤️';likeCount++;l.innerHTML='Liked '+likeCount;alert('❤️ LIKED - Like clickable 100% - 40px small visible bottom - No spying')}else{c.innerHTML='🤍';likeCount--;l.innerHTML='Like '+likeCount;alert('🤍 Unliked - Clickable')}}
-function doComment(){var input=qs('commentInput'),text=input.value.trim()||'Nice video!';var list=qs('commentList');var div=document.createElement('div');div.style.background='#fff';div.style.color='#000';div.style.padding='8px';div.style.borderRadius='6px';div.style.marginBottom='4px';div.style.fontSize='12px';div.innerHTML=text;list.appendChild(div);input.value='';alert('✅ COMMENT POSTED - Message clickable 100% - No spying');closeBox('commentBox')}
-function doShare(){alert('✅ SHARED - Share clickable 100% - 40px small visible bottom - No spying - Link copied');if(navigator.share){navigator.share({title:'G-LUMO',url:location.href}).catch(function(){})}}
-function playCurrent(){var v=currentVideo||feedEl.querySelector('.page video')||qs('demoVid');if(!v)return;if(v.paused){v.muted=false;v.volume=1.0;v.play().then(function(){qs('circlePlay').innerHTML='⏸️'});currentVideo=v;pauseAllExcept(v);alert('▶️ PLAYING - Play clickable 100% - No spying')}else{v.pause();qs('circlePlay').innerHTML='▶️';alert('⏸️ PAUSED - Clickable')}}
-function toggleVoice(){var v=currentVideo||feedEl.querySelector('.page video')||qs('demoVid');if(!v)return;v.muted=!v.muted;v.volume=1.0;if(!v.muted)v.play();qs('circleVoice').innerHTML=v.muted?'🔇':'🔊';alert(v.muted?'🔇 Voice OFF - Clickable 100%':'🔊 Voice ON - Clickable 100% - No spying');pauseAllExcept(v)}
+function doFollow(){isFollowing=!isFollowing;qs('lblFollow').innerHTML=isFollowing?'Following<br>1.5K+':'Follow<br>1.5K';alert(isFollowing?'✅ FOLLOWED - Follow icon 100% clickable - 32px small visible right bar - No spying':'❌ Unfollowed - Clickable 100%')}
+function doLike(){isLiked=!isLiked;var c=qs('circleLike'),l=qs('lblLike');if(isLiked){c.innerHTML='❤️';likeCount++;l.innerHTML='Liked<br>'+likeCount;alert('❤️ LIKED - Like icon 100% clickable - Small visible right bar - No spying')}else{c.innerHTML='🤍';likeCount--;l.innerHTML='Like<br>'+likeCount;alert('🤍 Unliked - Clickable 100%')}}
+function doComment(){var input=qs('commentInput'),text=input.value.trim()||'Nice video!';var list=qs('commentList');var div=document.createElement('div');div.style.background='#fff';div.style.color='#000';div.style.padding='8px';div.style.borderRadius='6px';div.style.marginBottom='4px';div.style.fontSize='12px';div.innerHTML=text;list.appendChild(div);input.value='';alert('✅ COMMENT/MESSAGE POSTED - Message icon 100% clickable - No spying');closeBox('commentBox')}
+function doShare(){alert('✅ SHARED - Share icon 100% clickable - Small visible right bar - No spying - Link copied');if(navigator.share){navigator.share({title:'G-LUMO',url:location.href}).catch(function(){})}}
+function playCurrent(){var v=currentVideo||feedEl.querySelector('.page video')||qs('demoVid');if(!v)return;if(v.paused){v.muted=false;v.volume=1;v.play().then(function(){qs('circlePlay').innerHTML='⏸️'});currentVideo=v;pauseAllExcept(v);alert('▶️ PLAYING - Play icon 100% clickable - No spying')}else{v.pause();qs('circlePlay').innerHTML='▶️';alert('⏸️ PAUSED - Clickable 100%')}}
+function toggleVoice(){var v=currentVideo||feedEl.querySelector('.page video')||qs('demoVid');if(!v)return;v.muted=!v.muted;v.volume=1;if(!v.muted)v.play();qs('circleVoice').innerHTML=v.muted?'🔇':'🔊';alert(v.muted?'🔇 Voice OFF - Clickable 100%':'🔊 Voice ON - Clickable 100% - No spying');pauseAllExcept(v)}
 function changeVol(dir){var v=currentVideo||feedEl.querySelector('.page video')||qs('demoVid');if(!v)return;var vol=v.volume+dir*0.25;if(vol<0)vol=0;if(vol>1)vol=1;v.volume=vol;v.muted=false;v.play();alert((dir>0?'🔊 Vol+ '+(vol*100).toFixed(0)+'%':'🔉 Vol- '+(vol*100).toFixed(0)+'%')+' - Clickable 100% - No spying')}
 function pauseAllExcept(keep){var all=feedEl.querySelectorAll('video');for(var i=0;i<all.length;i++){if(all[i]!==keep){all[i].pause()}}}
-feedEl.addEventListener('scroll',function(){var idx=Math.round(feedEl.scrollLeft/window.innerWidth);var pages=feedEl.querySelectorAll('.page');var page=pages[idx];if(page){var v=page.querySelector('video');if(v){pauseAllExcept(v);currentVideo=v;if(v.paused){v.muted=false;v.volume=1.0;v.play().catch(function(){v.muted=true;v.play()})}}}});
-function previewReel(){var f=qs('reelFile').files[0];if(!f)return;lastFile=f;var info=qs('fileInfo');info.style.display='block';info.innerHTML='✅ File: '+f.name+' | '+(f.size/1024/1024).toFixed(1)+'MB - No spying - Offline';var pre=qs('preview');pre.style.display='block';var url=URL.createObjectURL(f);if(f.type.startsWith('video')){pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video>'}else{pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000">'}var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result};reader.readAsDataURL(f)}
-function postReel(){if(!lastFile||!lastDataUrl){alert('Choose video/photo first');return}if(!currentUser){alert('Login first demo/1234 - No spying');openBox('loginBox');return}var title=qs('pTitle').value.trim()||'My Reel',price=qs('pPrice').value.trim(),freshUrl=URL.createObjectURL(lastFile),isVideo=lastFile.type.startsWith('video'),newPage=document.createElement('div');newPage.className='page';newPage.style.background='#000';var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:4px 6px;border-radius:6px;font-size:10px">KSH '+price+' 6% -> 0142550440</span>':'';if(isVideo){newPage.innerHTML='<video src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline></video><div class="info"><b>@'+currentUser+' - CLICKABLE 100% - NO SPYING</b><br>'+title+priceTag+'</div>'}else{newPage.innerHTML='<img src="'+freshUrl+'" style="width:100%;height:100%;object-fit:contain;background:#000"><div class="info"><b>@'+currentUser+' - IMAGE TO VIDEO - CLICKABLE - NO SPYING</b><br>'+title+priceTag+'</div>'}feedEl.insertBefore(newPage,feedEl.firstChild);feedEl.scrollLeft=0;var vid=newPage.querySelector('video');if(vid){currentVideo=vid;pauseAllExcept(vi
+feedEl.addEventListener('scroll',function(){var idx=Math.round(feedEl.scrollLeft/feedEl.clientWidth);var pages=feedEl.querySelectorAll('.page');var page=pages[idx];if(page){var v=page.querySelector('video');if(v){pauseAllExcept(v);currentVideo=v;if(v.paused){v.muted=false;v.volume=1;v.play().catch(function(){v.muted=true;v.play()})}}}});
+function previewReel(){var f=qs('reelFile').files[0];if(!f)return;lastFile=f;var info=qs('fileInfo');info.style.display='block';info.innerHTML='✅ File: '+f.name+' | '+(f.size/1024/1024).toFixed(1)+'MB - No spying - Offline - 100% clickable';var pre=qs('preview');pre.style.display='block';var url=URL.createObjectURL(f);if(f.type.startsWith('video')){pre.innerHTML='<video id="preVid" src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000" controls playsinline muted></video>'}else{pre.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:contain;background:#000">'}var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result};reader.readAsDataURL(f)}
+function postReel(){if(!lastFile||!lastDataUrl){alert('Choose video/photo first');return}if(!currentUser){alert('Login first demo/1234 - No spying');openBox('loginBox');return}var title=qs('pTitle').value.trim()||'My Reel',price=qs('pPrice').value.trim(),freshUrl=URL.createObjectURL(lastFile),isVideo=lastFile.type.startsWith('video'),newPage=document.createElement('div');newPage.className='page';newPage.style.background='#000';var priceTag=price?'<br><span style="background:#00ffcc;color:#000;padding:4px 6px;border-rad
