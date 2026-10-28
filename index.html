@@ -7,24 +7,24 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden;touch-action:manipulation}
-#top{position:fixed;top:0;left:0;right:0;height:58px;background:#000;border-bottom:3px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
-#feedWrap{position:fixed;top:58px;left:0;right:84px;bottom:56px;background:#000;z-index:1;overflow:hidden}
-#feedScroll{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-y;display:flex;flex-direction:column}
+#top{position:fixed;top:0;left:0;right:0;height:56px;background:#000;border-bottom:3px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
+#feedWrap{position:fixed;top:56px;left:0;right:84px;bottom:56px;background:#000;z-index:1;overflow:hidden;touch-action:pan-y}
+#feedScroll{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-y pan-x;display:flex;flex-direction:column}
 .videoPage{width:100%;height:100%;flex-shrink:0;scroll-snap-align:start;position:relative;background:#000;border-bottom:2px solid #111;overflow:hidden}
-.videoPage video,.videoPage img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.videoPage video,.videoPage img{width:100%;height:100%;object-fit:contain;background:#000;display:block;pointer-events:none}
 .badge{position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 12px;border-radius:20px;font-size:9px;z-index:5}
-.infoBar{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:4}
-#rightIcons{position:fixed;right:0;top:58px;bottom:56px;width:84px;background:#000;border-left:2px solid #333;z-index:2147483647;display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 3px;overflow-y:auto;pointer-events:auto !important}
-button.iconBtn{width:76px;background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;padding:4px 0;border-radius:12px}
-button.iconBtn .circle{width:46px;height:46px;border-radius:50%;background:#1e1e1e;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:20px;pointer-events:none}
+.infoBar{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:4;pointer-events:none}
+#rightIcons{position:fixed;right:0;top:56px;bottom:56px;width:84px;background:#000;border-left:2px solid #333;z-index:2147483647 !important;display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 3px;overflow-y:auto;pointer-events:auto !important;touch-action:manipulation}
+button.iconBtn{width:76px;background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;padding:4px 0;border-radius:12px;position:relative;z-index:99999}
+button.iconBtn .circle{width:46px;height:46px;border-radius:50%;background:#1e1e1e;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:20px;pointer-events:none !important}
 button.iconBtn:active .circle{background:#00ffcc;color:#000;border-color:#00ffcc;transform:scale(.88)}
-.count{font-size:8px;font-weight:900;pointer-events:none}
-.label{font-size:7px;color:#aaa;font-weight:800;pointer-events:none}
+.count{font-size:8px;font-weight:900;pointer-events:none !important}
+.label{font-size:7px;color:#aaa;font-weight:800;pointer-events:none !important}
 #bottomBar{position:fixed;bottom:0;left:0;right:0;height:56px;background:#000;border-top:3px solid #00ffcc;display:flex;justify-content:space-around;align-items:center;z-index:1000}
 .pop{display:none;position:fixed;top:58px;left:0;right:0;bottom:56px;background:#f2f2f2;color:#000;z-index:9999999;padding:10px;overflow:auto}
 .input{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin-top:8px;font-weight:900}
 .btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
-.pochi{background:#111;color:#00ffcc;padding:8px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc;line-height:1.4}
+.pochi{background:#111;color:#00ffcc;padding:8px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc}
 .cardMaster{background:#fff;border-radius:14px;border:2px solid #000;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 </style>
 </head>
@@ -93,22 +93,38 @@ button.iconBtn:active .circle{background:#00ffcc;color:#000;border-color:#00ffcc
 <div id="profileBox" class="pop"><div style="max-width:760px;margin:auto"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE FULL ONE — Follow Download Like Share Message clickable</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE</button></div><div id="profileInfo" class="pochi">Not logged — Login demo / 1234 — Pochi 0142550440 same as company number — Master Class — 6% auto — All icons clickable BUTTONS — Scroll L/R U/D</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="cardMaster" style="padding:10px"><b>📹 MY VIDEOS — Scrollable</b><div id="myVideosList" style="margin-top:8px"></div></div><div class="cardMaster" style="padding:10px"><b>🛒 MY PRODUCTS MASTER CLASS FULL ONE</b><div id="myProductsList" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div></div></div></div></div>
 
 <div id="loginBox" class="pop"><div style="max-width:420px;margin:auto;background:#fff;border-radius:14px;padding:14px;border:3px solid #00ffcc"><h3>LOGIN — FULL ONE — demo / 1234</h3><input id="loginUser" placeholder="Username demo" class="input"><input id="loginPass" type="password" placeholder="Password 1234" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doLogin()" onclick="doLogin()">LOGIN FULL ONE</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button><div class="pochi">Demo: demo / 1234 — Pochi 0142550440 same — Full One Master Class — Like Share Message Follow Download Volume Vol+ Vol- all BUTTONS clickable — Scroll L/R U/D</div></div></div>
-
 <script>
-var lastFile=null,lastBlobUrl=null,myVideos=[],currentUser=null,isLiked=false,isFollowed=false,likeCount=2300,commentCount=342,currentPage=0;
-function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderProfile();if(id==='marketBox')renderMarket();}
+var lastFile=null,lastBlobUrl=null,myVideos=[],currentUser=null,isLiked=false,isFollowed=false,likeCount=2300,commentCount=0,currentPage=0,startX=0,startY=0;
+function openBox(id){document.getElementById(id).style.display='block';}
 function closeBox(id){document.getElementById(id).style.display='none';}
 function scrollNext(){var f=document.getElementById('feedScroll');f.scrollBy({top:f.clientHeight,behavior:'smooth'});}
 function scrollPrev(){var f=document.getElementById('feedScroll');f.scrollBy({top:-f.clientHeight,behavior:'smooth'});}
-function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');var e=document.getElementById('likeCount');if(isLiked){c.innerHTML='❤️';c.style.background='#ff2d55';c.style.borderColor='#ff2d55';likeCount++;e.innerHTML=likeCount;e.style.color='#ff2d55';}else{c.innerHTML='🤍';c.style.background='#1e1e1e';c.style.borderColor='#555';likeCount--;e.innerHTML='2.3K';e.style.color='#fff';}}
+function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');var e=document.getElementById('likeCount');if(isLiked){c.innerHTML='❤️';c.style.background='#ff2d55';e.innerHTML='2.4K';}else{c.innerHTML='🤍';c.style.background='#1e1e1e';e.innerHTML='2.3K';}}
 function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');var t=document.getElementById('followCount');if(isFollowed){c.innerHTML='✓';t.innerHTML='Following 1.5K';}else{c.innerHTML='+';t.innerHTML='Follow 1.5K';}}
-function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',text:'Master Class — 6% auto to 0142550440',url:url});}else{navigator.clipboard.writeText(url);alert('✅ Share — Link copied — Full One — Like Share Message Follow Download');}}
-function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];var vUrl=page? page.getAttribute('data-url') : '';var blob=page? page.querySelector('video')?.src : '';var finalUrl=vUrl||blob||document.querySelector('video').src;var a=document.createElement('a');a.href=finalUrl;a.download='G-LUMO-FULL-ONE-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();document.body.removeChild(a);alert('⬇️ Download started — Full One Master Class');}
-function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');v.muted=!v.muted;document.getElementById('volCircle').innerHTML=v.muted?'🔇':'🔊';document.getElementById('volLabel').innerHTML=v.muted?'Vol OFF':'Vol ON';if(!v.muted){v.volume=1;v.play();}}
-function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
-function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Vol '+Math.round(v.volume*100)+'%';}
-function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim()||'Full One Master Class!';var list=document.getElementById('commentList');var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='12px';div.style.padding='10px';div.style.marginTop='8px';div.innerHTML='<b>@'+(currentUser||'guest')+'</b> '+text;list.appendChild(div);input.value='';commentCount++;document.getElementById('commentCount').innerHTML=commentCount;}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=document.getElementById('calc');if(p>0){c.style.display='block';c.innerHTML='KSH '+p+' => 6% '+(p*0.06).toFixed(0)+' -> 0142550440 Pochi same — Seller '+(p*0.94).toFixed(0);}else{c.style.display='none';}}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').innerHTML='✅ '+f.name+' '+(f.size/1024/1024).toFixed(2)+'MB Ready — Full One';var pre=document.getElementById('preview');pre.style.display='block';if(f.type.startsWith('video')){pre.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls muted autoplay></video>';}else{pre.innerHTML='<img src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain">';}}
-function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose file');return}if(!currentUser){alert('Login demo/1234');openBox('loginBox');return}var title=document.getElementById('pTitle').value||'Full One Video';var price=document.getElementById('pPrice').value||'';var scroll=document.getElementById('feedScroll');var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',lastBlobUrl);div.innerHTML='<video src="'+lastBlobUrl+'" style="width:100%;height:100%;object-fit:contain" controls autoplay playsinline></video><div class="badge">NEW @'+currentUser+' — Full One — 6%→0142550440</div><div class="infoBar"><b>@'+currentUser+' — '+title+' — KSH '+price+'</b><br><span style="font-size:8px">6% -> 0142550440 Pochi same — Full One Master Class — Like Share Message Follow Download</span></div>';scroll.appendChild(div);myVideos.push({title:title,price:price,url:lastBlobUrl,type:lastFile.type,user:currentUser});closeBox('postBox');document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';document.getElementById('preview').style.display='none';document.getElementById('fileInfo').style.display='none';document.getElementById('calc').style.display='none';document.getElementById('reelFile').value='';renderProfile();renderMarket();scroll.scrollTo({top:scroll.scrollHeight,behavior:'smooth'});lastFile=null;lastBlobUrl=null;}
-function d
+function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',text:'Masterclass',url:url});}else{navigator.clipboard.writeText(url);alert('✅ Link copied');}}
+function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];var url=page.getAttribute('data-url');var a=document.createElement('a');a.href=url;a.download='G-LUMO-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();document.body.removeChild(a);}
+function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');if(!v)return;v.muted=!v.muted;}
+function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();}
+function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
+function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim();if(!text)return;var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='10px';div.style.padding='10px';div.style.marginTop='8px';div.innerHTML='<b>@demo</b> '+text;document.getElementById('commentList').appendChild(div);input.value='';}
+function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=p*0.06;var el=document.getElementById('calc');if(el)el.innerHTML='6% to 0142550440 = '+c.toFixed(2);}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);}
+function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose file');return}if(!currentUser){alert('Login demo/1234');openBox('loginBox');return}
+var p=parseFloat(document.getElementById('pPrice').value)||0;var c=Math.round(p*0.06);var blob=lastBlobUrl;
+var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',blob);
+div.innerHTML='<video src="'+blob+'" controls playsinline loop autoplay></video><div class="badge">NEW • 6% 01425504</div>';
+document.getElementById('feedScroll').prepend(div);closeBox('postBox');alert('✅ Posted - scroll L/R U/D works');}
+// PATCH 2 - SCROLL L/R U/D + ICONS CLICKABLE
+var feedScroll=document.getElementById('feedScroll');
+if(feedScroll){
+feedScroll.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;startY=e.touches[0].clientY;},{passive:true});
+feedScroll.addEventListener('touchend',function(e){
+var dx=e.changedTouches[0].clientX-startX;
+var dy=e.changedTouches[0].clientY-startY;
+if(Math.abs(dx)>Math.abs(dy) && Math.abs(dx)>60){if(dx<0){scrollNext();}else{scrollPrev();}}
+},{passive:true});
+feedScroll.addEventListener('scroll',function(){currentPage=Math.round(feedScroll.scrollTop/feedScroll.clientHeight);});
+}
+</script>
+</body>
+</html>
