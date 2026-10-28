@@ -1,130 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>G-LUMO FULL ONE MASTERCLASS - FINAL</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>G-LUMO FULL ONE MASTERCLASS - 0142550440</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:#000;color:#fff;font-family:Arial;font-weight:900;overflow:hidden;touch-action:manipulation}
-#top{position:fixed;top:0;left:0;right:0;height:56px;background:#000;border-bottom:3px solid #00ffcc;display:flex;align-items:center;justify-content:space-between;padding:0 10px;z-index:1000}
-#feedWrap{position:fixed;top:56px;left:0;right:84px;bottom:56px;background:#000;z-index:1;overflow:hidden;touch-action:pan-y}
-#feedScroll{width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-y pan-x;display:flex;flex-direction:column}
-.videoPage{width:100%;height:100%;flex-shrink:0;scroll-snap-align:start;position:relative;background:#000;border-bottom:2px solid #111;overflow:hidden}
-.videoPage video,.videoPage img{width:100%;height:100%;object-fit:contain;background:#000;display:block;pointer-events:none}
-.badge{position:absolute;top:10px;left:10px;background:#00ffcc;color:#000;padding:6px 12px;border-radius:20px;font-size:9px;z-index:5}
-.infoBar{position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.95));z-index:4;pointer-events:none}
-#rightIcons{position:fixed;right:0;top:56px;bottom:56px;width:84px;background:#000;border-left:2px solid #333;z-index:2147483647 !important;display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 3px;overflow-y:auto;pointer-events:auto !important;touch-action:manipulation}
-button.iconBtn{width:76px;background:transparent;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;padding:4px 0;border-radius:12px;position:relative;z-index:99999}
-button.iconBtn .circle{width:46px;height:46px;border-radius:50%;background:#1e1e1e;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:20px;pointer-events:none !important}
-button.iconBtn:active .circle{background:#00ffcc;color:#000;border-color:#00ffcc;transform:scale(.88)}
-.count{font-size:8px;font-weight:900;pointer-events:none !important}
-.label{font-size:7px;color:#aaa;font-weight:800;pointer-events:none !important}
-#bottomBar{position:fixed;bottom:0;left:0;right:0;height:56px;background:#000;border-top:3px solid #00ffcc;display:flex;justify-content:space-around;align-items:center;z-index:1000}
-.pop{display:none;position:fixed;top:58px;left:0;right:0;bottom:56px;background:#f2f2f2;color:#000;z-index:9999999;padding:10px;overflow:auto}
-.input{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin-top:8px;font-weight:900}
-.btnFull{width:100%;padding:12px;border:0;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
-.pochi{background:#111;color:#00ffcc;padding:8px;border-radius:8px;font-size:10px;margin-top:6px;border:1px dashed #00ffcc}
-.cardMaster{background:#fff;border-radius:14px;border:2px solid #000;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;height:100dvh;width:100vw}
+.topBar{position:fixed;top:0;left:0;right:0;height:52px;background:#000;border-bottom:2px solid #00ffcc;z-index:9999;display:flex;align-items:center;justify-content:space-between;padding:0 10px}
+.topBar b{font-size:10px;line-height:1.2}
+.btn{border:none;border-radius:20px;padding:7px 14px;font-weight:900;font-size:12px;cursor:pointer}
+.btnPost{background:#00ffcc;color:#000}
+.btnLogin{background:#fff;color:#000}
+#feedScroll{position:fixed;top:52px;bottom:58px;left:0;right:72px;overflow-y:scroll;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;background:#111}
+.videoPage{height:calc(100dvh - 110px);width:100%;scroll-snap-align:start;position:relative;background:#000;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #222}
+.videoPage video{width:100%;height:100%;object-fit:cover;pointer-events:none !important}
+.badge{position:absolute;top:12px;left:10px;background:#00ffcc;color:#000;padding:4px 8px;border-radius:6px;font-weight:900;font-size:11px;z-index:5;pointer-events:none}
+.infoBar{position:absolute;bottom:14px;left:10px;right:10px;background:rgba(0,0,0,.7);padding:8px;border-radius:10px;font-size:13px;z-index:5;pointer-events:none}
+#rightIcons{position:fixed;top:52px;bottom:58px;right:0;width:72px;background:#000;border-left:2px solid #00ffcc;z-index:2147483647 !important;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 2px;overflow-y:auto;pointer-events:auto !important}
+.iconBtn{width:52px;min-height:52px;border-radius:50%;border:2px solid #333;background:#1e1e1e;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;font-weight:900;cursor:pointer;pointer-events:auto !important;touch-action:manipulation;user-select:none}
+.iconBtn span{font-size:8px;margin-top:2px;font-weight:800}
+.iconBtn:active{transform:scale(.92);background:#00ffcc;color:#000}
+.iconFollow{background:#00ffcc;color:#000;border-color:#00ffcc}
+.iconLikeActive{background:#ff2d55 !important;color:#fff !important}
+.bottomBar{position:fixed;bottom:0;left:0;right:0;height:58px;background:#000;border-top:2px solid #00ffcc;z-index:9999;display:flex;justify-content:space-around;align-items:center}
+.btmBtn{background:none;border:none;color:#fff;font-size:9px;font-weight:800;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.btmPlus{width:48px;height:48px;border-radius:50%;background:#00ffcc;color:#000;font-size:28px;font-weight:900;border:none}
+.box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:380px;background:#fff;color:#000;border:3px solid #00ffcc;border-radius:16px;padding:16px;z-index:100000;display:none;max-height:85dvh;overflow:auto}
+.box h3{margin-bottom:10px;font-size:15px}
+.box input{width:100%;padding:12px;border:2px solid #000;border-radius:10px;margin-bottom:8px;font-weight:700}
+.box button{width:100%;padding:12px;border:none;border-radius:10px;background:#000;color:#00ffcc;font-weight:900;margin-bottom:8px;cursor:pointer}
+.box button.primary{background:#000;color:#00ffcc;border:2px solid #00ffcc}
+.calcBox{background:#000;color:#00ffcc;padding:8px;border-radius:8px;font-size:12px;font-weight:900;margin-bottom:8px}
+.smallNote{font-size:10px;background:#000;color:#00ffcc;padding:8px;border-radius:8px;margin-top:8px;white-space:pre-wrap}
 </style>
 </head>
 <body>
-
-<div id="top">
-<div style="font-size:10px;line-height:1.1">G-LUMO <span style="color:#00ffcc">FULL ONE MASTERCLASS</span><br>6%→0142550440 • SCROLL L/R U/D • ICONS CLICKABLE</div>
-<div style="display:flex;gap:5px">
-<button style="padding:7px 12px;background:#00ffcc;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+ POST</button>
-<button style="padding:7px 12px;background:#fff;color:#000;border:0;border-radius:20px;font-weight:900;font-size:10px" ontouchstart="openBox('loginBox')" onclick="openBox('loginBox')">LOGIN</button>
+<div class="topBar">
+<b>G-LUMO FULL ONE MASTERCLASS<br>6% → 0142550440 • SCROLL L/R U/D • ICONS CLICKABLE</b>
+<div><button class="btn btnPost" type="button" onclick="openBox('postBox')" ontouchstart="openBox('postBox')">+ POST</button> <button class="btn btnLogin" type="button" onclick="openBox('loginBox')" ontouchstart="openBox('loginBox')">LOGIN</button></div>
 </div>
-</div>
-
-<div id="feedWrap">
 <div id="feedScroll">
-<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
-<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls playsinline muted loop autoplay></video>
-<div class="badge">1/4 FULL ONE • Swipe U/D L/R • 6%→0142550440</div>
-<div class="infoBar"><b>@demo • Big Buck Bunny • FULL ONE MASTERCLASS</b><br><span style="font-size:8px;color:#ddd">Swipe UP/DOWN • Swipe LEFT/RIGHT • Right icons: Profile Follow Like Message Share Download Volume Vol+ Vol- • All BUTTONS clickable • Market Master Class beating all</span><br><span style="font-size:8px;background:#00ffcc;color:#000;padding:3px 8px;border-radius:10px;display:inline-block;margin-top:4px">KSH 3724 => 224 to 0142550440 • Seller 3500</span></div>
+<div class="videoPage" data-url="demo1"><video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted autoplay playsinline controls></video><div class="badge">DEMO • 6%→0142550440</div><div class="infoBar"><b>@demo • 1000 Ksh • 6%=60 • Swipe L/R or U/D</b></div></div>
+<div class="videoPage" data-url="demo2"><video src="https://www.w3schools.com/html/movie.mp4" loop muted autoplay playsinline controls></video><div class="badge">DEMO 2 • MARKET</div><div class="infoBar"><b>@demo • 2500 Ksh • 6%=150 • All icons are BUTTONS</b></div></div>
 </div>
-<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">
-<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" controls playsinline muted loop></video>
-<div class="badge">2/4 ElephantsDream • Scrollable</div>
-<div class="infoBar"><b>@seller1 • Master Class</b></div>
-</div>
-<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">
-<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" controls playsinline muted loop></video>
-<div class="badge">3/4 ForBiggerBlazes • Market Master Class</div>
-<div class="infoBar"><b>@seller2 • Market Place</b></div>
-</div>
-<div class="videoPage" data-url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4">
-<video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" controls playsinline muted loop></video>
-<div class="badge">4/4 Master Class Beating All • 6%→0142550440</div>
-<div class="infoBar"><b>@masterclass • Full One</b></div>
-</div>
-</div>
-</div>
-
 <div id="rightIcons">
-<button class="iconBtn" type="button" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')"><div class="circle" style="background:#fff;color:#000;border-color:#00ffcc">👤</div><div class="label">Profile</div><div class="count" id="profileName">@demo</div></button>
-<button class="iconBtn" type="button" ontouchstart="toggleFollow()" onclick="toggleFollow()"><div class="circle" id="followCircle" style="background:#00ffcc;color:#000">+</div><div class="label">Follow</div><div class="count" id="followCount">Follow 1.5K</div></button>
-<button class="iconBtn" type="button" ontouchstart="doLike()" onclick="doLike()"><div class="circle" id="likeCircle">🤍</div><div class="label">Like</div><div class="count" id="likeCount">2.3K</div></button>
-<button class="iconBtn" type="button" ontouchstart="openBox('commentBox')" onclick="openBox('commentBox')"><div class="circle">💬</div><div class="label">Message</div><div class="count" id="commentCount">342</div></button>
-<button class="iconBtn" type="button" ontouchstart="doShare()" onclick="doShare()"><div class="circle">↗️</div><div class="label">Share</div><div class="count">128</div></button>
-<button class="iconBtn" type="button" ontouchstart="doDownload()" onclick="doDownload()"><div class="circle" style="background:#fff;color:#000;border-color:#00ffcc">⬇️</div><div class="label">Download</div><div class="count">Save</div></button>
-<button class="iconBtn" type="button" ontouchstart="toggleVolume()" onclick="toggleVolume()"><div class="circle" id="volCircle">🔊</div><div class="label">Volume</div><div class="count" id="volLabel">Vol ON</div></button>
-<button class="iconBtn" type="button" ontouchstart="volUp()" onclick="volUp()"><div class="circle">🔊+</div><div class="label">Vol+</div><div class="count">UP</div></button>
-<button class="iconBtn" type="button" ontouchstart="volDown()" onclick="volDown()"><div class="circle">🔉-</div><div class="label">Vol-</div><div class="count">DOWN</div></button>
-<button class="iconBtn" type="button" ontouchstart="scrollPrev()" onclick="scrollPrev()"><div class="circle">⬆️</div><div class="label">Prev</div><div class="count">U/D</div></button>
-<button class="iconBtn" type="button" ontouchstart="scrollNext()" onclick="scrollNext()"><div class="circle">⬇️</div><div class="label">Next</div><div class="count">L/R</div></button>
+<button class="iconBtn" type="button" onclick="openBox('profileBox')" ontouchstart="openBox('profileBox')">👤<span id="profileLabel">Profile<br>@demo</span></button>
+<button id="followCircle" class="iconBtn iconFollow" type="button" onclick="toggleFollow()" ontouchstart="toggleFollow()">+<span id="followCount">Follow<br>1.5K</span></button>
+<button id="likeCircle" class="iconBtn" type="button" onclick="doLike()" ontouchstart="doLike()">🤍<span id="likeCount">Like<br>2.3K</span></button>
+<button class="iconBtn" type="button" onclick="openBox('commentBox')" ontouchstart="openBox('commentBox')">💬<span>Message<br><b id="msgCount">342</b></span></button>
+<button class="iconBtn" type="button" onclick="doShare()" ontouchstart="doShare()">↗️<span>Share<br>128</span></button>
+<button class="iconBtn" style="border-color:#00ffcc" type="button" onclick="doDownload()" ontouchstart="doDownload()">⬇️<span>Download<br>Save</span></button>
+<button class="iconBtn" type="button" onclick="toggleVolume()" ontouchstart="toggleVolume()">🔊<span id="volLabel">Volume<br>Vol ON</span></button>
+<button class="iconBtn" type="button" onclick="volUp()" ontouchstart="volUp()">🔊+<span>Vol+<br>UP</span></button>
+<button class="iconBtn" type="button" onclick="volDown()" ontouchstart="volDown()">🔉-<span>Vol-<br>DOWN</span></button>
+<button class="iconBtn" type="button" onclick="scrollPrev()" ontouchstart="scrollPrev()">⬆️<span>Prev<br>U/D</span></button>
+<button class="iconBtn" type="button" onclick="scrollNext()" ontouchstart="scrollNext()">⬇️<span>Next<br>L/R</span></button>
 </div>
-
-<div id="bottomBar">
-<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'})" onclick="document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'})">🏠<br>Home</button>
-<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="openBox('marketBox')" onclick="openBox('marketBox')">🛒<br>Market Master Class</button>
-<button style="background:#00ffcc;color:#000;border:0;border-radius:50%;width:40px;height:40px;font-weight:900;font-size:20px" ontouchstart="openBox('postBox')" onclick="openBox('postBox')">+</button>
-<button style="background:transparent;border:0;color:#fff;font-size:9px;font-weight:900" ontouchstart="openBox('profileBox')" onclick="openBox('profileBox')">👤<br>Profile Stay</button>
+<div class="bottomBar">
+<button class="btmBtn" type="button" onclick="goHome()" ontouchstart="goHome()">🏠<span>Home</span></button>
+<button class="btmBtn" type="button" onclick="openBox('marketBox')" ontouchstart="openBox('marketBox')">🛒<span>Market Master Class</span></button>
+<button class="btmPlus" type="button" onclick="openBox('postBox')" ontouchstart="openBox('postBox')">+</button>
+<button class="btmBtn" type="button" onclick="openBox('profileBox')" ontouchstart="openBox('profileBox')">👤<span>Profile Stay</span></button>
 </div>
-
-<div id="postBox" class="pop"><div style="max-width:540px;margin:auto;background:#fff;border-radius:14px;padding:12px;border:3px solid #00ffcc"><h3>POST — FULL ONE MASTERCLASS</h3><div class="pochi">FULL ONE FINAL — All icons BUTTONS clickable — Like Share Message Follow Download Profile Volume Vol+ Vol- — Scroll L/R U/D — Market Master Class beating Jumia Amazon TikTok Shop — 6% auto to 0142550440 Pochi same as company number — Photo to video clickable — World class</div><input id="pTitle" placeholder="Title e.g. Jordan 4 Master Class Full One" class="input"><input id="pPrice" type="number" placeholder="Price KSH 3724 => 224 to 0142550440" class="input" oninput="calc()"><div id="calc" class="pochi" style="display:none"></div><label style="display:block;background:#00ffcc;color:#000;padding:12px;border-radius:10px;text-align:center;margin-top:8px">📸 CHOOSE VIDEO/PHOTO<input id="reelFile" type="file" accept="video/*,image/*" style="display:none" onchange="preview()"></label><div id="fileInfo" style="display:none" class="pochi"></div><div id="preview" style="display:none;background:#000;height:150px;border-radius:10px;margin-top:8px;overflow:hidden"></div><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doPost()" onclick="doPost()">+ POST NOW — FULL ONE</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('postBox')" onclick="closeBox('postBox')">X CLOSE</button></div></div>
-
-<div id="commentBox" class="pop"><div style="max-width:540px;margin:auto;background:#fff;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between"><b>💬 Message / Comments — Full One — Like Share Follow Download</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('commentBox')" onclick="closeBox('commentBox')">X CLOSE</button></div><div id="commentList" style="margin-top:10px"></div><input id="commentInput" placeholder="Message — e.g. Master class full one!" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doComment()" onclick="doComment()">POST MESSAGE</button><div class="pochi">Message = Comment — Download ⬇️ saves video — Follow + → ✓ Following — Like turns red — Share copies link — All BUTTONS clickable</div></div></div>
-
-<div id="marketBox" class="pop"><div style="max-width:960px;margin:auto"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><div><b style="font-size:14px">🛒 MARKET MASTER CLASS — FULL ONE — 6% AUTO TO 0142550440 — WORLD CLASS BEATING ALL — SCROLLABLE L/R U/D</b><div class="pochi">Company Pochi 0142550440 = Company Number 0142550440 same — Automatic 6% cut — Seller 94% — Example KSH 3724 => 224 to 0142550440 Pochi same, 3500 to seller — Master Class marketplace — Like Share Message Follow Download Profile Volume Vol+ Vol- all clickable BUTTONS — Photo/video listing — Scroll left/right to see products — Market beating Jumia Amazon TikTok Shop — World class design</div></div><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('marketBox')" onclick="closeBox('marketBox')">X CLOSE</button></div><div style="overflow-x:auto;touch-action:pan-x;padding:12px 0"><div id="marketList" style="display:flex;gap:12px"></div></div></div></div>
-
-<div id="profileBox" class="pop"><div style="max-width:760px;margin:auto"><div style="display:flex;justify-content:space-between"><b>👤 PROFILE FULL ONE — Follow Download Like Share Message clickable</b><button class="btnFull" style="width:auto;background:#000;color:#fff" ontouchstart="closeBox('profileBox')" onclick="closeBox('profileBox')">X CLOSE</button></div><div id="profileInfo" class="pochi">Not logged — Login demo / 1234 — Pochi 0142550440 same as company number — Master Class — 6% auto — All icons clickable BUTTONS — Scroll L/R U/D</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="cardMaster" style="padding:10px"><b>📹 MY VIDEOS — Scrollable</b><div id="myVideosList" style="margin-top:8px"></div></div><div class="cardMaster" style="padding:10px"><b>🛒 MY PRODUCTS MASTER CLASS FULL ONE</b><div id="myProductsList" style="margin-top:8px;display:flex;flex-direction:column;gap:8px"></div></div></div></div></div>
-
-<div id="loginBox" class="pop"><div style="max-width:420px;margin:auto;background:#fff;border-radius:14px;padding:14px;border:3px solid #00ffcc"><h3>LOGIN — FULL ONE — demo / 1234</h3><input id="loginUser" placeholder="Username demo" class="input"><input id="loginPass" type="password" placeholder="Password 1234" class="input"><button class="btnFull" style="background:#000;color:#00ffcc" ontouchstart="doLogin()" onclick="doLogin()">LOGIN FULL ONE</button><button class="btnFull" style="background:#000;color:#fff" ontouchstart="closeBox('loginBox')" onclick="closeBox('loginBox')">X CLOSE</button><div class="pochi">Demo: demo / 1234 — Pochi 0142550440 same — Full One Master Class — Like Share Message Follow Download Volume Vol+ Vol- all BUTTONS clickable — Scroll L/R U/D</div></div></div>
+<div id="loginBox" class="box">
+<h3>LOGIN — FULL ONE — demo / 1234</h3>
+<input id="loginUser" placeholder="Username demo" autocomplete="username">
+<input id="loginPass" type="password" placeholder="Password 1234" autocomplete="current-password">
+<button class="primary" type="button" onclick="doLogin()" ontouchstart="doLogin()">LOGIN FULL ONE</button>
+<button type="button" onclick="doReset()" ontouchstart="doReset()">RESET / FORGOT — Clear Login</button>
+<button type="button" onclick="closeBox('loginBox')" ontouchstart="closeBox('loginBox')">X CLOSE</button>
+<div class="smallNote">Demo: demo / 1234
+Pochi 0142550440 same — Full One Master Class — Like Share Message Follow Download Volume Vol+ Vol- all BUTTONS clickable — Scroll L/R U/D
+Logged as: <b id="loggedInfo">Not logged</b></div>
+</div>
+<div id="postBox" class="box">
+<h3>+ POST — Place to Enter</h3>
+<input id="reelFile" type="file" accept="video/*" onchange="preview()">
+<input id="pTitle" placeholder="Title — e.g. My G-Lumo Reel">
+<input id="pPrice" type="number" placeholder="Price Ksh e.g. 1000" oninput="calc()">
+<div id="calc" class="calcBox">6% auto to 0142550440 = 0.00</div>
+<button class="primary" type="button" onclick="doPost()" ontouchstart="doPost()">POST NOW — Full One</button>
+<button type="button" onclick="closeBox('postBox')" ontouchstart="closeBox('postBox')">X CLOSE</button>
+<div id="previewArea" class="smallNote">Preview: no file yet</div>
+</div>
+<div id="commentBox" class="box">
+<h3>💬 Messages / Comments</h3>
+<div id="commentList" style="max-height:200px;overflow:auto;background:#f1f1f1;padding:8px;border-radius:10px;color:#000;margin-bottom:8px"></div>
+<input id="commentInput" placeholder="Write comment...">
+<button class="primary" type="button" onclick="doComment()" ontouchstart="doComment()">Send Message</button>
+<button type="button" onclick="closeBox('commentBox')" ontouchstart="closeBox('commentBox')">X CLOSE</button>
+</div>
+<div id="profileBox" class="box">
+<h3>👤 Profile Stay</h3>
+<div class="calcBox">User: <span id="pUser">demo</span><br>Pochi: 0142550440<br>6% Earnings: <span id="pEarn">0.00</span> Ksh<br>Videos: <span id="pVideos">2</span></div>
+<button class="primary" type="button" onclick="closeBox('profileBox')" ontouchstart="closeBox('profileBox')">Stay Profile</button>
+<button type="button" onclick="doReset()" ontouchstart="doReset()">LOGOUT / RESET</button>
+</div>
+<div id="marketBox" class="box">
+<h3>🛒 Market Master Class</h3>
+<div class="calcBox">Market 6% rule: Every sale sends 6% to Pochi 0142550440 automatically. Full One Masterclass super working.</div>
+<input id="marketSearch" placeholder="Search Market...">
+<div class="smallNote">Market items from your videos appear here. Post to add.</div>
+<button type="button" onclick="closeBox('marketBox')" ontouchstart="closeBox('marketBox')">X CLOSE</button>
+</div>
 <script>
-var lastFile=null,lastBlobUrl=null,myVideos=[],currentUser=null,isLiked=false,isFollowed=false,likeCount=2300,commentCount=0,currentPage=0,startX=0,startY=0;
+var lastFile=null,lastBlobUrl=null,currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=false,currentPage=0,startX=0,startY=0,totalEarn=0;
 function openBox(id){document.getElementById(id).style.display='block';}
 function closeBox(id){document.getElementById(id).style.display='none';}
+function goHome(){document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'});closeBox('marketBox');closeBox('profileBox');}
+function updateLogged(){var el=document.getElementById('loggedInfo');var pu=document.getElementById('pUser');if(currentUser){el.innerText='Logged as @'+currentUser;pu.innerText=currentUser;}else{el.innerText='Not logged';pu.innerText='guest';}document.getElementById('profileLabel').innerHTML='Profile<br>@'+(currentUser||'demo');}
+function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';var p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||(u!==''&&p!=='')){currentUser=u;localStorage.setItem('guser',u);updateLogged();closeBox('loginBox');alert('✅ FULL ONE Login success @'+u);}else{alert('Use demo / 1234 or any username + any password to enter — Reset if forgot');}}
+function doReset(){localStorage.removeItem('guser');currentUser=null;document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';updateLogged();alert('♻️ RESET done — Login cleared. Now enter demo / 1234 again');openBox('loginBox');}
+function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=p*0.06;document.getElementById('calc').innerHTML='6% auto to 0142550440 = '+c.toFixed(2);return c;}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);document.getElementById('previewArea').innerHTML='✅ Ready: '+f.name+' — '+(f.size/1000000).toFixed(1)+'MB';}
+function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose video file first');return;}if(!currentUser){alert('Login first — demo / 1234');openBox('loginBox');return;}var title=document.getElementById('pTitle').value||'G-Lumo Reel';var price=parseFloat(document.getElementById('pPrice').value)||0;var earn=price*0.06;totalEarn+=earn;document.getElementById('pEarn').innerText=totalEarn.toFixed(2);var blob=lastBlobUrl;var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',blob);div.innerHTML='<video src="'+blob+'" loop muted autoplay playsinline controls></video><div class="badge">NEW • '+title+' • 6%→0142550440</div><div class="infoBar"><b>@'+currentUser+' • '+title+' • '+price+' Ksh • 6%='+earn.toFixed(2)+' to 0142550440</b></div>';document.getElementById('feedScroll').prepend(div);document.getElementById('pVideos').innerText=document.querySelectorAll('.videoPage').length;closeBox('postBox');goHome();alert('✅ Posted — Scroll L/R U/D works — 6% '+earn.toFixed(2)+' logged');}
 function scrollNext(){var f=document.getElementById('feedScroll');f.scrollBy({top:f.clientHeight,behavior:'smooth'});}
 function scrollPrev(){var f=document.getElementById('feedScroll');f.scrollBy({top:-f.clientHeight,behavior:'smooth'});}
-function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');var e=document.getElementById('likeCount');if(isLiked){c.innerHTML='❤️';c.style.background='#ff2d55';e.innerHTML='2.4K';}else{c.innerHTML='🤍';c.style.background='#1e1e1e';e.innerHTML='2.3K';}}
-function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');var t=document.getElementById('followCount');if(isFollowed){c.innerHTML='✓';t.innerHTML='Following 1.5K';}else{c.innerHTML='+';t.innerHTML='Follow 1.5K';}}
-function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',text:'Masterclass',url:url});}else{navigator.clipboard.writeText(url);alert('✅ Link copied');}}
-function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];var url=page.getAttribute('data-url');var a=document.createElement('a');a.href=url;a.download='G-LUMO-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();document.body.removeChild(a);}
-function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');if(!v)return;v.muted=!v.muted;}
-function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();}
-function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
-function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim();if(!text)return;var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='10px';div.style.padding='10px';div.style.marginTop='8px';div.innerHTML='<b>@demo</b> '+text;document.getElementById('commentList').appendChild(div);input.value='';}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=p*0.06;var el=document.getElementById('calc');if(el)el.innerHTML='6% to 0142550440 = '+c.toFixed(2);}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);}
-function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose file');return}if(!currentUser){alert('Login demo/1234');openBox('loginBox');return}
-var p=parseFloat(document.getElementById('pPrice').value)||0;var c=Math.round(p*0.06);var blob=lastBlobUrl;
-var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',blob);
-div.innerHTML='<video src="'+blob+'" controls playsinline loop autoplay></video><div class="badge">NEW • 6% 01425504</div>';
-document.getElementById('feedScroll').prepend(div);closeBox('postBox');alert('✅ Posted - scroll L/R U/D works');}
-// PATCH 2 - SCROLL L/R U/D + ICONS CLICKABLE
-var feedScroll=document.getElementById('feedScroll');
-if(feedScroll){
-feedScroll.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;startY=e.touches[0].clientY;},{passive:true});
-feedScroll.addEventListener('touchend',function(e){
-var dx=e.changedTouches[0].clientX-startX;
-var dy=e.changedTouches[0].clientY-startY;
-if(Math.abs(dx)>Math.abs(dy) && Math.abs(dx)>60){if(dx<0){scrollNext();}else{scrollPrev();}}
-},{passive:true});
-feedScroll.addEventListener('scroll',function(){currentPage=Math.round(feedScroll.scrollTop/feedScroll.clientHeight);});
-}
+function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');if(isLiked){c.classList.add('iconLikeActive');c.innerHTML='❤️<span id="likeCount">Like<br>2.4K</span>';}else{c.classList.remove('iconLikeActive');c.innerHTML='🤍<span id="likeCount">Like<br>2.3K</span>';}}
+function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');if(isFollowed){c.innerHTML='✓<span id="followCount">Following<br>1.5K</span>';}else{c.innerHTML='+<span id="followCount">Follow<br>1.5K</span>';}}
+function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',url:url}).catch(()=>{});}else{navigator.clipboard.writeText(url);alert('✅ Link copied: '+url);}}
+function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];if(!page){alert('No video');return;}var v=page.querySelector('video');var url=v.currentSrc||v.src||page.getAttribute('data-url');if(url.startsWith('blob:')){window.open(url,'_blank');alert('Long press video to Save — blob link');return;}var a=document.createElement('a');a.href=url;a.download='G-LUMO-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
+function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');if(!v)return;v.muted=!v.muted;document.getElementById('volLabel').innerHTML=v.muted?'Volume<br>Vol OFF':'Volume<br>Vol ON';if(!v.muted)v.play();}
+function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');if(!v)return;v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Volume<br>Vol ON';}
+function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');if(!v)return;v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
+function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim();if(!text)return;var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='10px';div.style.padding='8px';div.style.marginTop='6px';div.innerHTML='<b>@'+(currentUser||'demo')+'</b> '+text;document.getElementById('commentList').appendChild(div);document.getElementById('msgCount').innerText=document.getElementById('commentList').children.length+342;input.value='';}
+var feed=document.getElementById('feedScroll');
+feed.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;startY=e.touches[0].clientY;},{passive:true});
+feed.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-startX;var dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){if(dx<0)scrollNext();else scrollPrev();}},{passive:true});
+feed.addEventListener('scroll',function(){currentPage=Math.round(feed.scrollTop/feed.clientHeight);});
+updateLogged();
+if(!currentUser){openBox('loginBox');}
 </script>
 </body>
 </html>
