@@ -52,6 +52,8 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 .box input{font-size:22px !important;padding:18px !important}
 .calcBox{font-size:22px !important;padding:14px !important}
 .smallNote{font-size:18px !important}  
+  .myVideoCard{background:#111;border:2px solid #00ffcc;border-radius:12px;padding:8px;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.myVideoCard video{width:80px;height:60px;object-fit:cover;border-radius:8px;background:#000}
 </style>
 </head>
 <body>
@@ -111,37 +113,48 @@ Logged as: <b id="loggedInfo">Not logged</b></div>
 <button type="button" onclick="closeBox('commentBox')" ontouchstart="closeBox('commentBox')">X CLOSE</button>
 </div>
 <div id="profileBox" class="box">
-<h3>👤 Profile Stay</h3>
-<div class="calcBox">User: <span id="pUser">demo</span><br>Pochi: 0142550440<br>6% Earnings: <span id="pEarn">0.00</span> Ksh<br>Videos: <span id="pVideos">2</span></div>
+<h3>👤 Profile Stay — My Public Videos</h3>
+<div class="calcBox">User: <span id="pUser">demo</span><br>Pochi: 0142550440<br>6% Earnings: <span id="pEarn">0.00</span> Ksh<br>Public Videos: <span id="pVideos">0</span><br>My Videos: <span id="pMyVideos">0</span></div>
+<div id="myVideosList" style="max-height:300px;overflow:auto;background:#000;padding:8px;border-radius:10px;margin-top:8px"></div>
 <button class="primary" type="button" onclick="closeBox('profileBox')" ontouchstart="closeBox('profileBox')">Stay Profile</button>
+<button type="button" onclick="clearMyVideos()" ontouchstart="clearMyVideos()">Delete My Videos (Reset Profile)</button>
 <button type="button" onclick="doReset()" ontouchstart="doReset()">LOGOUT / RESET</button>
 </div>
 <div id="marketBox" class="box">
 <h3>🛒 Market Master Class</h3>
 <div class="calcBox">Market 6% rule: Every sale sends 6% to Pochi 0142550440 automatically. Full One Masterclass super working.</div>
+  <div id="marketList" style="max-height:300px;overflow:auto;background:#111;padding:8px;border-radius:10px;margin-top:8px"></div>
 <input id="marketSearch" placeholder="Search Market...">
 <div class="smallNote">Market items from your videos appear here. Post to add.</div>
 <button type="button" onclick="closeBox('marketBox')" ontouchstart="closeBox('marketBox')">X CLOSE</button>
 </div>
 <script>
-var lastFile=null,lastBlobUrl=null,currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=false,currentPage=0,startX=0,startY=0,totalEarn=0;
-function openBox(id){document.getElementById(id).style.display='block';}
+var currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=false,currentPage=0,startX=0,startY=0,totalEarn=parseFloat(localStorage.getItem('gEarn')||'0');
+var posts=JSON.parse(localStorage.getItem('g-lumo-posts')||'[]');
+var lastDataUrl=null,lastFileName='';
+function savePosts(){localStorage.setItem('g-lumo-posts',JSON.stringify(posts));localStorage.setItem('gEarn',totalEarn.toString());}
+function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderMyVideos();if(id==='marketBox')renderMarket();}
 function closeBox(id){document.getElementById(id).style.display='none';}
-function goHome(){document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'});closeBox('marketBox');closeBox('profileBox');}
+function goHome(){document.getElementById('feedScroll').scrollTo(0,0);closeBox('marketBox');closeBox('profileBox');}
 function updateLogged(){var el=document.getElementById('loggedInfo');var pu=document.getElementById('pUser');if(currentUser){el.innerText='Logged as @'+currentUser;pu.innerText=currentUser;}else{el.innerText='Not logged';pu.innerText='guest';}document.getElementById('profileLabel').innerHTML='Profile<br>@'+(currentUser||'demo');}
-function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';var p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||(u!==''&&p!=='')){currentUser=u;localStorage.setItem('guser',u);updateLogged();closeBox('loginBox');alert('✅ FULL ONE Login success @'+u);}else{alert('Use demo / 1234 or any username + any password to enter — Reset if forgot');}}
-function doReset(){localStorage.removeItem('guser');currentUser=null;document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';updateLogged();alert('♻️ RESET done — Login cleared. Now enter demo / 1234 again');openBox('loginBox');}
+function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';var p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||(u!==''&&p!=='')){currentUser=u;localStorage.setItem('guser',u);updateLogged();closeBox('loginBox');alert('✅ Login @'+u);renderFeed();}else{alert('Use demo / 1234');}}
+function doReset(){localStorage.removeItem('guser');currentUser=null;document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';updateLogged();alert('♻️ RESET');openBox('loginBox');}
 function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=p*0.06;document.getElementById('calc').innerHTML='6% auto to 0142550440 = '+c.toFixed(2);return c;}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFile=f;if(lastBlobUrl)URL.revokeObjectURL(lastBlobUrl);lastBlobUrl=URL.createObjectURL(f);document.getElementById('previewArea').innerHTML='✅ Ready: '+f.name+' — '+(f.size/1000000).toFixed(1)+'MB';}
-function doPost(){if(!lastFile||!lastBlobUrl){alert('Choose video file first');return;}if(!currentUser){alert('Login first — demo / 1234');openBox('loginBox');return;}var title=document.getElementById('pTitle').value||'G-Lumo Reel';var price=parseFloat(document.getElementById('pPrice').value)||0;var earn=price*0.06;totalEarn+=earn;document.getElementById('pEarn').innerText=totalEarn.toFixed(2);var blob=lastBlobUrl;var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',blob);div.innerHTML='<video src="'+blob+'" loop muted autoplay playsinline controls></video><div class="badge">NEW • '+title+' • 6%→0142550440</div><div class="infoBar"><b>@'+currentUser+' • '+title+' • '+price+' Ksh • 6%='+earn.toFixed(2)+' to 0142550440</b></div>';document.getElementById('feedScroll').prepend(div);document.getElementById('pVideos').innerText=document.querySelectorAll('.videoPage').length;closeBox('postBox');goHome();alert('✅ Posted — Scroll L/R U/D works — 6% '+earn.toFixed(2)+' logged');}
+function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFileName=f.name;var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result;document.getElementById('previewArea').innerHTML='✅ Ready: '+f.name+' — '+(f.size/1000000).toFixed(1)+'MB — Will be PUBLIC + stay in Profile';};reader.readAsDataURL(f);}
+function doPost(){if(!lastDataUrl){alert('Choose video first');return;}if(!currentUser){alert('Login first demo/1234');openBox('loginBox');return;}var title=document.getElementById('pTitle').value||'G-Lumo Reel';var price=parseFloat(document.getElementById('pPrice').value)||0;var earn=price*0.06;totalEarn+=earn;var newPost={id:Date.now(),user:currentUser,title:title,price:price,earn:earn,videoData:lastDataUrl,fileName:lastFileName,time:new Date().toLocaleString()};posts.unshift(newPost);savePosts();renderFeed();renderMyVideos();closeBox('postBox');goHome();alert('✅ PUBLIC POSTED — Everyone sees it — Stays in profile @'+currentUser);document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';lastDataUrl=null;}
+function renderFeed(){var feed=document.getElementById('feedScroll');feed.innerHTML='';posts.forEach(function(post){var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',post.videoData);div.innerHTML='<video src="'+post.videoData+'" loop muted autoplay playsinline controls></video><div class="badge">PUBLIC • @'+post.user+' • '+post.title+'</div><div class="infoBar"><b>@'+post.user+' • '+post.title+' • '+post.price+' Ksh • 6%='+post.earn.toFixed(2)+' to 0142550440 • '+post.time+'</b></div>';feed.appendChild(div);});if(posts.length===0){var d1=document.createElement('div');d1.className='videoPage';d1.innerHTML='<video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted autoplay playsinline></video><div class="badge">DEMO PUBLIC • 6%→0142550440</div><div class="infoBar"><b>@demo • Demo • POST to make PUBLIC</b></div>';feed.appendChild(d1);}document.getElementById('pVideos').innerText=document.querySelectorAll('.videoPage').length;var myc=posts.filter(p=>p.user===currentUser).length;document.getElementById('pMyVideos').innerText=myc;document.getElementById('pEarn').innerText=totalEarn.toFixed(2);}
+function renderMyVideos(){var list=document.getElementById('myVideosList');if(!list)return;list.innerHTML='';var my=posts.filter(p=>!currentUser||p.user===currentUser);if(my.length===0){list.innerHTML='<div style="color:#888">No videos yet — POST to add PUBLIC video that stays in profile</div>';return;}my.forEach(function(post){var card=document.createElement('div');card.className='myVideoCard';card.innerHTML='<video src="'+post.videoData+'"></video><div style="flex:1"><b style="color:#00ffcc">@'+post.user+'</b><br><span style="color:#fff">'+post.title+'</span><br><span style="color:#aaa;font-size:12px">'+post.price+' Ksh • 6% '+post.earn.toFixed(2)+'</span></div><button style="width:auto;padding:6px 10px;background:#ff2d55;color:#fff;border:none;border-radius:8px" onclick="deletePost('+post.id+')">X</button>';list.appendChild(card);});}
+function renderMarket(){var list=document.getElementById('marketList');if(!list)return;list.innerHTML='';if(posts.length===0){list.innerHTML='<div style="color:#888">No market items</div>';return;}posts.forEach(function(post){var div=document.createElement('div');div.style.background='#222';div.style.border='2px solid #00ffcc';div.style.borderRadius='10px';div.style.padding='8px';div.style.marginBottom='8px';div.innerHTML='<b style="color:#00ffcc">@'+post.user+' • '+post.title+'</b><br><span style="color:#fff">'+post.price+' Ksh — 6% '+post.earn.toFixed(2)+'</span>';list.appendChild(div);});}
+function deletePost(id){if(!confirm('Delete this video from PUBLIC + Profile?'))return;posts=posts.filter(p=>p.id!==id);savePosts();renderFeed();renderMyVideos();renderMarket();}
+function clearMyVideos(){if(!currentUser){alert('Login first');return;}if(!confirm('Delete ALL your videos @'+currentUser+'?'))return;posts=posts.filter(p=>p.user!==currentUser);savePosts();renderFeed();renderMyVideos();}
 function scrollNext(){var f=document.getElementById('feedScroll');f.scrollBy({top:f.clientHeight,behavior:'smooth'});}
 function scrollPrev(){var f=document.getElementById('feedScroll');f.scrollBy({top:-f.clientHeight,behavior:'smooth'});}
 function doLike(){isLiked=!isLiked;var c=document.getElementById('likeCircle');if(isLiked){c.classList.add('iconLikeActive');c.innerHTML='❤️<span id="likeCount">Like<br>2.4K</span>';}else{c.classList.remove('iconLikeActive');c.innerHTML='🤍<span id="likeCount">Like<br>2.3K</span>';}}
 function toggleFollow(){isFollowed=!isFollowed;var c=document.getElementById('followCircle');if(isFollowed){c.innerHTML='✓<span id="followCount">Following<br>1.5K</span>';}else{c.innerHTML='+<span id="followCount">Follow<br>1.5K</span>';}}
-function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE MASTERCLASS',url:url}).catch(()=>{});}else{navigator.clipboard.writeText(url);alert('✅ Link copied: '+url);}}
-function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];if(!page){alert('No video');return;}var v=page.querySelector('video');var url=v.currentSrc||v.src||page.getAttribute('data-url');if(url.startsWith('blob:')){window.open(url,'_blank');alert('Long press video to Save — blob link');return;}var a=document.createElement('a');a.href=url;a.download='G-LUMO-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
+function doShare(){var url=location.href;if(navigator.share){navigator.share({title:'G-LUMO FULL ONE',url:url}).catch(()=>{});}else{navigator.clipboard.writeText(url);alert('✅ Link copied');}}
+function doDownload(){var pages=document.querySelectorAll('.videoPage');var page=pages[currentPage];if(!page){alert('No video');return;}var v=page.querySelector('video');var url=v.currentSrc||v.src;var a=document.createElement('a');a.href=url;a.download='G-LUMO-'+Date.now()+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
 function toggleVolume(){var vids=document.querySelectorAll('#feedScroll video');var v=vids[currentPage]||document.querySelector('video');if(!v)return;v.muted=!v.muted;document.getElementById('volLabel').innerHTML=v.muted?'Volume<br>Vol OFF':'Volume<br>Vol ON';if(!v.muted)v.play();}
-function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');if(!v)return;v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();document.getElementById('volLabel').innerHTML='Volume<br>Vol ON';}
+function volUp(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');if(!v)return;v.volume=Math.min(1,v.volume+0.25);v.muted=false;v.play();}
 function volDown(){var v=document.querySelectorAll('#feedScroll video')[currentPage]||document.querySelector('video');if(!v)return;v.volume=Math.max(0,v.volume-0.25);v.muted=false;v.play();}
 function doComment(){var input=document.getElementById('commentInput');var text=input.value.trim();if(!text)return;var div=document.createElement('div');div.style.background='#fff';div.style.border='2px solid #000';div.style.borderRadius='10px';div.style.padding='8px';div.style.marginTop='6px';div.innerHTML='<b>@'+(currentUser||'demo')+'</b> '+text;document.getElementById('commentList').appendChild(div);document.getElementById('msgCount').innerText=document.getElementById('commentList').children.length+342;input.value='';}
 var feed=document.getElementById('feedScroll');
@@ -149,6 +162,7 @@ feed.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;start
 feed.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-startX;var dy=e.changedTouches[0].clientY-startY;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){if(dx<0)scrollNext();else scrollPrev();}},{passive:true});
 feed.addEventListener('scroll',function(){currentPage=Math.round(feed.scrollTop/feed.clientHeight);});
 updateLogged();
+renderFeed();
 if(!currentUser){openBox('loginBox');}
 </script>
 </body>
