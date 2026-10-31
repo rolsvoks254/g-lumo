@@ -371,36 +371,39 @@ function buyPremium(){
   }
 }
 
-// AUTO POP EVERY AD + EVERY 30 SEC - FIXED
+// AUTO POP - FIXED
 let _oldPlay = typeof playTikVideo !== 'undefined' ? playTikVideo : null;
 if(_oldPlay){
   var _origPlay = _oldPlay;
   playTikVideo = function(src){
     var f=document.getElementById('feedScroll');
     if(f) f.scrollTo({top:0,behavior:'smooth'});
-    setTimeout(function(){
-      _origPlay(src);
-      if(typeof isPremium === 'function' && !isPremium()){ showPremiumBottomPop(); }
-    },500);
+    setTimeout(function(){ _origPlay(src); },500);
   }
 }
 </script>
 
-<!-- BEST MARKETPLACE - Founder Active -->
-<div id="marketBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:95%;max-width:400px;max-height:85%;overflow:auto;background:#111;color:#fff;padding:16px;border-radius:20px;border:2px solid #00ffcc">
-<div style="display:flex;justify-content:space-between;align-items:center">
-<h3 style="margin:0">🛒 Market • Founder Active</h3>
-<button onclick="document.getElementById('marketBox').style.display='none'" style="background:#333;color:#fff;border:none;width:30px;height:30px;border-radius:50%">X</button>
+<div id="postBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:92%;background:#111;color:#fff;padding:16px;border-radius:20px;border:2px solid #00ffcc">
+<h3>📤 Post</h3>
+<textarea id="postText" placeholder="Write... 6% to 0142550440" style="width:100%;height:80px;background:#222;color:#fff;border-radius:10px;padding:10px"></textarea>
+<div style="display:flex;gap:10px;margin-top:10px">
+<button onclick="doPost()" style="flex:1;background:#00ffcc;border:none;padding:12px;border-radius:20px;font-weight:900">POST ✅</button>
+<button onclick="closeBox('postBox')" style="flex:1;background:#333;color:#fff;padding:12px;border-radius:20px;border:none">CLOSE</button>
 </div>
-<p style="color:#00ffcc;font-size:12px;margin:8px 0">6% to 0142550440 | 40% Creator + $9 Premium</p>
-<div id="marketList" style="background:#000;padding:10px;border-radius:12px;min-height:100px;display:grid;gap:8px">
-<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>🔥 Dragonfly Pack KES 500</span><button onclick="alert('BUY OK - 6% to 0142550440 ✅')" style="background:#00ffcc;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
-<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>⭐ G-LUMO Premium $9/mo</span><button onclick="buyPremium()" style="background:gold;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
-</div>
-<button onclick="document.getElementById('marketBox').style.display='none'" style="margin-top:12px;width:100%;padding:10px;background:#fff;color:#000;border-radius:20px;font-weight:900">CLOSE</button>
 </div>
 
-<!-- ALL ICONS BEST - BOTTOM NAV -->
+<div id="marketBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:95%;background:#111;color:#fff;padding:16px;border-radius:20px;border:2px solid #00ffcc">
+<h3>🛒 Market • Founder Active</h3>
+<p style="color:#00ffcc;font-size:12px">6% to 0142550440 | 40% Creator + $9 Premium</p>
+<div style="background:#000;padding:10px;border-radius:12px;display:grid;gap:8px">
+<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>🔥 Pack KES 500</span><button onclick="alert('BUY OK 6% to 0142550440')" style="background:#00ffcc;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
+<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>⭐ Premium $9/mo</span><button onclick="buyPremium()" style="background:gold;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
+</div>
+<button onclick="closeBox('marketBox')" style="margin-top:10px;width:100%;padding:10px;background:#fff;border-radius:20px;font-weight:900">CLOSE</button>
+</div>
+
+<div id="profileBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:92%;background:#111;color:#fff;padding:16px;border-radius:20px;border:2px solid #00ffcc"><h3>👤 Profile</h3><button onclick="closeBox('profileBox')" style="width:100%;padding:10px;background:#fff;border-radius:20px;font-weight:900">CLOSE</button></div>
+
 <div style="position:fixed;bottom:0;left:0;right:0;z-index:999999999;background:#000;display:flex;justify-content:space-around;align-items:center;padding:8px 0;border-top:2px solid #00ffcc">
 <button id="bHome" style="background:none;border:none;color:#fff;font-size:18px">🏠<br><span style="font-size:10px">Home</span></button>
 <button id="bMarket" style="background:none;border:none;color:#fff;font-size:18px">🛒<br><span style="font-size:10px">Market</span></button>
@@ -410,87 +413,25 @@ if(_oldPlay){
 </div>
 
 <script>
-// BOX + ALL ICONS FIX
-function openBox(id){ document.querySelectorAll('.box').forEach(b=>b.style.display='none'); var el=document.getElementById(id); if(el) el.style.display='block'; }
-function closeBox(id){ var el=document.getElementById(id); if(el) el.style.display='none'; }
-
-function getCurrentVideo(){ return document.querySelector('#feedScroll video') || document.querySelector('video'); }
-function toggleVolume(){ var v=getCurrentVideo(); if(v){ v.muted=!v.muted; v.volume=1; } }
-function downloadVideo(){ var v=getCurrentVideo(); if(v&&v.src){ var a=document.createElement('a'); a.href=v.src; a.download='g-lumo.mp4'; a.click(); } else alert('Saved! 6% to 0142550440'); }
-function nextVideo(){ document.getElementById('feedScroll').scrollBy({top:innerHeight, behavior:'smooth'}); }
-function prevVideo(){ document.getElementById('feedScroll').scrollBy({top:-innerHeight, behavior:'smooth'}); }
-
-// Make old icon names work
-window.downloadTik = downloadVideo; window.downloadVideo = downloadVideo;
-window.muteVideo = toggleVolume; window.toggleMute = toggleVolume; window.volumeVideo = toggleVolume;
-window.nextTik = nextVideo; window.prevTik = prevVideo; window.nextVideo = nextVideo; window.prevVideo = prevVideo;
-
-document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('bHome').onclick = ()=>{ document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'}); document.querySelectorAll('.box').forEach(b=>b.style.display='none'); };
-  document.getElementById('bMarket').onclick = (e)=>{ e.stopPropagation(); openBox('marketBox'); };
-  document.getElementById('bPost').onclick = (e)=>{ e.stopPropagation(); openBox('postBox'); };
-  document.getElementById('bProfile').onclick = (e)=>{ e.stopPropagation(); openBox('profileBox'); };
-  document.getElementById('bDownload').onclick = ()=>{ downloadVideo(); };
+function openBox(id){document.querySelectorAll('.box').forEach(b=>b.style.display='none');var el=document.getElementById(id);if(el)el.style.display='block';}
+function closeBox(id){var el=document.getElementById(id);if(el)el.style.display='none';}
+function getCurrentVideo(){return document.querySelector('#feedScroll video')||document.querySelector('video');}
+function likeVideo(el){var b=el||window.event?.target;var h=b.closest?b.closest('button'):b;if(h){h.style.color=h.style.color==='red'?'white':'red';h.style.transform='scale(1.4)';setTimeout(()=>h.style.transform='scale(1)',200);}}
+function shareVideo(){if(navigator.share){navigator.share({title:'G-LUMO',url:location.href});}else{navigator.clipboard.writeText(location.href);alert('Link copied! '+location.href);}}
+function toggleVolume(){var v=getCurrentVideo();if(v){v.muted=!v.muted;v.volume=1;}}
+function downloadVideo(){var v=getCurrentVideo();if(v&&v.src){var a=document.createElement('a');a.href=v.src;a.download='g-lumo.mp4';a.click();}}
+function nextVideo(){document.getElementById('feedScroll').scrollBy({top:innerHeight,behavior:'smooth'});}
+function prevVideo(){document.getElementById('feedScroll').scrollBy({top:-innerHeight,behavior:'smooth'});}
+function doPost(){var t=document.getElementById('postText');var txt=t?t.value:'';if(!txt.trim()){alert('Write something!');return;}alert('POSTED ✅: '+txt+' | 6% to 0142550440');if(t)t.value='';closeBox('postBox');}
+function doLogin(){localStorage.setItem('guser','demo');alert('Logged demo/1234');}
+function buyPremium(){localStorage.setItem('gPremium','yes');alert('Premium Active! No Ads - Paid to 0142550440');}
+document.addEventListener('DOMContentLoaded',function(){
+document.getElementById('bHome').onclick=()=>{document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'});document.querySelectorAll('.box').forEach(b=>b.style.display='none');};
+document.getElementById('bMarket').onclick=(e)=>{e.stopPropagation();openBox('marketBox');};
+document.getElementById('bPost').onclick=(e)=>{e.stopPropagation();openBox('postBox');};
+document.getElementById('bProfile').onclick=(e)=>{e.stopPropagation();openBox('profileBox');};
+document.getElementById('bDownload').onclick=()=>{downloadVideo();};
 });
-
-function doPost(){ alert('POSTED ✅ 6% to 0142550440'); closeBox('postBox'); }
-function doLogin(){ localStorage.setItem('guser','demo'); alert('Logged demo/1234'); closeBox('loginBox'); }
 </script>
-  <script>
-// ===== SUPER FIX ALL SIDE ICONS =====
-function fixAllIcons(){
-  // Like
-  window.likeVideo = window.likeVideo || function(el){
-    if(!el) el = event.target;
-    el.style.color = el.style.color=='red' ? 'white' : 'red';
-    el.style.transform='scale(1.5)'; setTimeout(()=>el.style.transform='scale(1)',200);
-  };
-  window.likeTik = window.likeVideo;
-  
-  // Volume
-  window.toggleVolume = window.toggleVolume || function(){
-    var v=document.querySelector('#feedScroll video') || document.querySelector('video');
-    if(v){ v.muted=!v.muted; v.volume=1; alert(v.muted?'🔇 Muted':'🔊 Sound ON'); }
-  };
-  
-  // Share
-  window.shareVideo = window.shareVideo || function(){
-    if(navigator.share){ navigator.share({title:'G-LUMO',url:location.href}); }
-    else { navigator.clipboard.writeText(location.href); alert('Link copied! '+location.href); }
-  };
-  window.shareTik = window.shareVideo;
-  
-  // Follow
-  window.followUser = window.followUser || function(el){
-    if(el){ el.textContent = el.textContent.includes('Follow') ? 'Following ✅' : 'Follow +'; el.style.background = el.textContent.includes('Following') ? '#00ffcc' : '#ff0050'; }
-    alert('Following! 6% to 0142550440');
-  };
-  
-  // Download
-  window.downloadVideo = window.downloadVideo || function(){
-    var v=document.querySelector('#feedScroll video') || document.querySelector('video');
-    if(v&&v.src){ var a=document.createElement('a'); a.href=v.src; a.download='g-lumo.mp4'; a.click(); }
-  };
-  
-  // Prev / Next
-  window.nextVideo = window.nextVideo || function(){ document.getElementById('feedScroll').scrollBy({top:window.innerHeight,behavior:'smooth'}); };
-  window.prevVideo = window.prevVideo || function(){ document.getElementById('feedScroll').scrollBy({top:-window.innerHeight,behavior:'smooth'}); };
-  window.nextTik = window.nextVideo; window.prevTik = window.prevVideo; window.goNext = window.nextVideo; window.goPrev = window.prevVideo;
-  
-  // Market - make any market button work
-  window.openMarket = function(){ openBox('marketBox'); };
-  
-  // Auto-fix all buttons with onclick that are broken
-  document.addEventListener('click', function(e){
-    var t=e.target;
-    var txt=(t.innerText||'').toLowerCase();
-    var cls=(t.className||'').toLowerCase();
-    // Volume icon
-    if(txt.includes('🔊')||txt.includes('🔇')||cls.includes('volume')||cls.includes('mute')){ toggleVolume(); }
-  });
-}
-fixAllIcons();
-setTimeout(fixAllIcons,1000);
-  </script>
 </body>
 </html>
