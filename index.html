@@ -75,6 +75,14 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
   box-shadow:0 0 30px #00ffccaa !important;
   pointer-events:auto !important;
 }
+  /* FIX TAP - NO LONG PRESS - ALL BUTTONS 1 TAP */
+.iconBtn, .btmBtn, .btnPost, #likeCircle, #followCircle{
+  touch-action:manipulation !important;
+  -webkit-touch-callout:none !important;
+  -webkit-user-select:none !important;
+  user-select:none !important;
+  pointer-events:auto !important;
+}
 #marketBox .calcBox{background:#000 !important;color:#00ffcc !important;border:2px solid #00ffcc !important}
 #marketBox button{pointer-events:auto !important;z-index:2147483647 !important}
 #marketList{pointer-events:auto !important} 
@@ -90,9 +98,9 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 <div class="videoPage" data-url="demo2"><video src="https://www.w3schools.com/html/movie.mp4" loop muted autoplay playsinline controls></video><div class="badge">DEMO 2 • MARKET</div><div class="infoBar"><b>@demo • 2500 Ksh • 6%=150 • All icons are BUTTONS</b></div></div>
 </div>
 <div id="rightIcons">
-<button class="iconBtn" type="button" onclick="openBox('profileBox')" ontouchstart="openBox('profileBox')">👤<span id="profileLabel">Profile<br>@demo</span></button>
+<button class="iconBtn" type="button" onclick="openBox('profileBox')" style="touch-action:manipulation;pointer-events:auto;"><span id="
 <button id="followCircle" class="iconBtn iconFollow" type="button" onclick="toggleFollow()" ontouchstart="toggleFollow()">+<span id="followCount">Follow<br>1.5K</span></button>
-<button id="likeCircle" class="iconBtn" type="button" onclick="doLike()" ontouchstart="doLike()">🤍<span id="likeCount">Like<br>2.3K</span></button>
+<button id="likeCircle" class="iconBtn iconFollow" type="button" onclick="doLike()" style="touch-action:manipulation;pointer-events:auto;"><span id="likeCount"
 <button class="iconBtn" type="button" onclick="openBox('commentBox')" ontouchstart="openBox('commentBox')">💬<span>Message<br><b id="msgCount">342</b></span></button>
 <button class="iconBtn" type="button" onclick="doShare()" ontouchstart="doShare()">↗️<span>Share<br>128</span></button>
 <button class="iconBtn" style="border-color:#00ffcc" type="button" onclick="doDownload()" ontouchstart="doDownload()">⬇️<span>Download<br>Save</span></button>
