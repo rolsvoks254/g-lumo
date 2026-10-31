@@ -304,22 +304,60 @@ let gIsPremium = localStorage.getItem('g-premium')==='yes';
 let gEarnings = parseFloat(localStorage.getItem('g-my-earn')||'0');
 
 // 1. PREMIUM CHECK — $9 TO AVOID ADS
+// 1. PREMIUM CHECK + BOTTOM POP-UP AUTO ON EVERY AD
 function checkPremiumAds(){
-  if(gIsPremium) return true; // no ads
-  return false; // show ads
+  if(gIsPremium) return true;
+  return false;
 }
+
+function showPremiumBottomPop(){
+  if(gIsPremium) return;
+  if(document.getElementById('premium-bottom-pop')) return;
+  let div = document.createElement('div');
+  div.id='premium-bottom-pop';
+  div.innerHTML=`
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:99999;
+    background:linear-gradient(135deg,#000,#222);color:#00ffcc;
+    border-top:2px solid #00ffcc;padding:12px 15px;display:flex;
+    justify-content:space-between;align-items:center;box-shadow:0 -5px 20px rgba(0,255,204,0.3);">
+      <div style="flex:1;">
+        <div style="font-weight:900;font-size:14px;">⭐ $9/month = NO ADS FOREVER</div>
+        <div style="font-size:11px;color:#fff;margin-top:3px;">
+          Pay to Pochi: <b style="color:#00ffcc;">${G_CONFIG.pochi}</b> | $9/month | Alt: ${G_CONFIG.alt}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="buyPremium()" style="background:#00ffcc;color:#000;border:none;
+        padding:8px 15px;border-radius:20px;font-weight:900;font-size:12px;">PAY $9</button>
+        <button onclick="this.closest('#premium-bottom-pop').remove()" 
+        style="background:transparent;color:#888;border:1px solid #555;padding:8px 10px;border-radius:20px;">X</button>
+      </div>
+    </div>`;
+  document.body.appendChild(div);
+}
+
 function buyPremium(){
-  if(confirm(`Pay $${G_CONFIG.premiumPrice}/month to avoid ALL ads?\nSend to Pochi: ${G_CONFIG.pochi}\nAfter payment tap OK`)){
+  if(confirm(`⭐ $9/month to avoid ALL ads?\nSend to Pochi: ${G_CONFIG.pochi}\nAlt: ${G_CONFIG.alt}\nAfter payment tap OK`)){
     let code = prompt(`Enter M-Pesa Code from ${G_CONFIG.pochi}:`);
     if(code && code.length>4){
-      localStorage.setItem('g-premium','yes');
-      gIsPremium=true;
-      alert('✅ Premium Active! No more ads — $9/month');
+      localStorage.setItem('g-premium','yes'); gIsPremium=true;
+      alert(`✅ Premium Active! No more ads - $9/month\nPaid to Pochi ${G_CONFIG.pochi}`);
+      let pop=document.getElementById('premium-bottom-pop'); if(pop) pop.remove();
       location.reload();
     }
   }
 }
 
+// AUTO POP EVERY AD + EVERY 30 SEC
+let _oldPlay = typeof playTikVideo!=='undefined'?playTikVideo:null;
+if(_oldPlay){
+  playTikVideo = function(src){
+    if(!gIsPremium) showPremiumBottomPop();
+    return _oldPlay(src);
+  }
+}
+setTimeout(()=>{ if(!gIsPremium) showPremiumBottomPop(); }, 3000);
+setInterval(()=>{ if(!gIsPremium) showPremiumBottomPop(); }, 30000); // Every 30 sec
 // 2. COINS & GIFTS — YOU AUTOMATICALLY GET 40%
 function processGift(creator, coins){
   let totalKsh = coins * 1.2; // 1 coin = 1.2 KSH
