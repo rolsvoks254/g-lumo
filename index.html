@@ -203,15 +203,15 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
     </div>
 
     <!-- 8 ICONS - ALL CLICKABLE & WORKING -->
-    <div class="tik-icons">
-      <button class="tik-i" title="Videos Grid" onclick="showProfileTab('videos')">▦</button>
-      <button class="tik-i" title="Private / Locked" onclick="alert('🔒 Private — Only you see drafts')">🔒</button>
-      <button class="tik-i" title="Repost / Shuffle" onclick="scrollNext()">⇅</button>
-      <button class="tik-i" title="Bookmarks" onclick="openBox('marketBox')">🔖</button>
-      <button class="tik-i" title="Likes" onclick="doLike()">♡</button>
-      <button class="tik-i" style="border:2px solid #00ffcc;background:#00ffcc22" title="6th Download Video" onclick="doDownload()">⬇️</button>
-      <button class="tik-i" style="border:2px solid #000" title="7th Edit Channel" onclick="editChannel()">✏️</button>
-      <button class="tik-i" style="border:2px solid #00ccff" title="8th Analytics" onclick="openAnalytics()">📊</button>
+    <div class="tik-icons" style="pointer-events:auto!important;position:relative;z-index:99999;display:flex;justify-content:space-between">
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Videos Grid" onclick="showProfileTab('videos')" ontouchstart="showProfileTab('videos');event.preventDefault()">▦</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Private" onclick="alert('🔒 Private — Only you see drafts')" ontouchstart="alert('🔒 Private — Only you see drafts')">🔒</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Repost" onclick="scrollNext()" ontouchstart="scrollNext()">⇅</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Bookmarks" onclick="openBox('marketBox')" ontouchstart="openBox('marketBox')">🔖</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Likes" onclick="doLike()" ontouchstart="doLike()">♡</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #00ffcc;background:#00ffcc22" title="6th Download" onclick="doDownload()" ontouchstart="doDownload()">⬇️</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #000" title="7th Edit" onclick="editChannel()" ontouchstart="editChannel()">✏️</button>
+<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #00ccff" title="8th Analytics" onclick="openAnalytics()" ontouchstart="openAnalytics()">📊</button>
     </div>
 
     <div class="tik-grid-label">Drafts: <span id="pMyVideos">0</span> • Public: <span id="pVideos">0</span> — 6% → 0142550440</div>
@@ -259,6 +259,7 @@ renderMyVideos=function(){
     grid.innerHTML='<div class="tik-item"><div style="padding:20px;color:#00ffcc;font-weight:900">(New)<br>Milestone Unlocked</div><span>25.2 MB</span></div><div class="tik-item" style="background:#222;display:flex;align-items:center;justify-content:center;color:#fff">Post to add</div><div class="tik-item" style="background:#333"></div>';
   }
   document.getElementById('pUser2').innerText=currentUser||'demo';
+  document.getElementById('profileBox').style.pointerEvents='auto';
   document.getElementById('pEarn2').innerText=document.getElementById('pEarn').innerText;
 // MAKE USERNAME DYNAMIC
 function updateTikProfile(){
