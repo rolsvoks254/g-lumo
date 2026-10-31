@@ -143,31 +143,34 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
   <div class="field">👤<input id="loginUser" placeholder="Username demo" autocomplete="username"></div>
   <div class="field">🔒<input id="loginPass" type="password" placeholder="Password 1234" autocomplete="current-password"><span style="margin-left:8px">👁️</span></div>
 
-  <button class="btn-main" type="button" onclick="doLogin()" ontouchstart="doLogin()">Login — Full One</button>
-  <button class="btn-outline" type="button" onclick="doReset()" ontouchstart="doReset()">Reset</button>
+<button class="btn-main" type="button" onclick="doLogin()">Login - Full One</button>
+<button class="btn-outline" type="button" onclick="doReset()">Reset</button>
 
-  <div class="login-foot">Demo: demo / 1234 • Pochi 0142550440 - 40% FOUNDER + $9 Ads<br>Logged as: <b id="loggedInfo"
+<div class="login-foot">Demo: demo / 1234 • Pochi 0142550440 - 40% FOUNDER + $9 Ads<br>Logged as: <b id="loggedInfo"></b>
 </div>
 </div>
 </div>
-<div id="postBox" class="box">
-<h3>+ POST — Place to Enter</h3>
+
+<div id="postBox" class="box" style="display:none">
+<h3> POST - Place to Enter</h3>
 <input id="reelFile" type="file" accept="video/*" onchange="preview()">
-<input id="pTitle" placeholder="Title — e.g. My G-Lumo Reel">
+<input id="pTitle" placeholder="Title - e.g. My G-Lumo Reel">
 <input id="pPrice" type="number" placeholder="Price Ksh e.g. 1000" oninput="calc()">
-<div id="calc" class="calcBox">6% auto to 0142550440 = 0.00</div>
-<button class="primary" type="button" onclick="doPost()" ontouchstart="doPost()">POST NOW — Full One</button>
-<button type="button" onclick="closeBox('postBox')" ontouchstart="closeBox('postBox')">X CLOSE</button>
+<div id="calc" class="calcBox">6% auto to 0142550440 >0.00</div>
+<button class="primary" type="button" onclick="doPost()">POST NOW - Full One</button>
+<button type="button" onclick="closeBox('postBox')">X CLOSE</button>
 <div id="previewArea" class="smallNote">Preview: no file yet</div>
 </div>
-<div id="commentBox" class="box">
-<h3>💬 Messages / Comments</h3>
-<div id="commentList" style="max-height:200px;overflow:auto;background:#f1f1f1;padding:8px;border-radius:10px;color:#000;margin-bottom:8px"></div>
+
+<div id="commentBox" class="box" style="display:none">
+<h3> Messages / Comments</h3>
+<div id="commentList" style="max-height:200px;overflow:auto;background:#f1f1f1;padding:8px;border-radius:10px;color:#000"></div>
 <input id="commentInput" placeholder="Write comment...">
-<button class="primary" type="button" onclick="doComment()" ontouchstart="doComment()">Send Message</button>
-<button type="button" onclick="closeBox('commentBox')" ontouchstart="closeBox('commentBox')">X CLOSE</button>
+<button class="primary" type="button" onclick="doComment()">Send Message</button>
+<button type="button" onclick="closeBox('commentBox')">X CLOSE</button>
 </div>
-<div id="profileBox" class="box" style="background:transparent;border:none;box-shadow:none;max-width:400px">
+
+<div id="profileBox" class="box" style="display:none;background:transparent;border:none;box-shadow:none;max-width:400px">
 <style>
 #profileBox .tik-profile{width:100%;background:#fff;color:#000;border-radius:18px;overflow:hidden;max-height:85vh;overflow-y:auto}
 #profileBox .tik-top{padding:16px;background:#fff;position:relative}
@@ -176,57 +179,50 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 #profileBox .tik-sub{font-size:14px;color:#666}
 #profileBox .tik-avatar{width:76px;height:76px;border-radius:50%;background:#000;border:3px solid #00ffcc;overflow:hidden;position:relative}
 #profileBox .tik-avatar img{width:100%;height:100%;object-fit:cover}
-#profileBox .tik-plus{position:absolute;bottom:-2px;right:-2px;width:28px;height:28px;border-radius:50%;background:#00ccff;border:3px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+#profileBox .tik-plus{position:absolute;bottom:-2px;right:-2px;width:28px;height:28px;border-radius:50%;background:#00ccff;color:#fff;display:flex;justify-content:center;align-items:center;font-size:18px}
 #profileBox .tik-stats{display:flex;gap:18px;margin:14px 0 8px 0}
 #profileBox .tik-stat b{font-size:18px;display:block}
 #profileBox .tik-stat span{font-size:12px;color:#666}
-#profileBox .tik-icons{display:flex;justify-content:space-between;padding:12px 8px;border-top:1px solid #eee;border-bottom:1px solid #eee;gap:4px}
-#profileBox .tik-i{width:36px;height:36px;border:none;background:transparent;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer}
+#profileBox .tik-icons{display:flex;justify-content:space-between;padding:12px 8px;border-top:1px solid #eee;border-bottom:1px solid #eee}
+#profileBox .tik-i{width:36px;height:36px;border:none;background:transparent;font-size:20px;display:flex;align-items:center;justify-content:center}
 #profileBox .tik-i:active{background:#eee}
 #profileBox .tik-grid-label{padding:10px 12px;font-size:14px;font-weight:700}
-#profileBox .tik-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:#ddd}
-#profileBox .tik-item{aspect-ratio:9/12;background:#000;position:relative;overflow:hidden}
-#profileBox .tik-item video{width:100%;height:100%;object-fit:cover}
-#profileBox .tik-item span{position:absolute;bottom:4px;left:4px;color:#fff;font-size:11px;background:rgba(0,0,0,0.5);padding:2px 6px;border-radius:6px}
-#profileBox .tik-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px;background:#fff}
-#profileBox .tik-act{height:42px;border-radius:10px;border:1.5px solid #000;background:#fff;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer}
-#profileBox .tik-act.primary{background:#00ffcc;border-color:#00ffcc;color:#000}
-#profileBox .tik-act:active{transform:scale(0.95)}
 </style>
 
 <div class="tik-profile">
-  <div class="tik-top">
-    <button onclick="closeBox('profileBox')" ontouchstart="closeBox('profileBox')" style="position:absolute;top:6px;right:8px;width:32px;height:32px;border-radius:50%;background:#000;color:#fff;border:2px solid #fff;font-size:18px;font-weight:900;z-index:99999">X</button>
+<div class="tik-top">
+<button onclick="closeBox('profileBox')" style="position:absolute;top:6px;right:8px;z-index:10">X</button>
+    <button onclick="closeBox('profileBox')" style="position:absolute;top:6px;right:8px;z-index:10">X</button>
     <div class="tik-row">
       <div>
-        <div class="tik-handle">@<span id="tikHandle">User</span>▼</div>
-<div class="tik-sub">@<span id="tikSub">username</span> • <span id="pUser2">demo</span></div>
+        <div class="tik-handle"><span id="tikHandle">User</span>▼</div>
+        <div class="tik-sub"><span id="tikSub">username</span> • <span id="pUser2">demo</span></div>
         <div class="tik-stats">
-          <div class="tik-stat"><b>110</b><span>Following</span></div>
-          <div class="tik-stat"><b id="tikFollowers">33</b><span>Followers</span></div>
-    <div class="tik-stat"><b id="tikLikes">56</b><br><span>Likes • <span id="pEarn2" style="color:#00ff88;font-weight:900;">40% + $9 FOUNDER</span></span></div>      
+            <div class="tik-stat"><b>110</b><span>Following</span></div>
+            <div class="tik-stat"><b id="tikFollowers">33</b><span>Followers</span></div>
+            <div class="tik-stat"><b id="tikLikes">56</b><br><span>Likes • <span id="pEarn2" style="color:#00ff88;font-weight:900;"></span></span></div>
         </div>
       </div>
-      <div class="tik-avatar" onclick="editChannel()"><img src="https://i.pravatar.cc/150?u=kelvin" alt=""><div class="tik-plus">+</div></div>
-  <div style="margin:8px;padding:10px;background:#000;color:#00ff88;border:2px solid #00ffcc;border-radius:12px;font-size:12px;">
-<b style="color:#fff;">👑 FOUNDER @demo - 0142550440</b><br>
-💰 Coins: <b style="color:#fff;">40%</b> = <span id="founderCoins">400 Ksh</span> per 1000<br>
-📢 Ads: <b style="color:#fff;">$9</b> = <span id="founderAds">1170 Ksh</span><br>
-✅ Rate: <b style="color:#fff;">40% Coins + $9 Ads = FOUNDER ACTIVE</b>
-  </div>    
+      <div class="tik-avatar" onclick="editChannel()"><img src="https://i.pravatar.cc/150?u=kelvin" alt=""></div>
+    </div>
+    <div style="margin:8px;padding:10px;background:#000;color:#00ff88;border:2px solid #00ffcc;border-radius:12px;font-size:12px">
+      <b style="color:#fff;">💰 FOUNDER @demo - 0142550440</b><br>
+      💰 Coins: <b style="color:#fff;">40%<br><span id="founderCoins">400 Ksh</span> per 1000<br>
+      📢 Ads: <b style="color:#fff;">$9</b> = <span id="founderAds">1170 Ksh</span><br>
+      ✅ Rate: <b style="color:#fff;">>40% Coins + $9 Ads = FOUNDER ACTIVE</b>
     </div>
 
-    <!-- 8 ICONS - ALL CLICKABLE & WORKING -->
-    <div class="tik-icons" style="pointer-events:auto!important;position:relative;z-index:99999;display:flex;justify-content:space-between">
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Videos Grid" onclick="showProfileTab('videos')" ontouchstart="showProfileTab('videos');event.preventDefault()">▦</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Private" onclick="alert('🔒 Private — Only you see drafts')" ontouchstart="alert('🔒 Private — Only you see drafts')">🔒</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Repost" onclick="scrollNext()" ontouchstart="scrollNext()">⇅</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Bookmarks" onclick="openBox('marketBox')" ontouchstart="openBox('marketBox')">🔖</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation" title="Likes" onclick="doLike()" ontouchstart="doLike()">♡</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #00ffcc;background:#00ffcc22" title="6th Download" onclick="doDownload()" ontouchstart="doDownload()">⬇️</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #000" title="7th Edit" onclick="editChannel()" ontouchstart="editChannel()">✏️</button>
-<button class="tik-i" style="pointer-events:auto;touch-action:manipulation;border:2px solid #00ccff" title="8th Analytics" onclick="openAnalytics()" ontouchstart="openAnalytics()">📊</button>
-    </div>
+<!-- 8 ICONS - ALL CLICKABLE & WORKING -->
+<div class="tik-icons" style="position:relative;z-index:99999;display:flex;justify-content:space-between;padding:12px 8px;border-top:1px solid #eee;border-bottom:1px solid #eee">
+<button class="tik-i" onclick="showProfileTab('videos')" title="Videos Grid">📹</button>
+<button class="tik-i" onclick="alert('Private')" title="Private">🔒</button>
+<button class="tik-i" onclick="scrollNext()" title="Repost">🔄</button>
+<button class="tik-i" onclick="openBox('marketBox')" title="Bookmarks">🔖</button>
+<button class="tik-i" onclick="doLike()" title="Likes">❤️</button>
+<button class="tik-i" onclick="openBox('messageBox')" title="Message">💬</button>
+<button class="tik-i" onclick="openBox('editBox')" title="7th Edit">✏️</button>
+<button class="tik-i" onclick="openBox('analyticsBox')" title="8th Analytics">📊</button>
+</div>
 
 <div class="tik-grid-label">Drafts: <span id="pMyVideos">0</span> • Public: <span id="pVideos">0</span> - <b style="color:#00ff88;">40% FOUNDER + $9 Ads</b> - 0142550440</div>    
   </div>
