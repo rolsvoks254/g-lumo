@@ -54,6 +54,30 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 .smallNote{font-size:18px !important}  
   .myVideoCard{background:#111;border:2px solid #00ffcc;border-radius:12px;padding:8px;margin-bottom:8px;display:flex;gap:8px;align-items:center}
 .myVideoCard video{width:80px;height:60px;object-fit:cover;border-radius:8px;background:#000}
+ /* MARKET POPUP FIX - VISIBLE + CLICKABLE */
+#marketBox{
+  position:fixed !important;
+  top:62px !important;
+  bottom:58px !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+  width:92% !important;
+  max-width:400px !important;
+  height:auto !important;
+  max-height:calc(100vh - 130px) !important;
+  background:#0e0e0e !important;
+  border:3px solid #00ffcc !important;
+  border-radius:18px !important;
+  z-index:2147483647 !important;
+  display:none;
+  overflow-y:auto !important;
+  padding:12px !important;
+  box-shadow:0 0 30px #00ffccaa !important;
+  pointer-events:auto !important;
+}
+#marketBox .calcBox{background:#000 !important;color:#00ffcc !important;border:2px solid #00ffcc !important}
+#marketBox button{pointer-events:auto !important;z-index:2147483647 !important}
+#marketList{pointer-events:auto !important} 
 </style>
 </head>
 <body>
@@ -156,8 +180,19 @@ var currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=fal
 var posts=JSON.parse(localStorage.getItem('g-lumo-posts')||'[]');
 var lastDataUrl=null,lastFileName='';
 function savePosts(){localStorage.setItem('g-lumo-posts',JSON.stringify(posts));localStorage.setItem('gEarn',totalEarn.toString());}
-function openBox(id){document.getElementById(id).style.display='block';if(id==='profileBox')renderMyVideos();if(id==='marketBox')renderMarket();}
-function closeBox(id){document.getElementById(id).style.display='none';}
+function openBox(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.style.display='block';
+  el.style.zIndex='2147483647';
+  el.style.pointerEvents='auto';
+  if(id==='profileBox') renderMyVideos();
+  if(id==='marketBox'){ renderMarket(); el.scrollTop=0;}
+}
+function closeBox(id){
+  var el=document.getElementById(id);
+  if(el) el.style.display='none';
+}
 function goHome(){document.getElementById('feedScroll').scrollTo(0,0);closeBox('marketBox');closeBox('profileBox');}
 function updateLogged(){var el=document.getElementById('loggedInfo');var pu=document.getElementById('pUser');if(currentUser){el.innerText='Logged as @'+currentUser;pu.innerText=currentUser;}else{el.innerText='Not logged';pu.innerText='guest';}document.getElementById('profileLabel').innerHTML='Profile<br>@'+(currentUser||'demo');}
 function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';var p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||(u!==''&&p!=='')){currentUser=u;localStorage.setItem('guser',u);updateLogged();closeBox('loginBox');alert('✅ Login @'+u);renderFeed();}else{alert('Use demo / 1234');}}
