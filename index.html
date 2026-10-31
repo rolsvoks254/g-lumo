@@ -371,64 +371,68 @@ function buyPremium(){
   }
 }
 
-// AUTO POP EVERY AD + EVERY 30 SEC
+// AUTO POP EVERY AD + EVERY 30 SEC - FIXED
 let _oldPlay = typeof playTikVideo !== 'undefined' ? playTikVideo : null;
 if(_oldPlay){
+  var _origPlay = _oldPlay;
   playTikVideo = function(src){
     var f=document.getElementById('feedScroll');
-    f.scrollTo({top:0,behavior:'smooth'});
+    if(f) f.scrollTo({top:0,behavior:'smooth'});
     setTimeout(function(){
-      _oldPlay(src);
-      if(!isPremium()){ showPremiumBottomPop(); }
+      _origPlay(src);
+      if(typeof isPremium === 'function' && !isPremium()){ showPremiumBottomPop(); }
     },500);
   }
 }
-
-function playTikVideo2(src){
-  var f=document.getElementById('feedScroll');
-  if(f) f.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(function(){
-    if(typeof _oldPlay === 'function') _oldPlay(src);
-  },300);
-}
 </script>
 
-<div id="marketBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:92%;max-height:80%;overflow:auto;background:#fff;color:#000;padding:16px;border-radius:16px;">
-<h3>Market - Founder Active</h3>
-<p>6% to 0142550440</p>
-<div id="marketList" style="background:#eee;padding:8px;border-radius:8px;min-height:50px"></div>
-<button type="button" onclick="document.getElementById('marketBox').style.display='none'" style="margin-top:10px;padding:8px 16px;background:#000;color:#fff;border-radius:20px;">X CLOSE</button>
+<!-- BEST MARKETPLACE - Founder Active -->
+<div id="marketBox" class="box" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:95%;max-width:400px;max-height:85%;overflow:auto;background:#111;color:#fff;padding:16px;border-radius:20px;border:2px solid #00ffcc">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h3 style="margin:0">🛒 Market • Founder Active</h3>
+<button onclick="document.getElementById('marketBox').style.display='none'" style="background:#333;color:#fff;border:none;width:30px;height:30px;border-radius:50%">X</button>
+</div>
+<p style="color:#00ffcc;font-size:12px;margin:8px 0">6% to 0142550440 | 40% Creator + $9 Premium</p>
+<div id="marketList" style="background:#000;padding:10px;border-radius:12px;min-height:100px;display:grid;gap:8px">
+<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>🔥 Dragonfly Pack KES 500</span><button onclick="alert('BUY OK - 6% to 0142550440 ✅')" style="background:#00ffcc;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
+<div style="background:#222;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>⭐ G-LUMO Premium $9/mo</span><button onclick="buyPremium()" style="background:gold;border:none;padding:6px 12px;border-radius:20px;font-weight:900">BUY</button></div>
+</div>
+<button onclick="document.getElementById('marketBox').style.display='none'" style="margin-top:12px;width:100%;padding:10px;background:#fff;color:#000;border-radius:20px;font-weight:900">CLOSE</button>
 </div>
 
+<!-- ALL ICONS BEST - BOTTOM NAV -->
 <div style="position:fixed;bottom:0;left:0;right:0;z-index:999999999;background:#000;display:flex;justify-content:space-around;align-items:center;padding:8px 0;border-top:2px solid #00ffcc">
-<button id="bHome" style="background:none;border:none;color:#fff;font-size:16px;line-height:1">🏠<br><span style="font-size:10px">Home</span></button>
-<button id="bMarket" style="background:none;border:none;color:#fff;font-size:16px;line-height:1">🛒<br><span style="font-size:10px">Market</span></button>
-<button id="bPost" style="background:#00ffcc;border:none;color:#000;width:50px;height:50px;border-radius:50%;font-size:28px;font-weight:900">+</button>
-<button id="bProfile" style="background:none;border:none;color:#fff;font-size:16px;line-height:1">👤<br><span style="font-size:10px">Profile</span></button>
+<button id="bHome" style="background:none;border:none;color:#fff;font-size:18px">🏠<br><span style="font-size:10px">Home</span></button>
+<button id="bMarket" style="background:none;border:none;color:#fff;font-size:18px">🛒<br><span style="font-size:10px">Market</span></button>
+<button id="bPost" style="background:#00ffcc;border:none;color:#000;width:54px;height:54px;border-radius:50%;font-size:30px;font-weight:900">+</button>
+<button id="bDownload" style="background:none;border:none;color:#fff;font-size:18px">⬇️<br><span style="font-size:10px">Save</span></button>
+<button id="bProfile" style="background:none;border:none;color:#fff;font-size:18px">👤<br><span style="font-size:10px">Profile</span></button>
 </div>
 
 <script>
-var posts=JSON.parse(localStorage.getItem('g-lumo-posts')||'[]');
-var currentUser=localStorage.getItem('guser')||'demo';
-function openBox(id){
-  document.querySelectorAll('.box').forEach(function(b){ b.style.display='none'; });
-  var el=document.getElementById(id);
-  if(el){ el.style.display='block'; }
-}
-function closeBox(id){
-  var el=document.getElementById(id);
-  if(el) el.style.display='none';
-}
+// BOX + ALL ICONS FIX
+function openBox(id){ document.querySelectorAll('.box').forEach(b=>b.style.display='none'); var el=document.getElementById(id); if(el) el.style.display='block'; }
+function closeBox(id){ var el=document.getElementById(id); if(el) el.style.display='none'; }
+
+function getCurrentVideo(){ return document.querySelector('#feedScroll video') || document.querySelector('video'); }
+function toggleVolume(){ var v=getCurrentVideo(); if(v){ v.muted=!v.muted; v.volume=1; } }
+function downloadVideo(){ var v=getCurrentVideo(); if(v&&v.src){ var a=document.createElement('a'); a.href=v.src; a.download='g-lumo.mp4'; a.click(); } else alert('Saved! 6% to 0142550440'); }
+function nextVideo(){ document.getElementById('feedScroll').scrollBy({top:innerHeight, behavior:'smooth'}); }
+function prevVideo(){ document.getElementById('feedScroll').scrollBy({top:-innerHeight, behavior:'smooth'}); }
+
+// Make old icon names work
+window.downloadTik = downloadVideo; window.downloadVideo = downloadVideo;
+window.muteVideo = toggleVolume; window.toggleMute = toggleVolume; window.volumeVideo = toggleVolume;
+window.nextTik = nextVideo; window.prevTik = prevVideo; window.nextVideo = nextVideo; window.prevVideo = prevVideo;
+
 document.addEventListener('DOMContentLoaded', function(){
-  var bh=document.getElementById('bHome');
-  var bm=document.getElementById('bMarket');
-  var bp=document.getElementById('bPost');
-  var bpr=document.getElementById('bProfile');
-  if(bh) bh.addEventListener('click', function(){ document.getElementById('feedScroll').scrollTo(0,0); document.querySelectorAll('.box').forEach(function(b){ b.style.display='none'; }); });
-  if(bm) bm.addEventListener('click', function(e){ e.stopPropagation(); openBox('marketBox'); });
-  if(bp) bp.addEventListener('click', function(e){ e.stopPropagation(); openBox('postBox'); });
-  if(bpr) bpr.addEventListener('click', function(e){ e.stopPropagation(); openBox('profileBox'); });
+  document.getElementById('bHome').onclick = ()=>{ document.getElementById('feedScroll').scrollTo({top:0,behavior:'smooth'}); document.querySelectorAll('.box').forEach(b=>b.style.display='none'); };
+  document.getElementById('bMarket').onclick = (e)=>{ e.stopPropagation(); openBox('marketBox'); };
+  document.getElementById('bPost').onclick = (e)=>{ e.stopPropagation(); openBox('postBox'); };
+  document.getElementById('bProfile').onclick = (e)=>{ e.stopPropagation(); openBox('profileBox'); };
+  document.getElementById('bDownload').onclick = ()=>{ downloadVideo(); };
 });
+
 function doPost(){ alert('POSTED ✅ 6% to 0142550440'); closeBox('postBox'); }
 function doLogin(){ localStorage.setItem('guser','demo'); alert('Logged demo/1234'); closeBox('loginBox'); }
 </script>
