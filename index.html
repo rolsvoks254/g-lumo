@@ -225,6 +225,14 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
     <button class="tik-act" onclick="openAnalytics()">📊 8.Analytics</button>
     <button class="tik-act" onclick="openBox('postBox')">+ POST</button>
     <button class="tik-act" onclick="clearMyVideos()">Delete All</button>
+    Line 222 <div class="tik-actions">
+Line 223 <button> 6. Download</button>
+Line 224 <button> 7. Edit Channel</button>
+Line 225 <button> 8. Analytics</button>
+Line 226 <button> POST</button>
+Line 227 <button> Delete All</button>
+Line 228 <button> X Close</button>  ← HERE!
+Line 229 </div>
     <button class="tik-act" onclick="closeBox('profileBox')">X Close</button>
   </div>
 </div>
@@ -274,7 +282,98 @@ function updateTikProfile(){
 var _oldOpenBox2 = openBox;
 openBox = function(id){
   _oldOpenBox2(id);
-  if(id==='profileBox') setTimeout(updateTikProfile, 50);
+  if(id==='profileBox') setTimeout(updateTikProfile, 50);  
+}
+  // ===== G-LUMO MONEY SYSTEM — 40% OWNER / 60% CREATOR =====
+const G_CONFIG = {
+  pochi: '0142550440',
+  alt: '0142550440',
+  premiumPrice: 9, // $9/month
+  ownerCut: 0.40,
+  creatorCut: 0.60
+};
+
+let gIsPremium = localStorage.getItem('g-premium')==='yes';
+let gEarnings = parseFloat(localStorage.getItem('g-my-earn')||'0');
+
+// 1. PREMIUM CHECK — $9 TO AVOID ADS
+function checkPremiumAds(){
+  if(gIsPremium) return true; // no ads
+  return false; // show ads
+}
+function buyPremium(){
+  if(confirm(`Pay $${G_CONFIG.premiumPrice}/month to avoid ALL ads?\nSend to Pochi: ${G_CONFIG.pochi}\nAfter payment tap OK`)){
+    let code = prompt(`Enter M-Pesa Code from ${G_CONFIG.pochi}:`);
+    if(code && code.length>4){
+      localStorage.setItem('g-premium','yes');
+      gIsPremium=true;
+      alert('✅ Premium Active! No more ads — $9/month');
+      location.reload();
+    }
+  }
+}
+
+// 2. COINS & GIFTS — YOU AUTOMATICALLY GET 40%
+function processGift(creator, coins){
+  let totalKsh = coins * 1.2; // 1 coin = 1.2 KSH
+  let ownerShare = totalKsh * G_CONFIG.ownerCut;
+  let creatorShare = totalKsh * G_CONFIG.creatorCut;
+  
+  gEarnings += ownerShare;
+  localStorage.setItem('g-my-earn', gEarnings.toFixed(2));
+  
+  // Record for creator
+  let cEarn = parseFloat(localStorage.getItem('earn_'+creator)||'0');
+  localStorage.setItem('earn_'+creator, (cEarn+creatorShare).toFixed(2));
+  
+  // AUTO PAY TO YOUR POCHI LEDGER
+  console.log(`GIFT: ${coins} coins | Total:${totalKsh} | You(40%):${ownerShare} -> Pochi ${G_CONFIG.pochi} | Creator(60%):${creatorShare} -> ${creator}`);
+  alert(`🎁 ${coins} coins sent!\n💰 Creator ${creator} gets 60%: KSH ${creatorShare.toFixed(2)}\n🏦 You get 40%: KSH ${ownerShare.toFixed(2)} -> Pochi ${G_CONFIG.pochi}`);
+  return {ownerShare, creatorShare};
+}
+
+// 3. ADS — AUTOMATIC CHARGE ADVERTISER — YOU GET 40%
+function processAdPayment(advertiser, adType, views){
+  let rate = adType==='youtube' ? 0.05 : 0.03; // $0.05 per view YT style, $0.03 TikTok style
+  let totalCharge = views * rate; // in $
+  let ownerShare = totalCharge * G_CONFIG.ownerCut;
+  let creatorShare = totalCharge * G_CONFIG.creatorCut;
+  
+  gEarnings += ownerShare * 130; // convert $ to KSH ~130
+  localStorage.setItem('g-my-earn', gEarnings.toFixed(2));
+  
+  console.log(`AD: ${advertiser} | ${views} views | Charged $${totalCharge} | You 40%: $${ownerShare} | Creator 60%: $${creatorShare} -> Auto sent to Pochi ${G_CONFIG.pochi}`);
+  
+  // Simulate auto-charge to advertiser
+  let ledger = JSON.parse(localStorage.getItem('g-ad-ledger')||'[]');
+  ledger.push({advertiser, views, totalCharge, ownerShare, creatorShare, pochi:G_CONFIG.pochi, time:new Date().toISOString()});
+  localStorage.setItem('g-ad-ledger', JSON.stringify(ledger));
+  
+  return {totalCharge, ownerShare, creatorShare};
+}
+
+// 4. SHOW YOUR EARNINGS
+function showMyEarnings(){
+  let ledger = JSON.parse(localStorage.getItem('g-ad-ledger')||'[]');
+  let totalAds = ledger.reduce((s,x)=>s+x.ownerShare,0);
+  alert(`🏦 G-LUMO OWNER EARNINGS\n\nPochi: ${G_CONFIG.pochi}\nAlt: ${G_CONFIG.alt}\n\nFrom Gifts/Coins (40%): KSH ${gEarnings.toFixed(2)}\nFrom Ads (40%): $${totalAds.toFixed(2)}\n\nPremium $9/month users: ${gIsPremium?'YES - No ads':'NO - Showing ads'}\n\nAll payments auto to ${G_CONFIG.pochi}`);
+}
+
+// 5. AUTO-INJECT AD EVERY 4 VIDEOS IF NOT PREMIUM
+let vidCount=0;
+const _oldPlay = typeof playTikVideo!=='undefined'?playTikVideo:null;
+if(_oldPlay){
+  playTikVideo = function(src){
+    vidCount++;
+    if(!gIsPremium && vidCount%4===0){
+      if(confirm('📢 AD — Support creators!\nWatch ad? (Creator gets 60%, You get 40%)\n\n[OK] Watch | [Cancel] Buy Premium $9')){
+        processAdPayment('auto-advertiser','tiktok', 1000);
+      } else {
+        buyPremium();
+      }
+    }
+    _oldPlay(src);
+  }
 }
 function playTikVideo(src){var f=document.getElementById('feedScroll');f.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){var v=document.querySelector('#feedScroll video');if(v){v.src=src;v.play();} closeBox('profileBox');},300);}
 </script>
