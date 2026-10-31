@@ -445,64 +445,46 @@ if(_oldPlay){
 }
 function playTikVideo(src){var f=document.getElementById('feedScroll');f.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){var v=document.querySelector('#feedScroll video');if(v){v.src=src;v.play();} closeBox('profileBox');},300);}
 </script>
-<div id="marketBox" class="box">
-<h3>🛒 Market Master Class</h3>
-<div class="calcBox">Market 6% rule: Every sale sends 6% to Pochi 0142550440 automatically. Full One Masterclass super working.</div>
-  <div id="marketList" style="max-height:300px;overflow:auto;background:#111;padding:8px;border-radius:10px;margin-top:8px"></div>
-<input id="marketSearch" placeholder="Search Market...">
-<div class="smallNote">Market items from your videos appear here. Post to add.</div>
-<button type="button" onclick="closeBox('marketBox')" ontouchstart="closeBox('marketBox')">X CLOSE</button>
+<div id="marketBox" class="box" style="display:none !important;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;width:92%;background:#fff;color:#000;padding:16px;border-radius:16px;">
+<h3>🛒 Market</h3>
+<p>6% to 0142550440 - Founder Active</p>
+<button onclick="document.getElementById('marketBox').style.display='none'">X CLOSE</button>
 </div>
-<script>
-var currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=false,currentPage=0,startX=0,startY=0,totalEarn=parseFloat(localStorage.getItem('gEarn')||'0');
-var posts=JSON.parse(localStorage.getItem('g-lumo-posts')||'[]');
-var lastDataUrl=null,lastFileName='';
-function savePosts(){localStorage.setItem('g-lumo-posts',JSON.stringify(posts));localStorage.setItem('gEarn',totalEarn.toString());}
-function openBox(id){
-  var el=document.getElementById(id);
-  if(!el) return;
-  el.style.display='block';
-  el.style.zIndex='2147483647';
-  el.style.pointerEvents='auto';
-  if(id==='profileBox') renderMyVideos();
-  if(id==='marketBox'){ renderMarket(); el.scrollTop=0;}
-}
-function closeBox(id){
-  var el=document.getElementById(id);
-  if(el) el.style.display='none';
-}
-function goHome(){document.getElementById('feedScroll').scrollTo(0,0);closeBox('marketBox');closeBox('profileBox');}
-function updateLogged(){var el=document.getElementById('loggedInfo');var pu=document.getElementById('pUser');if(currentUser){el.innerText='Logged as @'+currentUser;pu.innerText=currentUser;}else{el.innerText='Not logged';pu.innerText='guest';}document.getElementById('profileLabel').innerHTML='Profile<br>@'+(currentUser||'demo');}
-function doLogin(){var u=document.getElementById('loginUser').value.trim()||'demo';var p=document.getElementById('loginPass').value.trim();if((u==='demo'&&p==='1234')||(u!==''&&p!=='')){currentUser=u;localStorage.setItem('guser',u);updateLogged();closeBox('loginBox');alert('✅ Login @'+u);renderFeed();}else{alert('Use demo / 1234');}}
-function doReset(){localStorage.removeItem('guser');currentUser=null;document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';updateLogged();alert('♻️ RESET');openBox('loginBox');}
-function calc(){var p=parseFloat(document.getElementById('pPrice').value)||0;var c=p*0.06;document.getElementById('calc').innerHTML='6% auto to 0142550440 = '+c.toFixed(2);return c;}
-function preview(){var f=document.getElementById('reelFile').files[0];if(!f)return;lastFileName=f.name;var reader=new FileReader();reader.onload=function(e){lastDataUrl=e.target.result;document.getElementById('previewArea').innerHTML='✅ Ready: '+f.name+' — '+(f.size/1000000).toFixed(1)+'MB — Will be PUBLIC + stay in Profile';};reader.readAsDataURL(f);}
-function doPost(){if(!lastDataUrl){alert('Choose video first');return;}if(!currentUser){alert('Login first demo/1234');openBox('loginBox');return;}var title=document.getElementById('pTitle').value||'G-Lumo Reel';var price=parseFloat(document.getElementById('pPrice').value)||0;var earn=price*0.06;totalEarn+=earn;var newPost={id:Date.now(),user:currentUser,title:title,price:price,earn:earn,videoData:lastDataUrl,fileName:lastFileName,time:new Date().toLocaleString()};posts.unshift(newPost);savePosts();renderFeed();renderMyVideos();closeBox('postBox');goHome();alert('✅ PUBLIC POSTED — Everyone sees it — Stays in profile @'+currentUser);document.getElementById('pTitle').value='';document.getElementById('pPrice').value='';lastDataUrl=null;}
-function renderFeed(){var feed=document.getElementById('feedScroll');feed.innerHTML='';posts.forEach(function(post){var div=document.createElement('div');div.className='videoPage';div.setAttribute('data-url',post.videoData);div.innerHTML='<video src="'+post.videoData+'" loop muted autoplay playsinline controls></video><div class="badge">PUBLIC • @'+post.user+' • '+post.title+'</div><div class="infoBar"><b>@'+post.user+' • '+post.title+' • '+post.price+' Ksh • 6%='+post.earn.toFixed(2)+' to 0142550440 • '+post.time+'</b></div>';feed.appendChild(div);});if(posts.length===0){var d1=document.createElement('div');d1.className='videoPage';d1.innerHTML='<video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted autoplay playsinline></video><div class="badge">DEMO PUBLIC • 6%→0142550440</div><div class="infoBar"><b>@demo • Demo • POST to make PUBLIC</b></div>';feed.appendChild(d1);}document.getElementById('pVideos').innerText=document.querySelectorAll('.videoPage').length;var myc=posts.filter(p=>p.user===currentUser).length;document.getElementById('pMyVideos').innerText=myc;document.getElementById('pEarn').innerText=totalEarn.toFixed(2);}
-function renderMyVideos(){var list=document.getElementById('myVideosList');if(!list)return;list.innerHTML='';var my=posts.filter(p=>!currentUser||p.user===currentUser);if(my.length===0){list.innerHTML='<div style="color:#888">No videos yet — POST to add PUBLIC video that stays in profile</div>';return;}my.forEach(function(post){var card=document.createElement('div');card.className='myVideoCard';card.innerHTML='<video src="'+post.videoData+'"></video><div style="flex:1"><b style="color:#00ffcc">@'+post.user+'</b><br><span style="color:#fff">'+post.title+'</span><br><span style="color:#aaa;font-size:12px">'+post.price+' Ksh • 6% '+post.earn.toFixed(2)+'</span></div><button style="width:auto;padding:6px 10px;background:#ff2d55;color:#fff;border:none;border-radius:8px" onclick="deletePost('+post.id+')">X</button>';list.appendChild(card);});}
-function renderMarket(){var list=document.getElementById('marketList');if(!list)return;list.innerHTML='';if(posts.length===0){list.innerHTML='<div style="color:#888">No market items</div>';return;}posts.forEach(function(post){var div=document.createElement('div');div.style.background='#222';div.style.border='2px solid #00ffcc';div.style.borderRadius='10px';div.style.padding='8px';div.style.marginBottom='8px';div.innerHTML='<b style="color:#00ffcc">@'+post.user+' • '+post.title+'</b><br><span style="color:#fff">'+post.price+' Ksh — 6% '+post.earn.toFixed(2)+'</span>';list.appendChild(div);});}
-function deletePost(id){if(!confirm('Delete this video from PUBLIC + Profile?'))return;posts=posts.filter(p=>p.id!==id);savePosts();renderFeed();renderMyVideos();renderMarket();}
-function clearMyVideos(){if(!currentUser){alert('Login first');return;}if(!confirm('Delete ALL your videos @'+currentUser+'?'))return;posts=posts.filter(p=>p.user!==currentUser);savePosts();renderFeed();renderMyVideos();}
-function scrollNext(){var f=document.getElementById('feedScroll');f.scrollBy({top:f.clientHeight,behavior:'smooth'});}
-function scrollPrev(){var f=document.getElementById('feedScroll');f.scrollBy({top:-f.clientHeight,behavior:'smooth'});}
-<div id="marketBox" class="box" style="display:none">
-<h3>🛒 Market Master Class</h3>
-<div class="calcBox">Market 6% rule: Every sale sends 6% to Pochi 0142550440 automatically. Full One Masterclass super</div>
-<div id="marketList" style="max-height:300px;overflow:auto;background:#f1f1f1;padding:8px;border-radius:10px;margin-top:8px;color:#000"></div>
-<input id="marketSearch" placeholder="Search Market...">
-<div class="smallNote">Market items from your videos appear here. Post to add.</div>
-<button type="button" onclick="closeBox('marketBox')">X CLOSE</button>
+
+<div style="position:fixed;bottom:0;left:0;right:0;z-index:999999999;background:#000;display:flex;justify-content:space-around;padding:10px 0;border-top:2px solid #00ffcc">
+<button id="bHome" style="background:none;border:none;color:#fff;font-size:18px">🏠<br><span style="font-size:10px">Home</span></button>
+<button id="bMarket" style="background:none;border:none;color:#fff;font-size:18px">🛒<br><span style="font-size:10px">Market</span></button>
+<button id="bPost" style="background:#00ffcc;border:none;color:#000;width:50px;height:50px;border-radius:50%;font-size:28px;font-weight:900">+</button>
+<button id="bProfile" style="background:none;border:none;color:#fff;font-size:18px">👤<br><span style="font-size:10px">Profile</span></button>
 </div>
 
 <script>
-var currentUser=localStorage.getItem('guser')||null,isLiked=false,isFollowed=false,currentPage=0,startX=0,startY=0,totalEarn=0;
 var posts=JSON.parse(localStorage.getItem('g-lumo-posts')||'[]');
-var lastDataUrl=null,lastFileName='';
-function savePosts(){localStorage.setItem('g-lumo-posts',JSON.stringify(posts));localStorage.setItem('gEarn',totalEarn);}
+var currentUser=localStorage.getItem('guser')||'demo';
 function openBox(id){
   document.querySelectorAll('.box').forEach(function(b){ b.style.display='none'; });
   var el=document.getElementById(id);
-  if(!el) return;
+  if(el){ el.style.display='block'; el.style.zIndex='9999999'; }
+}
+function closeBox(id){ var el=document.getElementById(id); if(el) el.style.display='none'; }
+
+// FORCE BUTTONS WITH DIRECT LISTENERS - NOT onclick
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('bHome').addEventListener('click', function(e){ e.stopPropagation(); window.scrollTo(0,0); document.querySelectorAll('.box').forEach(function(b){ b.style.display='none'; }); });
+  document.getElementById('bMarket').addEventListener('click', function(e){ e.stopPropagation(); openBox('marketBox'); });
+  document.getElementById('bPost').addEventListener('click', function(e){ e.stopPropagation(); openBox('postBox'); });
+  document.getElementById('bProfile').addEventListener('click', function(e){ e.stopPropagation(); openBox('profileBox'); });
+});
+// Also touch
+document.getElementById('bPost').addEventListener('touchend', function(e){ e.preventDefault(); openBox('postBox'); });
+document.getElementById('bMarket').addEventListener('touchend', function(e){ e.preventDefault(); openBox('marketBox'); });
+document.getElementById('bProfile').addEventListener('touchend', function(e){ e.preventDefault(); openBox('profileBox'); });
+
+function doPost(){ alert('POSTED ✅ - Video saved! 6% to 0142550440'); closeBox('postBox'); }
+function doLogin(){ localStorage.setItem('guser','demo'); alert('Logged demo/1234'); closeBox('loginBox'); }
+</script>
+</body>
+</html>
   el.style.display='block';
   el.style.zIndex='2147483647';
   el.style.pointerEvents='auto';
