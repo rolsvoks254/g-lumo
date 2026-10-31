@@ -436,5 +436,61 @@ document.addEventListener('DOMContentLoaded', function(){
 function doPost(){ alert('POSTED ✅ 6% to 0142550440'); closeBox('postBox'); }
 function doLogin(){ localStorage.setItem('guser','demo'); alert('Logged demo/1234'); closeBox('loginBox'); }
 </script>
+  <script>
+// ===== SUPER FIX ALL SIDE ICONS =====
+function fixAllIcons(){
+  // Like
+  window.likeVideo = window.likeVideo || function(el){
+    if(!el) el = event.target;
+    el.style.color = el.style.color=='red' ? 'white' : 'red';
+    el.style.transform='scale(1.5)'; setTimeout(()=>el.style.transform='scale(1)',200);
+  };
+  window.likeTik = window.likeVideo;
+  
+  // Volume
+  window.toggleVolume = window.toggleVolume || function(){
+    var v=document.querySelector('#feedScroll video') || document.querySelector('video');
+    if(v){ v.muted=!v.muted; v.volume=1; alert(v.muted?'🔇 Muted':'🔊 Sound ON'); }
+  };
+  
+  // Share
+  window.shareVideo = window.shareVideo || function(){
+    if(navigator.share){ navigator.share({title:'G-LUMO',url:location.href}); }
+    else { navigator.clipboard.writeText(location.href); alert('Link copied! '+location.href); }
+  };
+  window.shareTik = window.shareVideo;
+  
+  // Follow
+  window.followUser = window.followUser || function(el){
+    if(el){ el.textContent = el.textContent.includes('Follow') ? 'Following ✅' : 'Follow +'; el.style.background = el.textContent.includes('Following') ? '#00ffcc' : '#ff0050'; }
+    alert('Following! 6% to 0142550440');
+  };
+  
+  // Download
+  window.downloadVideo = window.downloadVideo || function(){
+    var v=document.querySelector('#feedScroll video') || document.querySelector('video');
+    if(v&&v.src){ var a=document.createElement('a'); a.href=v.src; a.download='g-lumo.mp4'; a.click(); }
+  };
+  
+  // Prev / Next
+  window.nextVideo = window.nextVideo || function(){ document.getElementById('feedScroll').scrollBy({top:window.innerHeight,behavior:'smooth'}); };
+  window.prevVideo = window.prevVideo || function(){ document.getElementById('feedScroll').scrollBy({top:-window.innerHeight,behavior:'smooth'}); };
+  window.nextTik = window.nextVideo; window.prevTik = window.prevVideo; window.goNext = window.nextVideo; window.goPrev = window.prevVideo;
+  
+  // Market - make any market button work
+  window.openMarket = function(){ openBox('marketBox'); };
+  
+  // Auto-fix all buttons with onclick that are broken
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    var txt=(t.innerText||'').toLowerCase();
+    var cls=(t.className||'').toLowerCase();
+    // Volume icon
+    if(txt.includes('🔊')||txt.includes('🔇')||cls.includes('volume')||cls.includes('mute')){ toggleVolume(); }
+  });
+}
+fixAllIcons();
+setTimeout(fixAllIcons,1000);
+  </script>
 </body>
 </html>
