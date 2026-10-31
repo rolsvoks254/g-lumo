@@ -190,8 +190,8 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
   <div class="tik-top">
     <div class="tik-row">
       <div>
-        <div class="tik-handle">@<span id="tikHandle">Kelvinrui</span>▼</div>
-        <div class="tik-sub">@<span id="tikSub">kelvinrui07</span> • <span id="pUser2">demo</span></div>
+        <div class="tik-handle">@<span id="tikHandle">User</span>▼</div>
+<div class="tik-sub">@<span id="tikSub">username</span> • <span id="pUser2">demo</span></div>
         <div class="tik-stats">
           <div class="tik-stat"><b>110</b><span>Following</span></div>
           <div class="tik-stat"><b id="tikFollowers">33</b><span>Followers</span></div>
@@ -259,6 +259,20 @@ renderMyVideos=function(){
   }
   document.getElementById('pUser2').innerText=currentUser||'demo';
   document.getElementById('pEarn2').innerText=document.getElementById('pEarn').innerText;
+// MAKE USERNAME DYNAMIC
+function updateTikProfile(){
+  var u = (typeof currentUser !== 'undefined' && currentUser) ? currentUser : (localStorage.getItem('g-user') || 'demo');
+  var a = document.getElementById('tikHandle');
+  var b = document.getElementById('tikSub');
+  var c = document.getElementById('pUser2');
+  if(a) a.innerText = u.charAt(0).toUpperCase()+u.slice(1);
+  if(b) b.innerText = u.toLowerCase()+'07';
+  if(c) c.innerText = u;
+}
+var _oldOpenBox2 = openBox;
+openBox = function(id){
+  _oldOpenBox2(id);
+  if(id==='profileBox') setTimeout(updateTikProfile, 50);
 }
 function playTikVideo(src){var f=document.getElementById('feedScroll');f.scrollTo({top:0,behavior:'smooth'});setTimeout(function(){var v=document.querySelector('#feedScroll video');if(v){v.src=src;v.play();} closeBox('profileBox');},300);}
 </script>
