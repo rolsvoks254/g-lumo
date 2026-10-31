@@ -91,30 +91,30 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 <body>
 <div class="topBar">
 <b>G-LUMO FULL ONE MASTERCLASS<br>6% → 0142550440 • SCROLL L/R U/D • ICONS CLICKABLE</b>
-<div><button class="btn btnPost" type="button" onclick="openBox('postBox')" ontouchstart="openBox('postBox')">+ POST</button> <button class="btn btnLogin" type="button" onclick="openBox('loginBox')" ontouchstart="openBox('loginBox')">LOGIN</button></div>
+<div><button class="btn btnPost" type="button" onclick="openBox('postBox')" style="touch-action:manipulation;pointer-events:auto;">+ POST</button></div>
 </div>
 <div id="feedScroll">
 <div class="videoPage" data-url="demo1"><video src="https://www.w3schools.com/html/mov_bbb.mp4" loop muted autoplay playsinline controls></video><div class="badge">DEMO • 6%→0142550440</div><div class="infoBar"><b>@demo • 1000 Ksh • 6%=60 • Swipe L/R or U/D</b></div></div>
 <div class="videoPage" data-url="demo2"><video src="https://www.w3schools.com/html/movie.mp4" loop muted autoplay playsinline controls></video><div class="badge">DEMO 2 • MARKET</div><div class="infoBar"><b>@demo • 2500 Ksh • 6%=150 • All icons are BUTTONS</b></div></div>
 </div>
 <div id="rightIcons">
-<button class="iconBtn" type="button" onclick="openBox('profileBox')" style="touch-action:manipulation;pointer-events:auto;"><span id="
-<button id="followCircle" class="iconBtn iconFollow" type="button" onclick="toggleFollow()" ontouchstart="toggleFollow()">+<span id="followCount">Follow<br>1.5K</span></button>
-<button id="likeCircle" class="iconBtn iconFollow" type="button" onclick="doLike()" style="touch-action:manipulation;pointer-events:auto;"><span id="likeCount"
-<button class="iconBtn" type="button" onclick="openBox('commentBox')" ontouchstart="openBox('commentBox')">💬<span>Message<br><b id="msgCount">342</b></span></button>
-<button class="iconBtn" type="button" onclick="doShare()" ontouchstart="doShare()">↗️<span>Share<br>128</span></button>
-<button class="iconBtn" style="border-color:#00ffcc" type="button" onclick="doDownload()" ontouchstart="doDownload()">⬇️<span>Download<br>Save</span></button>
-<button class="iconBtn" type="button" onclick="toggleVolume()" ontouchstart="toggleVolume()">🔊<span id="volLabel">Volume<br>Vol ON</span></button>
-<button class="iconBtn" type="button" onclick="volUp()" ontouchstart="volUp()">🔊+<span>Vol+<br>UP</span></button>
-<button class="iconBtn" type="button" onclick="volDown()" ontouchstart="volDown()">🔉-<span>Vol-<br>DOWN</span></button>
-<button class="iconBtn" type="button" onclick="scrollPrev()" ontouchstart="scrollPrev()">⬆️<span>Prev<br>U/D</span></button>
-<button class="iconBtn" type="button" onclick="scrollNext()" ontouchstart="scrollNext()">⬇️<span>Next<br>L/R</span></button>
-</div>
+<button class="iconBtn" type="button" onclick="openBox('profileBox')" style="touch-action:manipulation;pointer-events:auto;">👤<br><span>Profile</span></button>
+<button id="followCircle" class="iconBtn iconFollow" type="button" onclick="toggleFollow()" style="touch-action:manipulation;pointer-events:auto;">+<br><span id="followCount">Follow<br>1.5K</span></button>
+<button id="likeCircle" class="iconBtn iconLike" type="button" onclick="doLike()" style="touch-action:manipulation;pointer-events:auto;background:#ff0050;color:#fff;">❤️<br><span id="likeCount">1.5K</span></button>
+<button class="iconBtn" type="button" onclick="openBox('commentBox')" style="touch-action:manipulation;pointer-events:auto;">💬<br><span>Message<br>342</span></button>
+<button class="iconBtn" type="button" onclick="doShare()" style="touch-action:manipulation;pointer-events:auto;">↗️<br><span>Share<br>128</span></button>
+<button class="iconBtn" type="button" onclick="doDownload()" style="touch-action:manipulation;pointer-events:auto;border-color:#00ffcc;">⬇️<br><span>Download<br>Save</span></button>
+<button class="iconBtn" type="button" onclick="toggleVolume()" style="touch-action:manipulation;pointer-events:auto;">🔊<br><span id="volLabel">Volume<br>Vol ON</span></button>
+<button class="iconBtn" type="button" onclick="volUp()" style="touch-action:manipulation;pointer-events:auto;">🔊+<br><span>Vol+<br>UP</span></button>
+<button class="iconBtn" type="button" onclick="volDown()" style="touch-action:manipulation;pointer-events:auto;">🔉-<br><span>Vol-<br>DOWN</span></button>
+<button class="iconBtn" type="button" onclick="scrollPrev()" style="touch-action:manipulation;pointer-events:auto;">⬆️<br><span>Prev<br>U/D</span></button>
+<button class="iconBtn" type="button" onclick="scrollNext()" style="touch-action:manipulation;pointer-events:auto;">⬇️<br><span>Next<br>L/R</span></button>
 <div class="bottomBar">
-<button class="btmBtn" type="button" onclick="goHome()" ontouchstart="goHome()">🏠<span>Home</span></button>
-<button class="btmBtn" type="button" onclick="openBox('marketBox')" ontouchstart="openBox('marketBox')">🛒<span>Market Master Class</span></button>
-<button class="btmPlus" type="button" onclick="openBox('postBox')" ontouchstart="openBox('postBox')">+</button>
-<button class="btmBtn" type="button" onclick="openBox('profileBox')" ontouchstart="openBox('profileBox')">👤<span>Profile Stay</span></button>
+<div class="bottomBar">
+<button class="btmBtn" type="button" onclick="goHome()" style="touch-action:manipulation;pointer-events:auto;">🏠<br><span>Home</span></button>
+<button class="btmBtn" type="button" onclick="openBox('marketBox')" style="touch-action:manipulation;pointer-events:auto;">🛒<br><span>Market</span></button>
+<button class="btmPlus" type="button" onclick="openBox('postBox')" style="touch-action:manipulation;pointer-events:auto;">+</button>
+<button class="btmBtn" type="button" onclick="openBox('profileBox')" style="touch-action:manipulation;pointer-events:auto;">👤<br><span>Profile</span></button>
 </div>
 <div id="loginBox" class="box" style="background:transparent;border:none;box-shadow:none;max-width:360px">
 <style>
