@@ -225,8 +225,8 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
     <button class="tik-act" onclick="openAnalytics()">📊 8.Analytics</button>
     <button class="tik-act" onclick="openBox('postBox')">+ POST</button>
     <button class="tik-act" onclick="clearMyVideos()">Delete All</button>
-    <button class="tik-act" style="background:#00ff88;color:#000;font-weight:900;pointer-events:auto" onclick="showMyEarnings()" ontouchstart="showMyEarnings()">💰 40% Earn</button>
-<button class="tik-act" style="background:#000;color:#00ff88;border:2px solid #00ff88;pointer-events:auto" onclick="buyPremium()" ontouchstart="buyPremium()">⭐ $9 No Ads</button>
+    <button id="earn-btn" class="tik-act" style="background:#00ff88;color:#000;font-weight:900;pointer-events:auto;display:none;" onclick="showMyEarnings()">💰 40% Earn - Founder Only</button>
+<button id="premium-btn" class="tik-act" style="background:#000;color:#00ff88;border:2px solid #00ff88;pointer-events:auto;display:none;" onclick="buyPremium()">⭐ $9 No Ads - Founder Only</button>
     <button class="tik-act" onclick="closeBox('profileBox')">X Close</button>
   </div>
 </div>
@@ -264,14 +264,27 @@ renderMyVideos=function(){
   document.getElementById('profileBox').style.pointerEvents='auto';
   document.getElementById('pEarn2').innerText=document.getElementById('pEarn').innerText;
 // MAKE USERNAME DYNAMIC
+// MAKE USERNAME DYNAMIC + FOUNDER ONLY 40% + $9
 function updateTikProfile(){
-  var u = (typeof currentUser !== 'undefined' && currentUser) ? currentUser : (localStorage.getItem('g-user') || 'demo');
+  var u = (typeof currentUser != 'undefined' && currentUser) ? currentUser : (localStorage.getItem('g-user') || localStorage.getItem('g-current-user') || 'demo');
   var a = document.getElementById('tikHandle');
   var b = document.getElementById('tikSub');
-  var c = document.getElementById('pUser2');
+  var c = document.getElementById('tikUser');
+var earnBtn = document.getElementById('earn-btn');  // ← 1 n - matches button!
+var premBtn = document.getElementById('premium-btn'); // ← 1 n - matches button!
+
   if(a) a.innerText = u.charAt(0).toUpperCase()+u.slice(1);
   if(b) b.innerText = u.toLowerCase()+'07';
-  if(c) c.innerText = u;
+  if(c) c.innerText = '@'+u;
+
+  // FOUNDER CHECK - HIDE 40% + $9 FOR NORMAL USERS
+  let isFounder = (u.toLowerCase()==='0142550440' || u.toLowerCase()==='rolsvoks254' || u.toLowerCase()==='founder');
+  if(earnBtn) earnBtn.style.display = isFounder ? 'block' : 'none';
+  if(premBtn) premBtn.style.display = isFounder ? 'block' : 'none';
+
+  // Also update the main profile box name
+  var p2 = document.getElementById('pUser2');
+  if(p2) p2.innerText = isFounder ? 'Founder' : u;
 }
 var _oldOpenBox2 = openBox;
 openBox = function(id){
