@@ -84,16 +84,39 @@ body{background:#000;color:#fff;font-family:system-ui,Arial;overflow:hidden;heig
 <button class="btmPlus" type="button" onclick="openBox('postBox')" ontouchstart="openBox('postBox')">+</button>
 <button class="btmBtn" type="button" onclick="openBox('profileBox')" ontouchstart="openBox('profileBox')">👤<span>Profile Stay</span></button>
 </div>
-<div id="loginBox" class="box">
-<h3>LOGIN — FULL ONE — demo / 1234</h3>
-<input id="loginUser" placeholder="Username demo" autocomplete="username">
-<input id="loginPass" type="password" placeholder="Password 1234" autocomplete="current-password">
-<button class="primary" type="button" onclick="doLogin()" ontouchstart="doLogin()">LOGIN FULL ONE</button>
-<button type="button" onclick="doReset()" ontouchstart="doReset()">RESET / FORGOT — Clear Login</button>
-<button type="button" onclick="closeBox('loginBox')" ontouchstart="closeBox('loginBox')">X CLOSE</button>
-<div class="smallNote">Demo: demo / 1234
-Pochi 0142550440 same — Full One Master Class — Like Share Message Follow Download Volume Vol+ Vol- all BUTTONS clickable — Scroll L/R U/D
-Logged as: <b id="loggedInfo">Not logged</b></div>
+<div id="loginBox" class="box" style="background:transparent;border:none;box-shadow:none;max-width:360px">
+<style>
+#loginBox .login-card{width:100%;background:#111;border:2px solid #00ffcc;border-radius:22px;padding:22px;box-shadow:0 0 25px #00ffcc66;color:#fff;font-family:Arial}
+#loginBox .login-top{background:#0e0e0e;border:2px solid #00ffcc;border-radius:18px;padding:16px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 0 18px #00ffcc99;margin-bottom:16px}
+#loginBox .login-logo{width:48px;height:48px;border-radius:12px;background:#000;border:2px solid #00ffcc;display:flex;align-items:center;justify-content:center;font-size:22px;color:#00ffcc}
+#loginBox .login-title{font-size:22px;font-weight:900;line-height:1.1}
+#loginBox .login-sub{font-size:12px;color:#8bd9d0;margin-top:4px}
+#loginBox .field{width:100%;height:52px;background:#0a0a0a;border:1.5px solid #2a2a2a;border-radius:14px;display:flex;align-items:center;padding:0 14px;margin-bottom:12px}
+#loginBox .field input{flex:1;background:transparent;border:none;color:#fff;font-size:15px;outline:none}
+#loginBox .btn-main{width:100%;height:52px;border:none;border-radius:14px;background:#00ffcc;color:#000;font-weight:900;font-size:16px;box-shadow:0 0 18px #00ffccaa;margin-bottom:12px}
+#loginBox .btn-outline{width:100%;height:52px;background:transparent;border:1.8px solid #00ffcc;border-radius:14px;color:#00ffcc;font-weight:800}
+#loginBox .login-foot{text-align:center;color:#6dd8cc;font-size:11px;margin-top:14px;line-height:1.4}
+</style>
+
+<div class="login-card">
+  <div class="login-top">
+    <div class="login-logo">▶o</div>
+    <div>
+      <div class="login-title">Login —<br>G-LUMO</div>
+      <div class="login-sub">Welcome back! Sign in to continue</div>
+    </div>
+    <div style="margin-left:auto"><button onclick="closeBox('loginBox')" style="width:30px;height:30px;border-radius:50%;background:#1e2e2e;border:none;color:#fff">X</button></div>
+  </div>
+
+  <div class="field">👤<input id="loginUser" placeholder="Username demo" autocomplete="username"></div>
+  <div class="field">🔒<input id="loginPass" type="password" placeholder="Password 1234" autocomplete="current-password"><span style="margin-left:8px">👁️</span></div>
+
+  <button class="btn-main" type="button" onclick="doLogin()" ontouchstart="doLogin()">Login — Full One</button>
+  <button class="btn-outline" type="button" onclick="doReset()" ontouchstart="doReset()">Reset</button>
+
+  <div class="login-foot">Demo: demo / 1234 • Pochi 0142550440 — 6% Masterclass<br>Logged as: <b id="loggedInfo" style="color:#fff">Not logged</b></div>
+</div>
+</div>
 </div>
 <div id="postBox" class="box">
 <h3>+ POST — Place to Enter</h3>
