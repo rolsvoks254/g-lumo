@@ -287,7 +287,19 @@ const G_CONFIG = {
   ownerCut: 0.40,
   creatorCut: 0.60
 };
-
+// ===== OWNER ONLY - PRIVATE POCHI 0142550440 =====
+const OWNER_ID = '0142550440';
+function isOwner(){
+  let u = localStorage.getItem('g-current-user') || prompt('Enter username:');
+  if(u) localStorage.setItem('g-current-user', u);
+  return u === OWNER_ID || u === 'rolsvoks254';
+}
+function showMyEarnings(){
+  if(!isOwner()){ alert('❌ Owner only! Pochi 0142550440 private.'); return; }
+  alert(`💰 OWNER LEDGER → Pochi ${G_CONFIG.pochi}\nTotal: Ksh ${gEarnings}\n6% Seller + 40% Creator + $9 Premium`);
+}
+// Hide earn button for normal users
+setTimeout(()=>{ if(!isOwner()){ let b=document.getElementById('earn-btn'); if(b) b.style.display='none'; } }, 1000);
 let gIsPremium = localStorage.getItem('g-premium')==='yes';
 let gEarnings = parseFloat(localStorage.getItem('g-my-earn')||'0');
 
